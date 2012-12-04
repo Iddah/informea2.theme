@@ -23,7 +23,7 @@ class EcolexParser {
 	public function __construct($url = '', $page_url = '') {
 		$this->url = $url;
 		$this->page_url = $page_url;
-        if(empty($this->url)) {
+        if(!empty($this->url)) {
             $this->security_check($url);
         }
 	}
