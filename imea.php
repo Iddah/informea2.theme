@@ -24,5 +24,31 @@ License: GPL2
 	along with this program; if not, write to the Free Software
 	Foundation, Inc., 51 Franklin St, Fifth Floor, Boston, MA  02110-1301  USA
 */
-
+require_once __DIR__ . '/base.php';
+require_once __DIR__ . '/countries.php';
+require_once __DIR__ . '/decisions.php';
 require_once __DIR__ . '/ecolex.php';
+require_once __DIR__ . '/events.php';
+require_once __DIR__ . '/highlights.php';
+require_once __DIR__ . '/treaties.php';
+
+
+
+# We need to load this plugin first as other modules depends on this API
+# http://stv.whtly.com/2011/09/03/forcing-a-wordpress-plugin-to-be-loaded-before-all-other-plugins/
+add_action( 'activated_plugin', 'imea_load_first' );
+function imea_load_first() {
+    var_dump(1);
+	$path = str_replace(WP_PLUGIN_DIR . '/', '', __FILE__);
+
+	if($plugins = get_option( 'active_plugins')) {
+        var_dump(2);
+		if($key = array_search( $path, $plugins)) {
+            var_dump(3);
+            var_dump($plugins);
+			array_splice($plugins, $key, 1);
+			array_unshift($plugins, $path);
+			update_option('active_plugins', $plugins);
+		}
+	}
+}

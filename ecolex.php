@@ -151,8 +151,23 @@ class EcolexParser {
 
 
 
-    public function _dev_import_decisions(&$console) {
-
+    public function _dev_import_decisions($path, &$console = '') {
+        $f = @file_get_contents($path);
+        if(empty($f)) {
+            $console .= sprintf("Failed to load file '$path'\n", $path);
+            return;
+        }
+        $data = json_decode($f);
+        echo
+        $console .= sprintf("Import %d court decisions from $path\n", count($data), $path);
+        foreach($data as $idx => $item) {
+            $prop = 'input-fields';
+            $row = $item->$prop;
+            $prop = "Type of document";
+            var_dump($row);
+            $console .= $idx . ' ';
+        }
+        $console .= "\nDone\n";
     }
 }
 }
