@@ -6,7 +6,6 @@ require_once WP_PLUGIN_DIR . '/informea/imea.php';
 class imea_decisions_admin_test extends InforMEABaseTest {
 
 
-
     function test_create_decision() {
         $treaty = $this->create_treaty();
         $meeting = $this->create_meeting();
