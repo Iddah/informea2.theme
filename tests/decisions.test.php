@@ -73,4 +73,245 @@ class imea_decisions_admin_test extends InforMEABaseTest {
             'id_treaty' => $treaty->id
         ));
     }
+
+
+    function test_set_attribute() {
+        $decision = $this->create_decision();
+
+        $ob = new imea_decisions_admin();
+        $ob->set_attribute($decision->id, 'attr_test', 'XXX', 'TEST');
+
+        global $wpdb;
+
+        // Create
+        $count = $wpdb->get_var('SELECT COUNT(*) FROM ai_decision_attributes');
+        $this->assertEquals(1, $count);
+        $row = $wpdb->get_row('SELECT * FROM ai_decision_attributes LIMIT 1');
+        $this->assertEquals(1, $row->id);
+        $this->assertEquals($decision->id, $row->id_decision);
+        $this->assertEquals('attr_test', $row->id_attribute);
+        $this->assertEquals('XXX', $row->value);
+        $this->assertEquals('TEST', $row->attribute_name);
+
+        // Edit
+        $ob->set_attribute($decision->id, 'attr_test', 'ANOTHER', 'TEST2');
+        $count = $wpdb->get_var('SELECT COUNT(*) FROM ai_decision_attributes');
+        $this->assertEquals(1, $count);
+
+        $row = $wpdb->get_row('SELECT * FROM ai_decision_attributes LIMIT 1');
+        $this->assertEquals(2, $row->id);
+        $this->assertEquals($decision->id, $row->id_decision);
+        $this->assertEquals('attr_test', $row->id_attribute);
+        $this->assertEquals('ANOTHER', $row->value);
+        $this->assertEquals('TEST2', $row->attribute_name);
+
+        // Remove
+        $ob->set_attribute($decision->id, 'attr_test', NULL, 'TEST2');
+        $count = $wpdb->get_var('SELECT COUNT(*) FROM ai_decision_attributes');
+        $this->assertEquals(0, $count);
+    }
+
+
+    /**
+     * Test should fail since we are passing NULL decision
+     *
+     * @expectedException InforMEAException
+     */
+    function test_set_attribute_null_decision() {
+        $ob = new imea_decisions_admin();
+        $ob->set_attribute(NULL, 'attr_test', 'XXX', 'TEST');
+    }
+
+
+    /**
+     * Test should fail since we are passing NULL attribute ID
+     *
+     * @expectedException InforMEAException
+     */
+    function test_set_attribute_null_id_attribute() {
+        $ob = new imea_decisions_admin();
+        $ob->set_attribute(1, NULL, 'XXX', 'TEST');
+    }
+
+
+    /**
+     * Test should fail since we are passing non-existing decision ID
+     *
+     * @expectedException InforMEAException
+     */
+    function test_set_attribute_invalid_id_decision() {
+        $ob = new imea_decisions_admin();
+        $ob->set_attribute(1, 'attr_test', 'XXX', 'TEST');
+    }
+
+
+    function test_set_country() {
+        global $wpdb;
+
+        $country = $this->create_country();
+        $decision = $this->create_decision();
+
+        // Set
+        $ob = new imea_decisions_admin();
+        $ob->set_country($decision->id, $country->id);
+
+        $count = $wpdb->get_var('SELECT COUNT(*) FROM ai_decision_country');
+        $this->assertEquals(1, $count);
+
+        $row = $wpdb->get_row('SELECT * FROM ai_decision_country LIMIT 1');
+        $this->assertEquals($decision->id, $row->id_decision);
+        $this->assertEquals($country->id, $row->id_country);
+     }
+
+
+    /**
+     * Test should fail since we are passing NULL attribute ID
+     *
+     * @expectedException InforMEAException
+     */
+    function test_set_country_null_country() {
+        $ob = new imea_decisions_admin();
+        $ob->set_country(1, NULL);
+    }
+
+
+    /**
+     * Test should fail since we are passing NULL attribute ID
+     *
+     * @expectedException InforMEAException
+     */
+    function test_set_country_null_decision() {
+        $ob = new imea_decisions_admin();
+        $ob->set_country(NULL, NULL);
+    }
+
+
+    /**
+     * Test should fail since we are passing non-existing decision ID
+     *
+     * @expectedException InforMEAException
+     */
+    function test_set_country_invalid_id_decision() {
+        $ob = new imea_decisions_admin();
+        $ob->set_country(3, 2);
+    }
+
+
+    function test_remove_countries() {
+        global $wpdb;
+
+        $country = $this->create_country();
+        $decision = $this->create_decision();
+
+        // Set
+        $ob = new imea_decisions_admin();
+        $ob->set_country($decision->id, $country->id);
+
+        $count = $wpdb->get_var('SELECT COUNT(*) FROM ai_decision_country');
+        $this->assertEquals(1, $count);
+
+        $row = $wpdb->get_row('SELECT * FROM ai_decision_country LIMIT 1');
+        $this->assertEquals($decision->id, $row->id_decision);
+        $this->assertEquals($country->id, $row->id_country);
+
+        $ob->remove_countries($decision->id);
+        $count = $wpdb->get_var('SELECT COUNT(*) FROM ai_decision_country');
+        $this->assertEquals(0, $count);
+     }
+
+
+    /**
+     * Test should fail since we are passing non-existing decision ID
+     *
+     * @expectedException InforMEAException
+     */
+    function test_remove_countries_invalid_id_decision() {
+        $ob = new imea_decisions_admin();
+        $ob->remove_countries(NULL);
+    }
+
+
+    function test_set_tag() {
+        global $wpdb;
+
+        $decision = $this->create_decision();
+        $term = $this->create_term();
+
+        $ob = new imea_decisions_admin();
+        $ob->set_tag($decision->id, $term->id);
+
+        $count = $wpdb->get_var('SELECT COUNT(*) FROM ai_decision_vocabulary');
+        $this->assertEquals(1, $count);
+
+        $row = $wpdb->get_row('SELECT * FROM ai_decision_vocabulary LIMIT 1');
+        $this->assertEquals($decision->id, $row->id_decision);
+        $this->assertEquals($term->id, $row->id_concept);
+     }
+
+
+    /**
+     * Test should fail since we are passing NULL term ID
+     *
+     * @expectedException InforMEAException
+     */
+    function test_set_tag_null_term() {
+        $ob = new imea_decisions_admin();
+        $ob->set_tag(1, NULL);
+    }
+
+
+    /**
+     * Test should fail since we are passing NULL decision ID
+     *
+     * @expectedException InforMEAException
+     */
+    function test_set_tag_null_decision() {
+        $ob = new imea_decisions_admin();
+        $ob->set_tag(NULL, 1);
+    }
+
+
+    /**
+     * Test should fail since we are passing non-existing ids
+     *
+     * @expectedException InforMEAException
+     */
+    function test_set_tag_invalid_ids() {
+        $ob = new imea_decisions_admin();
+        $ob->set_tag(3, 2);
+    }
+
+
+    function test_remove_tags() {
+        global $wpdb;
+
+        $decision = $this->create_decision();
+        $term = $this->create_term();
+
+        $ob = new imea_decisions_admin();
+        $ob->set_tag($decision->id, $term->id);
+
+        $count = $wpdb->get_var('SELECT COUNT(*) FROM ai_decision_vocabulary');
+        $this->assertEquals(1, $count);
+
+        $row = $wpdb->get_row('SELECT * FROM ai_decision_vocabulary LIMIT 1');
+        $this->assertEquals($decision->id, $row->id_decision);
+        $this->assertEquals($term->id, $row->id_concept);
+
+        $ob->remove_tags($decision->id);
+        $count = $wpdb->get_var('SELECT COUNT(*) FROM ai_decision_vocabulary');
+        $this->assertEquals(0, $count);
+     }
+
+
+    /**
+     * Test should fail since we are passing non-existing ids
+     *
+     * @expectedException InforMEAException
+     */
+    function test_remove_tags_null_decision() {
+        $ob = new imea_decisions_admin();
+        $ob->remove_tags(NULL);
+     }
+
 }
