@@ -387,6 +387,25 @@ class imea_countries_page extends imea_page_base_page {
 		return $wpdb->get_results("SELECT * FROM ai_country where name LIKE '%$name%'");
 	}
 
+
+    /**
+     * Get the country by its name. Case insensitive search on name and long name
+     *
+     * @param string $name Country name or official name
+     * @return object Country object or NULL if not found
+     */
+    function get_country_by_name($name) {
+        global $wpdb;
+        if(!empty($name)) {
+            $name = preg_replace('/\s+/', ' ', $name); // Remove unholy characters (multi-spaces, tab, newline etc.)
+            $name = trim($name);
+            $name = strtolower($name);
+            return $wpdb->get_row($wpdb->prepare('SELECT * FROM ai_country WHERE LOWER(name) = %s OR LOWER(long_name) = %s LIMIT 1', $name, $name));
+        }
+        return NULL;
+    }
+
+
 	function search_nfp_by_name($name) {
 		global $wpdb;
 		$ret = array();
