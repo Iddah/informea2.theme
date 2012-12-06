@@ -36,7 +36,6 @@ class imea_decisions_admin extends imea_decisions_page {
      * - rec_updated_author
      *
      * @return object decision object or FALSE if error occurred
-     * @todo Write tests
      */
     function create_decision($array) {
 		global $wpdb;
@@ -148,7 +147,7 @@ class imea_decisions_admin extends imea_decisions_page {
 
 
     /**
-     * Tag decision
+     * Tag decision with existing term
      *
      * @param integer $id_decision Decision ID number
      * @param integer $id_term Term ID - voc_concept ID
