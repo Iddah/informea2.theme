@@ -173,6 +173,26 @@ class imea_treaties_page extends imea_page_base_page {
 		return $wpdb->get_var($wpdb->prepare('SELECT id FROM ai_treaty WHERE ai_treaty.primary = 1 AND id_organization = %d;', intval($id_organization)));
 	}
 
+
+    /**
+     * Get organization by the name
+     *
+     * @global object $wpdb WordPress DB
+     * @param string $name Organization name
+     * @return object Organization object or NULL
+     */
+    function get_organization_by_name($name) {
+        global $wpdb;
+        if(!empty($name)) {
+            $name = preg_replace('/\s+/', ' ', $name); // Remove unholy characters (multi-spaces, tab, newline etc.)
+            $name = trim($name);
+            $name = strtolower($name);
+            return $wpdb->get_row($wpdb->prepare('SELECT * FROM ai_organization WHERE LOWER(name) = %s LIMIT 1', $name));
+        }
+        return NULL;
+    }
+
+
 	/**
 	 * Retrieve the list of treaties grouped by theme & category (region, global)
 	 * @param category: the region
