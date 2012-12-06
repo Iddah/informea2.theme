@@ -179,19 +179,19 @@ class EcolexParser {
                 $row = $item->$prop;
 
                 $title = NULL;
-                $prop = 'Title (English)'; if(isset($row->$prop)) { $title = $row->$prop; }
-                $prop = 'Title (French)'; if(empty($title) && isset($row->$prop)) { $title = $row->$prop; }
-                $prop = 'Title (Spanish)'; if(empty($title) && isset($row->$prop)) { $title = $row->$prop; }
-                $prop = 'Title (other language)'; if(empty($title) && isset($row->$prop)) { $title = $row->$prop; }
+                $prop = 'Title (English)'; if(isset($row->$prop)) { $title = trim($row->$prop); }
+                $prop = 'Title (French)'; if(empty($title) && isset($row->$prop)) { $title = trim($row->$prop); }
+                $prop = 'Title (Spanish)'; if(empty($title) && isset($row->$prop)) { $title = trim($row->$prop); }
+                $prop = 'Title (other language)'; if(empty($title) && isset($row->$prop)) { $title = trim($row->$prop); }
 
-                $link = NULL; $prop = 'Link to full text'; if(isset($row->$prop)) { $link = $row->$prop; }
-                $summary = NULL; $prop = 'Abstract'; if(isset($row->$prop)) { $summary = $row->$prop; }
-                $type = NULL; $prop = 'Type of document'; if(isset($row->$prop)) { $type = $row->$prop; }
-                $number = NULL; $prop = 'Court decision ID number'; if(isset($row->$prop)) { $number = $row->$prop; }
+                $link = NULL; $prop = 'Link to full text'; if(isset($row->$prop)) { $link = trim($row->$prop); }
+                $summary = NULL; $prop = 'Abstract'; if(isset($row->$prop)) { $summary = trim($row->$prop); }
+                $type = NULL; $prop = 'Type of document'; if(isset($row->$prop)) { $type = trim($row->$prop); }
+                $number = NULL; $prop = 'Court decision ID number'; if(isset($row->$prop)) { $number = trim($row->$prop); }
 
                 $published = NULL; $prop = 'Date of document'; if(isset($row->$prop)) {
                     $format = '%Y-%m-%d %H:%M:%S';
-                    $published = strtotime($row->$prop);
+                    $published = strtotime(trim($row->$prop));
                     $published = strftime($format, $published);
                 }
 
@@ -225,40 +225,40 @@ class EcolexParser {
                 // Attributes
                 $prop = 'Number of pages';
                 if(isset($row->$prop)) {
-                    $decision_admin->set_attribute($decision_ob->id, 'pages', $row->$prop, $prop);
+                    $decision_admin->set_attribute($decision_ob->id, 'pages', trim($row->$prop), $prop);
                 }
 
                 $prop = 'Language of document';
                 if(isset($row->$prop)) {
-                    $decision_admin->set_attribute($decision_ob->id, 'language', $row->$prop, $prop);
+                    $decision_admin->set_attribute($decision_ob->id, 'language', trim($row->$prop), $prop);
                 }
 
                 $prop = 'Court name';
                 if(isset($row->$prop)) {
-                    $decision_admin->set_attribute($decision_ob->id, 'court_name', $row->$prop, $prop);
+                    $decision_admin->set_attribute($decision_ob->id, 'court_name', trim($row->$prop), $prop);
                 }
 
                 $prop = 'Justice(s)';
                 if(isset($row->$prop)) {
-                    $decision_admin->set_attribute($decision_ob->id, 'justices', $row->$prop, $prop);
+                    $decision_admin->set_attribute($decision_ob->id, 'justices', trim($row->$prop), $prop);
                 }
 
                 $prop = 'Reference number';
                 if(isset($row->$prop)) {
-                    $decision_admin->set_attribute($decision_ob->id, 'reference_number', $row->$prop, $prop);
+                    $decision_admin->set_attribute($decision_ob->id, 'reference_number', trim($row->$prop), $prop);
                 }
 
                 // Keywords
                 $keywords = array();
                 $prop = 'Subject(s)';
                 if(isset($row->$prop)) {
-                    $tmp = explode(';', $row->$prop);
+                    $tmp = explode(';', trim($row->$prop));
                     $keywords += $tmp;
                 }
 
                 $prop = 'Keyword(s)';
                 if(isset($row->$prop)) {
-                    $tmp = explode(';', $row->$prop);
+                    $tmp = explode(';', trim($row->$prop));
                     $keywords += $tmp;
                 }
 
@@ -268,6 +268,7 @@ class EcolexParser {
                 }
 
                 foreach($keywords as $keyword) {
+                    $keyword = trim($keyword);
                     $term = $thesaurus_admin->find_term($keyword);
                     if(empty($term)) {
                         $term = $thesaurus_admin->create_term(array(
@@ -303,5 +304,7 @@ class EcolexParser {
         }
         $console .= "\nDone\n";
     }
+
+
 }
 }
