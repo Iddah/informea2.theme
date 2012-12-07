@@ -305,6 +305,154 @@ class EcolexParser {
         $console .= "\nDone\n";
     }
 
+    /**
+     * Import Ecolex decision
+     *
+     * @param string $path Path to the file on server disk
+     * @param string $console Reference to the logging
+     */
+    public function _dev_import_legislation($path, &$console = '') {
+        global $wpdb;
+        $f = @file_get_contents($path);
+        if(empty($f)) {
+            $console .= sprintf("Failed to load file '$path'\n", $path);
+            return;
+        }
+        $data = json_decode($f);
+        $console .= sprintf("Import %d court decisions from $path\n", count($data), $path);
+        $wpdb->query('BEGIN');
+        $console .= 'Transaction started...' . PHP_EOL;
 
+        $decision_admin = new imea_decisions_admin();
+        $thesaurus_admin = new Thesaurus();
+        $country_admin = new imea_countries_page();
+        $treaties_admin = new imea_treaties_page();
+
+        $tmp = array();
+        try {
+            foreach($data as $idx => $item) {
+                $prop = 'input-fields';
+                $row = $item->$prop;
+
+                $title = NULL; $prop = 'Title of text'; if(isset($row->$prop)) { $title = trim($row->$prop); }
+                $link = NULL; $prop = 'Link to full text'; if(isset($row->$prop)) { $link = trim($row->$prop); }
+                $type = NULL; $prop = 'Type of document'; if(isset($row->$prop)) { $type = trim($row->$prop); }
+                $summary = NULL; $prop = 'Abstract'; if(isset($row->$prop)) { $summary = trim($row->$prop); }
+                $number = NULL; $prop = 'Legislation ID number'; if(isset($row->$prop)) { $number = trim($row->$prop); }
+
+                $published = NULL; $prop = 'Date of text'; if(isset($row->$prop)) {
+                    $format = '%Y-%m-%d %H:%M:%S';
+                    $published = strtotime(trim($row->$prop));
+                    $published = strftime($format, $published);
+                } else {
+                        $published = NULL; $prop = 'Date of original text'; if(isset($row->$prop)) {
+                        $format = '%Y-%m-%d %H:%M:%S';
+                        $published = strtotime(trim($row->$prop));
+                        $published = strftime($format, $published);
+                    }
+                }
+                $ecolex_organization = $treaties_admin->get_organization_by_name('Ecolex');
+                if(empty($ecolex_organization)) {
+                    throw new InforMEAException("Cannot find Ecolex organizaiton");
+                }
+                $status = 'active';
+                $decision = array(
+                    'short_title' => $title, 'link' => $link,
+                    'id_organization' => $ecolex_organization->id,
+                    'summary' => $summary, 'type' => $type, 'status' => $status,
+                    'number' => $number, 'published' => $published
+                );
+                if(empty($number) || empty($type) || empty($title) || empty($published)) {
+                    $console .= "Invalid decision, index: $idx\n";
+                    $console .= print_r($decision, TRUE);
+                    $console .= "\n";
+                    continue;
+                }
+
+                $decision_ob = $decision_admin->create_decision($decision);
+                if(empty($decision_ob)) {
+                    $console .= "Invalid decision, index: $idx\n";
+                    $console .= print_r($decision, TRUE);
+                    $console .= "\n";
+                    continue;
+                }
+
+                // Attributes
+                $prop = 'Entry into force notes';
+                if(isset($row->$prop)) {
+                    $decision_admin->set_attribute($decision_ob->id, 'entry_into_force_notes', trim($row->$prop), $prop);
+                }
+
+                $prop = 'Language of document';
+                if(isset($row->$prop)) {
+                    $decision_admin->set_attribute($decision_ob->id, 'language', trim($row->$prop), $prop);
+                }
+
+                $prop = 'Source';
+                if(isset($row->$prop)) {
+                    $decision_admin->set_attribute($decision_ob->id, 'source', trim($row->$prop), $prop);
+                }
+
+                $prop = 'Available web site';
+                if(isset($row->$prop)) {
+                    $decision_admin->set_attribute($decision_ob->id, 'available_website', trim($row->$prop), $prop);
+                }
+
+                // Keywords
+                $keywords = array();
+                $prop = 'Subject(s)';
+                if(isset($row->$prop)) {
+                    $tmp = explode(';', trim($row->$prop));
+                    $keywords += $tmp;
+                }
+
+                $prop = 'Keyword(s)';
+                if(isset($row->$prop)) {
+                    $tmp = explode(';', trim($row->$prop));
+                    $keywords += $tmp;
+                }
+
+                $src_ecolex = $thesaurus_admin->get_source_by_name('ECOLEX');
+                if(empty($src_ecolex)) {
+                    throw new InforMEAException('Cannot find Vocabulary source Ecolex');
+                }
+
+                foreach($keywords as $keyword) {
+                    $keyword = trim($keyword);
+                    $term = $thesaurus_admin->find_term($keyword);
+                    if(empty($term)) {
+                        $term = $thesaurus_admin->create_term(array(
+                            'term' => $keyword,
+                            'description' => 'Term imported from Ecolex court decisions',
+                            'tag' => $keyword,
+                            'id_source' => $src_ecolex->id
+                        ));
+                    }
+                    $decision_admin->set_tag($decision_ob->id, $term->id);
+                }
+
+                // Countries
+                $prop = 'Country';
+                if(empty($row->$prop)) {
+                    foreach($row->$prop as $country_name) {
+                        $country = $country_admin->get_country_by_name($country_name);
+                        if($country == NULL) {
+                            $console .= "ERROR: Cannot find country $country_name" . PHP_EOL;
+                        } else {
+                            $decision_admin->set_country($decision_ob->id, $country->id);
+                        }
+                    }
+                }
+                $console .= $idx . ' ';
+            }
+            $console .= PHP_EOL . 'Transaction commited...' . PHP_EOL;
+            $wpdb->query('COMMIT');
+        } catch(Exception $e) {
+            $console .= 'Exception: ' . $e->getMessage() . PHP_EOL;
+            $console .= 'Transaction aborted...' . PHP_EOL;
+            $wpdb->query('ROLLBACK');
+        }
+        $console .= "\nDone\n";
+    }
 }
 }
