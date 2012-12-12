@@ -336,6 +336,23 @@ class imea_decisions_page extends imea_page_base_page {
 		return array();
 	}
 
+
+    /**
+     * Retrieve the decisions associated to a country (i.e. Ecolex decisions)
+     * @param integer $id_country Country ID
+     * @param string $type (Optional) Type of decision - ai_decision.type
+     * @return array Array of decision objects
+     */
+    function get_decisions_for_country($id_country, $type = NULL) {
+        global $wpdb;
+        if(empty($type)) {
+            return $wpdb->get_results($wpdb->prepare('SELECT a.* FROM ai_decision a INNER JOIN ai_decision_country b ON a.id = b.id_decision WHERE b.id_country=%d ORDER BY a.display_order', $id_country));
+        } else {
+            return $wpdb->get_results($wpdb->prepare('SELECT a.* FROM ai_decision a INNER JOIN ai_decision_country b ON a.id = b.id_decision WHERE b.id_country=%d AND a.`type`=%s ORDER BY a.display_order', $id_country, $type));
+        }
+    }
+
+
 	function get_decision($id_decision) {
 		if($id_decision) {
 			global $wpdb;

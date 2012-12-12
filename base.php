@@ -85,6 +85,21 @@ class imea_page_base_page {
 		return FALSE;
 	}
 
+
+    /**
+     * Generate 404 - Not found. This must be called *before* sending any content
+     *
+     * @global object $wp_query Global WordPress query object
+     */
+    function go_404() {
+        global $wp_query;
+
+        header('HTTP/1.0 404 Not Found - Archive Empty');
+        $wp_query->set_404();
+        require TEMPLATEPATH . DIRECTORY_SEPARATOR . '404.php';
+        exit;
+    }
+
 	/**
 	 * Retrieve GET parameter or NULL
 	 */
@@ -342,6 +357,86 @@ class imea_page_base_page {
 		);
 	}
 
+
+    /**
+     * Assign a document to a decision. Uses copy(), NOT move_uploaded_file. Extend.
+     *
+     * @todo Extend this to use movbe_uploaded_file if $file comes from HTTP POST.
+     *
+     * @param string $file Path to the file on disk
+     * @param array $array Array with document properties (columns).
+     * Supported keys:
+     * - original_id
+     * - mime (doc, xls, pdf, odt, rtf). Guessed if not specified. Exception is thrown if it cannot be recognized
+     * - url
+     * - id_decision
+     * - path - (Required) Path relative to Wordpress 'uploads' directory.
+     * - language (ISO code or language in english)
+     * - size - file size - Guessed from existing file
+     * - is_indexed - 0/1
+     * - filename - Guessed from existing file
+     *
+     * Internal fields - Set by this method
+     * - rec_created
+     * - rec_author
+     *
+     * Internal fields - Set to NULL by this method
+     * - rec_updated
+     * - rec_updated_author
+     * @param string $uploads_dir - Wordpress uploads dir (full path is $uploads_dir + $array[path])
+     *
+     * @return object document object or FALSE if error occurred
+     *
+     */
+    function add_document($file, $array, $uploads_dir) {
+		global $wpdb;
+		global $current_user;
+
+        if(empty($array['path'])) {
+            throw new InforMEAException(sprintf('Path not specified (%s)', print_r($array, TRUE)));
+        }
+        if(empty($file) || !is_file($file) || !is_readable($file)) {
+            throw new InforMEAException(sprintf('Source file is invalid (%s)', $file));
+        }
+        if(empty($uploads_dir) || !is_dir($uploads_dir) || !is_writable($uploads_dir)) {
+            throw new InforMEAException(sprintf('Target directory is invalid (%s)', $uploads_dir));
+        }
+
+        $destination = $uploads_dir . DIRECTORY_SEPARATOR . $array['path'];
+        try {
+            copy($file, $destination);
+        } catch(Exception $e) {
+            throw new InforMEAException(sprintf('Cannot copy file %s to %s (%s)', $file, $destination, $e->getMessage()));
+        }
+
+        // Guess optional values if not set
+        if(empty($array['mime'])) {
+            $array['mime'] = strtolower(pathinfo($file, PATHINFO_EXTENSION));
+        }
+        if(empty($array['mime']) || !in_array($array['mime'], array('doc', 'xls', 'pdf', 'odt', 'rtf', 'htm', 'html', 'txt'))) {
+            throw new InforMEAException(sprintf('Invalid MIME type for file (%s)',$file));
+        }
+
+        if(empty($array['size'])) {
+            $array['size'] = filesize($file);
+        }
+        if(empty($array['filename'])) {
+            $tmp = pathinfo($file, PATHINFO_BASENAME);
+            $array['filename'] = $tmp;
+        }
+
+		$this->success = false;
+        $rec_created = date('Y-m-d H:i:s', strtotime('now'));
+        $user = $current_user->user_login;
+        $data = array_merge(array('rec_created' => $rec_created, 'rec_author' => $user), $array);
+
+        $wpdb->insert('ai_document', $data);
+        $this->check_db_error();
+        $id_document = $wpdb->insert_id;
+        $document = $wpdb->get_row($wpdb->prepare('SELECT * FROM ai_document WHERE id=%d',  $id_document));
+        $this->success = $document !== NULL;
+        return $document;
+    }
 }
 }
 

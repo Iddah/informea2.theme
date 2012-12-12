@@ -382,6 +382,56 @@ class imea_countries_page extends imea_page_base_page {
 		return $wpdb->get_row("SELECT * FROM ai_country where id=".$id);
 	}
 
+
+    /**
+     * Find country by ISO-2L or ISO-3L code.
+     *
+     * @global object $wpdb WordPress query object
+     * @param string $iso Country ISO 2-letter or 3-letter code
+     * @return object Row object or NULL if not found
+     */
+    function get_country_by_iso($iso) {
+        global $wpdb;
+
+        if(!empty($iso)) {
+
+            return $wpdb->get_row($wpdb->prepare('SELECT * FROM ai_country WHERE LOWER(code2l)=LOWER(%s) OR LOWER(code)=LOWER(%s) LIMIT 1', $iso, $iso));
+        }
+    }
+
+
+    /**
+     * Find country by ISO-2L code.
+     *
+     * @global object $wpdb WordPress query object
+     * @param string $iso2 Country ISO 2-letter code
+     * @return object Row object or NULL if not found
+     */
+    function get_country_by_iso2($iso2) {
+        global $wpdb;
+
+        if(!empty($iso2)) {
+            return $wpdb->get_row($wpdb->prepare('SELECT * FROM ai_country WHERE LOWER(code2l)=LOWER(%s) LIMIT 1', $iso2));
+        }
+    }
+
+
+    /**
+     * Find country by ISO-3L code.
+     *
+     * @global object $wpdb WordPress query object
+     * @param string $iso3 Country ISO 3-letter code
+     * @return object Row object or NULL if not found
+     */
+    function get_country_by_iso3($iso3) {
+        global $wpdb;
+
+        if(!empty($iso3)) {
+            return $wpdb->get_row($wpdb->prepare('SELECT * FROM ai_country WHERE LOWER(code)=LOWER(%s) LIMIT 1', $iso3));
+        }
+    }
+
+
 	function search_countries_by_name($name) {
 		global $wpdb;
 		return $wpdb->get_results("SELECT * FROM ai_country where name LIKE '%$name%'");

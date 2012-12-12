@@ -158,11 +158,15 @@ class EcolexParser {
      */
     public function _dev_import_decisions($path, &$console = '') {
         global $wpdb;
-        $f = @file_get_contents($path);
+        $json_file = $path . DIRECTORY_SEPARATOR . 'decisions.json';
+        $f = @file_get_contents($json_file);
         if(empty($f)) {
-            $console .= sprintf("Failed to load file '$path'\n", $path);
+            $console .= "Failed to load file $json_file\n";
             return;
         }
+
+        $numbers = $wpdb->get_col('SELECT DISTINCT(number) FROM ai_decision');
+
         $data = json_decode($f);
         $console .= sprintf("Import %d court decisions from $path\n", count($data), $path);
         $wpdb->query('BEGIN');
@@ -184,10 +188,17 @@ class EcolexParser {
                 $prop = 'Title (Spanish)'; if(empty($title) && isset($row->$prop)) { $title = trim($row->$prop); }
                 $prop = 'Title (other language)'; if(empty($title) && isset($row->$prop)) { $title = trim($row->$prop); }
 
-                $link = NULL; $prop = 'Link to full text'; if(isset($row->$prop)) { $link = trim($row->$prop); }
+                $link = NULL; $prop = 'original_link'; if(isset($row->$prop)) { $link = trim($row->$prop); }
                 $summary = NULL; $prop = 'Abstract'; if(isset($row->$prop)) { $summary = trim($row->$prop); }
-                $type = NULL; $prop = 'Type of document'; if(isset($row->$prop)) { $type = trim($row->$prop); }
+                $type = 'case';
                 $number = NULL; $prop = 'Court decision ID number'; if(isset($row->$prop)) { $number = trim($row->$prop); }
+                if(in_array($number, $numbers)) {
+                    $console .= "Decision number already exists, index: $number\n";
+                    $console .= "\n";
+                    continue;
+                } else {
+                    $numbers[] = $number;
+                }
 
                 $published = NULL; $prop = 'Date of document'; if(isset($row->$prop)) {
                     $format = '%Y-%m-%d %H:%M:%S';
@@ -197,7 +208,7 @@ class EcolexParser {
 
                 $ecolex_organization = $treaties_admin->get_organization_by_name('Ecolex');
                 if(empty($ecolex_organization)) {
-                    throw new InforMEAException("Cannot find Ecolex organizaiton");
+                    throw new InforMEAException("Cannot find Ecolex organization");
                 }
 
                 $status = 'Active';
@@ -223,14 +234,40 @@ class EcolexParser {
                 }
 
                 // Attributes
+
+                // Handle documents upload
+                if(isset($row->file)) {
+                    $language = NULL;
+                    $prop1 = 'Language of document';
+                    if(isset($row->$prop1)) {
+                        $language = $row->$prop1;
+                    }
+                    $link = NULL; $prop = 'Link to full text'; if(isset($row->$prop)) { $link = trim($row->$prop); }
+
+                    $src = $path . DIRECTORY_SEPARATOR . $row->file;
+
+                    // Add document to database
+                    $array = array(
+                        'url' => $link,
+                        'id_decision' => $decision_ob->id,
+                        'path' => 'decisions' . DIRECTORY_SEPARATOR . 'ecolex' . DIRECTORY_SEPARATOR . pathinfo($src, PATHINFO_BASENAME),
+                        'language' => $language,
+                        'is_indexed' => 0
+                    );
+
+                    // Move to uploaded content
+                    $upload_dir = wp_upload_dir();
+                    $decision_admin->add_document($src, $array, $upload_dir['basedir']);
+                }
+
                 $prop = 'Number of pages';
                 if(isset($row->$prop)) {
                     $decision_admin->set_attribute($decision_ob->id, 'pages', trim($row->$prop), $prop);
                 }
 
-                $prop = 'Language of document';
+                $prop = 'Type of document';
                 if(isset($row->$prop)) {
-                    $decision_admin->set_attribute($decision_ob->id, 'language', trim($row->$prop), $prop);
+                    $decision_admin->set_attribute($decision_ob->id, 'document_type', trim($row->$prop), $prop);
                 }
 
                 $prop = 'Court name';
@@ -283,10 +320,10 @@ class EcolexParser {
 
                 // Countries
                 $prop = 'Country';
-                if(empty($row->$prop)) {
+                if(!empty($row->$prop)) {
                     foreach($row->$prop as $country_name) {
                         $country = $country_admin->get_country_by_name($country_name);
-                        if($country == NULL) {
+                        if(empty($country)) {
                             $console .= "ERROR: Cannot find country $country_name" . PHP_EOL;
                         } else {
                             $decision_admin->set_country($decision_ob->id, $country->id);
@@ -305,6 +342,7 @@ class EcolexParser {
         $console .= "\nDone\n";
     }
 
+
     /**
      * Import Ecolex decision
      *
@@ -313,11 +351,15 @@ class EcolexParser {
      */
     public function _dev_import_legislation($path, &$console = '') {
         global $wpdb;
-        $f = @file_get_contents($path);
+        $json_file = $path . DIRECTORY_SEPARATOR . 'legislation.json';
+        $f = @file_get_contents($json_file);
         if(empty($f)) {
-            $console .= sprintf("Failed to load file '$path'\n", $path);
+            $console .= "Failed to load file $json_file\n";
             return;
         }
+
+        $numbers = $wpdb->get_col('SELECT DISTINCT(number) FROM ai_decision');
+
         $data = json_decode($f);
         $console .= sprintf("Import %d court decisions from $path\n", count($data), $path);
         $wpdb->query('BEGIN');
@@ -332,13 +374,24 @@ class EcolexParser {
         try {
             foreach($data as $idx => $item) {
                 $prop = 'input-fields';
+                if(empty($item)) {
+                    continue;
+                }
                 $row = $item->$prop;
 
+
+                $link = NULL; $prop = 'original_link'; if(isset($row->$prop)) { $link = trim($row->$prop); }
                 $title = NULL; $prop = 'Title of text'; if(isset($row->$prop)) { $title = trim($row->$prop); }
-                $link = NULL; $prop = 'Link to full text'; if(isset($row->$prop)) { $link = trim($row->$prop); }
-                $type = NULL; $prop = 'Type of document'; if(isset($row->$prop)) { $type = trim($row->$prop); }
+                $type = 'legislation';
                 $summary = NULL; $prop = 'Abstract'; if(isset($row->$prop)) { $summary = trim($row->$prop); }
                 $number = NULL; $prop = 'Legislation ID number'; if(isset($row->$prop)) { $number = trim($row->$prop); }
+                if(in_array($number, $numbers)) {
+                    $console .= "Decision number already exists, index: $number\n";
+                    $console .= "\n";
+                    continue;
+                } else {
+                    $numbers[] = $number;
+                }
 
                 $published = NULL; $prop = 'Date of text'; if(isset($row->$prop)) {
                     $format = '%Y-%m-%d %H:%M:%S';
@@ -353,7 +406,7 @@ class EcolexParser {
                 }
                 $ecolex_organization = $treaties_admin->get_organization_by_name('Ecolex');
                 if(empty($ecolex_organization)) {
-                    throw new InforMEAException("Cannot find Ecolex organizaiton");
+                    throw new InforMEAException("Cannot find Ecolex organization");
                 }
                 $status = 'active';
                 $decision = array(
@@ -378,14 +431,39 @@ class EcolexParser {
                 }
 
                 // Attributes
+
+                // Handle documents upload
+                if(isset($row->file)) {
+                    $language = NULL;
+                    $prop1 = 'Language of document';
+                    if(isset($row->$prop1)) {
+                        $language = $row->$prop1;
+                    }
+                    $link = NULL; $prop = 'Link to full text'; if(isset($row->$prop)) { $link = trim($row->$prop); }
+                    $src = $path . DIRECTORY_SEPARATOR . $row->file;
+                    // Add document to database
+                    $array = array(
+                        'url' => $link,
+                        'id_decision' => $decision_ob->id,
+                        'path' => 'decisions' . DIRECTORY_SEPARATOR . 'ecolex' . DIRECTORY_SEPARATOR . pathinfo($src, PATHINFO_BASENAME),
+                        'language' => $language,
+                        'is_indexed' => 0
+                    );
+
+                    // Move to uploaded content
+                    $upload_dir = wp_upload_dir();
+                    $decision_admin->add_document($src, $array, $upload_dir['basedir']);
+                }
+
+
                 $prop = 'Entry into force notes';
                 if(isset($row->$prop)) {
                     $decision_admin->set_attribute($decision_ob->id, 'entry_into_force_notes', trim($row->$prop), $prop);
                 }
 
-                $prop = 'Language of document';
+                $prop = 'Type of document';
                 if(isset($row->$prop)) {
-                    $decision_admin->set_attribute($decision_ob->id, 'language', trim($row->$prop), $prop);
+                    $decision_admin->set_attribute($decision_ob->id, 'document_type', trim($row->$prop), $prop);
                 }
 
                 $prop = 'Source';
@@ -433,10 +511,10 @@ class EcolexParser {
 
                 // Countries
                 $prop = 'Country';
-                if(empty($row->$prop)) {
+                if(!empty($row->$prop)) {
                     foreach($row->$prop as $country_name) {
                         $country = $country_admin->get_country_by_name($country_name);
-                        if($country == NULL) {
+                        if(empty($country)) {
                             $console .= "ERROR: Cannot find country $country_name" . PHP_EOL;
                         } else {
                             $decision_admin->set_country($decision_ob->id, $country->id);
