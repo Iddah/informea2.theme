@@ -537,11 +537,7 @@ class imea_treaties_page extends imea_page_base_page {
 	 * @return title string
 	 */
 	function get_title($decision) {
-		$ret = $decision->long_title;
-		if($ret === NULL) {
-			$ret = $decision->short_title;
-		}
-		return $ret;
+        return empty($decision->long_title) ? $decision->short_title : $decision->long_title;
 	}
 
 	/**
