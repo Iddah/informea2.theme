@@ -58,6 +58,39 @@ class imea_countries_page extends imea_page_base_page {
 	}
 
 
+    /**
+     * Retrieve the treaty memberships for a country
+     * @param integer $id_country Country ID
+     * @return array Array with countries and membership information, fields:
+     * - short_title - Treaty name
+     * - logo_medium - Treaty logo
+     * - name - Country name
+     * - icon_medium - Country flag
+     * - id_country
+     * - id_treaty
+     * - date
+     * - status
+     * - legal_instrument_name
+     * - legal_instrument_type
+     * - parent_legal_instrument
+     * - declarations
+     * - notes
+     */
+    function get_treaty_membership($id_country) {
+        global $wpdb;
+
+        return $wpdb->get_results($wpdb->prepare('
+            SELECT t.short_title, t.logo_medium,
+            c.name, c.icon_medium,
+            a.id_country, a.id_treaty, a.`date`, a.`status`, a.legal_instrument_name,
+            a.legal_instrument_type, a.parent_legal_instrument, a.declarations, a.notes
+            FROM ai_treaty_country a
+            INNER JOIN ai_treaty t ON a.id_treaty = t.id
+            INNER JOIN ai_country c ON a.id_country = c.id
+            WHERE c.id = %d ORDER BY t.short_title', $id_country)
+        );
+    }
+
 	/**
 	 * Retrive table data for index page of terms.
 	 * @return array with the rows displayable in template
