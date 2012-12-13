@@ -303,12 +303,12 @@ class imea_decisions_page extends imea_page_base_page {
 		return $wpdb->get_results("SELECT a.* FROM ai_treaty a INNER JOIN ai_decision b ON b.id_treaty = a.id WHERE a.enabled = 1 GROUP BY a.id ORDER BY a.short_title");
 	}
 
-	function get_decisions_for_treaty($id_treaty, $order_by = 'a.number, a.published DESC') {
+	function get_decisions_for_treaty($id_treaty, $order_by = 'a.`display_order`, a.published DESC') {
 		if($id_treaty) {
 			global $wpdb;
 			return $wpdb->get_results(
 				$wpdb->prepare(
-					"SELECT a.* FROM ai_decision a WHERE a.id_treaty = %s GROUP BY a.id ORDER BY $order_by", $id_treaty
+					"SELECT a.*, b.title as cop_title FROM ai_decision a LEFT JOIN ai_event b ON a.id_meeting = b.id WHERE a.id_treaty = %s GROUP BY a.id ORDER BY $order_by", $id_treaty
 				)
 			);
 		}
