@@ -446,7 +446,7 @@ class imea_treaties_page extends imea_page_base_page {
 		} else {
 			// Case 1)
 			if(count($c) >= 1) {
-				$meetings = $wpdb->get_results($wpdb->prepare('SELECT * FROM ai_event WHERE id IN (SELECT DISTINCT(id_meeting) FROM ai_decision WHERE id_treaty=%d) ORDER BY start DESC, end DESC', $this->id_treaty));
+				$meetings = $wpdb->get_results($wpdb->prepare('SELECT * FROM ai_event WHERE id IN (SELECT DISTINCT(id_meeting) FROM ai_decision WHERE id_treaty=%d) AND type=%s ORDER BY start DESC, end DESC', $this->id_treaty, 'cop'));
 				foreach($meetings as $meeting) {
 					$sql = "SELECT id, link, short_title, long_title, summary, type, status, number,
 								id_treaty, id_meeting, meeting_title, meeting_url, real_meeting_title, published
