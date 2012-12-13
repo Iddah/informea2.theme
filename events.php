@@ -366,7 +366,20 @@ class imea_events_page extends imea_page_base_page {
 	function get_events($id_treaty, $order_by = 'a.`title`') {
 		global $wpdb;
 		$sql = $wpdb->prepare("SELECT a.* FROM ai_event a WHERE a.`id_treaty` = %d ORDER BY $order_by", $id_treaty);
-		var_dump($sql);
+		return $wpdb->get_results($sql);
+	}
+
+
+    /**
+     * Retrieve COP meetings
+     *
+     * @global object $wpdb WordPress database
+     * @param integer $id_treaty Treaty ID
+     * @return array Meetings as stdClass
+     */
+	function get_events_cop($id_treaty) {
+		global $wpdb;
+		$sql = $wpdb->prepare("SELECT a.* FROM ai_event a WHERE a.`id_treaty` = %d AND a.`type` = 'cop' ORDER BY a.`start` DESC", $id_treaty);
 		return $wpdb->get_results($sql);
 	}
 
