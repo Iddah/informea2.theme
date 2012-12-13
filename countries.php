@@ -91,6 +91,33 @@ class imea_countries_page extends imea_page_base_page {
         );
     }
 
+
+    function format_membership_notes($row) {
+        $ret = '';
+        if(!empty($row->legal_instrument_name) || !empty($row->legal_instrument_type)
+                || !empty($row->parent_legal_instrument)
+                || !empty($row->declarations) || !empty($row->notes)) {
+            $ret .= '<ul>';
+            if(!empty($row->legal_instrument_name)) {
+                $ret .= sprintf('<li>%s: <strong>%s</strong></li>', __('Legal instrument', 'ieg'), $row->legal_instrument_name);
+            }
+            if(!empty($row->legal_instrument_type)) {
+                $ret .= sprintf('<li>%s: <strong>%s</strong></li>', __('Legal instrument type', 'ieg'), $row->legal_instrument_type);
+            }
+            if(!empty($row->parent_legal_instrument)) {
+                $ret .= sprintf('<li>%s: <strong>%s</strong></li>', __('Parent legal instrument', 'ieg'), $row->parent_legal_instrument);
+            }
+            if(!empty($row->declarations)) {
+                $ret .= sprintf('<li>%s: <strong>%s</strong></li>', __('Declarations', 'ieg'), $row->declarations);
+            }
+            if(!empty($row->notes)) {
+                $ret .= sprintf('<li>%s: <strong>%s</strong></li>', __('Notes', 'ieg'), $row->notes);
+            }
+            $ret .= '</ul>';
+        }
+        return $ret;
+    }
+
 	/**
 	 * Retrive table data for index page of terms.
 	 * @return array with the rows displayable in template
