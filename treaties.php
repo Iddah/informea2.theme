@@ -422,9 +422,8 @@ class imea_treaties_page extends imea_page_base_page {
 		$ret_dec = array();
 		$ret_meet = array();
 
-		$sql = "SELECT DISTINCT(id_meeting) FROM view_decision_meetings WHERE id_treaty = {$this->id_treaty}";
-		$c = $wpdb->get_results($sql);
-		if(count($c) == 1 && $c[0]->id_meeting == NULL) {
+        $c = $wpdb->get_var($wpdb->prepare('SELECT COUNT(*) FROM ai_decision WHERE id_treaty=%d AND id_meeting IS NOT NULL', $this->id_treaty));
+		if($c == 0) {
 			// Case 2)
 			$sql = "SELECT id, link, short_title, long_title, summary, type, status, number, id_treaty, id_meeting, meeting_title, meeting_url, real_meeting_title,
 					published FROM view_decision_meetings WHERE id_treaty = {$this->id_treaty} ORDER BY display_order DESC";
@@ -447,12 +446,7 @@ class imea_treaties_page extends imea_page_base_page {
 		} else {
 			// Case 1)
 			if(count($c) >= 1) {
-				$ids = array();
-				foreach($c as $ob) {
-					$ids[] = $ob->id_meeting;
-				}
-				$sql = 'SELECT * FROM ai_event WHERE id IN (' . implode(',', $ids) .') AND type="cop" ORDER BY start DESC, end DESC';
-				$meetings = $wpdb->get_results($sql);
+				$meetings = $wpdb->get_results($wpdb->prepare('SELECT * FROM ai_event WHERE id IN (SELECT DISTINCT(id_meeting) FROM ai_decision WHERE id_treaty=%d) AND type=%s ORDER BY start DESC, end DESC', $this->id_treaty, 'cop'));
 				foreach($meetings as $meeting) {
 					$sql = "SELECT id, link, short_title, long_title, summary, type, status, number,
 								id_treaty, id_meeting, meeting_title, meeting_url, real_meeting_title, published
@@ -543,11 +537,7 @@ class imea_treaties_page extends imea_page_base_page {
 	 * @return title string
 	 */
 	function get_title($decision) {
-		$ret = $decision->long_title;
-		if($ret === NULL) {
-			$ret = $decision->short_title;
-		}
-		return $ret;
+        return empty($decision->long_title) ? $decision->short_title : $decision->long_title;
 	}
 
 	/**
