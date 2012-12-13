@@ -659,9 +659,10 @@ class imea_decisions_page extends imea_page_base_page {
 			$valid = false;
 			$this->errors['security'] = 'Invalid security token';
 		}
-		if(get_request_int('id_meeting') == NULL && get_request_value('meeting_title') == NULL) {
+		$id_meeting = get_request_int('id_meeting');
+		if(empty($id_meeting)) {
 			$valid = false;
-			$this->errors['id_meeting'] = 'Either select meeting from drop-down or enter meeting title!';
+			$this->errors['id_meeting'] = 'Please select the meeting from drop-down below';
 		}
 		return $valid;
 	}
@@ -699,8 +700,6 @@ class imea_decisions_page extends imea_page_base_page {
 				if(!empty($id_meeting)) {
 					$data['id_meeting'] = $id_meeting;
 				}
-				$data['meeting_title'] = get_request_value('meeting_title');
-				$data['meeting_url'] = get_request_value('meeting_url');
 				$data['body'] = get_request_value('body');
 				$data['rec_created'] = $rec_created;
 				$data['rec_author'] = $user;
@@ -751,10 +750,9 @@ class imea_decisions_page extends imea_page_base_page {
 		}
 
 		$id_meeting = get_request_int('id_meeting');
-		$meeting_title = get_request_value('meeting_title');
-		if(empty($id_meeting) && empty($meeting_title)) {
+		if(empty($id_meeting)) {
 			$valid = false;
-			$this->errors['meeting'] = 'Missing both meeting and meeting title. One of them must be non-null';
+			$this->errors['id_meeting'] = 'Please select the meeting from drop-down below';
 		}
 		return $valid;
 	}
@@ -789,10 +787,6 @@ class imea_decisions_page extends imea_page_base_page {
 			$id_meeting = get_request_int('id_meeting');
 			if(!empty($id_meeting)) {
 				$data['id_meeting'] = $id_meeting;
-			}
-			$meeting_title = get_request_value('meeting_title');
-			if(!empty($meeting_title)) {
-				$data['meeting_title'] = $meeting_title;
 			}
 			$data['meeting_url'] = get_request_value('meeting_url');
 			$data['body'] = get_request_value('body');
