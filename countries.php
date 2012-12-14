@@ -286,30 +286,6 @@ class imea_countries_page extends imea_page_base_page {
 
 
 	/**
-	 * @deprecated Deprecated by get_focal_points_by_treaty above
-	 */
-	function get_contacts() {
-		global $wpdb;
-		$ret = array();
-		$ret['contacts'] = array();
-		$sql = "SELECT * FROM view_people_treaty WHERE id_country = {$this->id_country} GROUP BY id_treaty ORDER BY short_title";
-		$treaties = $wpdb->get_results($sql);
-		$ret['treaties'] = $treaties;
-
-		$sql = "SELECT * FROM view_people_treaty WHERE id_country = {$this->id_country} ORDER BY ";
-		$rows = $wpdb->get_results($sql);
-		$contacts = array();
-		foreach($rows as $row) {
-			if(!isset($contacts[$row->id_treaty])) {
-				$contacts[$row->id_treaty] = array();
-			}
-			$contacts[$row->id_treaty][] = $row;
-		}
-		$ret['contacts'] = $contacts;
-		return $ret;
-	}
-
-	/**
 	 * Get the related events for this country
 	 */
 	function get_related_events($limit = 5) {
