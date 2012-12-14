@@ -210,6 +210,81 @@ class imea_countries_page extends imea_page_base_page {
 	}
 
 
+	/**
+	 * Retrieve the list of national focal points grouped by treaty
+	 * @param integer $id_country Country ID. If NULL, internal ID is used
+	 * @return arrat Array of treaty objects having set property focal_points as array of National Focal Points.
+	 * @global $wpdb WordPress database
+	 */
+	function get_focal_points_by_treaty($id_country = NULL) {
+		global $wpdb;
+
+		$id_country = !empty($id_country) ? $id_country : $this->id_country;
+		$treaties = $wpdb->get_results(
+			$wpdb->prepare(
+				'SELECT * FROM ai_treaty WHERE id IN (SELECT DISTINCT(id_treaty) FROM view_people_treaty WHERE id_country=%d GROUP BY id_treaty)', $id_country
+			), OBJECT_K
+		);
+		$rows = $wpdb->get_results(
+			$wpdb->prepare('SELECT * FROM view_people_treaty WHERE id_country=%d ORDER BY country_name, first_name, last_name', $id_country)
+		);
+		foreach($rows as $row) {
+			$treaty = $treaties[$row->id_treaty];
+			if(!isset($treaty->focal_points)) {
+				$treaty->focal_points = array();
+			}
+			$treaty->focal_points[] = $row;
+		}
+		return $treaties;
+	}
+
+
+	/**
+	 * Count the total available focal points for a country.
+	 *
+	 * @param integer $id_country Country ID. If NULL, internal ID is used
+	 * @return integer Number of focal points
+	 */
+	function count_focal_points($id_country = NULL) {
+		global $wpdb;
+
+		$id_country = !empty($id_country) ? $id_country : $this->id_country;
+		return $wpdb->get_var(
+				$wpdb->prepare('SELECT COUNT(*) FROM view_people_treaty WHERE id_country=%d', $id_country)
+		);
+	}
+
+
+	/**
+	 * Format the HTML for the contact column on country profile.
+	 *
+	 * @param object $contact Contact database object
+	 * @return string HTML list with contact information
+	 */
+	function format_focal_point_contact($contact) {
+		$ret = '';
+		if(!empty($contact->address) || !empty($contact->email)
+			|| !empty($contact->telephone) || !empty($contact->fax)) {
+			$ret .= '<ul>';
+			if(!empty($contact->address)) {
+				$ret .= sprintf('<li>Address:<br /><strong><blockquote class="copyable">%s</blockquote></strong><small>Tip: click address to select</small></li>', $contact->address);
+			}
+			//@todo - Implement contact form
+			if(false) {
+				$ret .= sprintf('<li>E-Mail: <strong>%s</strong></li>', '@todo: contact form');
+			}
+			if(!empty($contact->telephone)) {
+				$ret .= sprintf('<li>Phone: <strong>%s</strong></li>', $contact->telephone);
+			}
+			if(!empty($contact->fax)) {
+				$ret .= sprintf('<li>Fax: <strong>%s</strong></li>', $contact->fax);
+			}
+			$ret .= '</ul>';
+		}
+		return $ret;
+	}
+
+
 	function get_contacts() {
 		global $wpdb;
 		$ret = array();
@@ -218,7 +293,7 @@ class imea_countries_page extends imea_page_base_page {
 		$treaties = $wpdb->get_results($sql);
 		$ret['treaties'] = $treaties;
 
-		$sql = "SELECT * FROM view_people_treaty WHERE id_country = {$this->id_country}";
+		$sql = "SELECT * FROM view_people_treaty WHERE id_country = {$this->id_country} ORDER BY ";
 		$rows = $wpdb->get_results($sql);
 		$contacts = array();
 		foreach($rows as $row) {
