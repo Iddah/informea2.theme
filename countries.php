@@ -285,6 +285,9 @@ class imea_countries_page extends imea_page_base_page {
 	}
 
 
+	/**
+	 * @deprecated Deprecated by get_focal_points_by_treaty above
+	 */
 	function get_contacts() {
 		global $wpdb;
 		$ret = array();
