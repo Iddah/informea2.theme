@@ -377,27 +377,50 @@ class imea_countries_page extends imea_page_base_page {
 	}
 
 
-	function get_national_plans() {
+	/**
+	 * Retrieve national plans for a country, group by treaty
+	 * 
+	 * @param integer $id_country Country ID
+	 * @return array Array of treaties having property national_plans array with ai_country_plan objects
+	 */
+	function get_national_plans($id_country = NULL) {
 		global $wpdb;
-		$ret = array();
-		$ret['plans'] = array();
-		$sql = "SELECT b.* FROM ai_country_plan a INNER JOIN ai_treaty b ON a.id_treaty = b.id WHERE b.enabled = TRUE AND a.id_country = {$this->id_country} GROUP BY b.id";
-		$treaties = $wpdb->get_results($sql);
-		$ret['treaties'] = $treaties;
-		$reports = array();
 
-		$sql = "SELECT a.*, b.logo_medium, b.short_title FROM ai_country_plan a
-					INNER JOIN ai_treaty b ON a.id_treaty = b.id WHERE b.enabled = TRUE AND a.id_country = {$this->id_country}";
-		$rows = $wpdb->get_results($sql);
+		$id_country = !empty($id_country) ? $id_country : $this->id_country;
+		$treaties = $wpdb->get_results(
+			$wpdb->prepare("SELECT b.* FROM ai_country_plan a INNER JOIN ai_treaty b ON a.id_treaty = b.id WHERE b.enabled = TRUE AND a.id_country=%d GROUP BY b.id", $id_country)
+			, OBJECT_K
+		);
+
+		$rows = $wpdb->get_results(
+			$wpdb->prepare("SELECT a.*, b.title AS meeting_title FROM ai_country_plan a LEFT JOIN ai_event b ON a.id_event = b.id WHERE a.id_country=%d ORDER BY a.submission DESC", $id_country)
+		);
 		foreach($rows as $row) {
-			if(!isset($reports[$row->id_treaty])) {
-				$reports[$row->id_treaty] = array();
+			$treaty = $treaties[$row->id_treaty];
+			if(!isset($treaty->national_plans)) {
+				$treaty->national_plans = array();
 			}
-			$reports[$row->id_treaty][] = $row;
+			$treaty->national_plans[] = $row;
 		}
-		$ret['plans'] = $reports;
-		return $ret;
+		return $treaties;
 	}
+
+
+	/**
+	 * Retrieve the count of national plans for a country
+	 * 
+	 * @param integer $id_country Country ID
+	 * @return integer Count
+	 */
+	function count_national_plans($id_country = NULL) {
+		global $wpdb;
+
+		$id_country = !empty($id_country) ? $id_country : $this->id_country;
+		return $wpdb->get_var(
+				$wpdb->prepare("SELECT COUNT(*) FROM ai_country_plan WHERE id_country=%d", $id_country)
+		);
+	}
+
 
 	function filter_national_plans($id_treaty, $id_country) {
 		global $wpdb;
