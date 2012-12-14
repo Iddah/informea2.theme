@@ -283,4 +283,90 @@ class imea_countries_admin_test extends InforMEABaseTest {
 		$c = $ob->count_national_plans();
 		$this->assertEquals(0, $c);
 	}
+
+
+	function test_get_national_reports() {
+		global $wpdb;
+
+		$t1 = $this->create_treaty();
+		$c1 = $this->create_country();
+		$m1 = $this->create_meeting();
+
+		$wpdb->insert('ai_country_report', array(
+				'original_id' => '1',
+				'id_country' => $c1->id,
+				'id_treaty' => $t1->id,
+				'submission' => '1992-12-23 00:00:00',
+				'title' => 'report1',
+				'id_event' => $m1->id
+		));
+		$p1 = $wpdb->get_row('SELECT * FROM ai_country_report WHERE id=1 LIMIT 1');
+		$this->assertNotNull($p1);
+
+		$wpdb->insert('ai_country_report', array(
+				'original_id' => '2',
+				'id_country' => $c1->id,
+				'id_treaty' => $t1->id,
+				'submission' => '1999-12-23 00:00:00',
+				'title' => 'report2',
+				'id_event' => $m1->id
+		));
+		$p2 = $wpdb->get_row('SELECT * FROM ai_country_report WHERE id=2 LIMIT 1');
+		$this->assertNotNull($p2);
+
+		$ob = new imea_countries_page();
+		$rows = $ob->get_national_reports($c1->id);
+		$this->assertNotNull($rows);
+		$this->assertEquals(1, count($rows));
+
+		$rt1 = current($rows);
+		$this->assertNotNull($rt1);
+		$this->assertEquals($t1->id, $rt1->id);
+		$this->assertEquals(2, count($rt1->national_reports));
+
+		$rp1 = current($rt1->national_reports);
+		$this->assertEquals($p2->id, $rp1->id);
+		$this->assertEquals($m1->id, $rp1->id_event);
+		$this->assertEquals($m1->title, $rp1->meeting_title);
+
+		$rp2 = next($rt1->national_reports);
+		$this->assertEquals($p1->id, $rp2->id);
+		$this->assertEquals($m1->title, $rp2->meeting_title);
+	}
+
+
+	function test_count_national_reports() {
+		global $wpdb;
+
+		$t1 = $this->create_treaty();
+		$c1 = $this->create_country();
+
+		$wpdb->insert('ai_country_report', array(
+				'original_id' => '1',
+				'id_country' => $c1->id,
+				'id_treaty' => $t1->id,
+				'title' => 'report1'
+		));
+		$p1 = $wpdb->get_row('SELECT * FROM ai_country_report WHERE id=1 LIMIT 1');
+		$this->assertNotNull($p1);
+
+		$wpdb->insert('ai_country_report', array(
+				'original_id' => '2',
+				'id_country' => $c1->id,
+				'id_treaty' => $t1->id,
+				'title' => 'report2'
+		));
+		$p2 = $wpdb->get_row('SELECT * FROM ai_country_report WHERE id=2 LIMIT 1');
+		$this->assertNotNull($p2);
+
+		$ob = new imea_countries_page();
+		$c = $ob->count_national_reports($c1->id);
+		$this->assertEquals(2, $c);
+
+		$c = $ob->count_national_reports(999);
+		$this->assertEquals(0, $c);
+
+		$c = $ob->count_national_reports();
+		$this->assertEquals(0, $c);
+	}
 }
