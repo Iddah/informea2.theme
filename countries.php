@@ -142,14 +142,35 @@ class imea_countries_page extends imea_page_base_page {
 	 */
 	function index() {
 		global $wpdb;
-		$results = $wpdb->get_results("SELECT * FROM ai_country ORDER BY name");
-		$ret = array();
-		foreach ($results as $row) {
-			$ret[$row->id] = array ('country' => $row->name, 'icon_url' => $row->icon_medium, 'treaties' => 11, 'decisions' => 12, 'legislation' => 13, 'cases' => 14);
-		}
+		$ret = new stdClass();
+		$ret->countries = $this->get_countries();
+		$ret->statistics = $this->get_index_statistics();
 		return $ret;
 	}
 
+
+	private function get_index_statistics() {
+		global $wpdb;
+
+		$key = 'ui.index.table';
+		$domain = 'country';
+
+		$cache = new imea_cache();
+		$statistics = $cache->get($key, $domain, TRUE);
+		if(empty($statistics)) {
+			$statistics = array();
+			$countries = $this->get_countries();
+			foreach($countries as &$country) {
+				$country->count_decisions = $wpdb->get_var($wpdb->prepare('SELECT COUNT(*) FROM `ai_decision_country` WHERE id_country=%s', $country->id));
+				$country->count_focal_points = $wpdb->get_var($wpdb->prepare('SELECT COUNT(*) FROM `ai_people` WHERE id_country=%s', $country->id));
+				$country->count_national_plans = $wpdb->get_var($wpdb->prepare('SELECT COUNT(*) FROM `ai_country_plan` WHERE id_country=%s', $country->id));
+				$country->count_national_reports = $wpdb->get_var($wpdb->prepare('SELECT COUNT(*) FROM `ai_country_report` WHERE id_country=%s', $country->id));
+				$statistics['id_' . $country->id] = $country;
+			}
+			$cache->put($key, $domain, $statistics, 'json');
+		}
+		return $statistics;
+	}
 
 	/**
 	 * Access ai_country
