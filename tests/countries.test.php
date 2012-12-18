@@ -369,4 +369,175 @@ class imea_countries_admin_test extends InforMEABaseTest {
 		$c = $ob->count_national_reports();
 		$this->assertEquals(0, $c);
 	}
+
+
+	function test_get_whc_sites() {
+		global $wpdb;
+
+		$org = $this->create_organization();
+		$wpdb->insert('ai_treaty', array(
+			'id_organization' => $org->id,
+			'short_title' => 'WHC',
+			'primary' => 1,
+			'enabled' => 1,
+			'order' => 1,
+			'regional' => 1,
+			'odata_name' => 'whc',
+			'is_indexed' => 1,
+			'region' => 'test'
+		));
+		$t1 = $wpdb->get_row('SELECT * FROM ai_treaty LIMIT 1');
+		$this->assertNotNull($t1);
+		$c1 = $this->create_country();
+
+		$wpdb->insert('ai_country_site', array(
+				'original_id' => '1',
+				'id_country' => $c1->id,
+				'id_treaty' => $t1->id,
+				'name' => 'site2'
+		));
+		$wpdb->insert('ai_country_site', array(
+				'original_id' => '2',
+				'id_country' => $c1->id,
+				'id_treaty' => $t1->id,
+				'name' => 'site1'
+		));
+
+		$ob = new imea_countries_page();
+		$rows = $ob->get_whc_sites($c1->id);
+		$this->assertNotNull($rows);
+		$this->assertEquals(2, count($rows));
+		$s1 = current($rows);
+		$this->assertNotNull($s1);
+		$this->assertEquals(2, $s1->id);
+		$this->assertEquals('Romania', $s1->country_name);
+
+		$s2 = next($rows);
+		$this->assertNotNull($s2);
+		$this->assertEquals(1, $s2->id);
+		$this->assertEquals('Romania', $s1->country_name);
+	}
+
+
+	function test_count_whc_sites() {
+		global $wpdb;
+
+		$org = $this->create_organization();
+		$wpdb->insert('ai_treaty', array(
+				'id_organization' => $org->id,
+				'short_title' => 'WHC',
+				'primary' => 1,
+				'enabled' => 1,
+				'order' => 1,
+				'regional' => 1,
+				'odata_name' => 'whc',
+				'is_indexed' => 1,
+				'region' => 'test'
+		));
+		$t1 = $wpdb->get_row('SELECT * FROM ai_treaty LIMIT 1');
+		$this->assertNotNull($t1);
+		$c1 = $this->create_country();
+
+		$wpdb->insert('ai_country_site', array(
+				'original_id' => '1',
+				'id_country' => $c1->id,
+				'id_treaty' => $t1->id,
+				'name' => 'site2'
+		));
+		$wpdb->insert('ai_country_site', array(
+				'original_id' => '2',
+				'id_country' => $c1->id,
+				'id_treaty' => $t1->id,
+				'name' => 'site1'
+		));
+
+		$ob = new imea_countries_page();
+		$this->assertEquals(2, $ob->count_whc_sites($c1->id));
+	}
+
+
+	function test_getramsar_sites() {
+		global $wpdb;
+
+		$org = $this->create_organization();
+		$wpdb->insert('ai_treaty', array(
+				'id_organization' => $org->id,
+				'short_title' => 'Ramsar',
+				'primary' => 1,
+				'enabled' => 1,
+				'order' => 1,
+				'regional' => 1,
+				'odata_name' => 'ramsar',
+				'is_indexed' => 1,
+				'region' => 'test'
+		));
+		$t1 = $wpdb->get_row('SELECT * FROM ai_treaty LIMIT 1');
+		$this->assertNotNull($t1);
+		$c1 = $this->create_country();
+
+		$wpdb->insert('ai_country_site', array(
+				'original_id' => '1',
+				'id_country' => $c1->id,
+				'id_treaty' => $t1->id,
+				'name' => 'site2'
+		));
+		$wpdb->insert('ai_country_site', array(
+				'original_id' => '2',
+				'id_country' => $c1->id,
+				'id_treaty' => $t1->id,
+				'name' => 'site1'
+		));
+
+		$ob = new imea_countries_page();
+		$rows = $ob->get_ramsar_sites($c1->id);
+		$this->assertNotNull($rows);
+		$this->assertEquals(2, count($rows));
+		$s1 = current($rows);
+		$this->assertNotNull($s1);
+		$this->assertEquals(2, $s1->id);
+		$this->assertEquals(2, $s1->id);
+		$this->assertEquals('Romania', $s1->country_name);
+
+		$s2 = next($rows);
+		$this->assertNotNull($s2);
+		$this->assertEquals(1, $s2->id);
+		$this->assertEquals('Romania', $s2->country_name);
+	}
+
+
+	function test_count_ramsar_sites() {
+		global $wpdb;
+
+		$org = $this->create_organization();
+		$wpdb->insert('ai_treaty', array(
+				'id_organization' => $org->id,
+				'short_title' => 'Ramsar',
+				'primary' => 1,
+				'enabled' => 1,
+				'order' => 1,
+				'regional' => 1,
+				'odata_name' => 'ramsar',
+				'is_indexed' => 1,
+				'region' => 'test'
+		));
+		$t1 = $wpdb->get_row('SELECT * FROM ai_treaty LIMIT 1');
+		$this->assertNotNull($t1);
+		$c1 = $this->create_country();
+
+		$wpdb->insert('ai_country_site', array(
+				'original_id' => '1',
+				'id_country' => $c1->id,
+				'id_treaty' => $t1->id,
+				'name' => 'site2'
+		));
+		$wpdb->insert('ai_country_site', array(
+				'original_id' => '2',
+				'id_country' => $c1->id,
+				'id_treaty' => $t1->id,
+				'name' => 'site1'
+		));
+
+		$ob = new imea_countries_page();
+		$this->assertEquals(2, $ob->count_ramsar_sites($c1->id));
+	}
 }

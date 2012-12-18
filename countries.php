@@ -213,7 +213,7 @@ class imea_countries_page extends imea_page_base_page {
 	/**
 	 * Retrieve the list of national focal points grouped by treaty
 	 * @param integer $id_country Country ID. If NULL, internal ID is used
-	 * @return arrat Array of treaty objects having set property focal_points as array of National Focal Points.
+	 * @return array Array of treaty objects having set property focal_points as array of National Focal Points.
 	 * @global $wpdb WordPress database
 	 */
 	function get_focal_points_by_treaty($id_country = NULL) {
@@ -303,31 +303,103 @@ class imea_countries_page extends imea_page_base_page {
 
 
 	/**
-	 * Return the Ramsar sites for a country
+	 * Return the list of Ramsar sites for a country.
+	 * @param integer $id_country Country ID. If NULL internal ID is used
+	 * @return array Array of ai_sites objects
+	 * @global $wpdb WordPress database
 	 */
-	function get_ramsar_sites() {
-		global $wpdb;
-		$ret = array();
-		if($this->id_country !== NULL) {
-			$sql = "SELECT a.* FROM ai_country_site a WHERE a.id_treaty = 18 AND a.id_country = {$this->id_country} ORDER BY a.name";
-			$ret = $wpdb->get_results($sql);
-		}
-		return $ret;
+	function get_ramsar_sites($id_country = NULL) {
+		return $this->get_sites($id_country, 'ramsar');
 	}
 
 
 	/**
-	 * Return the WHC sites for a country
+	 * Count the total RAMSAR sites for a country.
+	 *
+	 * @param integer $id_country Country ID. If NULL, internal ID is used
+	 * @return integer Number of RAMSAR sites
+	 * @global $wpdb WordPress database
 	 */
-	function get_whc_sites() {
-		global $wpdb;
-		$ret = array();
-		if($this->id_country !== NULL) {
-			$sql = "SELECT a.* FROM ai_country_site a WHERE a.id_treaty = 16 AND a.id_country = {$this->id_country} ORDER BY a.name";
-			$ret = $wpdb->get_results($sql);
-		}
-		return $ret;
+	function count_ramsar_sites($id_country = NULL) {
+		return $this->count_sites($id_country, 'ramsar');
 	}
+
+
+	/**
+	 * Return the list of WHC sites for a country.
+	 * @param integer $id_country Country ID. If NULL internal ID is used
+	 * @return array Array of ai_sites objects
+	 * @global $wpdb WordPress database
+	 */
+	function get_whc_sites($id_country = NULL) {
+		return $this->get_sites($id_country, 'whc');
+	}
+
+
+	/**
+	 * Count the total WHC sites for a country.
+	 *
+	 * @param integer $id_country Country ID. If NULL, internal ID is used
+	 * @return integer Number of WHC sites
+	 * @global $wpdb WordPress database
+	 */
+	function count_whc_sites($id_country = NULL) {
+		return $this->count_sites($id_country, 'whc');
+	}
+
+
+	/**
+	 * Get the 'type' of sites for a country. Currently applies to 'ramsar' and 'whc'
+	 *
+	 * @param integer $id_country Country ID. If NULL, internal ID is used
+	 * @param string $type Type of site. 'ramsar' or 'whc'.
+	 * @return integer Number of RAMSAR sites
+	 * @global $wpdb WordPress database
+	 */
+	protected function get_sites($id_country, $type) {
+		global $wpdb;
+
+		$id_country = !empty($id_country) ? $id_country : $this->id_country;
+		if(!empty($id_country)) {
+
+			return $wpdb->get_results(
+					$wpdb->prepare(
+							"SELECT a.*, c.name AS country_name FROM ai_country_site a
+								INNER JOIN ai_treaty b ON a.id_treaty = b.id
+								INNER JOIN ai_country c ON a.id_country = c.id
+								WHERE b.odata_name=%s AND a.id_country=%d ORDER BY a.name",
+							$type, $id_country
+					)
+			);
+		}
+		return array();
+	}
+
+
+	/**
+	 * Count the total 'type' of sites for a country. Currently applies to 'ramsar' and 'whc'
+	 *
+	 * @param integer $id_country Country ID. If NULL, internal ID is used
+	 * @param string $type Type of site. 'ramsar' or 'whc'.
+	 * @return integer Number of sites
+	 * @global $wpdb WordPress database
+	 */
+	protected function count_sites($id_country, $type) {
+		global $wpdb;
+
+		$id_country = !empty($id_country) ? $id_country : $this->id_country;
+		if(!empty($id_country)) {
+
+			return $wpdb->get_var(
+					$wpdb->prepare(
+							"SELECT COUNT(*) FROM ai_country_site a INNER JOIN ai_treaty b ON a.id_treaty = b.id WHERE b.odata_name=%s AND a.id_country=%d",
+							$type, $id_country
+					)
+			);
+		}
+		return 0;
+	}
+
 
 
 	/**
