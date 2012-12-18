@@ -92,6 +92,24 @@ class imea_countries_page extends imea_page_base_page {
     }
 
 
+    /**
+     * Determine if a country has membership information
+     * @param integer $id_country Country ID
+     * @return integer 0 if has not membership information or > 0
+     */
+    function count_treaty_membership($id_country) {
+    	global $wpdb;
+
+    	return $wpdb->get_var($wpdb->prepare('
+            SELECT COUNT(*)
+            FROM ai_treaty_country a
+            INNER JOIN ai_treaty t ON a.id_treaty = t.id
+            INNER JOIN ai_country c ON a.id_country = c.id
+            WHERE c.id = %d ORDER BY t.short_title', $id_country)
+    	);
+    }
+
+
     function format_membership_notes($row) {
         $ret = '';
         if(!empty($row->legal_instrument_name) || !empty($row->legal_instrument_type)

@@ -100,6 +100,33 @@ class imea_countries_admin_test extends InforMEABaseTest {
 	}
 
 
+	function test_count_treaty_membership() {
+		global $wpdb;
+
+		$t = $this->create_treaty();
+		$c = $this->create_country();
+
+		$wpdb->insert('ai_treaty_country', array(
+			'id_country' => $c->id,
+			'id_treaty' => $t->id,
+			'date' => '1999-12-23',
+			'status' => 'entryIntoForce',
+			'legal_instrument_name' => 'legal_instrument_name',
+			'legal_instrument_type' => 'protocol',
+			'parent_legal_instrument' => 'parent_legal_instrument',
+			'declarations' => 'declarations',
+			'notes' => 'notes'
+		));
+
+		$ob = new imea_countries_page();
+		$i = $ob->count_treaty_membership($c->id);
+		$this->assertEquals(1, $i);
+
+		$i = $ob->count_treaty_membership(999);
+		$this->assertEquals(0, $i);
+	}
+
+
 	function test_get_focal_points_by_treaty() {
 		global $wpdb;
 		// Create treaty
