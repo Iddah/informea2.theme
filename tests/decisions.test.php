@@ -329,4 +329,26 @@ class imea_decisions_admin_test extends InforMEABaseTest {
         $s = $rows[0];
         $this->assertEquals($d->id, $s->id);
     }
+
+
+    function test_count_decisions_for_country() {
+        $c = $this->create_country();
+        $d = $this->create_decision();
+
+        global $wpdb;
+        $wpdb->insert('ai_decision_country', array('id_decision' => $d->id, 'id_country' => $c->id));
+
+        $ob = new imea_decisions_page();
+        $i = $ob->count_decisions_for_country($c->id);
+        $this->assertEquals(1, $i);
+
+        $i = $ob->count_decisions_for_country(999);
+        $this->assertEquals(0, $i);
+
+        $i = $ob->count_decisions_for_country($c->id, $d->type);
+        $this->assertEquals(1, $i);
+
+        $i = $ob->count_decisions_for_country(999, $d->type);
+        $this->assertEquals(0, $i);
+    }
 }
