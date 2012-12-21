@@ -34,25 +34,6 @@ class imea_page_base_page {
 	}
 
 
-	public function the_breadcrumbtrail($items) {
-		if(!empty($items)) {
-			$divider = ' <span class="divider">/</span>';
-			$ret = array('<ul class="breadcrumb">');
-			$ret[] = sprintf('<li><a href="%s">%s</a>%s</li>', get_bloginfo('url'), __('Home', 'ieg'), $divider);
-
-			$last = end($items);
-			foreach($items as $item) {
-				if($item != $last) {
-					$ret[] = sprintf('<li><a href="%s">%s</a>%s</li>', $item['url'], $item['label'], $divider);
-				} else {
-					$ret[] = sprintf('<li class="active">%s</li>', $item['label']);
-				}
-			}
-			$ret[] = '</ul>';
-			echo implode("\n", $ret);
-		}
-	}
-
 	/**
 	 * Generate the page breadcrumbtrail
 	 *
@@ -60,11 +41,6 @@ class imea_page_base_page {
 	 */
 	public function get_breadcrumbtrail() {
 		return array('Breadcrumb not implemented');
-	}
-
-
-	public function the_page_title($content) {
-		echo $content;
 	}
 
 
@@ -126,9 +102,7 @@ class imea_page_base_page {
 
 	/**
 	 */
-	function is_404() {
-		return FALSE;
-	}
+	function check_404() {}
 
 
     /**

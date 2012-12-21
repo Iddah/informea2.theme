@@ -641,14 +641,15 @@ class imea_treaties_page extends imea_page_base_page {
 	 * @return id_treaty was set on GET but with invalid ID
 	 * @return boolean, 404 if true
 	 */
-	function is_404() {
+	function check_404() {
 		global $wp_query;
-		if(is_request_variable('id_treaty') && !$this->treaty) {
-			$wp_query->set_404();
-			require TEMPLATEPATH.'/404.php';
-			return TRUE;
+		if(isset($wp_query->query_vars['treaty'])) {
+			if(empty($this->treaty)) {
+				$wp_query->set_404();
+				require TEMPLATEPATH.'/404.php';
+				exit;
+			}
 		}
-		return FALSE;
 	}
 
 
@@ -674,12 +675,18 @@ class imea_treaties_page extends imea_page_base_page {
 	 * @global object $page_data Object derived from imea_base_page(ex. imea_treaties_page)
 	 */
 	function get_breadcrumbtrail() {
-		global $post, $page_data;
+		global $post, $page_data, $tab;
 		$ret = array();
 		if($post !== NULL) {
 			$ret[] = array('url' => get_permalink(), 'label' => $post->post_title);
 			if($page_data->treaty) {
-				$ret[] = array('label' => $page_data->treaty->short_title);
+				if(!empty($tab) && $tab != 'overview') {
+					$ret[] = array('url' => sprintf('%s/%s', get_permalink(), $page_data->treaty->odata_name),
+						'label' => $page_data->treaty->short_title);
+					$ret[] = array('label' => ucfirst($tab));
+				} else {
+					$ret[] = array('label' => $page_data->treaty->short_title);
+				}
 			}
 		}
 		return $ret;
