@@ -40,7 +40,7 @@ class imea_page_base_page {
 	 * @return array Array of associative array having properties 'url' and 'label', ex.: array(array('url' => '/', 'label' => 'Home'))
 	 */
 	public function get_breadcrumbtrail() {
-		return array('Breadcrumb not implemented');
+		return array(array('label' => 'Breadcrumb not implemented'));
 	}
 
 

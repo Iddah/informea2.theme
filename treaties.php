@@ -669,7 +669,7 @@ class imea_treaties_page extends imea_page_base_page {
 
 
 	/**
-	 * Called by hook imea_breadcrumbtrail. Called without $this context
+	 * Called by hook imea_breadcrumbtrail.
 	 *
 	 * @global object $post WordPress post object
 	 * @global object $page_data Object derived from imea_base_page(ex. imea_treaties_page)
