@@ -25,6 +25,59 @@ class imea_page_base_page {
 	/** End */
 
 
+	/**
+	 * Construct new object
+	 * @param arr_parameters HTTP GET parameters specific to this page. They are used to reconstruct the URL for pagination links.
+	 */
+	function __construct($arr_parameters = array()) {
+		$this->req_parameters = $arr_parameters;
+	}
+
+
+	public function the_breadcrumbtrail($items) {
+		if(!empty($items)) {
+			$divider = ' <span class="divider">/</span>';
+			$ret = array('<ul class="breadcrumb">');
+			$ret[] = sprintf('<li><a href="%s">%s</a>%s</li>', get_bloginfo('url'), __('Home', 'ieg'), $divider);
+
+			$last = end($items);
+			foreach($items as $item) {
+				if($item != $last) {
+					$ret[] = sprintf('<li><a href="%s">%s</a>%s</li>', $item['url'], $item['label'], $divider);
+				} else {
+					$ret[] = sprintf('<li class="active">%s</li>', $item['label']);
+				}
+			}
+			$ret[] = '</ul>';
+			echo implode("\n", $ret);
+		}
+	}
+
+	/**
+	 * Generate the page breadcrumbtrail
+	 *
+	 * @return array Array of associative array having properties 'url' and 'label', ex.: array(array('url' => '/', 'label' => 'Home'))
+	 */
+	public function get_breadcrumbtrail() {
+		return array('Breadcrumb not implemented');
+	}
+
+
+	public function the_page_title($content) {
+		echo $content;
+	}
+
+
+	/**
+	 * Generate the page title (h1 content)
+	 *
+	 * @return string String with page title
+	 */
+	public function get_page_title() {
+		return 'Title not implemented';
+	}
+
+
 	function get_action() {
 		return get_request_variable('action');
 	}
@@ -52,14 +105,6 @@ class imea_page_base_page {
 		echo $this->get_value($name, $strip_slashes);
 	}
 
-
-	/**
-	 * Construct new object
-	 * @param arr_parameters HTTP GET parameters specific to this page. They are used to reconstruct the URL for pagination links.
-	 */
-	function __construct($arr_parameters = array()) {
-		$this->req_parameters = $arr_parameters;
-	}
 
 	/**
 	 * Retrieve the data paginator object.

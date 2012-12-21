@@ -34,7 +34,7 @@ require_once __DIR__ . '/events.php';
 require_once __DIR__ . '/highlights.php';
 require_once __DIR__ . '/treaties.php';
 require_once __DIR__ . '/utilities.php';
-
+require_once __DIR__ . '/localization.php';
 
 
 # We need to load this plugin first as other modules depends on this API

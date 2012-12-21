@@ -232,6 +232,9 @@ class imea_treaties_page extends imea_page_base_page {
 	 */
 	function get_treaties_by_region_by_theme($region = '') {
 		global $wpdb;
+		if(strtolower($region) == 'global') {
+			$region = '';
+		}
 		$data = $wpdb->get_results($wpdb->prepare("SELECT a.*, b.depository AS depository
 			FROM ai_treaty a
 			INNER JOIN ai_organization b ON a.id_organization = b.id
@@ -640,7 +643,7 @@ class imea_treaties_page extends imea_page_base_page {
 	 */
 	function is_404() {
 		global $wp_query;
-		if(is_request_variable('id_treaty') && $this->treaty === NULL) {
+		if(is_request_variable('id_treaty') && !$this->treaty) {
 			$wp_query->set_404();
 			require TEMPLATEPATH.'/404.php';
 			return TRUE;
@@ -663,23 +666,46 @@ class imea_treaties_page extends imea_page_base_page {
 		return '';
 	}
 
+
 	/**
-	 * Called statically by wordpress framework
+	 * Called by hook imea_breadcrumbtrail. Called without $this context
+	 *
+	 * @global object $post WordPress post object
+	 * @global object $page_data Object derived from imea_base_page(ex. imea_treaties_page)
 	 */
-	function breadcrumbtrail() {
-		global $post, $id_treaty, $page_data;
-		$ret = '';
-		$tpl = " &raquo; <a href='%s'%s>%s</a>";
+	function get_breadcrumbtrail() {
+		global $post, $page_data;
+		$ret = array();
 		if($post !== NULL) {
-			if($page_data->treaty !== NULL) {
-				$ret = sprintf($tpl, get_permalink(), '', $post->post_title);
-				$ret .= " &raquo; <span class='current'>{$page_data->treaty->short_title}</span>";
-			} else {
-				$ret = " &raquo; <span class='current'>{$post->post_title}</span>";
+			$ret[] = array('url' => get_permalink(), 'label' => $post->post_title);
+			if($page_data->treaty) {
+				$ret[] = array('label' => $page_data->treaty->short_title);
 			}
 		}
 		return $ret;
 	}
+
+
+	/**
+	 * Called by hook imea_page_title. Called without $this context.
+	 *
+	 * @global object $post WordPress post object
+	 * @global object $page_data Object derived from imea_base_page(ex. imea_treaties_page)
+	 * @see imea_page_base_page::get_title()
+	 */
+	function get_page_title() {
+		global $post, $page_data;
+		if ($post !== NULL && !empty($page_data->treaty)) {
+			return sprintf('<img src="%s" alt="%s" title="%s" /> %s',
+				$page_data->treaty->logo_medium,
+				__('Convention logo', 'informea'),
+				$page_data->treaty->short_title,
+				$page_data->treaty->short_title);
+		} else {
+			return get_the_title();
+		}
+	}
+
 
 	/**
 	 * Check it current tab is global
