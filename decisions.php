@@ -933,6 +933,10 @@ class imea_decisions_page extends imea_page_base_page {
 		return array('draft', 'active', 'amended', 'retired', 'revised');
 	}
 
+	function get_allowed_type() {
+		return array('decision','resolution','recommendation','legislation','case');
+	}
+
 	function ajax_order_decisions() {
 		check_ajax_referer('secret_order_decisions', '_nonce');
 		global $wpdb;
