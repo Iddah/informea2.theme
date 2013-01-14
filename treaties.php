@@ -19,6 +19,9 @@ add_action('wp_ajax_get_paragraph_tags', 'get_paragraph_tags');
 add_action('wp_ajax_nopriv_get_treaties', 'ajax_informea_get_treaties');
 add_action('wp_ajax_get_treaties', 'ajax_informea_get_treaties');
 
+add_action('wp_ajax_nopriv_get_cop_meetings_for_treaty', 'ajax_informea_get_cop_meetings_for_treaty');
+add_action('wp_ajax_get_cop_meetings_for_treaty', 'ajax_informea_get_cop_meetings_for_treaty');
+
 
 /**
  * Generate JSON object with article ids and titles for autocomplete form
@@ -96,6 +99,19 @@ function ajax_informea_get_treaties() {
     header('Content-Type:application/json');
     echo json_encode($ret);
     die();
+}
+
+
+/**
+ * Ajax function to retrieve the list of COP meetings for a treaty.
+ */
+function ajax_informea_get_cop_meetings_for_treaty() {
+	$ob = new imea_treaties_page();
+	$id_treaty = get_request_int('id_treaty');
+	$arr = $ob->get_cop_meetings($id_treaty);
+	header('Content-Type:application/json');
+	echo json_encode($arr);
+	die();
 }
 
 
@@ -533,6 +549,22 @@ class imea_treaties_page extends imea_page_base_page {
 		$ob->dates = $dates;
 		return $ob;
 	}
+
+
+	/**
+	 * Retrieve list of COP meetings for a treaty
+	 * @param integer id_treaty Treaty ID
+	 * @return array Array of stdClass ai_meeting objects
+	 */
+	function get_cop_meetings($id_treaty) {
+		global $wpdb;
+		$ret = array();
+		return $wpdb->get_results($wpdb->prepare("SELECT
+				id, id_treaty, event_url, title, description, start, end,
+				repetition, kind, type, access, status, location, city
+				FROM ai_event WHERE id_treaty=%d AND type=%s ORDER BY start DESC", $id_treaty, 'cop'));
+	}
+
 
 	/**
 	 * Retrieve decision title
