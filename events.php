@@ -10,7 +10,6 @@ add_action('wp_ajax_nopriv_load_events', array('imea_events_page', 'ajax_load_ev
 add_action('wp_ajax_load_events', array('imea_events_page', 'ajax_load_events'));
 
 
-
 if(!class_exists( 'imea_events_page')) {
 class imea_events_page extends imea_page_base_page {
 
@@ -210,12 +209,6 @@ class imea_events_page extends imea_page_base_page {
 		return $ret;
 	}
 
-	function breadcrumbtrail() {
-		global $post;
-		if($post) {
-			return " &raquo; <span class='current'>{$post->post_title}</span>";
-		}
-	}
 
 	/**
 	 * @todo not used, can be removed. Left in case we need it again

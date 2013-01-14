@@ -255,16 +255,6 @@ class imea_decisions_page extends imea_page_base_page {
 	}
 
 
-	function breadcrumbtrail() {
-		global $post;
-		$ret = '';
-		if($post !== NULL) {
-			$ret = " &raquo; <span class='current'>{$post->post_title}</span>";
-		}
-		return $ret;
-	}
-
-
     /**
      * Retrieve the count of decisions for a meeting
      *

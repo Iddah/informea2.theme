@@ -149,55 +149,6 @@ class imea_countries_page extends imea_page_base_page {
 	}
 
 
-	/**
-	 * Called by hook imea_breadcrumbtrail.
-	 *
-	 * @global object $post WordPress post object
-	 * @global object $page_data Object derived from imea_base_page(ex. imea_treaties_page)
-	 */
-	function get_breadcrumbtrail() {
-		global $post, $page_data, $tab;
-		$ret = array();
-		if($post !== NULL) {
-			$ret[] = array('url' => get_permalink(), 'label' => $post->post_title);
-			if($page_data->country) {
-				if(!empty($tab) && $tab != 'overview') {
-					$ret[] = array('url' => sprintf('%s%s', get_permalink(), $page_data->country->code2l),
-							'label' => $page_data->country->name);
-					$tab_title = ucfirst($tab);
-					switch(strtolower($tab)) {
-						case 'mea':
-							$tab_title = 'MEA membership';
-							break;
-						case 'nfp':
-							$tab_title = 'National focal points';
-							break;
-						case 'cases':
-							$tab_title = 'Court decisions';
-							break;
-						case 'plans':
-							$tab_title = 'National plans';
-							break;
-						case 'reports':
-							$tab_title = 'National reports';
-							break;
-						case 'whc':
-							$tab_title = 'World Heritage Convention sites';
-							break;
-						case 'ramsar':
-							$tab_title = 'Ramsar sites';
-							break;
-					}
-					$ret[] = array('label' => $tab_title);
-				} else {
-					$ret[] = array('label' => $page_data->country->name);
-				}
-			}
-		}
-		return $ret;
-	}
-
-
 	private function get_index_statistics() {
 		global $wpdb;
 
@@ -676,25 +627,6 @@ class imea_countries_page extends imea_page_base_page {
 		return $wpdb->get_results("SELECT * FROM ai_country WHERE eu_member IS NOT NULL ORDER BY name");
 	}
 
-	/**
-	 * Called statically by wordpress framework
-	 */
-	function breadcrumbtrail() {
-		global $post, $id_country, $page_data;
-		$tpl = " &raquo; <a href='%s'%s>%s</a>";
-		$ret = '';
-		if($post !== NULL) {
-			if($id_country !== NULL) {
-				$page_data = new imea_countries_page($id_country);
-				$ret = sprintf($tpl, get_permalink(), '', $post->post_title);
-				$ret .= " &raquo; <span class='current'>{$page_data->country->name}</span>";
-			} else {
-				$ret = " &raquo; <span class='current'>{$post->post_title}</span>";
-			}
-		}
-
-		return $ret;
-	}
 
 	function get_country_for_id($id) {
 		global $wpdb;

@@ -35,16 +35,6 @@ class imea_page_base_page {
 
 
 	/**
-	 * Generate the page breadcrumbtrail
-	 *
-	 * @return array Array of associative array having properties 'url' and 'label', ex.: array(array('url' => '/', 'label' => 'Home'))
-	 */
-	public function get_breadcrumbtrail() {
-		return array(array('label' => 'Breadcrumb not implemented'));
-	}
-
-
-	/**
 	 * Generate the page title (h1 content)
 	 *
 	 * @return string String with page title

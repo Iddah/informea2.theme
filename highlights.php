@@ -362,15 +362,6 @@ class imea_highlights_page extends imea_page_base_page {
 		return $ob;
 	}
 
-	function breadcrumbtrail() {
-		global $query_category;
-		if(isset($query_category)) {
-			return " &raquo; <a href='". get_bloginfo('url') ."/highlights'>Highlights</a> &raquo; <span class='current'>{$query_category->title}</span>";
-		} else {
-			return " &raquo; <span class='current'>Highlights</span>";
-		}
-	}
-
 
 	function get_rss_posts() {
 		global $post;

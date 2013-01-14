@@ -669,31 +669,6 @@ class imea_treaties_page extends imea_page_base_page {
 
 
 	/**
-	 * Called by hook imea_breadcrumbtrail.
-	 *
-	 * @global object $post WordPress post object
-	 * @global object $page_data Object derived from imea_base_page(ex. imea_treaties_page)
-	 */
-	function get_breadcrumbtrail() {
-		global $post, $page_data, $tab;
-		$ret = array();
-		if($post !== NULL) {
-			$ret[] = array('url' => get_permalink(), 'label' => $post->post_title);
-			if($page_data->treaty) {
-				if(!empty($tab) && $tab != 'overview') {
-					$ret[] = array('url' => sprintf('%s/%s', get_permalink(), $page_data->treaty->odata_name),
-						'label' => $page_data->treaty->short_title);
-					$ret[] = array('label' => ucfirst($tab));
-				} else {
-					$ret[] = array('label' => $page_data->treaty->short_title);
-				}
-			}
-		}
-		return $ret;
-	}
-
-
-	/**
 	 * Called by hook imea_page_title. Called without $this context.
 	 *
 	 * @global object $post WordPress post object
