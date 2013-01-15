@@ -19,6 +19,8 @@ class imea_highlights_page extends imea_page_base_page {
 	private $categories_treaties;
 
 	function __construct() {
+		global $post;
+		$old_post = $post;
 		$this->categories = array();
 
 		$ret = array();
@@ -94,7 +96,6 @@ class imea_highlights_page extends imea_page_base_page {
 			$this->treaties[slugify($treaty->short_title)] = $treaty;
 		}
 
-
 		$this->non_empty_categories = array();
 		foreach($this->categories as $cat) {
 			$news = $this->get_category_posts($cat, 1);
@@ -132,6 +133,8 @@ class imea_highlights_page extends imea_page_base_page {
 				}
 			}
 		}
+		// Restore the post, as it's changed by this function
+		$post = $old_post;
 	}
 
 	function is_search() {
