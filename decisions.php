@@ -667,11 +667,20 @@ class imea_decisions_page extends imea_page_base_page {
 			$valid = false;
 			$this->errors['security'] = 'Invalid security token';
 		}
+
+		$id_organization = get_request_int('id_organization');
+		$id_treaty = get_request_int('id_treaty');
 		$id_meeting = get_request_int('id_meeting');
+
 		if(empty($id_meeting)) {
 			$valid = false;
-			$this->errors['id_meeting'] = 'Please select the meeting from drop-down below';
+			$this->errors['id_meeting'] = 'Please select the meeting below';
 		}
+		if(empty($id_treaty) && empty($id_organization)) {
+			$valid = false;
+			$this->errors['id_organization'] = 'Please select either organization or treaty';
+		}
+
 		return $valid;
 	}
 
@@ -699,6 +708,7 @@ class imea_decisions_page extends imea_page_base_page {
 				$data['status'] = get_request_value('status');
 				$data['number'] = get_request_value('number');
 				$data['id_treaty'] = get_request_int('id_treaty');
+				$data['id_organization'] = get_request_int('id_organization');
 				$data['published'] = get_request_value('published');
 				$updated = get_request_value('updated');
 				if(!empty($updated)) {
@@ -757,13 +767,38 @@ class imea_decisions_page extends imea_page_base_page {
 			$this->errors = $val->GetErrors();
 		}
 
+		$id_organization = get_request_int('id_organization');
+		$id_treaty = get_request_int('id_treaty');
 		$id_meeting = get_request_int('id_meeting');
+
 		if(empty($id_meeting)) {
 			$valid = false;
-			$this->errors['id_meeting'] = 'Please select the meeting from drop-down below';
+			$this->errors['id_meeting'] = 'Please select the meeting below';
+		}
+		if(empty($id_treaty) && empty($id_organization)) {
+			$valid = false;
+			$this->errors['id_organization'] = 'Please select either organization or treaty';
 		}
 		return $valid;
 	}
+	
+	
+	function get_meetings_add_decision() {
+		global $wpdb;
+		$ret = array();
+		$rows = $wpdb->get_results("select a.id, a.start, a.title, COALESCE(b.short_title, 'Unknown') AS short_title from ai_event a 
+				LEFT JOIN ai_treaty b ON b.id = a.id_treaty
+				WHERE a.type = 'cop'
+				ORDER BY COALESCE(b.short_title, 'ZZ'), a.start DESC");
+		foreach($rows as $row) {
+			if(empty($ret[$row->short_title])) {
+				$ret[$row->short_title] = array();
+			}
+			$ret[$row->short_title][] = $row;
+		}
+		return $ret;
+	}
+
 
 	function add_decision() {
 		global $wpdb;
@@ -787,6 +822,7 @@ class imea_decisions_page extends imea_page_base_page {
 			$data['status'] = get_request_value('status');
 			$data['number'] = get_request_value('number');
 			$data['id_treaty'] = get_request_int('id_treaty');
+			$data['id_organization'] = get_request_int('id_organization');
 			$data['published'] = get_request_value('published');
 			$updated = get_request_value('updated');
 			if(!empty($updated)) {

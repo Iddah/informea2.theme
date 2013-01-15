@@ -362,6 +362,16 @@ class imea_events_page extends imea_page_base_page {
 		return $wpdb->get_results($sql);
 	}
 
+	
+	function list_events_admin() {
+		global $wpdb;
+		$sql = $wpdb->prepare(
+			"SELECT a.*, b.short_title, c.name FROM ai_event a 
+				LEFT JOIN ai_treaty b ON a.id_treaty = b.id
+				LEFT JOIN ai_organization c ON a.id_organization = c.id 
+				ORDER BY c.name, b.short_title, a.title");
+		return $wpdb->get_results($sql);
+	}
 
     /**
      * Retrieve COP meetings
@@ -470,6 +480,7 @@ class imea_events_page extends imea_page_base_page {
 			$treaty = $treaties->get_treaty_by_id(get_request_int('id_treaty'));
 			$title = stripslashes(get_request_value('title'));
 			$data['id_treaty'] = $treaty->id;
+			$data['id_organization'] = get_request_int('id_organization');
 			$data['event_url'] = stripslashes(get_request_value('event_url'));
 			$data['title'] = $title;
 			$data['description'] = stripslashes(get_request_value('description'));
@@ -508,13 +519,18 @@ class imea_events_page extends imea_page_base_page {
 		$this->actioned = TRUE;
 		if(check_admin_referer('informea-admin_event_add_event')) {
 			$val = new FormValidator();
-			$val->addValidation("id_treaty", "req", "Please select the treaty"); // TODO validate id_treaty integer > 0
 			$val->addValidation("title", "req", "Please fill in the title");
 			$val->addValidation("start", "req", "Please enter start date"); // TODO validat start it's a date
 			$val->addValidation("id_country", "req", "Please pick a country");
 			$valid = $val->ValidateForm();
 			if(!$valid) {
 				$this->errors = $val->GetErrors();
+			}
+			$id_treaty = get_request_int('id_treaty');
+			$id_organization = get_request_int('id_organization');
+			if(empty($id_treaty) && empty($id_organization)) {
+				$valid = FALSE;
+				$this->errors['id_treaty'] = 'Please select either organization, treaty or both';
 			}
 			return $valid;
 		}
@@ -564,6 +580,7 @@ class imea_events_page extends imea_page_base_page {
 			$treaty = $treaties->get_treaty_by_id(get_request_int('id_treaty'));
 			$title = stripslashes(get_request_value('title'));
 			$data['id_treaty'] = $treaty->id;
+			$data['id_organization'] = get_request_int('id_organization');
 			$data['original_id'] = "manual-{$treaty->odata_name}-" . rand(100000, 999999);
 			$data['event_url'] = stripslashes(get_request_value('event_url'));
 			$data['title'] = $title;
