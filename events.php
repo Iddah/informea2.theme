@@ -581,7 +581,7 @@ class imea_events_page extends imea_page_base_page {
 			$title = stripslashes(get_request_value('title'));
 			$data['id_treaty'] = $treaty->id;
 			$data['id_organization'] = get_request_int('id_organization');
-			$data['original_id'] = "manual-{$treaty->odata_name}-" . rand(100000, 999999);
+			# $data['original_id'] = NULL; // Events created manually have original_id set to NULL
 			$data['event_url'] = stripslashes(get_request_value('event_url'));
 			$data['title'] = $title;
 			$data['description'] = stripslashes(get_request_value('description'));
