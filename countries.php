@@ -44,7 +44,7 @@ if(!class_exists( 'imea_countries_page')) {
 class imea_countries_page extends imea_page_base_page {
 
 
-	private $id_country = NULL;
+	protected $id_country = NULL;
 
 	public $country = NULL;
 	public $mea_membership = array();
@@ -149,7 +149,7 @@ class imea_countries_page extends imea_page_base_page {
 	}
 
 
-	private function get_index_statistics() {
+	function get_index_statistics() {
 		global $wpdb;
 
 		$key = 'ui.index.table';
@@ -171,6 +171,7 @@ class imea_countries_page extends imea_page_base_page {
 		}
 		return $statistics;
 	}
+
 
 	/**
 	 * Access ai_country
@@ -566,12 +567,14 @@ class imea_countries_page extends imea_page_base_page {
 		return $wpdb->get_row($wpdb->prepare('SELECT * FROM `ai_country_report` WHERE `id` = %d', $id));
 	}
 
+
 	function get_treaties_with_membership() {
 		global $wpdb;
 		return $wpdb->get_results('SELECT b.* FROM ai_treaty_country a
 				INNER JOIN ai_treaty b ON b.`id` = a.`id_treaty`
 				GROUP BY b.`id` ORDER BY b.`short_title`');
 	}
+
 
 	function gis_get_membership_filter($mea_id) {
 		global $wpdb;

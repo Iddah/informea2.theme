@@ -121,9 +121,9 @@ if(!class_exists( 'imea_treaties_page')) {
 	 */
 class imea_treaties_page extends imea_page_base_page {
 
-	private $id_treaty = NULL;
-	private $sort = NULL;
-	private $order = NULL;
+	protected $id_treaty = NULL;
+	protected $sort = NULL;
+	protected $order = NULL;
 
 	public $treaty = NULL;
 	public $articles = NULL;
