@@ -157,6 +157,36 @@ class imea_highlights_page extends imea_page_base_page {
 	}
 
 
+	function get_meas_subcategories() {
+		$cat_meas = get_category_by_slug('meas');
+		$ret = array();
+		// Get all MEA categories
+		if($cat_meas) {
+			$cat_meas = $cat_meas->cat_ID;
+			$cat_meas = get_categories(array('hide_empty' => 0, 'name' => 'category_parent', 'parent' => $cat_meas));
+			foreach($cat_meas as $cat_mea) {
+				$ret[$cat_mea->cat_ID] = $cat_mea->name;
+			}
+		}
+		return $ret;
+	}
+
+
+	function get_syndication_subcategories() {
+		$cat_meas = get_category_by_slug('syndication');
+		$ret = array();
+		// Get all MEA categories
+		if($cat_meas) {
+			$cat_meas = $cat_meas->cat_ID;
+			$cat_meas = get_categories(array('hide_empty' => 0, 'name' => 'category_parent', 'parent' => $cat_meas));
+			foreach($cat_meas as $cat_mea) {
+				$ret[$cat_mea->cat_ID] = $cat_mea->name;
+			}
+		}
+		return $ret;
+	}
+
+
 	function search($highlight_search, $highlight_month, $highlight_year, $limit = 10, $page = 0) {
 		global $post;
 		$ret = new StdClass();
@@ -413,6 +443,65 @@ class imea_highlights_page extends imea_page_base_page {
 		return $ret;
 	}
 
+
+	function validate_add() {
+		$this->actioned = TRUE;
+		if(check_admin_referer('informea-admin_highlight_add_highlight')) {
+			$val = new FormValidator();
+			$val->addValidation("title", "req", "Please fill in the title");
+			$val->addValidation("link", "req", "Please fill in the link");
+			$valid = $val->ValidateForm();
+			if(!$valid) {
+				$this->errors = $val->GetErrors();
+			}
+
+			$req_cat_syndication = get_request_value('cat_syndication', array(), FALSE);
+			if(empty($req_cat_syndication)) {
+				$this->errors['cat_syndication'] = 'At least one topic must be selected';
+				$valid = FALSE;
+			}
+			$req_cat_mea = get_request_value('cat_mea', array(), FALSE);
+			if(empty($req_cat_mea)) {
+				$this->errors['cat_mea'] = 'At least one MEA must be selected';
+				$valid = FALSE;
+			}
+			return $valid;
+		}
+		return FALSE;
+	}
+
+
+	function add() {
+		$this->actioned = TRUE;
+		global $user_ID;
+
+		$title = get_request_value('title');
+		$cat_syndication = get_request_value('cat_syndication', array(), FALSE);
+		$cat_mea = get_request_value('cat_mea', array(), FALSE);
+		$link = get_request_value('link');
+
+		$post = array();
+		$post['comment_status'] = 'closed';
+		$post['ping_status'] = 'closed';
+		$post['post_author'] = $user_ID;
+		$post['post_date'] = date('Y-m-d H:i:s');
+		$post['post_name'] = slugify($title);
+		$post['post_parent'] = 0;
+		$post['post_status'] = 'publish';
+		$post['post_title'] = $title;
+		$post['post_type'] = 'post';
+		$post['post_content'] = sprintf('Read more <a href="%s">here</a>.', $link);
+
+		var_dump($post);
+		$id = wp_insert_post($post, TRUE);
+		if(is_int($id) && $id > 0) {
+			wp_set_post_terms($id, array_merge($cat_syndication, $cat_mea), 'category');
+			add_post_meta($id, 'syndication_permalink', $link);
+			$this->success = TRUE;
+		} else {
+			var_dump($id);
+		}
+	}
 }
 }
 ?>
