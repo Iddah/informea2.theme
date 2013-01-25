@@ -298,7 +298,10 @@ class imea_decisions_page extends imea_page_base_page {
 			global $wpdb;
 			return $wpdb->get_results(
 				$wpdb->prepare(
-					"SELECT a.*, b.title as cop_title FROM ai_decision a LEFT JOIN ai_event b ON a.id_meeting = b.id WHERE a.id_treaty = %s GROUP BY a.id ORDER BY $order_by", $id_treaty
+					"SELECT a.*, b.title as cop_title FROM ai_decision a 
+						LEFT JOIN ai_event b ON a.id_meeting = b.id 
+						WHERE a.id_treaty = %s AND a.status <> 'retired' 
+						GROUP BY a.id ORDER BY $order_by", $id_treaty
 				)
 			);
 		}
@@ -306,14 +309,14 @@ class imea_decisions_page extends imea_page_base_page {
 	}
 
 
-    function get_decisions_for_meeting($id_meeting) {
-        global $wpdb;
-        return $wpdb->get_results(
-            $wpdb->prepare(
-                'SELECT a.* FROM ai_decision a WHERE a.id_meeting=%s GROUP BY a.id ORDER BY display_order', $id_meeting
-            )
-        );
-    }
+	function get_decisions_for_meeting($id_meeting) {
+		global $wpdb;
+		return $wpdb->get_results(
+			$wpdb->prepare(
+				"SELECT a.* FROM ai_decision a WHERE a.id_meeting=%s AND a.status <> 'retired' GROUP BY a.id ORDER BY display_order", $id_meeting
+			)
+		);
+	}
 
     function get_decisions_for_treaty_meeting($id_treaty, $order_by = 'a.number, a.published DESC') {
 		if($id_treaty) {
@@ -321,44 +324,61 @@ class imea_decisions_page extends imea_page_base_page {
 			return $wpdb->get_results(
 				$wpdb->prepare("SELECT a.*, b.title AS ob_meeting_title FROM ai_decision a
 					LEFT JOIN ai_event b ON a.id_meeting = b.id
-					WHERE a.id_treaty = %d GROUP BY a.id ORDER BY $order_by", $id_treaty));
+					WHERE a.id_treaty = %d AND a.status <> 'retired'
+						GROUP BY a.id ORDER BY %s", $id_treaty, $order_by));
 		}
 		return array();
 	}
 
 
-    /**
-     * Retrieve the decisions associated with a country (i.e. Ecolex decisions)
-     * @param integer $id_country Country ID
-     * @param string $type (Optional) Type of decision - ai_decision.type
-     * @return array Array of decision objects
-     */
-    function get_decisions_for_country($id_country, $type = NULL) {
-        global $wpdb;
-
-        if(empty($type)) {
-            return $wpdb->get_results($wpdb->prepare('SELECT a.* FROM ai_decision a INNER JOIN ai_decision_country b ON a.id = b.id_decision WHERE b.id_country=%d ORDER BY a.display_order', $id_country));
-        } else {
-            return $wpdb->get_results($wpdb->prepare('SELECT a.* FROM ai_decision a INNER JOIN ai_decision_country b ON a.id = b.id_decision WHERE b.id_country=%d AND a.`type`=%s ORDER BY a.display_order', $id_country, $type));
-        }
-    }
-
-
-    /**
-     * Retrieve the number of decisions associated with a country (i.e. Ecolex decisions)
-     * @param integer $id_country Country ID
-     * @param string $type (Optional) Type of decision - ai_decision.type
-     * @return integer Number of decisions
-     */
-        function count_decisions_for_country($id_country, $type=NULL) {
+	/**
+	 * Retrieve the decisions associated with a country (i.e. Ecolex decisions)
+	 * @param integer $id_country Country ID
+	 * @param string $type (Optional) Type of decision - ai_decision.type
+	 * @return array Array of decision objects
+	 */
+	function get_decisions_for_country($id_country, $type = NULL) {
 		global $wpdb;
 
 		if(empty($type)) {
-			return $wpdb->get_var($wpdb->prepare('SELECT COUNT(*) FROM ai_decision a INNER JOIN ai_decision_country b ON a.id = b.id_decision WHERE b.id_country=%d ORDER BY a.display_order', $id_country));
+			return $wpdb->get_results($wpdb->prepare(
+				"SELECT a.* FROM ai_decision a 
+					INNER JOIN ai_decision_country b ON a.id = b.id_decision 
+					WHERE b.id_country=%d AND a.status <> 'retired'' 
+					ORDER BY a.display_order", $id_country));
 		} else {
-			return $wpdb->get_var($wpdb->prepare('SELECT COUNT(*) FROM ai_decision a INNER JOIN ai_decision_country b ON a.id = b.id_decision WHERE b.id_country=%d AND a.`type`=%s ORDER BY a.display_order', $id_country, $type));
+			return $wpdb->get_results($wpdb->prepare(
+				"SELECT a.* FROM ai_decision a 
+					INNER JOIN ai_decision_country b ON a.id = b.id_decision 
+					WHERE b.id_country=%d AND a.`type`=%s AND a.status <> 'retired'
+					ORDER BY a.display_order", $id_country, $type));
 		}
-    }
+	}
+
+
+	/**
+	 * Retrieve the number of decisions associated with a country (i.e. Ecolex decisions)
+	 * @param integer $id_country Country ID
+	 * @param string $type (Optional) Type of decision - ai_decision.type
+	 * @return integer Number of decisions
+	 */
+	function count_decisions_for_country($id_country, $type=NULL) {
+		global $wpdb;
+
+		if(empty($type)) {
+			return $wpdb->get_var($wpdb->prepare(
+				"SELECT COUNT(*) FROM ai_decision a 
+					INNER JOIN ai_decision_country b ON a.id = b.id_decision 
+					WHERE b.id_country=%d 
+					ORDER BY a.display_order", $id_country));
+		} else {
+			return $wpdb->get_var($wpdb->prepare(
+				"SELECT COUNT(*) FROM ai_decision a 
+					INNER JOIN ai_decision_country b ON a.id = b.id_decision 
+					WHERE b.id_country=%d AND a.`type`=%s AND a.status <> 'retired'
+					ORDER BY a.display_order", $id_country, $type));
+		}
+	}
 
 
 	function get_decision($id_decision) {

@@ -441,7 +441,9 @@ class imea_treaties_page extends imea_page_base_page {
 		$ret_dec = array();
 		$ret_meet = array();
 
-        $c = $wpdb->get_var($wpdb->prepare('SELECT COUNT(*) FROM ai_decision WHERE id_treaty=%d AND id_meeting IS NOT NULL', $this->id_treaty));
+		$c = $wpdb->get_var($wpdb->prepare(
+				"SELECT COUNT(*) FROM ai_decision 
+					WHERE id_treaty=%d AND id_meeting IS NOT NULL AND status <> 'retired'", $this->id_treaty));
 		if($c == 0) {
 			// Case 2)
 			$sql = "SELECT id, link, short_title, long_title, summary, type, status, number, id_treaty, id_meeting, meeting_title, meeting_url, real_meeting_title,
