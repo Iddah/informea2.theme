@@ -950,6 +950,7 @@ class imea_treaties_page extends imea_page_base_page {
 			$data['short_title_alternative'] = stripslashes(get_request_value('short_title_alternative'));
 			$data['theme'] = get_request_value('theme');
 			$data['theme_secondary'] = get_request_value('theme_secondary');
+            $data['use_informea'] = get_request_int('use_informea', 0);
 			$data['rec_updated_author'] = $user;
 			$data['rec_updated'] = date('Y-m-d H:i:s', strtotime("now"));
 			$data['order'] = get_request_int('order');
@@ -1273,6 +1274,7 @@ class imea_treaties_page extends imea_page_base_page {
 			$data['number_of_parties'] = get_request_int('number_of_parties', NULL);
 			$data['theme'] = get_request_value('theme');
 			$data['theme_secondary'] = get_request_value('theme_secondary');
+            $data['use_informea'] = get_request_int('use_informea', 0);
 			$data['rec_author'] = $user;
 			$data['rec_created'] = date('Y-m-d H:i:s', strtotime("now"));
 			$data['odata_name'] = slugify(get_request_value('odata_name'));
