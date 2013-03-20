@@ -207,7 +207,7 @@ class imea_page_base_page {
 	 * Compute the popularity based on a 1 - 10 scale
 	 * @return array Terms with popularity fixed
 	 */
-	function compute_popularity($terms) {
+	static function compute_popularity($terms) {
 		if(!empty($terms)) {
 			$greatest = 0;
 			foreach($terms as $term) {

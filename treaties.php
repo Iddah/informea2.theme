@@ -121,7 +121,7 @@ if(!class_exists( 'imea_treaties_page')) {
 	 */
 class imea_treaties_page extends imea_page_base_page {
 
-	protected $id_treaty = NULL;
+	public $id_treaty = NULL;
 	protected $sort = NULL;
 	protected $order = NULL;
 
@@ -143,19 +143,22 @@ class imea_treaties_page extends imea_page_base_page {
 	 */
 	function __construct($id_treaty = NULL, $arr_parameters = array()) {
 		parent::__construct($arr_parameters);
-		$this->id_treaty = $id_treaty;
-		$this->sort = get_request_variable('s_column', 'str', 'order'); // or year or depository
-		$this->order = get_request_variable('s_order', 'str', 'asc'); // or desc
-		$this->expand = get_request_variable('expand', 'str', 'icon'); // or grid or list
 
-		if($id_treaty !== NULL) {
-			$this->_query_treaty();
-		}
+        $this->sort = get_request_variable('s_column', 'str', 'order'); // or year or depository
+        $this->order = get_request_variable('s_order', 'str', 'asc'); // or desc
+        $this->expand = get_request_variable('expand', 'str', 'icon'); // or grid or list
+        $category = get_query_var('category'); // or region
+        $this->category = empty($category) ? '' : $category;
+        if($this->category == 'Global') $this->category = '';
 
-		$category = get_query_var('category'); // or region
-		$this->category = empty($category) ? '' : $category;
-		if($this->category == 'Global') $this->category = '';
+        $this->init($id_treaty);
 	}
+
+    protected function init() {
+        if($this->id_treaty !== NULL) {
+            $this->_query_treaty();
+        }
+    }
 
 	/**
 	 * Get all active treaties from the database
@@ -677,7 +680,7 @@ class imea_treaties_page extends imea_page_base_page {
 	 */
 	function check_404() {
 		global $wp_query;
-		if(isset($wp_query->query_vars['treaty'])) {
+		if(array_key_exists('treaty', $wp_query->query_vars)) {
 			if(empty($this->treaty)) {
 				$wp_query->set_404();
 				require TEMPLATEPATH.'/404.php';
@@ -811,11 +814,10 @@ class imea_treaties_page extends imea_page_base_page {
 
 	/**
 	 * Delete a paragraph by it's id from the database
-	 * @param $id_paragraph id of paragraph to delete
+	 * @param int $id_paragraph id of paragraph to delete
 	 */
 	function delete_paragraph($id_paragraph) {
 		global $wpdb;
-		global $user;
 		$this->actioned = true;
 
 		$this->security_check('treaty_delete_paragraph');
@@ -845,11 +847,10 @@ class imea_treaties_page extends imea_page_base_page {
 
 	/**
 	 * Delete an article by it's id from the database
-	 * @param $id_article id of the article to delete
+	 * @param int $id_article id of the article to delete
 	 */
 	function delete_article($id_article) {
 		global $wpdb;
-		global $user;
 		$this->actioned = true;
 
 		$this->security_check('treaty_delete_article');

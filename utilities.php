@@ -143,6 +143,15 @@ if(!function_exists('stdclass_copy')) {
 	}
 }
 
+/**
+ * Echo WP relevant request parameters
+ */
+function debug_wp_request() {
+    global $wp, $wp_query;
+    var_dump($wp->matched_rule);
+    var_dump($wp->matched_query);
+    var_dump($wp_query->query_vars);
+}
 
 if(!function_exists('number_order_human')) {
 	/**
@@ -328,14 +337,14 @@ class Mobile_Detect
 
 
 if(!function_exists('get_request_value')) {
-	/**
-	 * Retrieve request parameter also from GET
-	 * @param $name Parameter name
-	 * @param $default Default value
-	 * @param $trim Trim resulting string
-	 * @return parameter value or empty string if not set
-	 */
-	function get_request_value($name, $default = NULL, $trim = TRUE) {
+    /**
+     * Retrieve arbitrary value from HTTP request
+     * @param string $name Parameter name
+     * @param string|object $default Default value
+     * @param bool $trim (Optional) Trim the request value, default TRUE
+     * @return null|string Value from request or default if not present
+     */
+    function get_request_value($name, $default = NULL, $trim = TRUE) {
 		$ret = $default;
 		if (isset($_POST[$name]) && $_POST[$name] != '') {
 			$ret = $_POST[$name];
@@ -353,12 +362,13 @@ if(!function_exists('get_request_value')) {
 }
 
 if(!function_exists('get_request_int')) {
-	/**
-	 * Retrieve request parameter also from GET
-	 * @param name of the parameter
-	 * @return parameter value or empty string if not set
-	 */
-	function get_request_int($name, $default = NULL) {
+    /**
+     * Retrieve integer value from HTTP request
+     * @param string $name Parameter name
+     * @param string $default Default value
+     * @return int|parameter Requestv value or default
+     */
+    function get_request_int($name, $default = NULL) {
 		$ret = get_request_value($name, $default, TRUE);
 		if(!empty($ret)) {
 			$ret = intval($ret);
@@ -370,7 +380,7 @@ if(!function_exists('get_request_int')) {
 if(!function_exists('get_request_boolean')) {
 	/**
 	 * Retrieve boolean (checkbox) from request
-	 * @param name of the parameter
+	 * @param string $name of the parameter
 	 * @return TRUE if the parameter was set, FALSE otherwise
 	 */
 	function get_request_boolean($name) {
