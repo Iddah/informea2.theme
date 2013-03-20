@@ -188,6 +188,13 @@ class imea_decisions_page extends imea_page_base_page {
 		return $ret;
 	}
 
+    function get_meeting_by_decision($decision) {
+        if(!empty($decision->id_meeting)) {
+            global $wpdb;
+            return $wpdb->get_row($wpdb->prepare('SELECT * FROM ai_event WHERE id=%d', $decision->id_meeting));
+        }
+        return FALSE;
+    }
 
 	/**
 	 * Retrieve the list of terms that are linked to decisions
