@@ -441,6 +441,11 @@ class imea_decisions_page extends imea_page_base_page {
 	}
 
 
+    function get_paragraphs($id_decision) {
+        global $wpdb;
+        return $wpdb->get_results($wpdb->prepare('SELECT * FROM ai_decision_paragraph WHERE id_decision=%d', $id_decision));
+    }
+
 	function get_decision_content($decision, $documents) {
 		$ret = null;
 		foreach($documents as $doc) {
