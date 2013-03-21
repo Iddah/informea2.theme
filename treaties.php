@@ -229,7 +229,7 @@ if (!class_exists('imea_treaties_page')) {
 
             $ret = array();
             // Get the themes
-            $sql = "SELECT distinct a.theme FROM ai_treaty a WHERE a.enabled = 1 $f ORDER BY a.theme";
+            $sql = "SELECT DISTINCT a.theme FROM ai_treaty a WHERE a.enabled = 1 $f ORDER BY a.theme";
             $rows = $wpdb->get_results($sql);
             foreach ($rows as $row) {
                 $ret[$row->theme] = array();
@@ -337,7 +337,7 @@ if (!class_exists('imea_treaties_page')) {
                         "ORDER BY ai_treaty_article.order",
                     $this->id_treaty));
 
-                $sql = $wpdb->prepare("SELECT b.* FROM ai_treaty_vocabulary a INNER JOIN voc_concept b on a.id_concept = b.id WHERE a.id_treaty = %d", $this->id_treaty);
+                $sql = $wpdb->prepare("SELECT b.* FROM ai_treaty_vocabulary a INNER JOIN voc_concept b ON a.id_concept = b.id WHERE a.id_treaty = %d", $this->id_treaty);
                 $this->tags = $wpdb->get_results($sql);
 
                 $all_paragraphs = $wpdb->get_results($wpdb->prepare(
@@ -375,7 +375,7 @@ if (!class_exists('imea_treaties_page')) {
          */
         function get_paragraph_tags($id_paragraph) {
             global $wpdb;
-            $sql = $wpdb->prepare("SELECT b.* FROM ai_treaty_article_paragraph_vocabulary a INNER JOIN voc_concept b on a.id_concept = b.id WHERE a.id_treaty_article_paragraph = %d", $id_paragraph);
+            $sql = $wpdb->prepare("SELECT b.* FROM ai_treaty_article_paragraph_vocabulary a INNER JOIN voc_concept b ON a.id_concept = b.id WHERE a.id_treaty_article_paragraph = %d", $id_paragraph);
             return $tags = $wpdb->get_results($sql);
         }
 
@@ -386,7 +386,7 @@ if (!class_exists('imea_treaties_page')) {
          */
         function get_article_tags($id_article) {
             global $wpdb;
-            $sql = $wpdb->prepare("SELECT b.* FROM ai_treaty_article_vocabulary a INNER JOIN voc_concept b on a.id_concept = b.id WHERE a.id_treaty_article = %d", $id_article);
+            $sql = $wpdb->prepare("SELECT b.* FROM ai_treaty_article_vocabulary a INNER JOIN voc_concept b ON a.id_concept = b.id WHERE a.id_treaty_article = %d", $id_article);
             return $tags = $wpdb->get_results($sql);
         }
 
@@ -503,7 +503,7 @@ if (!class_exists('imea_treaties_page')) {
          */
         function get_cites_decisions() {
             global $wpdb;
-            return $wpdb->get_results("SELECT * FROM ai_decision WHERE id_treaty=3 AND status <> 'retired' and type='decision' ORDER BY display_order DESC");
+            return $wpdb->get_results("SELECT * FROM ai_decision WHERE id_treaty=3 AND status <> 'retired' AND type='decision' ORDER BY display_order DESC");
         }
 
         /**
@@ -512,7 +512,7 @@ if (!class_exists('imea_treaties_page')) {
          */
         function get_cites_resolutions() {
             global $wpdb;
-            return $wpdb->get_results("SELECT * FROM ai_decision WHERE id_treaty=3 AND status <> 'retired' and type='resolution' ORDER BY display_order DESC");
+            return $wpdb->get_results("SELECT * FROM ai_decision WHERE id_treaty=3 AND status <> 'retired' AND type='resolution' ORDER BY display_order DESC");
         }
 
         /**
