@@ -1,30 +1,12 @@
 <?php
     get_header();
 ?>
+    <div id="container" style="width: 100% !important;">
+        <div id="content" role="main">
 
-XXX
-<br />
-dsfdfdfdf
-<br />
-    dsfdfdfdf
-    dsfdfdfdfdsfdfdfdfdsfdfdfdf
-<br />
-XXX
-<br />
-dsfdfdfdf
-<br />
-    dsfdfdfdf
-    dsfdfdfdfdsfdfdfdfdsfdfdfdf
-<br />
-XXX
-<br />
-dsfdfdfdf
-<br />
-    dsfdfdfdf
-    dsfdfdfdfdsfdfdfdfdsfdfdfdf
-<br />
-
+        </div>
+        <!-- #content -->
+    </div><!-- #container -->
 <?php
-
     get_footer();
 ?>

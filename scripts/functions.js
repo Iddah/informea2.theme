@@ -1,26 +1,3 @@
-function toggleBox() {
-	if ($('#search').is(':visible')) {
-		$('.explorer-toggle-icon img.explorer-toggle').attr({
-			'src': images_dir + 'search-box/button-expand.png'
-		});
-	} else {
-		$('.explorer-toggle-icon img.explorer-toggle').attr({
-			'src': images_dir + 'search-box/button-collapse.png'
-		});
-	}
-
-	/**
-	 * Hide all Flash iframes and objects elements
-	 */
-	if ($('#search').is(':visible') == true) {
-		$('iframe, object').show();
-	} else {
-		$('iframe, object').hide();
-	}
-	$('#search').slideToggle();
-
-	return false;
-}
 
 function toggleTreaty(id) {
 	el = $('#treaty-' + id);

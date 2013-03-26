@@ -1,17 +1,13 @@
 @media screen {
-	/* To prevent PocketPC from loading the stylesheet */
-
-	/* http://meyerweb.com/eric/tools/css/reset/  v2.0 | 20110126 License: none (public domain) */
+	/************************************ Global styles common to all pages *******************************************/
 	html {
 		margin: 0;
 		padding: 0;
 		border: 0;
-		font-size: 100%;
 		font: inherit;
 		vertical-align: baseline;
 	}
 
-	/* HTML5 display-role reset for older browsers */
 	article, aside, details, figcaption, figure, footer, header, hgroup, menu, nav, section {
 		display: block;
 	}
@@ -45,66 +41,8 @@
 		color: #333;
 	}
 
-	/* Header - blue stripe, language bar and breadcrumbtrail */
-	/* Modify these having in mind that header may be included in other sites! (use class names/prefixes wisely) */
-	#informea-topnav {
-		width: 992px; /*1000px; */
-		margin: 0 auto;
-		padding: 0;
-		display: block;
-		overflow: hidden;
-		padding: 3px 0;
-	}
-
-	#informea-topnav a {
-		color: #666;
-	}
-
-	#informea-topnav a:hover {
-		text-decoration: underline;
-	}
-
-	#informea-topnav .language {
-		float: left;
-		display: none; /* temporary */
-	}
-
-	#informea-topnav .useful-links {
-		float: right;
-	}
-
-	#informea-header {
-		background: #2CA0D2;
-	}
-
-	#informea-header #masthead {
-		width: 992px; /*1000px; */
-		margin: 0 auto;
-		display: block;
-		/* overflow: hidden; */
-	}
-
-	#informea-header #branding {
-		display: block;
-		overflow: hidden;
-		padding: 30px 0 0 10px;
-	}
-
-	#informea-header #logo-holder {
-		margin: 0;
-		padding: 0;
-	}
-
-	#informea-header #logo-holder a {
-		display: block;
-		width: 452px;
-		height: 37px;
-		margin-bottom: 20px;
-		text-indent: -9000px;
-		background: url("images/logo-wide.png") no-repeat top left;
-	}
-
-	div#staging {
+	/***************************************** Header - blue stripe ***************************************************/
+	#informea-staging {
 		background: #FF5A49;
 		width: 100%;
 		height: 25px;
@@ -114,8 +52,38 @@
 		text-align: center;
 	}
 
-	/* menu */
-	#informea-header #access {
+	#header {
+		background: #2CA0D2;
+	}
+
+	#header #masthead {
+		width: 992px; /*1000px; */
+		margin: 0 auto;
+		display: block;
+	}
+
+	#header #branding {
+		display: block;
+		overflow: hidden;
+		padding: 30px 0 0 10px;
+	}
+
+	#header #logo {
+		margin: 0;
+		padding: 0;
+	}
+
+	#header #logo a {
+		display: block;
+		width: 452px;
+		height: 37px;
+		margin-bottom: 20px;
+		text-indent: -9000px;
+		background: url("images/logo-wide.png") no-repeat top left;
+	}
+
+	/* Main Menu */
+	#header #access {
 		background: none;
 		display: block;
 		height: 37px;
@@ -123,7 +91,7 @@
 		/*width: 1000px;*/
 	}
 
-	#informea-header #access .menu-header {
+	#header #access .menu-header {
 		float: left;
 		display: block;
 		overflow: hidden;
@@ -131,7 +99,7 @@
 		top: 1px;
 	}
 
-	#informea-header #access .menu-header ul,
+	#header #access .menu-header ul,
 	div.menu ul {
 		list-style: none;
 		margin: 0;
@@ -139,13 +107,13 @@
 		overflow: hidden;
 	}
 
-	#informea-header #access .menu-header li,
+	#header #access .menu-header li,
 	div.menu li {
 		float: left;
 		height: 38px;
 	}
 
-	#informea-header #access .menu-header a {
+	#header #access .menu-header a {
 		color: #FFFFFF;
 		text-transform: uppercase;
 		display: block;
@@ -156,8 +124,8 @@
 		padding: 10px 15px 10px 15px;
 	}
 
-	#informea-header #access .menu-header ul li a:hover,
-	#informea-header #access .menu-header ul li a.current {
+	#header #access .menu-header ul li a:hover,
+	#header #access .menu-header ul li a.current {
 		background: #d7f1f7;
 		-webkit-border-top-left-radius: 5px;
 		-webkit-border-top-right-radius: 5px;
@@ -168,37 +136,35 @@
 		color: #444;
 	}
 
-	#informea-header #access .menu-header ul li a.first,
+	#header #access .menu-header ul li a.first,
 	#access .menu-header ul li:first-child a:first-child {
 		background: none;
 	}
 
-	#informea-header #access .menu-header a img {
+	#header #access .menu-header a img {
 		vertical-align: middle !important;
 		position: relative;
 		top: -5px;
 	}
 
-	#informea-header #menu-main {
+	#header #menu-main {
 		padding-left: 10px;
 	}
 
-	body #informea-header #menu-main .home {
-		/*background: url(images/house_icon_white.png) no-repeat 0px 5px;
-		height: 18px;*/
+	#informea #header #menu-main .home {
 		background: none;
 	}
 
-	#informea-header #access ul ul li {
+	#header #access ul ul li {
 		width: 185px;
 	}
 
-	#informea-header #access ul ul ul {
+	#header #access ul ul ul {
 		left: 100%;
 		top: 0;
 	}
 
-	#informea-header #access ul ul a {
+	#header #access ul ul a {
 		background: #333;
 		line-height: 1em;
 		padding: 10px;
@@ -206,20 +172,20 @@
 		height: auto;
 	}
 
-	#informea-header #access li:hover > a,
-	#informea-header #access ul ul:hover > a {
+	#header #access li:hover > a,
+	#header #access ul ul:hover > a {
 		background: #333;
 		color: #fff;
 	}
 
-	#informea-header #access ul li:hover > ul {
+	#header #access ul li:hover > ul {
 		display: block;
 	}
 
-	#informea-header #access ul li.current_page_item > a,
-	#informea-header #access ul li.current-menu-ancestor > a,
-	#informea-header #access ul li.current-menu-item > a,
-	#informea-header #access ul li.current-menu-parent > a {
+	#header #access ul li.current_page_item > a,
+	#header #access ul li.current-menu-ancestor > a,
+	#header #access ul li.current-menu-item > a,
+	#header #access ul li.current-menu-parent > a {
 		background: #d7f1f7;
 		-webkit-border-top-left-radius: 5px;
 		-webkit-border-top-right-radius: 5px;
@@ -230,12 +196,12 @@
 		color: #444;
 	}
 
-	#informea-header #access ul li.current_page_item > a {
+	#header #access ul li.current_page_item > a {
 		background: #fff;
 	}
 
-	/* mea explorer */
-	#informea-header .access-right {
+	/* MEA Explorer */
+	#explorer {
 		float: right;
 		position: relative;
 		right: 0;
@@ -243,8 +209,7 @@
 		z-index: 999;
 	}
 
-	#informea-header .access-right .search-explorer-button {
-		margin: 0 auto;
+	#explorer div.mea-button {
 		position: relative;
 		top: -15px;
 		float: right;
@@ -252,24 +217,15 @@
 		width: 177px;
 		height: 44px;
 		background: url(images/btn-explorer.png) no-repeat top left;
-		margin-bottom: -5px;
+		margin: 0 auto -5px;
 	}
 
-	#informea-header .access-right .search-explorer-button:hover {
+	#explorer .mea-button:hover {
 		background: url(images/btn-explorer.png) no-repeat 0 -44px;
 	}
 
-	#informea-header .access-right .search-explorer-button.fixed {
-		position: fixed;
-		top: 0;
-	}
-
-	#informea-header .access-right .search-explorer-button-left,
-	#informea-header .access-right .search-explorer-button-content {
-		display: none;
-	}
-
-	#informea-header #search {
+	/* MEA Explorer content */
+	#explorer div.content {
 		background-color: #FFEB7F;
 		border-radius: 5px 0 5px 5px;
 		color: #464646;
@@ -281,26 +237,78 @@
 		z-index: 999;
 	}
 
-	#informea-header #search ul {
-		list-style-type: none;
+	#explorer ul { list-style-type: none; margin: 0; padding: 0 }
+	#explorer ul li { margin: 0; padding: 0 }
+	#explorer ul.border {
+		padding: 10px 10px;
+		position: relative;
 	}
-
-	#informea-header #search ul.main-list {
+	#explorer ul.border li.section {
+		background-color: #fff;
+		padding: 10px 0 10px 10px;
+		border-bottom: 1px dashed #C0C0C0;
+		margin: 0;
+	}
+	#explorer span.title {
+		font-size: 11px;
+		font-weight: bold;
+		text-transform: uppercase;
+	}
+	#explorer div.content span.title a {
+		height: 16px;
+		width: 16px;
+		display: block;
 		float: left;
-		margin: 0px;
-		padding: 0px;
+		margin: 0 5px 0 5px;
+		background: url(images/search-box/minus.png) no-repeat;
 	}
 
-	#informea-header #search ul.sublist {
-		margin-left: 15px;
-		margin: 0 0 0 10px;
-		padding: 0px;
+	/* MEA Explorer form */
+	#explorer form { margin: 10px 0 0 20px; }
+
+	#explorer input.text {
+		height: 19px;
+		width: 280px;
+		background: transparent url('images/search-box/input-bg.png') repeat-x left center;
+		margin-left: 0 !important;
+		padding-left: 0 !important;
+		border: 1px solid #BABBB8;
 	}
 
-	#informea-header p.site-description {
-		text-indent: -9000px;
-		display: none;
+	#explorer form div.explorer_all_treaties_items {
+		margin-top: 5px;
 	}
+
+	#explorer form span.theme {
+		color: #999;
+	}
+
+	#explorer form div.separator {
+		height: 1px;
+		background-color: #EBEBEB;
+		margin: 0 10px 5px 10px;
+		clear: both;
+	}
+
+	#explorer div.block {
+		display: block;
+		margin: 15px 0 10px 0;
+	}
+
+	#explorer form ul.main-list { float: left; margin: 0; padding: 0; }
+	#explorer form ul.sublist { margin-left: 20px; margin-bottom: 10px; }
+
+	#explorer .selected-terms-holder {
+		padding: 3px 0;
+	}
+
+	.details-column-1 button,
+	#explorer .autocomplete-holder button {
+		position: relative;
+		top: 1px;
+	}
+
+
 
 	/* Generic styles - sitewide available */
 	body.informea hr {
@@ -370,13 +378,6 @@
 	body.informea a.loading {
 		padding-left: 15px;
 		background: transparent url('images/loading-arrow.gif') no-repeat left center;
-	}
-
-	body.informea .separator {
-		height: 1px;
-		background-color: #EBEBEB;
-		margin: 10px 0px;
-		clear: both;
 	}
 
 	body.informea .skip-link {
@@ -722,13 +723,13 @@
 	}
 
 	ul.featured-tools {
-		margin-left: 0; padding: 0;
+		margin-left: 0;
+		padding: 0;
 		list-style-type: none;
 	}
 
-
 	/* About page */
-	#informea-wrapper #banners ul {
+	#informea #banners ul {
 		list-style-type: none !important;
 	}
 
@@ -968,54 +969,6 @@
 		margin: 15px 10px 0 0;
 	}
 
-	.search-content {
-		padding: 10px 10px;
-		position: relative;
-	}
-
-	.search-section,
-	.search-section-title,
-	.search-section-content {
-		background-color: #fff;
-	}
-
-	.search-section-title {
-		cursor: pointer;
-		padding: 10px 0px 5px 10px;
-		margin: 0;
-		border-top: 1px solid #DFDFDF;
-	}
-
-	.search-section-content {
-		padding-bottom: 10px;
-	}
-
-	form#meetings-search-form {
-		display: block;
-		overflow: hidden;
-		padding-bottom: 10px;
-	}
-
-	.search-section-title a {
-		margin-left: 0 !important;
-		padding-left: 0 !important;
-	}
-
-	.search-section-title h3 {
-		color: #333;
-		font-weight: bold;
-		clear: none;
-		margin-left: 10px;
-		font-size: 11px;
-		text-transform: uppercase;
-		margin-bottom: 0;
-		padding-bottom: 0;
-	}
-
-	.selected-terms-holder {
-		padding: 3px 0;
-	}
-
 	div.term-content {
 		float: left;
 		background-color: #d0b432;
@@ -1035,12 +988,6 @@
 
 	.term-content .toggle-icon {
 		vertical-align: middle;
-	}
-
-	.details-column-1 button,
-	.autocomplete-holder button {
-		position: relative;
-		top: 0px;
 	}
 
 	#all-form {
@@ -1780,6 +1727,7 @@
 	.widget_latest_news li {
 		list-style-type: none;
 	}
+
 	.what-is-informea {
 		height: 195px;
 		margin-bottom: 15px;
@@ -2328,12 +2276,12 @@
 		background: #DDF0FF !important;
 	}
 
-	/* table.datatable tbody td { 
+	/* table.datatable tbody td {
 		border: 1px solid #D6D6D6;
 	}
 
-	table.datatable tbody tr:hover { 
-		cursor: pointer; 
+	table.datatable tbody tr:hover {
+		cursor: pointer;
 		background-color: #f2f7fc !important;
 	} */
 
@@ -2905,138 +2853,6 @@
 		margin: 30px 0 30px 0;
 	}
 
-	/* explorer area */
-	.input-left {
-		background: transparent url('images/search-box/input-left.png') no-repeat right center;
-		height: 28px !important;
-		width: 3px !important;
-		vertical-align: bottom !important;
-	}
-
-	.input-right {
-		background: transparent url('images/search-box/input-right.png') no-repeat right center;
-		height: 28px !important;
-		width: 4px !important;
-		vertical-align: bottom !important;
-	}
-
-	.input-shadow {
-		background: transparent url('images/search-box/input-shadow.png') no-repeat right center;
-		height: 27px;
-		width: 2px;
-		vertical-align: bottom !important;
-		margin-left: -2px;
-	}
-
-	.search-explorer-input-browse,
-	.token-input-list-facebook,
-	.search-explorer-input {
-		border: none;
-		background: transparent url('images/search-box/input-bg.png') repeat-x left center;
-		height: 26px;
-		margin-left: 0 !important;
-		padding-left: 0 !important;
-	}
-
-	.search-explorer-input.white {
-		height: 19px;
-		background-color: #FFFFFF;
-		border: 1px solid #BABBB8;
-	}
-
-	.long-input {
-		width: 315px;
-	}
-
-	#free-text2 {
-		margin-bottom: 10px;
-	}
-
-	.search-explorer-input.white.long-input {
-		width: 250px;
-	}
-
-	#explorer-all-form {
-		width: 370px;
-		position: relative;
-		margin: 0 auto;
-	}
-
-	#explorer-all-form .search-explorer-submit {
-		position: relative;
-		left: -1px;
-	}
-
-	#treaties-search-form,
-	#meetings-search-form {
-		width: 400px;
-		position: relative;
-		margin: 0 auto;
-	}
-
-	.numeric-input {
-		width: 120px;
-	}
-
-	.date-holder .input-wrap {
-		margin-right: 20px;
-	}
-
-	.date-holder label {
-		margin-top: 4px;
-		margin-right: 10px;
-	}
-
-	.button-left {
-		background: transparent url('images/search-box/button-left.png') no-repeat right center;
-		height: 17px;
-		width: 5px;
-		vertical-align: bottom !important;
-	}
-
-	.browse-button {
-		border: none;
-		background: transparent url('images/search-box/button-bg.png') no-repeat right center;
-		height: 29px;
-		margin-left: 0 !important;
-		padding-left: 0 !important;
-		width: 70px !important;
-		cursor: pointer;
-	}
-
-	a.button.search-explorer-submit {
-		color: #fff !important;
-		text-decoration: none !important;
-		text-shadow: -1px -1px 0 rgba(0, 0, 0, 0.3) !important;
-		background-position: 0 -30px !important;
-	}
-
-	a.button.search-explorer-submit>span {
-		background-position: 100% -30px;
-	}
-
-	a.button.search-explorer-submit:hover,
-	a.button.search-explorer-submit:focus {
-		background-position: 0 -60px !important;
-	}
-
-	a.button.search-explorer-submit:hover>span,
-	a.button.search-explorer-submit:focus>span {
-		background-position: 100% -60px !important;
-	}
-
-	.alignright {
-		float: right;
-		margin-bottom: 10px;
-		margin-left: 10px;
-	}
-
-	.alignleft {
-		float: left;
-		margin-bottom: 10px;
-		margin-right: 10px;
-	}
-
 	.decision-treaty {
 		width: 100px;
 		height: 120px;
@@ -3211,104 +3027,3 @@
 	}
 
 }
-
-/*  @media screen */
-
-.calendar td {
-	padding: 1px;
-	padding-top: 2px;
-	margin: 0;
-	border: 1px solid #e6e6e6;
-	text-align: center;
-	height: 50px;
-	width: 40px;
-	color: #555;
-	background: #fff;
-}
-
-/* Peblds page styles */
-.peblds_entity {
-	margin-top: 15px;
-}
-
-.peblds_entity ul {
-	margin-left: 15px;
-}
-
-.peblds_entity table td {
-	border: 1px solid #cacaca;
-	padding: 2px;
-	line-height: 30px;
-	vertical-align: middle;
-}
-
-.peblds_entity table td img {
-	vertical-align: middle;
-	margin: 2px;
-}
-
-/* Ecolex styling */
-.ecolex-disclaimer {
-	font-size: 10px;
-	line-height: 11px;
-	margin: 10px 0px 30px;
-}
-
-.ecolex-disclaimer img {
-	float: right;
-}
-
-#ecolex-content table.results-header {
-	border-collapse: separate;
-	border-spacing: 2px;
-	border-color: gray;
-	margin-top: 15px;
-	margin-bottom: 15px;
-	width: 100%;
-	margin-left: auto;
-	margin-right: auto;
-}
-
-#ecolex-content .results-header td,
-#ecolex-content .results-header th {
-	margin: 1px;
-	padding: 1px;
-	color: #000 !important;
-	font-weight: normal !important;
-}
-
-#ecolex-content .results-header th {
-	text-align: left;
-}
-
-#ecolex-content .results-header td {
-	text-align: right;
-}
-
-#ecolex-content .table-pager {
-	display: block;
-	width: 100%;
-	text-align: right;
-}
-
-#ecolex-content ul li {
-	margin-bottom: 15px;
-	padding-bottom: 5px;
-	border-bottom: 1px dashed #ddd;
-}
-
-#ecolex-content ul li .result-title a {
-	text-transform: capitalize;
-	font-size: 110%;
-	font-weight: bold;
-}
-
-#terms_tooltip_content {
-	background-color: #FFF6E0;
-}
-
-.bubbletip td.bt-content {
-	background-color: #FFF6E0 !important;
-}
-
-

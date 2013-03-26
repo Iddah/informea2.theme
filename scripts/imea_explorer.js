@@ -1,54 +1,8 @@
 /**
  * Global variables - images_dir - URL path to the theme's images
  */
-
-/**
- * Resets all the explorer fields to their original values. This happens
- * due to Firefox which keeps data some form fields (terms <select>)
- * after page refresh, so form is in inconsistent state.
- */
-function reset_explorer_form() {
-	$("#q_term_explorer").each(function () {
-		$("#q_term_explorer option").removeAttr("selected");
-	});
-
-}
-
-/**
- * Show one category and hide the others
- */
-function show_category(section_name) {
-	var sections = ['all-search', 'treaties-search', 'events-search'];
-	$.each(sections, function (index, current_section) {
-		var item_content = $('.' + current_section + '-content');
-		var icon = $('.' + current_section + ' .search-section-title .search-explorer-toggle-icon');
-		if (section_name == current_section) {
-			if (!item_content.is(':visible')) {
-				item_content.slideDown();
-				icon.attr('src', images_dir + 'search-box/minus.png');
-			} else {
-				item_content.slideUp();
-				icon.attr('src', images_dir + 'search-box/plus.png');
-			}
-		} else {
-			item_content.slideUp();
-			icon.attr('src', images_dir + 'search-box/plus.png');
-		}
-	});
-}
-
-// Expand collapse categories in MEA Explorer
 $(document).ready(function () {
-	$('.search-section-title').click(function (e) {
-		e.preventDefault();
-		var parent = $(this).parent().attr('class').split(' ')[1];
-		if (parent == 'documents-search') { // TODO Official documents not implemented yet
-
-			return false;
-		}
-		show_category(parent);
-		return false;
-	});
+	explorer_expand_section();
 
 	// MEA Explorer search forms handling
 	$('#explorer_q_freetext').click(function () {
@@ -67,6 +21,48 @@ $(document).ready(function () {
 
 	setupExplorerTreaties();
 });
+
+
+/**
+ * Resets all the explorer fields to their original values. This happens
+ * due to Firefox which keeps data some form fields (terms <select>)
+ * after page refresh, so form is in inconsistent state.
+ */
+function reset_explorer_form() {
+	$("#q_term_explorer").each(function () {
+		$("#q_term_explorer option").removeAttr("selected");
+	});
+
+}
+
+/**
+ * Show one category and hide the others
+ */
+function explorer_expand_section() {
+	$.each(jQuery('#explorer li.section'), function (index, section) {
+		var handler = $('span a', section);
+		var content = $('form', section);
+		console.log(handler);
+		handler.click(function() {
+			var icon = $('span a', section);
+			if (!content.is(':visible')) {
+				content.slideDown();
+				icon.css('background-image', 'url(' + images_dir + 'search-box/minus.png)');
+			} else {
+				content.slideUp();
+				icon.css('background-image', 'url(' + images_dir + 'search-box/plus.png)');
+			}
+		});
+	});
+}
+
+
+$('#explorer .mea-button').click(function (e) {
+	e.preventDefault();
+	$('#explorer div.content').slideToggle();
+	return false;
+});
+
 
 
 function setupExplorerTreaties() {

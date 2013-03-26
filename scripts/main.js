@@ -14,29 +14,8 @@ $(document).ready(function () {
 		}
 	});
 
-	/**
-	 * Show demo alert message
-	 */
-	//$( function() {
-	//	if( !$.cookie('demo-message') || ($.cookie('demo-message') != 'checked') ){
-	//		Boxy.ask($('#demo-dialog-message').fadeIn(), {"ok" : "Proceed to website"}, function(response) {
-	//			if(response == 'ok'){
-	//				$.cookie('demo-message', 'checked', { expires: 1 });
-	//			}
-	//		});
-	//	}
-	//});
-
-	/**
-	 * Load functions
-	 */
 	$('.tooltip, .location-link').tipsy({gravity: 'w'});
 	$('.tooltip.alphabet-order-link').tipsy({gravity: 's'});
-
-	/**
-	 * Replace Checkboxes
-	 */
-	$('.checkbox').hide();
 
 	/* Global code for collapsible list of items. Usage pattern:
 	 * <li class="list-item">
@@ -201,12 +180,6 @@ $(document).ready(function () {
 			$('a.articles-expand-button').removeClass('disabled');
 			$(this).addClass('disabled');
 		}
-	});
-
-	$('.search-explorer-button, .close-box-button').click(function (e) {
-		e.preventDefault();
-		toggleBox();
-		return false;
 	});
 
 	$('.box-search-form-input').focus(function (e) {
