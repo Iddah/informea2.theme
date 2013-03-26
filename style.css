@@ -277,6 +277,66 @@
 	}
 
 
+	/***************************************** Footer - black stripe **************************************************/
+	#footer {
+		padding-bottom: 10px;
+		background: #16232e /* url("images/footer-bg.png") repeat-x scroll center top */;
+		color: #999;
+	}
+	#footer ul { list-style-type: none; padding: 0; }
+	#footer ul.rows { width: 1000px; margin: 0 auto; overflow: hidden }
+	#footer ul.orglist li { display: inline-block; }
+
+	#footer ul.rows li.row {
+		margin: 0;
+		padding: 0;
+		border-top: 1px dashed #666;
+	}
+	#footer ul.rows li.row:first-child { border-top: none; }
+	#footer ul.orglist li a span {
+		display: block;
+		margin: 50px 0 0 0;
+		padding: 0;
+		width: 50px;
+		text-align: center;
+		float: left;
+	}
+	#footer ul.orglist li.ident { margin-left: 60px; }
+
+	#footer p {
+		float: left;
+		line-height: 80px;
+		margin: 0 10px 0 0; padding: 0;
+		color: #f0f0f0;
+	}
+
+	#footer a { color: #999; text-decoration: none; }
+	#footer a:hover { text-decoration: underline; }
+	#footer a.logo {
+		margin: 10px;
+		width: 50px;
+		height: 50px;
+		display: block;
+		border: 0;
+	}
+	#footer a.un { background: url('images/logos/un.png') no-repeat; }
+	#footer a.unep { background: url('images/logos/UNEP.png') no-repeat; }
+	#footer a.fao { background: url('images/logos/FAO.png') no-repeat; }
+	#footer a.unesco { background: url('images/logos/UNESCO.png') no-repeat; }
+	#footer a.unfccc { background: url('images/logos/UNFCCC.png') no-repeat; }
+	#footer a.unccd { background: url('images/logos/UNCCCD.png') no-repeat; }
+	#footer a.ozone { background: url('images/logos/ozone.png') no-repeat; }
+	#footer a.basel { background: url('images/logos/Basel.png') no-repeat; }
+	#footer a.rotterdam { background: url('images/logos/Rotterdam.png') no-repeat; }
+	#footer a.stockholm { background: url('images/logos/Stockholm.png') no-repeat; }
+	#footer a.cbd { background: url('images/logos/CBD.png') no-repeat; }
+	#footer a.cites { background: url('images/logos/cites.png') no-repeat; }
+	#footer a.whc { background: url('images/logos/whc.png') no-repeat; }
+	#footer a.ramsar { background: url('images/logos/RAMSAR.png') no-repeat; }
+	#footer a.itpgrfa { background: url('images/logos/ITPGRFA.png') no-repeat; }
+	#footer a.cms { background: url('images/logos/CMS.png') no-repeat; }
+
+
 
 	/* Generic styles - sitewide available */
 	body.informea hr {
@@ -1418,94 +1478,6 @@
 		margin-bottom: 10px;
 	}
 
-	/* footer */
-	#footer {
-		padding-bottom: 10px;
-		background: #16232e /* url("images/footer-bg.png") repeat-x scroll center top */;
-		color: #FFFFFF;
-	}
-
-	#colophon {
-		width: 1000px;
-		border: none !important;
-		opacity: 1;
-		border-top: 4px solid #000;
-		margin: -4px auto 0;
-		overflow: hidden;
-		padding-top: 20px;
-	}
-
-	#footer a {
-		color: #999;
-		text-decoration: none;
-		font-size: 11px;
-	}
-
-	#footer #colophon a:hover {
-		text-decoration: underline;
-	}
-
-	#footer td {
-		text-align: center;
-		font-size: 11px;
-	}
-
-	#footer .left img {
-		height: 60px;
-		text-align: center;
-		margin: 5px;
-	}
-
-	.logos-col-2 {
-		margin-left: 100px;
-	}
-
-	.logos-col-2 td {
-		padding-right: 10px;
-		text-align: center;
-	}
-
-	.logos-col-2 td p {
-		padding: 0;
-		margin: 0;
-	}
-
-	.logos-col-2 img {
-		height: 40px !important;
-	}
-
-	.logos-col-2 img.footer-image-no-margin {
-		margin: 0 !important;
-		height: 50px !important;
-	}
-
-	.logos-col-2 td.logos-sublinks * {
-		text-align: left !important;
-	}
-
-	#footer .top-logos {
-		padding: 15px 0 0 15px;
-	}
-
-	#footer .bottom-logos {
-		font-size: 11px;
-		color: #999;
-		margin-top: -15px;
-		padding: 0 15px 0 15px;
-	}
-
-	.logos-sublinks {
-		vertical-align: top;
-		border-left: 1px solid #999;
-		padding-left: 20px;
-	}
-
-	#footer td.logos-sublinks a {
-		font-size: 9px !important;
-		margin: 0 !important;
-		padding: 0 !important;
-		display: block;
-	}
 
 	/* Breadcrumb */
 	#breadcrumb {
