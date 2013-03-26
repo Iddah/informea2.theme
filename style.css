@@ -52,9 +52,7 @@
 		text-align: center;
 	}
 
-	#header {
-		background: #2CA0D2;
-	}
+	#header { background: #2CA0D2; }
 
 	#header #masthead {
 		width: 992px; /*1000px; */
@@ -83,15 +81,7 @@
 	}
 
 	/* Main Menu */
-	#header #access {
-		background: none;
-		display: block;
-		height: 37px;
-		margin: 0 auto;
-		/*width: 1000px;*/
-	}
-
-	#header #access .menu-header {
+	#header ul#menu-main {
 		float: left;
 		display: block;
 		overflow: hidden;
@@ -99,21 +89,20 @@
 		top: 1px;
 	}
 
-	#header #access .menu-header ul,
-	div.menu ul {
+	#header ul#menu-main {
 		list-style: none;
 		margin: 0;
 		display: block;
 		overflow: hidden;
 	}
 
-	#header #access .menu-header li,
+	#header ul#menu-main li,
 	div.menu li {
 		float: left;
 		height: 38px;
 	}
 
-	#header #access .menu-header a {
+	#header ul#menu-main a {
 		color: #FFFFFF;
 		text-transform: uppercase;
 		display: block;
@@ -123,9 +112,10 @@
 		background: url(images/menu-spacer.png) no-repeat center left;
 		padding: 10px 15px 10px 15px;
 	}
+	#header ul#menu-main li:first-child a { background: none; }
 
-	#header #access .menu-header ul li a:hover,
-	#header #access .menu-header ul li a.current {
+	#header ul#menu-main li a:hover,
+	#header ul#menu-main li a.current {
 		background: #d7f1f7;
 		-webkit-border-top-left-radius: 5px;
 		-webkit-border-top-right-radius: 5px;
@@ -136,56 +126,26 @@
 		color: #444;
 	}
 
-	#header #access .menu-header ul li a.first,
-	#access .menu-header ul li:first-child a:first-child {
+	#header ul#menu-main li a.first,
+	#header ul#menu-mai li:first-child a:first-child {
 		background: none;
 	}
 
-	#header #access .menu-header a img {
+	#header ul#menu-main a img {
 		vertical-align: middle !important;
 		position: relative;
 		top: -5px;
 	}
 
-	#header #menu-main {
+	#header ul#menu-main {
 		padding-left: 10px;
 	}
 
-	#informea #header #menu-main .home {
-		background: none;
-	}
-
-	#header #access ul ul li {
+	#header ul#menu-main ul li {
 		width: 185px;
 	}
 
-	#header #access ul ul ul {
-		left: 100%;
-		top: 0;
-	}
-
-	#header #access ul ul a {
-		background: #333;
-		line-height: 1em;
-		padding: 10px;
-		width: 160px;
-		height: auto;
-	}
-
-	#header #access li:hover > a,
-	#header #access ul ul:hover > a {
-		background: #333;
-		color: #fff;
-	}
-
-	#header #access ul li:hover > ul {
-		display: block;
-	}
-
-	#header #access ul li.current_page_item > a,
-	#header #access ul li.current-menu-ancestor > a,
-	#header #access ul li.current-menu-item > a,
-	#header #access ul li.current-menu-parent > a {
+	#header ul#menu-main li.current-menu-item > a {
 		background: #d7f1f7;
 		-webkit-border-top-left-radius: 5px;
 		-webkit-border-top-right-radius: 5px;
@@ -196,9 +156,6 @@
 		color: #444;
 	}
 
-	#header #access ul li.current_page_item > a {
-		background: #fff;
-	}
 
 	/* MEA Explorer */
 	#explorer {
@@ -3025,5 +2982,4 @@
 	.news-box {
 		height: 294px;
 	}
-
 }

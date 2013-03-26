@@ -19,29 +19,23 @@ global $post;
                     <a href="/"><img src="<?php header_image(); ?>" alt="" title="<?php echo bloginfo('name'); ?>" id="logo-image"/></a>
                 </div>
             </div>
-            <div id="access" role="navigation" class="clear">
-                <?php echo (!empty($primary_menu)) ? $primary_menu : '<span id="informea_template_primary_menu"></span>'; ?>
-                <?php
-                if (TRUE) {
-                    ?>
-                    <div id="explorer">
-                        <div class="mea-button right">
-                            <img src="<?php bloginfo('template_directory'); ?>/images/s.gif" alt="" title="<?php _e('Toggle MEA Explorer box', 'informea'); ?>" />
-                        </div>
-                        <div class="clear"></div>
-                        <?php include(dirname(__FILE__) . '/../imea_pages/explorer/inc.explorer.php'); ?>
-                    </div>
-                <?php
-                }
+            <?php echo (!empty($primary_menu)) ? $primary_menu : '<span id="informea_template_primary_menu"></span>'; ?>
+            <?php
+            if (TRUE) {
                 ?>
-            </div>
-            <!-- #access -->
-
+                <div id="explorer">
+                    <div class="mea-button right">
+                        <img src="<?php bloginfo('template_directory'); ?>/images/s.gif" alt="" title="<?php _e('Toggle MEA Explorer box', 'informea'); ?>" />
+                    </div>
+                    <div class="clear"></div>
+                    <?php include(dirname(__FILE__) . '/../imea_pages/explorer/inc.explorer.php'); ?>
+                </div>
+            <?php
+            }
+            ?>
             <div class="clear"></div>
-        </div>
-        <!-- #masthead -->
-    </div>
-    <!-- #header -->
+        </div><!-- /#masthead -->
+    </div><!-- /#header -->
     <div id="main">
         <?php echo (!empty($breadcrumbtrail)) ? $breadcrumbtrail : '<span id="informea_template_breadcrumbtrail"></span>'; ?>
         <?php
