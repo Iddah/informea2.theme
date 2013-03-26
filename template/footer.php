@@ -115,6 +115,8 @@ function tengine_footer() {
                 <div class="clear"></div>
             </li>
             <li class="row">
+                <a href="/wp-admin/">Login</a>
+                &middot;
                 <a href="<?php echo bloginfo('url'); ?>/disclaimer"><?php _e('Terms and Conditions', 'informea'); ?></a>
                 &middot;
                 <?php _e('Portions copyright &copy; United Nations, FAO, UNEP and UNESCO', 'informea'); ?>

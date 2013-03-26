@@ -47,6 +47,34 @@
 		list-style-type: none;
 	}
 
+	#informea div.portlet {
+		margin-bottom: 0px;
+		background: rgb(216, 216, 216);
+		padding: 5px;
+	}
+
+	#informea div.portlet div.title {
+		text-align: center;
+		background: transparent;
+		color: rgb(68, 67, 67);
+		font-size: 1.438em;
+		padding: 7px 3px;
+		letter-spacing: 0;
+		line-height: 22px;
+	}
+
+	#informea div.whatisinformea {
+		margin: 10px 0 10px 0;
+		background: rgb(216, 216, 216);
+		padding: 5px;
+	}
+
+	#informea div.round {
+		-webkit-box-shadow: 0 2px 2px 0 rgb(194, 194, 194);
+		box-shadow: 0 2px 2px 0 rgb(194, 194, 194);
+		border-radius: 4px;
+		border: 1px solid rgb(233, 233, 233);
+	}
 
 	/***************************************** Header - blue stripe ***************************************************/
 	#informea-staging {
@@ -750,70 +778,6 @@
 	/* About page */
 	#informea #banners ul {
 		list-style-type: none !important;
-	}
-
-	.portlet {
-		margin-top: 15px;
-		display: block;
-		overflow: hidden;
-	}
-
-	.portlet .pre-title {
-		border-bottom: 1px solid #2CA0D2;
-	}
-
-	.portlet .title {
-		background: #EEE;
-		padding: 7px 10px;
-		color: #2CA0D2;
-		font-size: 18px;
-		letter-spacing: -1px;
-		line-height: 22px;
-		display: inline-block;
-	}
-
-	.portlet img {
-		vertical-align: middle;
-	}
-
-	.portlet .content {
-		padding-top: 10px !important;
-	}
-
-	.portlet .content ul {
-		margin: 0;
-		padding: 0;
-		list-style-type: none;
-	}
-
-	.portlet .content ul li {
-		margin-bottom: 10px;
-	}
-
-	.portlet .content img {
-		float: left;
-		width: 48px;
-		height: 48px;
-		vertical-align: middle;
-	}
-
-	.portlet div.item {
-		float: left;
-		width: 150px;
-		padding: 5px 0 0 5px;
-	}
-
-	.portlet .featured ul li {
-		margin-bottom: 3px !important;
-	}
-
-	.portlet .country img {
-		width: 125px !important;
-		height: 80px !important;
-	}
-
-	.portlet .rss img {
-		margin-bottom: 5px;
 	}
 
 	/* Treaty pages */
@@ -1907,10 +1871,6 @@
 		margin-bottom: 15px !important;
 	}
 
-	.portlet-highlights-placeholder {
-		margin-top: 15px;
-	}
-
 	#select-country-party {
 		height: 100px;
 		background-color: #f0f0f0;
@@ -2420,10 +2380,6 @@
 	}
 
 	.download-vocabulary {
-		margin-top: 15px;
-	}
-
-	.portlet-terms-tags {
 		margin-top: 15px;
 	}
 

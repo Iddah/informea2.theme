@@ -29,5 +29,21 @@ function informea2_setup() {
     ));
 
 }
-
 add_action('after_setup_theme', 'informea2_setup');
+
+
+function informea2_widgets_init() {
+register_sidebar(array(
+    'name' => __('Index page first column', 'informea'),
+    'id' => 'index-page-col1',
+    'description' => __('Index page first column widgets', 'informea'),
+    'before_widget' => '<div class="portlet">',
+    'after_widget' => '</div>',
+    'before_title' => '<div class="pre-title"><div class="title"><span>',
+    'after_title' => '</span></div></div>',
+));
+}
+add_action('widgets_init', 'informea2_widgets_init');
+
+
+require_once(dirname(__FILE__) . '/widgets/collapsible-text.php');
