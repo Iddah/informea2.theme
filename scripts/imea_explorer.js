@@ -42,16 +42,26 @@ function explorer_expand_section() {
 	$.each(jQuery('#explorer li.section'), function (index, section) {
 		var handler = $('span a', section);
 		var content = $('form', section);
-		console.log(handler);
 		handler.click(function() {
 			var icon = $('span a', section);
 			if (!content.is(':visible')) {
 				content.slideDown();
-				icon.css('background-image', 'url(' + images_dir + 'search-box/minus.png)');
+				icon.removeAttr('class');
+				icon.addClass('minus');
 			} else {
 				content.slideUp();
-				icon.css('background-image', 'url(' + images_dir + 'search-box/plus.png)');
+				icon.removeAttr('class');
+				icon.addClass('plus');
 			}
+			jQuery.each(jQuery('#explorer li.section'), function(idx, item) {
+				if(item != section) {
+					var content = $('form', item);
+					var icon = $('span a', item);
+					content.slideUp();
+					icon.removeAttr('class');
+					icon.addClass('plus');
+				}
+			});
 		});
 	});
 }

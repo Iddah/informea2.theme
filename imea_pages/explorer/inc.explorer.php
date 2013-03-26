@@ -7,11 +7,11 @@ $terms_page = new Thesaurus(NULL);
     // This fragment stays here
     var freetext_default = '<?php echo $search2->ui_get_freetext_default();?>';
 </script>
-<div id="search" class="content">
+<div id="search" class="content hidden">
     <ul class="border">
         <li class="section">
             <span class="title">
-                <a href="javascript:void(0);"></a>
+                <a href="javascript:void(0);" class="minus"></a>
                 <?php _e('Quick search all', 'informea'); ?>
             </span>
             <form method="get" action="<?php bloginfo('url'); ?>/search">
@@ -38,10 +38,10 @@ $terms_page = new Thesaurus(NULL);
         </li>
         <li class="section">
             <span class="title">
-                <a href="javascript:void(0);"></a>
+                <a href="javascript:void(0);" class="plus"></a>
                 <?php _e('Treaties and Decisions/Resolutions', 'informea'); ?>
             </span>
-            <form method="get" action="<?php bloginfo('url'); ?>/search">
+            <form method="get" action="<?php bloginfo('url'); ?>/search" class="hidden">
                 <input type="hidden" name="q_tab" value="2"/>
                 <?php include(dirname(__FILE__) . '/inc.treaties.php'); ?>
                 <div class="clear"></div>
@@ -103,10 +103,10 @@ $terms_page = new Thesaurus(NULL);
         </li>
         <li class="section">
             <span class="title">
-                <a href="javascript:void(0); "></a>
+                <a href="javascript:void(0);" class="plus"></a>
                 <?php _e('Meetings and Events', 'informea'); ?>
             </span>
-            <form method="get" action="<?php bloginfo('url'); ?>/search">
+            <form method="get" action="<?php bloginfo('url'); ?>/search" class="hidden">
                 <input type="hidden" name="q_use_meetings" value="1"/>
                 <?php include(dirname(__FILE__) . '/inc.treaties.php'); ?>
                 <?php include(dirname(__FILE__) . '/inc.date_interval.php'); ?>

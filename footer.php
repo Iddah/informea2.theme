@@ -41,7 +41,6 @@ if (!empty($imea_options['js_optimizer']) && $imea_options['js_optimizer'] == tr
     <script type="text/javascript" src="<?php bloginfo('template_directory'); ?>/scripts/scroll.js"></script>
     <script type="text/javascript" src="<?php bloginfo('template_directory'); ?>/scripts/functions.js"></script>
     <script type="text/javascript" src="<?php bloginfo('template_directory'); ?>/scripts/main.js"></script>
-    <script type="text/javascript" src="<?php bloginfo('template_directory'); ?>/scripts/events.js"></script>
     <script type="text/javascript" src="<?php bloginfo('template_directory'); ?>/scripts/ui.js"></script>
     <script type="text/javascript" src="<?php bloginfo('template_directory'); ?>/scripts/imea_explorer.js"></script>
     <script type="text/javascript" src="<?php bloginfo('template_directory'); ?>/scripts/lof-slider.js"></script>
