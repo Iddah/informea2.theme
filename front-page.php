@@ -7,14 +7,6 @@
                 <div>
                     <?php dynamic_sidebar('index-page-col1'); ?>
                 </div>
-                <div class="portlet">
-                    <div class="title">
-                        TITLE
-                    </div>
-                    <div class="content">
-                        CONTENT
-                    </div>
-                </div>
                 <div class="clear"></div>
             </div><!--/ col1 -->
         </div>

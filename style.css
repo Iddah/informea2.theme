@@ -41,16 +41,52 @@
 		color: #333;
 	}
 
+	#informea #main {
+		width: 980px;
+		margin: 0 auto;
+		padding: 5px 0;
+		display: block;
+		overflow: hidden;
+		background: #fff;
+		border-left: 5px solid #eee;
+		border-right: 5px solid #eee;
+	}
+
+	#informea #main .col3 {
+		float: left;
+		width: 230px;
+	}
+
+	#informea #main .col3-left {
+		margin-right: 10px;
+	}
+
+	#informea #main .col3-center {
+		width: 500px;
+		margin-right: 10px;
+	}
 
 	/************************************************* Index page *****************************************************/
 	.widget_latest_news li {
 		list-style-type: none;
 	}
 
+	.margin-bottom-10 {
+		margin-bottom: 10px;
+	}
+
+	/* Portlets */
 	#informea div.portlet {
-		margin-bottom: 0px;
+		-webkit-box-shadow: 0 2px 2px 0 rgb(194, 194, 194);
+		box-shadow: 0 2px 2px 0 rgb(194, 194, 194);
+		margin: 0;
 		background: rgb(216, 216, 216);
-		padding: 5px;
+		border-radius: 4px;
+		border: 1px solid rgb(233, 233, 233);
+		margin-bottom: 6px;
+		padding: 10px;
+		background-color: rgb(238, 238, 238);
+		background-image: -webkit-linear-gradient(top, white, rgb(237, 237, 237));
 	}
 
 	#informea div.portlet div.title {
@@ -63,17 +99,29 @@
 		line-height: 22px;
 	}
 
-	#informea div.whatisinformea {
-		margin: 10px 0 10px 0;
-		background: rgb(216, 216, 216);
-		padding: 5px;
-	}
-
 	#informea div.round {
 		-webkit-box-shadow: 0 2px 2px 0 rgb(194, 194, 194);
 		box-shadow: 0 2px 2px 0 rgb(194, 194, 194);
 		border-radius: 4px;
 		border: 1px solid rgb(233, 233, 233);
+	}
+
+	#informea div.whatisinformea {
+		margin: 0 0 10px 0;
+		background: rgb(216, 216, 216);
+		padding: 5px;
+	}
+
+	#informea div.portlet .ribbon {
+		float: left;
+		margin-left: 80px;
+		margin-top: 4px;
+	}
+
+	#informea div.portlet ul.featured-tools {
+		margin-left: 15px;
+		padding: 0;
+		list-style-type: none;
 	}
 
 	/***************************************** Header - blue stripe ***************************************************/
@@ -478,30 +526,6 @@
 		margin-bottom: 5px;
 	}
 
-	body.informea #main {
-		width: 980px;
-		margin: 0 auto;
-		padding: 10px 0;
-		display: block;
-		overflow: hidden;
-		background: #fff;
-		border-left: 5px solid #eee;
-		border-right: 5px solid #eee;
-	}
-
-	body.informea #main .col3 {
-		float: left;
-		width: 230px;
-	}
-
-	body.informea #main .col3-left {
-		margin-right: 10px;
-	}
-
-	body.informea #main .col3-center {
-		width: 500px;
-		margin-right: 10px;
-	}
 
 	body.col-2 #content {
 		background: url('images/column-borders-2.gif') repeat-y 10px 0;
@@ -767,12 +791,6 @@
 	/* Index page */
 	.calendar-frontpage {
 		margin-top: 20px !important;
-	}
-
-	ul.featured-tools {
-		margin-left: 0;
-		padding: 0;
-		list-style-type: none;
 	}
 
 	/* About page */

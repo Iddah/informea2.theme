@@ -17,6 +17,11 @@ $(document).ready(function () {
 	$('.tooltip, .location-link').tipsy({gravity: 'w'});
 	$('.tooltip.alphabet-order-link').tipsy({gravity: 's'});
 
+	/* Click on the index page 'What is InforMEA' expand ribbon */
+	$('div.whatisinformea a.ribbon-click').click(function() {
+		$('div.whatisinformea div.content').slideToggle();
+	})
+
 	/* Global code for collapsible list of items. Usage pattern:
 	 * <li class="list-item">
 	 *    ...

@@ -14,14 +14,23 @@ class CollapsibleTextWidget extends WP_Widget {
         $instance = wp_parse_args((array)$instance, array('title' => '', 'content' => ''));
         $title = $instance['title'];
         $content = $instance['content'];
+        $expanded = $instance['expanded'] == 1;
         ?>
         <p>
             <label for="<?php echo $this->get_field_id('title'); ?>">Title:</label>
-            <input class="widefat"
+            <input type="text" class="widefat"
                    id="<?php echo $this->get_field_id('title'); ?>"
-                   name="<?php echo $this->get_field_name('title'); ?>" type="text"
-                   value="<?php echo attribute_escape($title); ?>"
+                   name="<?php echo $this->get_field_name('title'); ?>"
+                   value="<?php echo esc_attr($title); ?>"
                 />
+        </p>
+        <p>
+            <input type="checkbox"
+                   id="<?php echo $this->get_field_id('expanded'); ?>"
+                   name="<?php echo $this->get_field_name('expanded'); ?>" value="1"
+                   <?php echo $expanded == 1 ? 'checked="checked"' : ''; ?>
+                />
+            <label for="<?php echo $this->get_field_id('expanded'); ?>">Expanded</label>
         </p>
         <p>
             <label for="<?php echo $this->get_field_id('content'); ?>">Content:</label>
@@ -36,6 +45,7 @@ class CollapsibleTextWidget extends WP_Widget {
         $instance = $old_instance;
         $instance['title'] = $new_instance['title'];
         $instance['content'] = $new_instance['content'];
+        $instance['expanded'] = $new_instance['expanded'];
         return $instance;
     }
 
@@ -43,11 +53,17 @@ class CollapsibleTextWidget extends WP_Widget {
     function widget($args, $instance) {
         $title = empty($instance['title']) ? ' ' : apply_filters('widget_title', $instance['title']);
         $content = empty($instance['content']) ? ' ' : apply_filters('widget_text', $instance['content']);
+        $expanded = @$instance['expanded'] == 1;
         ?>
         <div class="portlet round whatisinformea" id="<?php echo @$args['widget_id']; ?>">
             <div class="title"><?php echo $title; ?></div>
-            <div class="content"><?php echo $content; ?></div>
+            <div class="content<?php echo $expanded ? '' : ' hidden'; ?>"><?php echo $content; ?></div>
+            <a href="javascript:void(0);" class="ribbon-click">
+                <img class="ribbon" src="<?php bloginfo('template_directory'); ?>/images/expand.png" alt="arrow for expanding this portlet">
+            </a>
         </div>
+        <div class="clear"></div>
+        <div class="margin-bottom-10"></div>
         <?php
         echo $after_widget;
     }
