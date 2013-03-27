@@ -131,7 +131,12 @@
 		padding: 0; list-style-type: none;
 		margin: 0;
 	}
-	#informea div.portlet ul.latest-news li { padding: 10px 0; border-top: 1px dashed #C0C0C0; }
+	#informea div.portlet ul.latest-news li {
+		margin: 10px 0;
+		padding: 0 0 0 10px;
+		border-top: 1px dashed #C0C0C0;
+		background: url('images/news_arrow.png') no-repeat 0 5px;
+	}
 	#informea div.portlet ul.latest-news li:first-child { border-top: 0; }
 	#informea div.portlet ul.latest-news img { float: left; margin-right: 5px; max-width: 50px; }
 	#informea div.portlet ul.latest-news p { margin: 0; padding: 0; float: left; width: 150px; }

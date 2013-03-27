@@ -71,9 +71,11 @@ class IndexLatestNewsWidget extends WP_Widget {
                         }
                         ?>
                         <li>
-                            <?php echo $row->date_formatted; ?>
-                            <a title="Click to read the full story" rel="bookmark" href="<?php echo $row->permalink; ?>"<?php echo $target; ?>><?php echo subwords($row->title, 10); ?></a>
-                            (<?php echo $row->source; ?>)
+                            <a title="Click to read the full story" rel="bookmark" href="<?php echo $row->permalink; ?>"<?php echo $target; ?>>
+                                <?php echo subwords($row->title, 10); ?>
+                            </a>
+                            <br />
+                            <?php echo $row->date_formatted; ?>, <?php echo $row->source; ?>
                         </li>
                     <?php endforeach; ?>
                 </ul>
