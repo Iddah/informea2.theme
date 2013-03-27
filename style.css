@@ -148,7 +148,7 @@
 		height: 20px;
 		background-image: url('images/rss.png');
 	}
-
+	#informea div.portlet div.featured-treaty img { float: left; margin-right: 5px; max-width: 50px; }
 	/***************************************** Header - blue stripe ***************************************************/
 	#informea-staging {
 		background: #FF5A49;
