@@ -11,7 +11,7 @@ class CollapsibleTextWidget extends WP_Widget {
 
 
     function form($instance) {
-        $instance = wp_parse_args((array)$instance, array('title' => '', 'content' => ''));
+        $instance = wp_parse_args((array)$instance, array('title' => '', 'content' => '', 'expanded' => 0));
         $title = $instance['title'];
         $content = $instance['content'];
         $expanded = $instance['expanded'] == 1;
@@ -65,7 +65,6 @@ class CollapsibleTextWidget extends WP_Widget {
         <div class="clear"></div>
         <div class="margin-bottom-10"></div>
         <?php
-        echo $after_widget;
     }
 }
 

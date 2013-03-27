@@ -47,3 +47,4 @@ add_action('widgets_init', 'informea2_widgets_init');
 
 
 require_once(dirname(__FILE__) . '/widgets/collapsible-text.php');
+require_once(dirname(__FILE__) . '/widgets/latest-news.php');
