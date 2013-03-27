@@ -22,6 +22,9 @@ $(document).ready(function () {
 		$('div.whatisinformea div.content').slideToggle();
 	})
 
+	/* Set-up paginator for meetings of the week portlet */
+	meetings_this_week_paginator();
+
 	/* Global code for collapsible list of items. Usage pattern:
 	 * <li class="list-item">
 	 *    ...

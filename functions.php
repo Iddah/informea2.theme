@@ -43,6 +43,15 @@ function informea2_widgets_init() {
         'before_title' => '<div class="pre-title"><div class="title"><span>',
         'after_title' => '</span></div></div>',
     ));
+    register_sidebar(array(
+        'name' => __('Index page third column', 'informea'),
+        'id' => 'index-page-col3',
+        'description' => __('Index page third column widgets', 'informea'),
+        'before_widget' => '<div class="portlet">',
+        'after_widget' => '</div>',
+        'before_title' => '<div class="pre-title"><div class="title"><span>',
+        'after_title' => '</span></div></div>',
+    ));
 }
 
 add_action('widgets_init', 'informea2_widgets_init');
@@ -50,4 +59,5 @@ add_action('widgets_init', 'informea2_widgets_init');
 
 require_once(dirname(__FILE__) . '/widgets/collapsible-text.php');
 require_once(dirname(__FILE__) . '/widgets/latest-news.php');
-require_once(dirname(__FILE__) . '/widgets/featured-treaty.php.php');
+require_once(dirname(__FILE__) . '/widgets/featured-treaty.php');
+require_once(dirname(__FILE__) . '/widgets/current-week-meetings.php');

@@ -67,6 +67,10 @@
 	}
 
 	/************************************************* Index page *****************************************************/
+	body.imea-index #main {
+		border: 0 !important;
+	}
+
 	.widget_latest_news li {
 		list-style-type: none;
 	}
@@ -79,13 +83,10 @@
 	#informea div.portlet {
 		-webkit-box-shadow: 0 2px 2px 0 rgb(194, 194, 194);
 		box-shadow: 0 2px 2px 0 rgb(194, 194, 194);
-		margin: 0;
-		background: rgb(216, 216, 216);
 		border-radius: 4px;
 		border: 1px solid rgb(233, 233, 233);
-		margin-bottom: 6px;
-		padding: 10px;
-		background-color: rgb(238, 238, 238);
+		margin: 0 0 6px;
+		padding: 8px;
 		background-image: -webkit-linear-gradient(top, white, rgb(237, 237, 237));
 	}
 
@@ -94,7 +95,7 @@
 		background: transparent;
 		color: rgb(68, 67, 67);
 		font-size: 1.438em;
-		padding: 7px 3px;
+		padding: 0 3px 5px 3px;
 		letter-spacing: 0;
 		line-height: 22px;
 	}
@@ -149,6 +150,10 @@
 		background-image: url('images/rss.png');
 	}
 	#informea div.portlet div.featured-treaty img { float: left; margin-right: 5px; max-width: 50px; }
+	#informea div.portlet div.weeks-meetings ul.items { list-style-type: none; margin: 0; padding: 0; text-align: center; }
+	#informea div.portlet div.weeks-meetings ul.items li { margin: 0; padding: 0; }
+	#informea div.portlet div.weeks-meetings ul.items p { margin: 0; }
+	#informea div.portlet div.weeks-meetings div.paginator { text-align: right; }
 	/***************************************** Header - blue stripe ***************************************************/
 	#informea-staging {
 		background: #FF5A49;
@@ -1053,20 +1058,6 @@
 	body.col-1 #content {
 		background: #fff;
 		overflow: auto;
-	}
-
-	body.home #main .col3 {
-		width: 230px;
-	}
-
-	body.home #main .col3-left {
-		margin-right: 15px; /*20px;*/
-		margin-left: 5px;
-	}
-
-	body.home #main .col3-center {
-		width: 480px;
-		margin-right: 15px; /*20px;*/
 	}
 
 	h1, h2, h3, h4, h5, h6 {
