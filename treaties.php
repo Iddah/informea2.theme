@@ -614,6 +614,10 @@ if (!class_exists('imea_treaties_page')) {
             return $ret;
         }
 
+        static function treaty_count_nfp($id_treaty) {
+            global $wpdb;
+            return $wpdb->get_var($wpdb->prepare('SELECT COUNT(*) FROM ai_people_treaty WHERE id_treaty=%d', $id_treaty));
+        }
 
         /**
          * Overriding
