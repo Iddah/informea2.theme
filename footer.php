@@ -10,7 +10,10 @@
  * @since Twenty Ten 1.0
  */
 ?>
-
+        </div><!-- #content -->
+    </div><!-- #container -->
+    <div class="clear"></div>
+</div><!-- #main -->
 <?php
 $imea_options = get_option('informea_options');
 global $page_data;

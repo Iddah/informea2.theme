@@ -38,7 +38,7 @@ class MEAExplorerWidget extends WP_Widget {
                     <a class="btn-advanced-search" href="javascript:void(0);">
                         <span>Advanced</span>
                     </a>
-                    <ul class="advanced">
+                    <ul class="advanced hidden">
                         <li class="section">
                             <p>Topics</p>
                             <div class="filters">

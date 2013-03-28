@@ -60,4 +60,18 @@ add_filter('body_class', function ($classes) {
     ?>
 </head>
 <body <?php body_class(); ?>>
-<?php tengine_header($tpl_show_explorer, $tpl_primary_menu, $tpl_useful_links_menu, informea_breadcrumbtrail(), $tpl_languages); ?>
+<?php if (informea_is_staging()) : ?>
+    <div id="informea-staging">
+        DEMO VERSION
+    </div>
+<?php endif; ?>
+    <div id="informea" class="hfeed">
+        <div class="skip-link screen-reader-text">
+            <a href="#content"
+               title="<?php _e('Skip to content', 'informea'); ?>"><?php _e('Skip to content', 'informea'); ?></a>
+        </div>
+    <?php tengine_header($tpl_show_explorer, $tpl_primary_menu, $tpl_useful_links_menu, informea_breadcrumbtrail(), $tpl_languages); ?>
+        <div id="main">
+            <?php echo (!empty($breadcrumbtrail)) ? $breadcrumbtrail : '<span id="informea_template_breadcrumbtrail"></span>'; ?>
+            <div id="container">
+                <div id="content" role="main">

@@ -1,9 +1,6 @@
 <?php
 function tengine_footer() {
-    $mobile = new Mobile_Detect();
-    ?>
-    <div class="clear"></div>
-    </div><!-- #main -->
+?>
     <div id="footer">
         <ul class="rows">
             <li class="row">
@@ -123,7 +120,6 @@ function tengine_footer() {
             </li>
         </ul>
     </div><!-- #footer -->
-    </div><!-- #wrapper -->
 <?php
 }
 ?>
