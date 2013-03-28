@@ -56,7 +56,7 @@ class FeaturedTreatyWidget extends WP_Widget {
         $title = empty($instance['title']) ? ' ' : apply_filters('widget_title', $instance['title']);
         $count_decisions = $instance['count_decisions'] == 1;
         $count_nfp = $instance['count_nfp'] == 1;
-        $treaty = informea_treaties::get_featured_treaty(1);
+        $treaty = informea_treaties::get_featured_treaty();
         if ($treaty) {
             ?>
             <div class="portlet">

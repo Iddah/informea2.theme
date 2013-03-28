@@ -75,9 +75,8 @@
 		list-style-type: none;
 	}
 
-	.margin-bottom-10 {
-		margin-bottom: 10px;
-	}
+	.margin-bottom-10 { margin-bottom: 10px; }
+	.margin-top-10 { margin-top: 10px; }
 
 	/* Portlets */
 	#informea div.portlet {
@@ -149,11 +148,60 @@
 		height: 20px;
 		background-image: url('images/rss.png');
 	}
+
 	#informea div.portlet div.featured-treaty img { float: left; margin-right: 5px; max-width: 50px; }
+
 	#informea div.portlet div.weeks-meetings ul.items { list-style-type: none; margin: 0; padding: 0; text-align: center; }
 	#informea div.portlet div.weeks-meetings ul.items li { margin: 0; padding: 0; }
 	#informea div.portlet div.weeks-meetings ul.items p { margin: 0; }
 	#informea div.portlet div.weeks-meetings div.paginator { text-align: right; }
+
+	#informea div.portlet div.event-explorer label { display: block; margin-top: 10px; }
+
+	#informea div.index-explorer {
+		background-color: #FFF5C2;
+		border-radius: 5px;
+		width: 460px;
+		border: 10px solid #FFE974;
+		padding: 0;
+		margin: 0;
+	}
+
+	#informea div.index-explorer div.title {
+		width: 100%;
+		height: 25px;
+		background-color: #FFE974;
+		font-size: 20px;
+		font-weight: bold;
+		margin: 0;
+		padding: 0 0 5px 0;
+	}
+
+	#informea div.index-explorer label { cursor: pointer; }
+	#informea div.index-explorer a.btn-advanced-search { color: black; margin: 10px 10px 10px 20px; padding: 5px; border: 1px solid #FFF5C2; }
+	#informea div.index-explorer a.btn-advanced-search:hover {
+		border: 1px solid #FFE974;
+		border-right-color: #ccc;
+		border-bottom-color: #ccc;
+		background-color: #FFE974;
+		text-decoration: none;
+		color: black;
+	}
+
+	#informea div.index-explorer div.content { padding: 10px; }
+	#informea div.index-explorer div.content ul { list-style-type: none; padding: 0; margin: 0 0 0 20px; }
+	#informea div.index-explorer div.section { margin-left: 20px; }
+	#informea div.index-explorer div.filters { margin-left: 20px; }
+	#informea div.index-explorer li.section p { font-weight: bold; }
+	#informea div.index-explorer li.section ul { margin: 0; padding: 0; list-style-type: none; }
+	#informea div.index-explorer li.section ul { margin: 0; padding: 0; list-style-type: none; }
+
+	#index-search-content .tag-autocomplete {
+		font-size: 14px;
+		height: 20px;
+		border: 1px solid #999;
+	}
+
 	/***************************************** Header - blue stripe ***************************************************/
 	#informea-staging {
 		background: #FF5A49;
@@ -1646,102 +1694,6 @@
 		padding-top: 0 !important;
 	}
 
-	#index-search {
-		background-color: #FFF5C2;
-		border-radius: 5px;
-		width: 460px;
-		border: 10px solid #FFE974;
-		margin-bottom: 8px;
-	}
-
-	#index-search .title {
-		width: 100%;
-		height: 25px;
-		background-color: #FFE974;
-		font-size: 20px;
-		font-weight: bold;
-		margin: 0;
-		padding: 0 0 5px 0;
-	}
-
-	#index-search .subtitle {
-		margin-top: 10px;
-		font-size: 14px;
-		color: black;
-		margin-bottom: 5px;
-	}
-
-	#index-search .freetext {
-		font-size: 14px;
-		height: 20px;
-	}
-
-	#index-search-content {
-		margin: 10px 0 0 10px;
-	}
-
-	#index-search-content .section {
-		margin-top: 10px;
-	}
-
-	#index-search-content .slabel {
-		font-weight: bold;
-		float: left;
-		width: 75px;
-	}
-
-	#index-search .search-button {
-		width: 450px;
-		text-align: right;
-		margin-bottom: 8px;
-		margin-top: 10px;
-	}
-
-	#index-search-content .tag-autocomplete {
-		font-size: 14px;
-		height: 20px;
-		border: 1px solid #999;
-	}
-
-	#index-search-content #q_term_index {
-		width: 200px;
-	}
-
-	#index-search-terms {
-		padding: 5px 5px;
-	}
-
-	#index-search input {
-		border: 1px solid #FFE974;
-	}
-
-	#index-search .ui-autocomplete-input {
-		border: 1px solid #FFE974 !important;
-	}
-
-	#index-search .advanced-search {
-		margin-left: 15px;
-	}
-
-	#index-search .search-text {
-		margin-top: 3px;
-	}
-
-	#index-search ul.main-list {
-		float: left;
-	}
-
-	#index-search ul.sublist {
-		margin-left: 15px;
-	}
-
-	#index-search ul {
-		list-style-type: none;
-	}
-
-	#index-search .conventions {
-		margin-left: 75px;
-	}
 
 	#highlight-topics {
 		display: block;
@@ -2834,28 +2786,6 @@
 	a.download-link:visited,
 	a.download-link:active {
 		text-decoration: none;
-	}
-
-	.index_and_or {
-		margin-right: 10px;
-		float: left;
-		margin-top: -5px;
-		width: 40px;
-	}
-
-	.index_and_or label {
-		font-size: 8px;
-		float: left;
-	}
-
-	#q_term_and_index {
-		border: 0 !important;
-		margin-left: 1px !important;
-	}
-
-	#q_term_or_index {
-		border: 0 !important;
-		margin-left: -19px !important;
 	}
 
 	.treaties-details-info h1 {

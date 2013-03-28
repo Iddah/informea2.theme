@@ -36,7 +36,7 @@ add_action('after_setup_theme', 'informea2_setup');
 function informea2_widgets_init() {
     register_sidebar(array(
         'name' => __('Index page first column', 'informea'),
-        'id' => 'index-page-col1',
+        'id' => 'index-page-left',
         'description' => __('Index page first column widgets', 'informea'),
         'before_widget' => '<div class="portlet">',
         'after_widget' => '</div>',
@@ -44,8 +44,13 @@ function informea2_widgets_init() {
         'after_title' => '</span></div></div>',
     ));
     register_sidebar(array(
+        'name' => __('Index page center column', 'informea'),
+        'id' => 'index-page-center',
+        'description' => __('Index page center column widgets', 'informea'),
+    ));
+    register_sidebar(array(
         'name' => __('Index page third column', 'informea'),
-        'id' => 'index-page-col3',
+        'id' => 'index-page-right',
         'description' => __('Index page third column widgets', 'informea'),
         'before_widget' => '<div class="portlet">',
         'after_widget' => '</div>',
@@ -61,3 +66,5 @@ require_once(dirname(__FILE__) . '/widgets/collapsible-text.php');
 require_once(dirname(__FILE__) . '/widgets/latest-news.php');
 require_once(dirname(__FILE__) . '/widgets/featured-treaty.php');
 require_once(dirname(__FILE__) . '/widgets/current-week-meetings.php');
+require_once(dirname(__FILE__) . '/widgets/index-mea-explorer.php');
+require_once(dirname(__FILE__) . '/widgets/event-explorer.php');
