@@ -330,7 +330,7 @@ class Mobile_Detect
 if(!function_exists('get_request_value')) {
 	/**
 	 * Retrieve request parameter also from GET
-	 * @param $name Parameter name
+	 * @param $name string name
 	 * @param $default Default value
 	 * @param $trim Trim resulting string
 	 * @return parameter value or empty string if not set
@@ -355,8 +355,9 @@ if(!function_exists('get_request_value')) {
 if(!function_exists('get_request_int')) {
 	/**
 	 * Retrieve request parameter also from GET
-	 * @param name of the parameter
-	 * @return parameter value or empty string if not set
+	 * @param string $name the parameter
+	 * @param string $default Default value
+	 * @return int Numeric value or default
 	 */
 	function get_request_int($name, $default = NULL) {
 		$ret = get_request_value($name, $default, TRUE);
