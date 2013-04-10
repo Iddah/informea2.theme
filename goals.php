@@ -7,6 +7,15 @@
 add_action('wp_ajax_nopriv_ai_goals_get_activity', 'ajax_ai_goals_get_activity');
 add_action('wp_ajax_ai_goals_get_activity', 'ajax_ai_goals_get_activity');
 
+add_action('wp_ajax_nopriv_ai_goals_get_target_indicators', 'ajax_ai_goals_get_target_indicators');
+add_action('wp_ajax_ai_goals_get_target_indicators', 'ajax_ai_goals_get_target_indicators');
+
+if(!defined('GOAL_TYPE_AICHI_TARGET')) {
+    define ('GOAL_TYPE_AICHI_TARGET', 'Aichi Target');
+}
+if(!defined('GOAL_TYPE_STRAGETIC_GOAL')) {
+    define ('GOAL_TYPE_STRAGETIC_GOAL', 'Strategic Goal');
+}
 
 function ajax_ai_goals_get_activity() {
     $target_id = get_request_int('target_id');
@@ -20,9 +29,7 @@ function ajax_ai_goals_get_activity() {
     if ($row) {
         $ret['success'] = TRUE;
         $ret['title'] = sprintf('%s activities regarding %s', $odata_name, $target_id);
-        $html = sprintf('
-            %s
-        ', $row->activities);
+        $html = sprintf('%s', $row->activities);
         $ret['data'] = $html;
     }
 
@@ -36,13 +43,38 @@ function ajax_ai_goals_get_activity() {
     die();
 }
 
+function ajax_ai_goals_get_target_indicators() {
+    $target_id = get_request_int('target_id');
+    $ret = array('success' => FALSE,
+        'title' => 'An error has occurred',
+        'data' => '<p>There are no indicators recorded on the selected target</p>'
+    );
+    $row = imea_goals_page::get_aichi_target($target_id);
+    if (!empty($row->indicators)) {
+        $ret['success'] = TRUE;
+        $ret['title'] = sprintf('Biodiversity indicators for: %s', $row->name);
+        $html = sprintf('%s', $row->indicators);
+        $ret['data'] = $html;
+    }
+
+    if (is_user_logged_in()) {
+        $url = sprintf('%sgoals/%d/edit', INFORMEA_MANAGEMENT_URL, $target_id);
+        $ret['data'] .= sprintf('<p><a class="btn" href="%s" target="_blank">Edit indicators</a></p>', $url);
+    }
+
+    header('Content-Type:application/json');
+    echo json_encode($ret);
+    die();
+}
+
 if (!class_exists('imea_goals_page')) {
     class imea_goals_page extends imea_page_base_page {
 
         function get_aichi_targets_overview() {
             global $wpdb;
+
             return $wpdb->get_results(
-                "SELECT a.id, a.order,a.name, a.id_strategic_goal, b.name as goal FROM ai_goals a
+                "SELECT a.id, a.order,a.name, a.indicators, a.id_strategic_goal, b.name as goal FROM ai_goals a
                 INNER JOIN ai_goals b ON (b.id_strategic_goal = a.id_strategic_goal)
                 WHERE a.type = 'Aichi Target' GROUP BY a.id ORDER BY a.`order`"
             );
@@ -97,6 +129,16 @@ if (!class_exists('imea_goals_page')) {
             global $wpdb;
             $sql = $wpdb->prepare('SELECT a.activities FROM ai_goals_activities a
                     WHERE a.target_id=%d AND a.odata_name=%s', $target_id, $odata_name);
+            return $wpdb->get_row($sql);
+        }
+
+
+        static function get_aichi_target($target_id) {
+            global $wpdb;
+            $sql = $wpdb->prepare('SELECT a.id, a.`order`, a.`type`, a.name, a.indicators, b.name AS strategic_goal_name
+                    FROM ai_goals a
+                    LEFT JOIN ai_goals b ON (a.id_strategic_goal = b.id AND b.`type` = %s)
+                    WHERE a.id=%d AND a.type=%s', GOAL_TYPE_STRAGETIC_GOAL, $target_id, GOAL_TYPE_AICHI_TARGET);
             return $wpdb->get_row($sql);
         }
 
