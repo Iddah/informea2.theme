@@ -621,7 +621,7 @@ if (!class_exists('imea_countries_page')) {
             return '';
         }
 
-        function get_countries() {
+        static function get_countries() {
             global $wpdb;
             return $wpdb->get_results("SELECT * FROM ai_country ORDER BY name");
         }
@@ -716,10 +716,10 @@ if (!class_exists('imea_countries_page')) {
             $ret = array();
             $objects = $wpdb->get_results(
                 $wpdb->prepare(
-                    "SELECT a.*, b.`name` AS country_name FROM `ai_people` a
+                    'SELECT a.*, b.`name` AS country_name FROM `ai_people` a
                         INNER JOIN `ai_country` b ON a.`id_country` = b.id
-                        WHERE (`first_name` LIKE '%%%s%%' OR `last_name` LIKE '%%%s%%')",
-                    $name, $name)
+                        WHERE (`first_name` LIKE %s OR `last_name` LIKE %s) LIMIT 30',
+                    $name . '%', $name . '%')
             );
             foreach ($objects as $nfp) {
                 $ob = new StdClass();
@@ -740,7 +740,7 @@ if (!class_exists('imea_countries_page')) {
         }
 
 
-        function get_featured_country() {
+        static function get_featured_country() {
             $option = get_option('informea_options');
             $country = null;
             if (isset($option['featured_country'])) {

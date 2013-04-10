@@ -241,13 +241,13 @@ if (!class_exists('imea_events_page')) {
             return $ret;
         }
 
-        function get_months_indexed() {
+        static function get_months_indexed() {
             return array(1 => __('Jan', 'informea'), 2 => __('Feb', 'informea'), 3 => __('Mar', 'informea'), 4 => __('Apr', 'informea'),
                 5 => __('May', 'informea'), 6 => __('Jun', 'informea'), 7 => __('Jul', 'informea'), 8 => __('Aug', 'informea'), 9 => __('Sep', 'informea'),
                 10 => __('Oct', 'informea'), 11 => __('Nov', 'informea'), 12 => __('Dec', 'informea'));
         }
 
-        function get_months_fullname() {
+        static function get_months_fullname() {
             return array(1 => __('January', 'informea'), 2 => __('February', 'informea'), 3 => __('March', 'informea'), 4 => __('April', 'informea'),
                 5 => __('May', 'informea'), 6 => __('June', 'informea'), 7 => __('July', 'informea'), 8 => __('August', 'informea'), 9 => __('September', 'informea'),
                 10 => __('October', 'informea'), 11 => __('November', 'informea'), 12 => __('December', 'informea'));
