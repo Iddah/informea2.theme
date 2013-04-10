@@ -28,7 +28,9 @@ function ajax_ai_goals_get_activity() {
     );
     if ($row) {
         $ret['success'] = TRUE;
-        $ret['title'] = sprintf('%s activities regarding %s', $odata_name, $target_id);
+        $target = imea_goals_page::get_target($target_id);
+        $ret['title'] = sprintf('%s activities regarding %s', imea_goals_page::get_organization_name($odata_name),
+            $target->name);
         $html = sprintf('%s', $row->activities);
         $ret['data'] = $html;
     }
@@ -103,7 +105,7 @@ if (!class_exists('imea_goals_page')) {
         }
 
 
-        function get_organizations() {
+        static function get_organizations() {
             return array(
                 'cites' => array('label' => 'CITES'),
                 'cms' => array('label' => 'CMS'),
@@ -125,6 +127,15 @@ if (!class_exists('imea_goals_page')) {
             );
         }
 
+        static function get_organization_name($odata_name) {
+            $ret = NULL;
+            $orgs = self::get_organizations();
+            if(!empty($orgs[$odata_name]['label'])) {
+                $ret = $orgs[$odata_name]['label'];
+            }
+            return $ret;
+        }
+
         static function get_activities($target_id, $odata_name) {
             global $wpdb;
             $sql = $wpdb->prepare('SELECT a.activities FROM ai_goals_activities a
@@ -141,6 +152,19 @@ if (!class_exists('imea_goals_page')) {
                     WHERE a.id=%d AND a.type=%s', GOAL_TYPE_STRAGETIC_GOAL, $target_id, GOAL_TYPE_AICHI_TARGET);
             return $wpdb->get_row($sql);
         }
+
+
+        static function get_target($target_id) {
+            global $wpdb;
+            $sql = $wpdb->prepare('SELECT a.id, a.`order`, a.`type`, a.name, a.indicators,
+                        b.name AS strategic_goal_name, c.title as geg_theme
+                    FROM ai_goals a
+                    LEFT JOIN ai_goals b ON a.id_strategic_goal = b.id
+                    LEFT JOIN geg_ai_theme c ON a.id_theme_geg = c.id
+                    WHERE a.id=%d', $target_id);
+            return $wpdb->get_row($sql);
+        }
+
 
         /**
          * Retrieve all activities grouped by Aichi target, then by instrument
