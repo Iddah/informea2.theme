@@ -27,11 +27,11 @@ class MEAExplorerWidget extends WP_Widget {
                 <input type="hidden" name="q_tab" value="2"/>
 
                 <div class="title">
-                    <img src="<?php bloginfo('template_directory'); ?>/images/btn-explorer-transp.png"/>
+                    <img src="<?php bloginfo('template_directory'); ?>/images/btn-explorer-transp.png" />
                 </div>
                 <div class="content">
                     <label for="q_freetext">Search</label>
-                    <input type="text" id="q_freetext" name="q_freetext" class="freetext" size="40"/>
+                    <input type="text" id="q_freetext" name="q_freetext" class="freetext" size="40" />
                     <a class="button orange" href="javascript:$('#search_index').submit();">
                         <span>Search</span>
                     </a>
@@ -44,19 +44,19 @@ class MEAExplorerWidget extends WP_Widget {
                             <div class="filters">
                                 <ul>
                                     <li>
-                                        <input id="index_treaty_biodiversity" type="checkbox" checked="checked"/>
+                                        <input id="index_treaty_biodiversity" type="checkbox" checked="checked" />
                                         <label for="index_treaty_biodiversity">Biodiversity</label>
                                     </li>
                                     <li>
-                                        <input id="index_treaty_chemicals" type="checkbox" checked="checked"/>
+                                        <input id="index_treaty_chemicals" type="checkbox" checked="checked" />
                                         <label for="index_treaty_chemicals">Chemicals / Waste</label>
                                     </li>
                                     <li>
-                                        <input id="index_treaty_climate" type="checkbox" checked="checked"/>
+                                        <input id="index_treaty_climate" type="checkbox" checked="checked" />
                                         <label for="index_treaty_climate">Climate / Ozone / Deserts</label>
                                     </li>
                                     <li>
-                                        <input id="index_treaty_other" type="checkbox" checked="checked"/>
+                                        <input id="index_treaty_other" type="checkbox" checked="checked" />
                                         <label for="index_treaty_other">Other (Regional, etc)</label>
                                     </li>
                                 </ul>
@@ -65,7 +65,7 @@ class MEAExplorerWidget extends WP_Widget {
                                 foreach ($ts as $t_id) {
                                     ?>
                                     <input type="checkbox" id="q_treaty_index_<?php echo $t_id; ?>" name="q_treaty[]"
-                                           value="<?php echo $t_id; ?>" checked="checked" class="hidden"/>
+                                           value="<?php echo $t_id; ?>" checked="checked" class="hidden" />
                                 <?php
                                 }
                                 ?>
@@ -120,11 +120,11 @@ class MEAExplorerWidget extends WP_Widget {
                                 <?php include(dirname(__FILE__) . '/../imea_pages/explorer/inc.date_interval.php'); ?>
                             </div>
                         </li>
-                    </div>
+                    </ul>
                 </div>
-
             </form>
         </div>
+        <div class="margin-bottom-10"></div>
     <?php
     }
 }
