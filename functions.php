@@ -64,6 +64,7 @@ add_action('widgets_init', 'informea2_widgets_init');
 
 require_once(dirname(__FILE__) . '/widgets/collapsible-text.php');
 require_once(dirname(__FILE__) . '/widgets/latest-news.php');
+require_once(dirname(__FILE__) . '/widgets/featured-country.php');
 require_once(dirname(__FILE__) . '/widgets/featured-treaty.php');
 require_once(dirname(__FILE__) . '/widgets/current-week-meetings.php');
 require_once(dirname(__FILE__) . '/widgets/index-mea-explorer.php');
