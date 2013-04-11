@@ -7,8 +7,7 @@ if (current_user_can('manage_options')) {
     do_action('move_down_treaty_paragraph');
 }
 $tpl_show_explorer = $post !== NULL && $post->post_name != 'index' && $post->post_name != 'search';
-$tpl_languages = 'English | <span title="Not implemented yet">Français</span>';
-$tpl_primary_menu = wp_nav_menu(array('echo' => false, 'menu' => 'Main', 'container' => '', 'theme_location' => 'primary', 'walker' => new imea_menu_walker()));
+$tpl_primary_menu = wp_nav_menu(array('echo' => false, 'menu' => 'Primary', 'container' => '', 'theme_location' => 'primary', 'walker' => new imea_menu_walker()));
 $tpl_useful_links_menu = !is_user_logged_in() ?
     '<a href="' . get_bloginfo('url') . '/wp-admin/">' . __('Login', 'informea') . '</a>'
     : '<a href="' . get_bloginfo('url') . '/wp-admin/">' . __('Administration Panel', 'informea') . '</a> | <a href="' . wp_logout_url(get_permalink()) . '">' . __('Logout', 'informea') . '</a>';
@@ -50,12 +49,12 @@ add_filter('body_class', function ($classes) {
         DEMO VERSION
     </div>
 <?php endif; ?>
-    <div id="informea" class="hfeed">
+    <div id="informea">
         <div class="skip-link screen-reader-text">
             <a href="#content"
                title="<?php _e('Skip to content', 'informea'); ?>"><?php _e('Skip to content', 'informea'); ?></a>
         </div>
-    <?php tengine_header($tpl_show_explorer, $tpl_primary_menu, $tpl_useful_links_menu, informea_breadcrumbtrail(), $tpl_languages); ?>
+        <?php tengine_header($tpl_show_explorer, $tpl_primary_menu, $tpl_useful_links_menu, informea_breadcrumbtrail()); ?>
         <div id="main">
             <?php echo (!empty($breadcrumbtrail)) ? $breadcrumbtrail : '<span id="informea_template_breadcrumbtrail"></span>'; ?>
             <div id="container">
