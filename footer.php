@@ -13,6 +13,12 @@
         </div><!-- #content -->
     </div><!-- #container -->
     <div class="clear"></div>
+    <div id="changelog" class="round">
+        <p>
+            Did you notice that InforMEA website has changed? It has a new tool called "Event Explorer", new sections layout...
+        </p>
+    </div>
+
 </div><!-- #main -->
 <?php
 $imea_options = get_option('informea_options');

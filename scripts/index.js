@@ -1,5 +1,5 @@
 jQuery(document).ready(function () {
-    $('div.index-explorer a.btn-advanced-search').click(function () {
+    $('div.index-explorer a.index-explorer-advanced-search-click').click(function () {
         $('div.index-explorer ul.advanced').toggle();
     });
 

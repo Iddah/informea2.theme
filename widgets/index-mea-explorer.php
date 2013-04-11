@@ -22,22 +22,22 @@ class MEAExplorerWidget extends WP_Widget {
     function widget($args, $instance) {
         $search2 = new InformeaSearch2($_GET);
         ?>
-        <div class="index-explorer">
+        <div class="index-explorer round">
             <form action="/search" method="get">
                 <input type="hidden" name="q_tab" value="2"/>
 
-                <div class="title">
-                    <img src="<?php bloginfo('template_directory'); ?>/images/btn-explorer-transp.png" />
-                </div>
+                <div class="title"></div>
                 <div class="content">
-                    <label for="q_freetext">Search</label>
+                    <label for="q_freetext">Search text</label>
                     <input type="text" id="q_freetext" name="q_freetext" class="freetext" size="40" />
-                    <a class="button orange" href="javascript:$('#search_index').submit();">
-                        <span>Search</span>
-                    </a>
-                    <a class="btn-advanced-search" href="javascript:void(0);">
-                        <span>Advanced</span>
-                    </a>
+                    <div class="up">
+                        <a href="javascript:void(0);" class="index-explorer-advanced-search-click">
+                            <span>Advanced search &raquo;</span>
+                        </a>
+                        <a class="button orange" href="javascript:$('#search_index').submit();">
+                            <span>Search</span>
+                        </a>
+                    </div>
                     <ul class="advanced hidden">
                         <li class="section">
                             <p>Topics</p>
