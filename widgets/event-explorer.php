@@ -38,8 +38,10 @@ class EventsExplorerWidget extends WP_Widget {
         ?>
         <div class="portlet">
             <?php if (!empty($title)) : ?>
-                <div class="title">
-                    <?php echo $title; ?>
+                <div class="pre-title">
+                    <div class="title">
+                        <?php echo $title; ?>
+                    </div>
                 </div>
             <?php endif; ?>
             <div class="content event-explorer">
@@ -75,8 +77,6 @@ class EventsExplorerWidget extends WP_Widget {
                 </form>
             </div>
         </div>
-        <div class="clear"></div>
-        <div class="margin-bottom-10"></div>
     <?php
     }
 }

@@ -69,3 +69,4 @@ require_once(dirname(__FILE__) . '/widgets/featured-treaty.php');
 require_once(dirname(__FILE__) . '/widgets/current-week-meetings.php');
 require_once(dirname(__FILE__) . '/widgets/index-mea-explorer.php');
 require_once(dirname(__FILE__) . '/widgets/event-explorer.php');
+require_once(dirname(__FILE__) . '/widgets/borderless-widget.php');
