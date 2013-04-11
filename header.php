@@ -25,12 +25,8 @@ add_filter('body_class', function ($classes) {
     <meta http-equiv="Content-Type" content="text/html; charset=utf-8"/>
     <meta charset="<?php bloginfo('charset'); ?>"/>
     <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=2.0, user-scalable=yes"/>
-
-    <link rel="alternate" type="application/rss+xml" title="InforMEA &raquo; Highlights"
-          href="<?php bloginfo('url'); ?>/highlights/rss"/>
-    <link rel="alternate" type="application/rss+xml" title="InforMEA &raquo; Events"
-          href="<?php bloginfo('url'); ?>/events/rss"/>
-
+    <link rel="alternate" type="application/rss+xml" title="InforMEA &raquo; Highlights" href="<?php bloginfo('url'); ?>/highlights/rss"/>
+    <link rel="alternate" type="application/rss+xml" title="InforMEA &raquo; Events" href="<?php bloginfo('url'); ?>/events/rss"/>
     <script type="text/javascript">
         var images_dir = '<?php bloginfo('url'); ?>/wp-content/themes/informea/images/';
         var blog_dir = '<?php bloginfo('url'); ?>';
@@ -46,18 +42,7 @@ add_filter('body_class', function ($classes) {
     <link rel="profile" href="http://gmpg.org/xfn/11"/>
     <?php tengine_head(); ?>
     <link rel="pingback" href="<?php bloginfo('pingback_url'); ?>"/>
-    <?php
-    // cristiroma: no comments in informea
-    // if ( is_singular() && get_option( 'thread_comments' ) ){
-    //	wp_enqueue_script( 'comment-reply' );
-    // }
-    /* Always have wp_head() just before the closing </head>
-     * tag of your theme, or you will break many plugins, which
-     * generally use this hook to add elements to <head> such
-     * as styles, scripts, and meta tags.
-     */
-    wp_head();
-    ?>
+    <?php wp_head(); ?>
 </head>
 <body <?php body_class(); ?>>
 <?php if (informea_is_staging()) : ?>
