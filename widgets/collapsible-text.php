@@ -56,14 +56,19 @@ class CollapsibleTextWidget extends WP_Widget {
         $expanded = @$instance['expanded'] == 1;
         ?>
         <div class="portlet round whatisinformea" id="<?php echo @$args['widget_id']; ?>">
-            <div class="title"><?php echo $title; ?></div>
-            <div class="content<?php echo $expanded ? '' : ' hidden'; ?>"><?php echo $content; ?></div>
+            <div class="pre-title">
+                <div class="title">
+                    <?php echo $title; ?>
+                </div>
+            </div>
+            <div class="content<?php echo $expanded ? '' : ' hidden'; ?>">
+                <?php echo $content; ?>
+            </div>
             <a href="javascript:void(0);" class="ribbon-click">
                 <img class="ribbon" src="<?php bloginfo('template_directory'); ?>/images/expand.png" alt="arrow for expanding this portlet">
             </a>
         </div>
         <div class="clear"></div>
-        <div class="margin-bottom-10"></div>
         <?php
     }
 }

@@ -52,11 +52,13 @@ class IndexLatestNewsWidget extends WP_Widget {
         }
         $title = empty($instance['title']) ? ' ' : apply_filters('widget_title', $instance['title']);
         ?>
-        <div class="portlet">
+        <div class="portlet latest-news">
             <?php if(!empty($title)) : ?>
-            <div class="title">
-                <?php echo $title; ?>
-                <a class="rss" target="_blank" href="<?php bloginfo('url'); ?>/highlights/rss"></a>
+            <div class="pre-title">
+                <div class="title">
+                    <?php echo $title; ?>
+                    <a class="rss" target="_blank" href="<?php bloginfo('url'); ?>/highlights/rss"></a>
+                </div>
             </div>
             <?php endif; ?>
             <div class="content">

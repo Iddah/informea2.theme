@@ -9,6 +9,8 @@
     - Header (blue stripe)
         - Primary menu
         - Secondary menu
+ - INDEX PAGE
+    - Portlets
 */
 
 
@@ -16,8 +18,13 @@
 a { text-decoration: none; color: #1878cc; }
 a:hover { color: #ff4b33; text-decoration: underline; }
 
-body.informea { margin: 0; padding: 0; color: #333; font: 12px Calibri, arial, sans-serif; line-height: 17px; }
-
+body.informea {
+    margin: 0; padding: 0; color: #333;
+    font-family: Calibri, "Trebuchet MS", Arial, sans-serif;
+    font-size: 12px;
+    line-height: 17px;
+}
+span.gray { color: #888; }
 div#informea div#main { width: 980px; margin: 0 auto; padding: 10px 0; display: block; overflow: hidden; }
 div#informea div#main .col3 { float: left; width: 230px; }
 div#informea div#main .col3-left { margin-right: 10px; }
@@ -39,15 +46,15 @@ body.informea .tag11 { font-size: 200%; }
 
 /* GLOBAL :: Header (blue stripe) */
 body.informea .skip-link { display: none; }
-#header {
+div#header {
     background: #2ca0d2;
     -webkit-box-shadow: 0 2px 2px rgb(175, 175, 175);
     box-shadow: 0 2px 2px rgb(175, 175, 175);
 }
-#header #masthead { width: 992px; /*1000px; */ margin: 0 auto; display: block; }
-#header #branding { display: block; overflow: hidden; padding: 30px 0 0 10px; }
-#header #logo { margin: 0; padding: 0; }
-#header #logo a {
+div#header #masthead { width: 992px; /*1000px; */ margin: 0 auto; display: block; }
+div#header #branding { display: block; overflow: hidden; padding: 30px 0 0 10px; }
+div#header #logo { margin: 0; padding: 0; }
+div#header #logo a {
     display: block;
     width: 452px; height: 37px; margin-bottom: 20px;
     text-indent: -9000px;
@@ -65,7 +72,7 @@ ul#menu-primary {
 ul#menu-primary li, div.menu li { float: left; height: 38px; }
 ul#menu-primary a {
     color: #fff;
-    font-size: 12px; font-weight: bold; text-decoration: none; text-transform: uppercase;
+    font-weight: bold; text-decoration: none; text-transform: uppercase;
     display: block; padding: 10px 15px 10px 15px;
     margin-right: 1px;
 }
@@ -88,106 +95,92 @@ ul#menu-secondary li { padding-left: 7px; list-style-type: none; display: inline
 ul#menu-secondary a { color: #fff; text-transform: uppercase; }
 ul#menu-secondary a:hover { color: #444; }
 
+/* INDEX PAGE */
 
+/* INDEX PAGE :: Portlets */
+div.portlet {
+    margin-top: 15px; margin-bottom: 6px; padding: 10px;
+    display: block;
+    border: 1px solid rgb(233, 233, 233);
+    background-color: rgb(238, 238, 238);
+    /* Round */
+    -moz-border-radius: 4px; border-radius: 4px;
+    /* Shadow */
+    -moz-box-shadow: 0 2px 2px 0 #c2c2c2;
+    -webkit-box-shadow: 0 2px 2px 0 rgb(194, 194, 194);
+    box-shadow: 0 2px 2px 0 rgb(194, 194, 194);
+    /* Gradient */
+    background-image: -webkit-linear-gradient(top, white, rgb(237, 237, 237));
+    background-image: -moz-linear-gradient(top, white, rgb(237, 237, 237));
+    background-image: -ms-linear-gradient(top, white, rgb(237, 237, 237));
+    background-image: -o-linear-gradient(top, white, rgb(237, 237, 237));
+    background-image: linear-gradient(to top, white, rgb(237, 237, 237));
+}
 
+div.portlet div.title {
+    width: 100%; padding: 7px 3px;
+    background: transparent; color: rgb(68, 67, 67);
+    font-size: 18px; letter-spacing: 0;
+}
+div.portlet div.title a.rss {
+    margin: 0; padding: 0; width: 20px; height: 20px;
+    display: block; float: right;
+    background: url('images/feed.png') no-repeat; }
+div.portlet div.content { overflow: hidden; padding: 10px 0 3px 3px; }
+
+div.portlet.whatisinformea { margin-bottom: 0; padding: 5px; background: #D7F1F7; }
+div.portlet.whatisinformea div.title { text-align: center; }
+div.portlet img.ribbon { float: left; margin: 4px 0 0 80px; }
+div.portlet.featured-treaty div.item-title { float: right; width: 150px; }
+div.portlet.latest-news ul { list-style-type: none; margin: 0; padding: 0 }
+div.portlet.latest-news ul li {
+    color: #888;
+    margin: 0 0 10px 0;
+    padding-left: 12px;
+    background: url("images/arrow1.png") no-repeat 0 3px;
+}
+
+/* GLOBAL :: Sprites */
+.basel, .cbd, .cites, .cms, .fao, .itpgrfa, .ozone, .ramsar, .rotterdam, .stockholm, .un, .unccd, .unece,
+.unep, .unesco, .unccd, .whc {
+    background: url(images/sprites_black&white.png) no-repeat;
+    display: inline-block;
+}
+
+.basel:hover, .cbd:hover, .cites:hover, .cms:hover,
+.fao:hover, .itpgrfa:hover, .ozone:hover, .ramsar:hover,
+.rotterdam:hover, .stockholm:hover, .un:hover, .unccd:hover,
+.unece:hover, .unep:hover, .unesco:hover, .unccd:hover, .whc:hover,
+.thumbnail {
+    background: url(images/sprites.png) no-repeat;
+}
+
+.basel, .basel:hover { background-position: 0 0; width: 61px; height: 48px; }
+.cbd, .cbd:hover { background-position: 0 -55px; width: 40px; height: 48px; }
+.cites, .cites:hover { background-position:  0 -109px; width: 82px; height: 48px; }
+.cms, .cms:hover { background-position: 0 -168px; width: 48px; height: 48px; }
+.fao, .fao:hover { background-position: 0 -222px; width: 48px; height: 48px; }
+.itpgrfa, .itpgrfa:hover { background-position: 0 -274px; width: 48px; height: 48px; }
+.ozone, .ozone:hover { background-position: 0 -327px; width: 48px; height: 48px; }
+.ramsar, .ramsar:hover { background-position: 0 -384px; width: 44px; height: 48px; }
+.rotterdam, .rotterdam:hover{ background-position: -70px -346px ; width: 54px; height: 48px; }
+.stockholm, .stockholm:hover { background-position: -80px 0; width: 62px; height: 48px; }
+.un, .un:hover { background-position: -85px -58px; width: 54px; height: 48px; }
+.unccd, .unccd:hover { background-position: 0 -443px; width: 82px; height: 48px; }
+.unece, .unece:hover { background-position: -70px -167px; width: 48px; height: 48px; }
+.unep, .unep:hover { background-position: -66px -228px; width: 54px; height: 48px; }
+.unesco, .unesco:hover { background-position: -68px -290px; width: 60px; height: 48px; }
+.unccd, .unccd:hover { background-position: 0 -500px; width: 60px; height: 48px; }
+.whc, .whc:hover { background-position: -91px -405px; width: 48px; height: 48px; }
 
 
 /* Below, you are beyond redemption */
 
 
+
+
+
 /************************************************* Index page *****************************************************/
-.widget_latest_news li { list-style-type: none; }
-.margin-bottom-10 { margin-bottom: 10px; }
-.margin-top-10 { margin-top: 10px; }
-
-/* Portlets */
-#informea div.portlet {
-    -webkit-box-shadow: 0 2px 2px 0 rgb(194, 194, 194);
-    box-shadow: 0 2px 2px 0 rgb(194, 194, 194);
-    border-radius: 4px;
-    border: 1px solid rgb(233, 233, 233);
-    margin: 0 0 6px;
-    padding: 8px;
-    background-image: -webkit-linear-gradient(top, white, rgb(237, 237, 237));
-}
-
-#informea div.portlet div.title {
-    text-align: left;
-    background: transparent;
-    color: rgb(68, 67, 67);
-    font-size: 1.438em;
-    padding: 0 3px 5px 3px;
-    letter-spacing: 0;
-    line-height: 22px;
-}
-
-#informea div.round {
-    -webkit-box-shadow: 0 2px 2px 0 rgb(194, 194, 194);
-    box-shadow: 0 2px 2px 0 rgb(194, 194, 194);
-    border-radius: 4px;
-    border: 1px solid rgb(233, 233, 233);
-}
-
-#informea div.whatisinformea div.title {
-    text-align: center;
-}
-
-#informea div.whatisinformea {
-    margin: 0 0 10px 0;
-    background: rgb(216, 216, 216);
-    padding: 5px;
-}
-
-#informea div.portlet .ribbon {
-    float: left;
-    margin-left: 80px;
-    margin-top: 4px;
-}
-
-#informea div.portlet ul.featured-tools {
-    margin-left: 15px;
-    padding: 0;
-    list-style-type: none;
-}
-
-#informea div.portlet ul.latest-news {
-    padding: 0; list-style-type: none;
-    margin: 0;
-}
-
-#informea div.portlet ul.latest-news li {
-    margin: 10px 0;
-    padding: 0 0 0 10px;
-    border-top: 1px dashed #c0c0c0;
-    background: url('images/news_arrow.png') no-repeat 0 5px;
-}
-
-#informea div.portlet ul.latest-news li:first-child { border-top: 0; }
-
-#informea div.portlet ul.latest-news img { float: left; margin-right: 5px; max-width: 50px; }
-
-#informea div.portlet ul.latest-news p { margin: 0; padding: 0; float: left; width: 150px; }
-
-#informea div.portlet div.title a.rss {
-    margin: 0; padding: 0;
-    display: block;
-    float: right;
-    width: 20px;
-    height: 20px;
-    background-image: url('images/rss.png');
-}
-
-#informea div.portlet div.featured-treaty img { float: left; margin-right: 5px; max-width: 50px; }
-
-#informea div.portlet div.weeks-meetings ul.items { list-style-type: none; margin: 0; padding: 0; text-align: center; }
-
-#informea div.portlet div.weeks-meetings ul.items li { margin: 0; padding: 0; }
-
-#informea div.portlet div.weeks-meetings ul.items p { margin: 0; }
-
-#informea div.portlet div.weeks-meetings div.paginator { text-align: right; }
-
-#informea div.portlet div.event-explorer label { display: block; margin-top: 10px; }
 
 #informea div.index-explorer {
     background-color: #fff5c2;

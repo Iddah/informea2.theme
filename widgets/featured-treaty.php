@@ -59,17 +59,19 @@ class FeaturedTreatyWidget extends WP_Widget {
         $treaty = informea_treaties::get_featured_treaty();
         if ($treaty) {
             ?>
-            <div class="portlet">
+            <div class="portlet featured-treaty">
                 <?php if (!empty($title)) : ?>
                     <div class="title">
                         <?php echo $title; ?>
                     </div>
                 <?php endif; ?>
-                <div class="content featured-treaty">
-                    <img src="<?php echo $treaty->logo_medium; ?>"/>
-                    <a href="<?php echo sprintf('%s/treaties/%s', get_bloginfo('url'), $treaty->odata_name); ?>">
-                        <?php echo $treaty->short_title; ?>
-                    </a>
+                <div class="content">
+                    <span class="thumbnail <?php echo $treaty->odata_name; ?>"></span>
+                    <div class="item-title">
+                        <a href="<?php echo sprintf('%s/treaties/%s', get_bloginfo('url'), $treaty->odata_name); ?>">
+                            <?php echo $treaty->short_title; ?>
+                        </a>
+                        <span class="gray">( <?php echo $treaty->theme; ?> )</span>
                     <?php
                     if ($count_decisions) :
                         $ob = new informea_treaties();
@@ -94,6 +96,7 @@ class FeaturedTreatyWidget extends WP_Widget {
                     <?php if (!empty($treaty->region)) :
                         echo '<br />Region: ' . $treaty->region;
                     endif; ?>
+                    </div>
                 </div>
                 <div class="clear"></div>
             </div>
