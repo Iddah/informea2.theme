@@ -6,40 +6,6 @@
  * @since 1.0
  */
 
-add_action('wp_ajax_nopriv_countries_autocomplete', 'ajax_countries_autocomplete');
-add_action('wp_ajax_countries_autocomplete', 'ajax_countries_autocomplete');
-
-add_action('wp_ajax_nopriv_nfp_autocomplete', 'ajax_nfp_autocomplete');
-add_action('wp_ajax_nfp_autocomplete', 'ajax_nfp_autocomplete');
-
-function ajax_countries_autocomplete() {
-    $page_data = new imea_countries_page(NULL);
-    $key = get_request_value('key');
-    $countries = $page_data->search_countries_by_name($key);
-    $arr = array();
-    foreach ($countries as $country) {
-        $arr[] = array('id' => $country->id, 'name' => $country->name);
-    }
-    header('Content-Type:application/json');
-    echo json_encode($arr);
-    die();
-}
-
-function ajax_nfp_autocomplete() {
-    $page_data = new imea_countries_page(NULL);
-    $key = get_request_value('key');
-    $objects = $page_data->search_nfp_by_name($key);
-    $arr = array();
-    foreach ($objects as $ob) {
-        $label = $ob->first_name . ' ' . $ob->last_name . ' (' . $ob->country_name . ')';
-        $arr[] = array('id_contact' => $ob->id, 'id_country' => $ob->id_country, 'label' => $label, 'id_treaty' => $ob->id_treaty);
-    }
-    header('Content-Type:application/json');
-    echo json_encode($arr);
-    die();
-}
-
-
 if (!class_exists('imea_countries_page')) {
     class imea_countries_page extends imea_page_base_page {
 
@@ -80,7 +46,7 @@ if (!class_exists('imea_countries_page')) {
             global $wpdb;
 
             return $wpdb->get_results($wpdb->prepare('
-            SELECT t.short_title, t.logo_medium,
+            SELECT t.short_title, t.logo_medium, t.odata_name,
             c.name, c.icon_medium,
             a.id_country, a.id_treaty, a.`date`, a.`status`, a.legal_instrument_name,
             a.legal_instrument_type, a.parent_legal_instrument, a.declarations, a.notes
@@ -97,15 +63,15 @@ if (!class_exists('imea_countries_page')) {
          * @param integer $id_country Country ID
          * @return integer 0 if has not membership information or > 0
          */
-        function count_treaty_membership($id_country) {
+        static function count_treaty_membership($id_country) {
             global $wpdb;
-
             return $wpdb->get_var($wpdb->prepare('
-            SELECT COUNT(*)
-            FROM ai_treaty_country a
-            INNER JOIN ai_treaty t ON a.id_treaty = t.id
-            INNER JOIN ai_country c ON a.id_country = c.id
-            WHERE c.id = %d ORDER BY t.short_title', $id_country)
+                    SELECT COUNT(*)
+                    FROM ai_treaty_country a
+                    INNER JOIN ai_treaty t ON a.id_treaty = t.id
+                    INNER JOIN ai_country c ON a.id_country = c.id
+                    WHERE c.id = %d ORDER BY t.short_title',
+                $id_country)
             );
         }
 
@@ -250,46 +216,14 @@ if (!class_exists('imea_countries_page')) {
             return implode('<br />', $words);
         }
 
-
-        /**
-         * Retrieve the list of national focal points grouped by treaty
-         * @param integer $id_country Country ID. If NULL, internal ID is used
-         * @return array Array of treaty objects having set property focal_points as array of National Focal Points.
-         * @global $wpdb WordPress database
-         */
-        function get_focal_points_by_treaty($id_country = NULL) {
-            global $wpdb;
-
-            $id_country = !empty($id_country) ? $id_country : $this->id_country;
-            $treaties = $wpdb->get_results(
-                $wpdb->prepare(
-                    'SELECT * FROM ai_treaty WHERE id IN (SELECT DISTINCT(id_treaty) FROM view_people_treaty WHERE id_country=%d GROUP BY id_treaty)', $id_country
-                ), OBJECT_K
-            );
-            $rows = $wpdb->get_results(
-                $wpdb->prepare('SELECT * FROM view_people_treaty WHERE id_country=%d ORDER BY country_name, first_name, last_name', $id_country)
-            );
-            foreach ($rows as $row) {
-                $treaty = $treaties[$row->id_treaty];
-                if (!isset($treaty->focal_points)) {
-                    $treaty->focal_points = array();
-                }
-                $treaty->focal_points[] = $row;
-            }
-            return $treaties;
-        }
-
-
         /**
          * Count the total available focal points for a country.
          *
          * @param integer $id_country Country ID. If NULL, internal ID is used
          * @return integer Number of focal points
          */
-        function count_focal_points($id_country = NULL) {
+        static function count_focal_points($id_country = NULL) {
             global $wpdb;
-
-            $id_country = !empty($id_country) ? $id_country : $this->id_country;
             return $wpdb->get_var(
                 $wpdb->prepare('SELECT COUNT(*) FROM view_people_treaty WHERE id_country=%d', $id_country)
             );
@@ -350,8 +284,8 @@ if (!class_exists('imea_countries_page')) {
          * @return array Array of ai_sites objects
          * @global $wpdb WordPress database
          */
-        function get_ramsar_sites($id_country = NULL) {
-            return $this->get_sites($id_country, 'ramsar');
+        static function get_ramsar_sites($id_country = NULL) {
+            return self::get_sites($id_country, 'ramsar');
         }
 
 
@@ -362,8 +296,8 @@ if (!class_exists('imea_countries_page')) {
          * @return integer Number of RAMSAR sites
          * @global $wpdb WordPress database
          */
-        function count_ramsar_sites($id_country = NULL) {
-            return $this->count_sites($id_country, 'ramsar');
+        static function count_ramsar_sites($id_country = NULL) {
+            return self::count_sites($id_country, 'ramsar');
         }
 
 
@@ -373,8 +307,8 @@ if (!class_exists('imea_countries_page')) {
          * @return array Array of ai_sites objects
          * @global $wpdb WordPress database
          */
-        function get_whc_sites($id_country = NULL) {
-            return $this->get_sites($id_country, 'whc');
+        static function get_whc_sites($id_country = NULL) {
+            return self::get_sites($id_country, 'whc');
         }
 
 
@@ -385,8 +319,8 @@ if (!class_exists('imea_countries_page')) {
          * @return integer Number of WHC sites
          * @global $wpdb WordPress database
          */
-        function count_whc_sites($id_country = NULL) {
-            return $this->count_sites($id_country, 'whc');
+        static function count_whc_sites($id_country = NULL) {
+            return self::count_sites($id_country, 'whc');
         }
 
 
@@ -398,10 +332,8 @@ if (!class_exists('imea_countries_page')) {
          * @return integer Number of RAMSAR sites
          * @global $wpdb WordPress database
          */
-        protected function get_sites($id_country, $type) {
+        static protected function get_sites($id_country, $type) {
             global $wpdb;
-
-            $id_country = !empty($id_country) ? $id_country : $this->id_country;
             if (!empty($id_country)) {
 
                 return $wpdb->get_results(
@@ -426,12 +358,10 @@ if (!class_exists('imea_countries_page')) {
          * @return integer Number of sites
          * @global $wpdb WordPress database
          */
-        protected function count_sites($id_country, $type) {
+        static protected function count_sites($id_country, $type) {
             global $wpdb;
 
-            $id_country = !empty($id_country) ? $id_country : $this->id_country;
             if (!empty($id_country)) {
-
                 return $wpdb->get_var(
                     $wpdb->prepare(
                         "SELECT COUNT(*) FROM ai_country_site a INNER JOIN ai_treaty b ON a.id_treaty = b.id WHERE b.odata_name=%s AND a.id_country=%d",
@@ -734,7 +664,7 @@ if (!class_exists('imea_countries_page')) {
             return $ret;
         }
 
-        function get_random_country() {
+        static function get_random_country() {
             global $wpdb;
             return $wpdb->get_row("SELECT * FROM ai_country ORDER BY rand() LIMIT 1");
         }
@@ -750,7 +680,7 @@ if (!class_exists('imea_countries_page')) {
                 }
             }
             if ($country == null) {
-                $country = $this->get_random_country();
+                $country = self::get_random_country();
                 $option['featured_country'] = $country;
                 $option['featured_country_timestamp'] = time();
                 update_option('informea_options', $option);
