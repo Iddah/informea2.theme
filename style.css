@@ -13,7 +13,6 @@
         - Primary menu
         - Secondary menu
     - Sprites
-    - jQuery overrides
     - MEA Explorer button
  - INDEX PAGE
     - Portlets
@@ -29,6 +28,7 @@
 .text-center { text-align: center; }
 .hidden { display: none; }
 .visible { display: block; }
+td.text-top { vertical-align: top; }
 
 div#informea-staging { background: #ff5a49; width: 100%; height: 25px; color: white; font-size: 20px; padding-top: 5px; text-align: center; }
 a { text-decoration: none; color: #1878cc; }
@@ -146,17 +146,6 @@ ul#menu-secondary a:hover { color: #444; }
 .unesco, .unesco:hover { background-position: -68px -290px; width: 60px; height: 48px; }
 .unfccc, .unfccc:hover { background-position: 0 -500px; width: 60px; height: 48px; }
 .whc, .whc:hover { background-position: -91px -405px; width: 48px; height: 48px; }
-
-/* GLOBAL :: jQuery overrides */
-.ui-state-default, .ui-widget-content .ui-state-default { background-color: #dfeffc !important; border: 1px solid #c8ad31 !important; }
-.ui-widget-content { border: 1px solid #c8ad31 !important; }
-.ui-state-hover { border: 1px solid #c8ad31 !important; color: black !important; font-weight: bold !important; }
-.ui-button { margin-left: -1px; }
-.ui-button-icon-only .ui-button-text { padding: 0.35em; }
-.ui-autocomplete { height: 200px; overflow: auto; }
-.ui-autocomplete-input { border: 1px solid #babbb8 !important; margin: 0; padding: 0 !important; height: 21px; }
-.ui-corner-left { border-top-left-radius: 0 !important; border-bottom-left-radius: 0 !important; }
-.ui-button-text { padding: 2px 0 1px 0 !important; }
 
 /* GLOBAL :: MEA Explorer button */
 #explorer { float: right; position: relative; right: 0; width: 177px; z-index: 999; }
@@ -285,11 +274,41 @@ div.portlet.featured-treaty div.item-title { float: right; width: 150px; }
 div.portlet.latest-news ul { list-style-type: none; margin: 0; padding: 0 }
 div.portlet.latest-news ul li {
     color: #888;
-    margin: 0 0 10px 0;
-    padding-left: 12px;
+    margin: 0 0 10px 0; padding-left: 12px;
     background: url("images/arrow1.png") no-repeat 0 3px;
 }
 ul.featured-tools { padding-left: 30px; }
+div.portlet.featured-country { padding: 5px; }
+div.portlet.featured-country div#fc-map-canvas { width: 480px; height: 300px; }
+div.portlet.featured-country .ui-widget-content { background: transparent; border: 0; }
+div.portlet.featured-country li.ui-state-active { border: 1px solid #d7d7d7; }
+div.portlet.featured-country .ui-state-default {
+    border: 1px solid #BDBCBC; border-bottom: 0;
+    background: #eafafd none;
+}
+div.portlet.featured-country ul.ui-widget-header {
+    border-radius: 0; -moz-border-radius: 0; -webkit-border-radius: 0;
+    border: 0; border-bottom: 1px solid #d7d7d7; background-color: transparent;
+}
+div.portlet.featured-country ul.ui-widget-header a {
+    font-family: Calibri, "Trebuchet MS", Arial, sans-serif;
+    font-size: 11px;
+    font-weight: normal;
+    color: #000;
+}
+div.portlet.featured-country .ui-tabs-selected,
+div.portlet.featured-country .ui-state-hover {
+    background-color: #fff;
+    border-bottom: 0;
+}
+div.portlet.featured-country div.ui-tabs .ui-tabs-panel { padding: 5px 0 0 0; }
+div.portlet.featured-country table { border-collapse: collapse; width: 100% }
+div.portlet.featured-country table td { height: 24px; padding: 3px; }
+div.portlet.featured-country table tr { border: 0; border-bottom: 1px solid #d7d7d7;  }
+div.portlet.featured-country table ul { border: 0; margin: 0 0 0 20px; padding: 0; }
+div.portlet.featured-country table ul li { margin-bottom: 10px; }
+div.portlet.featured-country table p.note { margin: 0; padding: 0; color: #BDBCBC  }
+div.portlet.featured-country .text-grey { color: #BDBCBC  }
 
 /* INDEX PAGE :: Index MEA Explorer */
 

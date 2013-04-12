@@ -2,6 +2,7 @@ jQuery(document).ready(function () {
     $('div.index-explorer a.index-explorer-advanced-search-click').click(function () {
         $('div.index-explorer ul.advanced').toggle();
     });
+    featuredCountryPortletSetup();
 
     $("#q_term_index").reusableComboBox({
         select: function (evt, ob) {
@@ -55,4 +56,69 @@ function explorerIndexUIDeselectTerm(id) {
             $(el).removeAttr('selected');
         }
     });
+}
+
+
+function featuredCountryPortletSetup() {
+    jQuery('div.portlet.featured-country div#tabs').tabs();
+    featuredCountryPortletInitMap();
+}
+
+function featuredCountryShowMap(latlng, zoom) {
+    var myOptions = { zoom: zoom, center: latlng, mapTypeId: google.maps.MapTypeId.ROADMAP, streetViewControl: false };
+    fc_map = new google.maps.Map(document.getElementById("fc-map-canvas"), myOptions);
+}
+
+function featuredCountryShowSites(id_country) {
+    jQuery.ajax({
+        url: ajax_url + '?action=country_sites_markers',
+        dataType: "json",
+        data: { id: id_country },
+        success: function (data) {
+            jQuery(data.whc).each(function(idx, cfg) {
+                cfg.position = new google.maps.LatLng(cfg.latitude, cfg.longitude);
+                cfg.map = fc_map;
+                var marker = new google.maps.Marker(cfg);
+                google.maps.event.addListener(marker, 'click', function () {
+                    var txt = '<a href="' + cfg.url + '" target="_blank">' + cfg.title + '</a>';
+                    infoWindow.setContent(txt);
+                    infoWindow.open(fc_map, marker);
+                });
+            });
+            jQuery(data.ramsar).each(function(idx, cfg) {
+                cfg.position = new google.maps.LatLng(cfg.latitude, cfg.longitude);
+                cfg.map = fc_map;
+                var marker = new google.maps.Marker(cfg);
+                if(cfg.url) {
+                    google.maps.event.addListener(marker, 'click', function () {
+                        var txt = '<a href="javascript:void(0);" onclick="featuredCountryOpenRamsarSite(' + cfg.id + ');" target="_blank">' + cfg.title + '</a>';
+                        txt += '<p class="text-grey"><strong>Tip:</strong> Clicking, you will leave InforMEA.<br />Press Back to return here</p>';
+                        infoWindow.setContent(txt);
+                        infoWindow.open(fc_map, marker);
+                    });
+                }
+            });
+        }
+    });
+}
+
+function featuredCountryOpenRamsarSite(id) {
+    var form = document.createElement('form');
+    form.setAttribute('method', 'post');
+    form.setAttribute('action', 'http://www.wetlands.org/reports/output.cfm');
+
+    var site_id = document.createElement('input');
+    site_id.setAttribute('type', 'hidden');
+    site_id.setAttribute('name', 'site_id');
+    site_id.setAttribute('value', id);
+    form.appendChild(site_id);
+
+    var button = document.createElement('input');
+    button.setAttribute('type', 'hidden');
+    button.setAttribute('name', 'RepAll');
+    button.setAttribute('value', '1');
+    form.appendChild(button);
+
+    document.body.appendChild(form);
+    form.submit();
 }

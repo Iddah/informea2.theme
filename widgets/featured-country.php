@@ -39,8 +39,9 @@ class FeaturedCountryWidget extends WP_Widget {
         $title = empty($instance['title']) ? ' ' : apply_filters('widget_title', $instance['title']);
         $featured_country = informea_countries::get_featured_country();
         if ($featured_country) {
+            wp_enqueue_script('google-maps-api', 'http://maps.google.com/maps/api/js?sensor=false');
 ?>
-            <div class="portlet">
+            <div class="portlet featured-country">
                 <?php if (!empty($title)) : ?>
                     <div class="title">
                         <?php echo $title; ?>:
@@ -50,8 +51,20 @@ class FeaturedCountryWidget extends WP_Widget {
                     </div>
                 <?php endif; ?>
                 <div class="content featured-country">
-                    <script type="text/javascript" src="http://maps.google.com/maps/api/js?sensor=false"></script>
-                    <div id="index_map_canvas" style="width: 482px; height: 350px;"></div>
+                    <div id="tabs">
+                        <ul>
+                            <li><a href="#tabs-1">Map &amp; sites</a></li>
+                            <?php if(informea_countries::count_treaty_membership($featured_country->id) > 0     ) : ?>
+                            <li><a href="<?php echo admin_url("/admin-ajax.php?action=country_mea_membership&id={$featured_country->id}") ;?>">MEA membership</a></li>
+                            <?php endif; ?>
+                            <?php $c = informea_countries::count_focal_points($featured_country->id); if($c) : ?>
+                            <li><a href="<?php echo admin_url("/admin-ajax.php?action=country_nfp&id={$featured_country->id}") ;?>">Focal points (<?php echo $c; ?>)</a>
+                            <?php endif; ?>
+                        </ul>
+                        <div id="tabs-1">
+                            <div id="fc-map-canvas"></div>
+                        </div>
+                    </div>
                 </div>
                 <div class="clear"></div>
             </div>
@@ -65,16 +78,37 @@ class FeaturedCountryWidget extends WP_Widget {
 add_action('widgets_init', create_function('', 'return register_widget("FeaturedCountryWidget");'));
 
 function portlet_featured_country_inject_js() {
+    global $featured_country;
 ?>
     <script type="text/javascript">
-        jQuery(document).ready(function() {
-            var mapOptions = {
-                center: new google.maps.LatLng(-34.397, 150.644),
-                zoom: 8,
-                mapTypeId: google.maps.MapTypeId.ROADMAP
-            };
-            var map = new google.maps.Map(document.getElementById("index_map_canvas"), mapOptions);
-        });
+        var fc_map = null;
+        var infoWindow = null;
+        function featuredCountryPortletInitMap() {
+            var id_country = <?php echo $featured_country->id; ?>;
+            var name = "<?php echo esc_attr($featured_country->name); ?>";
+            var latlng = null, zoom = 0, map = null;
+
+            infoWindow = new google.maps.InfoWindow();
+
+            if(id_country == 184) { // EU
+                featuredCountryShowMap(new google.maps.LatLng(50.397, 15.644), 3);
+                featuredCountryShowSites(id_country);
+            } else if(id_country == 61) { // Georgia
+                featuredCountryShowMap(new google.maps.LatLng(42.180058, 43.699322), 6);
+                featuredCountryShowSites(id_country);
+            } else { // Autodetect
+                var geocoder = new google.maps.Geocoder();
+                geocoder.geocode({ address: name }, function (results) {
+                    if (results.length > 0) {
+                        var p = results[0].geometry.location;
+                        latlng = new google.maps.LatLng(p.lat(), p.lng());
+                        zoom = 6;
+                        featuredCountryShowMap(latlng, zoom);
+                        featuredCountryShowSites(id_country);
+                    }
+                });
+            }
+        }
     </script>
 <?php
 }
