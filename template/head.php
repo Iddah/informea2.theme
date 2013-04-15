@@ -12,13 +12,7 @@ function tengine_head() {
     } else {
         ?>
         <link rel="stylesheet" type="text/css" media="screen" href="<?php bloginfo('template_directory'); ?>/style.css"/>
-        <link rel="stylesheet" type="text/css" media="screen" href="<?php bloginfo('template_directory'); ?>/styles/tipsy.css"/>
-        <link rel="stylesheet" type="text/css" media="screen" href="<?php bloginfo('template_directory'); ?>/styles/bubble.css"/>
-        <link rel="stylesheet" type="text/css" media="screen" href="<?php bloginfo('template_directory'); ?>/styles/ui.css"/>
-        <link rel="stylesheet" type="text/css" media="screen" href="<?php bloginfo('template_directory'); ?>/styles/bubbletip.css"/>
-        <link rel="stylesheet" type="text/css" media="screen" href="<?php bloginfo('template_directory'); ?>/styles/boxy.css"/>
-        <link rel="stylesheet" type="text/css" media="screen" href="<?php bloginfo('template_directory'); ?>/styles/feedback.css"/>
-        <link rel="stylesheet" type="text/css" media="screen" href="<?php bloginfo('template_directory'); ?>/styles/slider.css"/>
+        <link rel="stylesheet" type="text/css" media="screen" href="http://ajax.googleapis.com/ajax/libs/jqueryui/1.10.2/themes/redmond/jquery-ui.css" />
 <?php
     }
 ?>
@@ -35,6 +29,6 @@ function tengine_head() {
     // Execute css_inject to give pages the chance to add CSS code in html header of the page
     do_action('css_inject');
     ?>
-    <link rel="stylesheet" type="text/css" media="print" href="<?php bloginfo('template_directory'); ?>/styles/print.css" />
+    <!-- link rel="stylesheet" type="text/css" media="print" href="<?php bloginfo('template_directory'); ?>/styles/print.css" / -->
 <?php
 }

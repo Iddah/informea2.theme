@@ -1,4 +1,4 @@
-jQuery(document).ready(function () {
+$(document).ready(function() {
     $('div.index-explorer a.index-explorer-advanced-search-click').click(function () {
         $('div.index-explorer ul.advanced').toggle();
     });
@@ -60,7 +60,7 @@ function explorerIndexUIDeselectTerm(id) {
 
 
 function featuredCountryPortletSetup() {
-    jQuery('div.portlet.featured-country div#tabs').tabs();
+    $('div.portlet.featured-country div#tabs').tabs();
     featuredCountryPortletInitMap();
 }
 
@@ -70,12 +70,12 @@ function featuredCountryShowMap(latlng, zoom) {
 }
 
 function featuredCountryShowSites(id_country) {
-    jQuery.ajax({
+    $.ajax({
         url: ajax_url + '?action=country_sites_markers',
         dataType: "json",
         data: { id: id_country },
         success: function (data) {
-            jQuery(data.whc).each(function(idx, cfg) {
+            $(data.whc).each(function(idx, cfg) {
                 cfg.position = new google.maps.LatLng(cfg.latitude, cfg.longitude);
                 cfg.map = fc_map;
                 var marker = new google.maps.Marker(cfg);
@@ -85,7 +85,7 @@ function featuredCountryShowSites(id_country) {
                     infoWindow.open(fc_map, marker);
                 });
             });
-            jQuery(data.ramsar).each(function(idx, cfg) {
+            $(data.ramsar).each(function(idx, cfg) {
                 cfg.position = new google.maps.LatLng(cfg.latitude, cfg.longitude);
                 cfg.map = fc_map;
                 var marker = new google.maps.Marker(cfg);

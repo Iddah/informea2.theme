@@ -281,9 +281,9 @@ ul.featured-tools { padding-left: 30px; }
 div.portlet.featured-country { padding: 5px; }
 div.portlet.featured-country div#fc-map-canvas { width: 480px; height: 300px; }
 div.portlet.featured-country .ui-widget-content { background: transparent; border: 0; }
-div.portlet.featured-country li.ui-state-active { border: 1px solid #d7d7d7; }
+div.portlet.featured-country li.ui-state-active { border: 1px solid white; }
 div.portlet.featured-country .ui-state-default {
-    border: 1px solid #BDBCBC; border-bottom: 0;
+    border: 1px solid #BDBCBC; border-bottom: 1px solid #eafafd;
     background: #eafafd none;
 }
 div.portlet.featured-country ul.ui-widget-header {
@@ -295,6 +295,9 @@ div.portlet.featured-country ul.ui-widget-header a {
     font-size: 11px;
     font-weight: normal;
     color: #000;
+}
+div.portlet.featured-country .ui-tabs-nav {
+    background: none transparent;
 }
 div.portlet.featured-country .ui-tabs-selected,
 div.portlet.featured-country .ui-state-hover {
@@ -309,7 +312,7 @@ div.portlet.featured-country table ul { border: 0; margin: 0 0 0 20px; padding: 
 div.portlet.featured-country table ul li { margin-bottom: 10px; }
 div.portlet.featured-country table p.note { margin: 0; padding: 0; color: #BDBCBC  }
 div.portlet.featured-country .text-grey { color: #BDBCBC  }
-
+div.portlet.featured-country div.ui-tabs-hide { display: none; }
 /* INDEX PAGE :: Index MEA Explorer */
 
 #informea div.index-explorer { background-color: #fff5c2; width: 460px; margin-bottom: 8px; border: 10px solid #ffe974; }
