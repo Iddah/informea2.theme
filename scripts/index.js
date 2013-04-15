@@ -16,8 +16,8 @@ $(document).ready(function() {
                 if ($('#index-search-terms').text().length > 0) {
                     $('#index_and_or_radiobuttons').show();
                 }
-                $('<div title="' + item.text + '">' + label + '</div>').attr({'class': span_class})
-                    .append("<a href='javascript:explorerIndexUIDeselectTerm(" + item.value + ");'><img class='closebutton' src='" + images_dir + "/s.gif' alt='' title='' /></a>")
+                $('<li title="' + item.text + '" onclick="javascript:explorerIndexUIDeselectTerm(' + item.value + ');">' + label + '</li>').attr({'class': span_class})
+                    .append('<span class="ui-icon ui-icon-close"></span>')
                     .appendTo($('#index-search-terms'));
             }
             return false;

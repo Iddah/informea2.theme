@@ -22,11 +22,10 @@ class MEAExplorerWidget extends WP_Widget {
     function widget($args, $instance) {
         $search2 = new InformeaSearch2($_GET);
         ?>
-        <div class="index-explorer round">
-            <form action="/search" method="get">
-                <input type="hidden" name="q_tab" value="2"/>
-
-                <div class="title"></div>
+        <div class="portlet index-explorer round">
+            <form action="/search" method="get" id="search_index">
+                <input type="hidden" name="q_tab" value="2" />
+                <div class="title"><h2></h2></div>
                 <div class="content">
                     <label for="q_freetext">Search text</label>
                     <input type="text" id="q_freetext" name="q_freetext" class="freetext" size="40" />
@@ -34,7 +33,7 @@ class MEAExplorerWidget extends WP_Widget {
                         <a href="javascript:void(0);" class="index-explorer-advanced-search-click">
                             <span>Advanced search &raquo;</span>
                         </a>
-                        <a class="button orange" href="javascript:$('#search_index').submit();">
+                        <a class="btn pull-right orange" href="javascript:void(0);" onclick="$('#search_index').submit();">
                             <span>Search</span>
                         </a>
                     </div>
@@ -110,7 +109,7 @@ class MEAExplorerWidget extends WP_Widget {
                                     <input type="radio" id="q_term_or_index" name="q_term_or" value="or">
                                     <label for="q_term_or_index">OR</label>
                                 </div>
-                                <div id="index-search-terms"></div>
+                                <ul id="index-search-terms"></ul>
                                 <div class="clear"></div>
                             </div>
                         </li>

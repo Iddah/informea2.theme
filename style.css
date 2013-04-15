@@ -9,14 +9,17 @@
  CSS Structure
  - GLOBAL
     - Tag cloud
+    - Buttons
     - Header (blue stripe)
         - Primary menu
         - Secondary menu
     - Sprites
     - MEA Explorer button
+    - Footer
  - INDEX PAGE
     - Portlets
     - Index MEA Explorer
+ - /dev/null
 */
 
 
@@ -28,6 +31,7 @@
 .text-center { text-align: center; }
 .hidden { display: none; }
 .visible { display: block; }
+.orange { background: rgb(192, 159, 24); }
 td.text-top { vertical-align: top; }
 
 div#informea-staging { background: #ff5a49; width: 100%; height: 25px; color: white; font-size: 20px; padding-top: 5px; text-align: center; }
@@ -62,6 +66,26 @@ body.informea .tag8 { font-size: 150%; }
 body.informea .tag9 { font-size: 160%; }
 body.informea .tag10 { font-size: 180%; }
 body.informea .tag11 { font-size: 200%; }
+
+/* GLOBAL :: Buttons */
+button.btn, a.btn {
+    color: white;
+    text-shadow: 0 -1px 0 rgba(0, 0, 0, 0.25);
+    background-repeat: repeat-x;
+    padding: 3px 10px;
+    margin-bottom: 0;
+    cursor: pointer;
+    -webkit-border-radius: 4px;
+    -moz-border-radius: 4px;
+    border-radius: 4px;
+    border: 1px solid rgb(204, 204, 204);
+    border-color: rgba(0, 0, 0, 0.1) rgba(0, 0, 0, 0.1) rgba(0, 0, 0, 0.25);
+    -webkit-box-shadow: inset 0 1px 0 rgba(255, 255, 255, 0.2), 0 1px 2px rgba(0, 0, 0, 0.05);
+    -moz-box-shadow: inset 0 1px 0 rgba(255, 255, 255, 0.2), 0 1px 2px rgba(0, 0, 0, 0.05);
+    box-shadow: inset 0 1px 0 rgba(255, 255, 255, 0.2), 0 1px 2px rgba(0, 0, 0, 0.05);
+}
+
+a.btn:hover { text-decoration: none; }
 
 /* GLOBAL :: Header (blue stripe) */
 body.informea .skip-link { display: none; }
@@ -313,24 +337,37 @@ div.portlet.featured-country table ul li { margin-bottom: 10px; }
 div.portlet.featured-country table p.note { margin: 0; padding: 0; color: #BDBCBC  }
 div.portlet.featured-country .text-grey { color: #BDBCBC  }
 div.portlet.featured-country div.ui-tabs-hide { display: none; }
+
 /* INDEX PAGE :: Index MEA Explorer */
 
-#informea div.index-explorer { background-color: #fff5c2; width: 460px; margin-bottom: 8px; border: 10px solid #ffe974; }
-#informea div.index-explorer div.title {
+div.portlet.index-explorer { padding: 0; margin: 15px 0 0 0; background: none #fff5c2; border: 10px solid #ffe974; }
+div.portlet.index-explorer div.title {
     background: rgb(255, 233, 116) url("images/MEA_Explorer_label.png") no-repeat;
-    margin: 0; padding: 15px 5px 10px 30px;
+    margin: 0; padding: 5px 0 5px 0;
     color: rgb(39, 39, 39);
 }
-#informea div.index-explorer div.up { padding: 10px; overflow: hidden; }
-#informea div.index-explorer label { cursor: pointer; }
-#informea div.index-explorer div.content { margin: 10px 0 0 10px; padding: 10px; }
-#informea div.index-explorer div.content ul { list-style-type: none; padding: 0; margin: 0 0 0 20px; }
-#informea div.index-explorer div.section { margin-left: 20px; }
-#informea div.index-explorer div.filters { margin-left: 20px; }
-#informea div.index-explorer li.section p { font-weight: bold; }
-#informea div.index-explorer li.section ul { margin: 0; padding: 0; list-style-type: none; }
-#informea div.index-explorer li.section ul { margin: 0; padding: 0; list-style-type: none; }
-
+div.portlet.index-explorer div.up { padding: 10px 0 0 0; overflow: hidden; margin: 0; }
+div.portlet.index-explorer label { cursor: pointer; }
+div.portlet.index-explorer div.content { margin: 0; padding: 10px; }
+div.portlet.index-explorer div.content ul { list-style-type: none; padding: 0; margin: 0 0 0 20px; }
+div.portlet.index-explorer div.section { margin-left: 20px; }
+div.portlet.index-explorer div.filters { margin-left: 20px; }
+div.portlet.index-explorer li.section { border-top: 1px solid #dfdfdf; margin-top: 10px; }
+div.portlet.index-explorer li.section p { font-weight: bold; }
+div.portlet.index-explorer li.section ul { margin: 0; padding: 0; list-style-type: none; }
+div.portlet.index-explorer li.section ul { margin: 0; padding: 0; list-style-type: none; }
+div.portlet.index-explorer #q_freetext { border: 1px solid #ffe974; height: 20px; }
+div.portlet.index-explorer button { top: -1px; border: 1px solid #ffe974; }
+ul.ui-autocomplete.ui-widget-content { background: #fff none; }
+div.portlet.index-explorer .ui-autocomplete-input { border: 1px solid #ffe974; height: 23px; margin: 0; padding: 0; border-right: 0; line-height: 8px; }
+div.portlet.index-explorer a.ui-state-hover { border: 0 !important; background: #ffe974 !important; }
+div.portlet.index-explorer .ui-button-icon { height: 25px; margin: 0; padding: 0; }
+div.portlet.index-explorer li.term-content span.ui-icon { display: inline-block; margin-top: 2px; height: 13px; }
+div.portlet.index-explorer li.term-content {
+    padding: 3px; margin: 10px 3px 0 3px; display: inline-block;
+    background: #ffdd57; border: 1px solid #a45b13;
+    cursor: pointer;
+}
 
 /* Below, you are beyond redemption */
 
