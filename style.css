@@ -281,7 +281,7 @@ ul.featured-tools { padding-left: 30px; }
 div.portlet.featured-country { padding: 5px; }
 div.portlet.featured-country div#fc-map-canvas { width: 480px; height: 300px; }
 div.portlet.featured-country .ui-widget-content { background: transparent; border: 0; }
-div.portlet.featured-country li.ui-state-active { border: 1px solid white; }
+div.portlet.featured-country li.ui-state-active { border-bottom: 1px solid white; }
 div.portlet.featured-country .ui-state-default {
     border: 1px solid #BDBCBC; border-bottom: 1px solid #eafafd;
     background: #eafafd none;
