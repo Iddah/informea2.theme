@@ -32,6 +32,11 @@
 .hidden { display: none; }
 .visible { display: block; }
 .orange { background: rgb(192, 159, 24); }
+.shadow {
+    -moz-box-shadow: 0 2px 2px 0 #c2c2c2;
+    -webkit-box-shadow: 0 2px 2px 0 rgb(194, 194, 194);
+    box-shadow: 0 2px 2px 0 rgb(194, 194, 194);
+}
 td.text-top { vertical-align: top; }
 
 div#informea-staging { background: #ff5a49; width: 100%; height: 25px; color: white; font-size: 20px; padding-top: 5px; text-align: center; }
