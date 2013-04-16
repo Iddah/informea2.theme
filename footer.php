@@ -9,22 +9,26 @@
  * @subpackage Twenty_Ten
  * @since Twenty Ten 1.0
  */
+global $page_data;
+$show_changelog = get_theme_mod('show_changelog_in_index');
+$imea_options = get_option('informea_options');
+$changelog_entry = imea_index_page::get_latest_changelog_entry();
 ?>
         </div><!-- #content -->
     </div><!-- #container -->
     <div class="clear"></div>
+    <?php if($show_changelog && $changelog_entry) : ?>
     <div id="changelog" class="round">
         <p>
-            Did you notice that InforMEA website has changed? It has a new tool called "Event Explorer", new sections layout...
+            <?php echo $changelog_entry->post_title; ?>
+            <a href="<?php bloginfo('uri'); ?>/changelog">Read more</a>
+            Last updated: <?php echo mysql2date('d F, Y', $changelog_entry->post_date); ?>
         </p>
     </div>
-
+    <?php endif; ?>
 </div><!-- #main -->
 <?php
-$imea_options = get_option('informea_options');
-global $page_data;
 tengine_footer();
-
 /* Always have wp_footer() just before the closing </body>
  * tag of your theme, or you will break many plugins, which
  * generally use this hook to reference JavaScript files.
