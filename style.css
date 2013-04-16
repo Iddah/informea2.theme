@@ -69,7 +69,7 @@ body.informea .tag10 { font-size: 180%; }
 body.informea .tag11 { font-size: 200%; }
 
 /* GLOBAL :: Buttons */
-button.btn, a.btn {
+button.btn, a.btn, input.btn {
     color: white;
     text-shadow: 0 -1px 0 rgba(0, 0, 0, 0.25);
     background-repeat: repeat-x;
@@ -338,6 +338,16 @@ div.portlet.featured-country table ul li { margin-bottom: 10px; }
 div.portlet.featured-country table p.note { margin: 0; padding: 0; color: #BDBCBC  }
 div.portlet.featured-country .text-grey { color: #BDBCBC  }
 div.portlet.featured-country div.ui-tabs-hide { display: none; }
+
+div.portlet.event-explorer { background: #D7F1F7; }
+div.portlet.event-explorer div.content label { font-size: 13px; font-weight: bold; margin-bottom: 10px; display: block; }
+div.portlet.event-explorer div.content input.btn { margin: 5px 7px 3px 0; }
+div.portlet.event-explorer div.content { background: #F7FBFC; margin-top: 5px; }
+div.portlet.event-explorer h2 {
+    margin: 0; padding: 0; display: block; height: 20px;
+    background: url("images/Event_Explorer_label.png") no-repeat;
+    width: 100%;
+}
 
 /* INDEX PAGE :: Index MEA Explorer */
 

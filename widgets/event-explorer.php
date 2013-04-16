@@ -6,7 +6,7 @@ class EventsExplorerWidget extends WP_Widget {
             'classname' => 'EventsExplorerWidget',
             'description' => 'Widget to search & filter MEA events',
         );
-        $this->WP_Widget('EventsExplorerWidget', 'MEA Events explorer', $options);
+        $this->WP_Widget('EventsExplorerWidget', 'InforMEA events explorer', $options);
     }
 
 
@@ -36,24 +36,22 @@ class EventsExplorerWidget extends WP_Widget {
         $events_ob = new informea_events();
         $title = empty($instance['title']) ? ' ' : apply_filters('widget_title', $instance['title']);
         ?>
-        <div class="portlet">
-            <?php if (!empty($title)) : ?>
-                <div class="pre-title">
-                    <div class="title">
-                        <?php echo $title; ?>
-                    </div>
-                </div>
-            <?php endif; ?>
-            <div class="content event-explorer">
+        <div class="portlet event-explorer">
+            <h2></h2>
+            <div class="content">
                 <form action="/events" method="get">
-                    <select name="convention">
-                        <option value="">All conventions</option>
-                        <?php foreach ($events_ob->get_treaties() as $treaty) : ?>
-                            <option value="<?php echo $treaty->id; ?>"><?php echo $treaty->short_title; ?></option>
-                        <?php endforeach; ?>
-                    </select>
+                    <label>
+                        Convention
+                        <select name="convention">
+                            <option value="">All conventions</option>
+                            <?php foreach ($events_ob->get_treaties() as $treaty) : ?>
+                                <option value="<?php echo $treaty->id; ?>"><?php echo $treaty->short_title; ?></option>
+                            <?php endforeach; ?>
+                        </select>
+                    </label>
                     <label>
                         Date
+                        <br />
                         <select name="month">
                             <option value="">All months</option>
                             <?php foreach (informea_events::get_months_fullname() as $idx => $month) : ?>
@@ -71,9 +69,9 @@ class EventsExplorerWidget extends WP_Widget {
                             <?php endforeach; ?>
                         </select>
                     </label>
-                    <div class="margin-top-10">
-                        <input type="submit" name="search" value="Search" />
-                    </div>
+                    <p>
+                        <input type="submit" name="search" value="Search" class="btn orange pull-right" />
+                    </p>
                 </form>
             </div>
         </div>
