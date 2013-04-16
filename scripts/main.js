@@ -17,6 +17,11 @@ $(document).ready(function () {
 	$('.tooltip, .location-link').tipsy({gravity: 'w'});
 	$('.tooltip.alphabet-order-link').tipsy({gravity: 's'});
 
+	/* Click on the index page 'What is InforMEA' expand ribbon */
+	$('div.whatisinformea a.ribbon-click').click(function() {
+		$('div.whatisinformea div.content').slideToggle();
+	})
+
 	/* Set-up paginator for meetings of the week portlet */
 	meetings_this_week_paginator();
 

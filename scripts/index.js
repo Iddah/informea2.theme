@@ -11,6 +11,9 @@ $(document).ready(function() {
 
     featuredCountryPortletSetup();
 
+    /* Set-up paginator for the upcoming meetings portlet */
+    upcoming_meetings_paginator();
+
     $("#q_term_index").reusableComboBox({
         select: function (evt, ob) {
             var item = ob.item;
@@ -128,4 +131,37 @@ function featuredCountryOpenRamsarSite(id) {
 
     document.body.appendChild(form);
     form.submit();
+}
+
+
+function upcoming_meetings_paginator() {
+    jQuery('div.upcoming-events ul').each(function(idx, portlet) {
+        var items = jQuery('li', portlet);
+        var total = items.length;
+        if(total > 0) {
+            var current = 0;
+            var previous = total;
+            var next = jQuery('div.upcoming-events a.next');
+            var prev = jQuery('div.upcoming-events a.prev');
+            jQuery(next, portlet).click(function() {
+                previous = current;
+                current += 1;
+                if(current == total) { current = 0; }
+                jQuery(items[previous]).hide();
+                jQuery(items[current]).removeClass('hidden');
+                jQuery(items[current]).show();
+                jQuery('div.upcoming-events span.current').text(current + 1);
+            });
+
+            jQuery(prev, portlet).click(function() {
+                previous = current;
+                current -= 1;
+                if(current < 0) { current = total - 1; }
+                jQuery(items[previous]).hide();
+                jQuery(items[current]).removeClass('hidden');
+                jQuery(items[current]).show();
+                jQuery('div.upcoming-events span.current').text(current + 1);
+            });
+        }
+    });
 }

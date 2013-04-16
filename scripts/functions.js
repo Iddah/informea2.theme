@@ -60,36 +60,3 @@ function validate_feedback_form() {
 	}
 	return true;
 }
-
-
-function meetings_this_week_paginator() {
-	jQuery('div.weeks-meetings').each(function(idx, portlet) {
-		var items = jQuery('li', portlet);
-		var total = items.length;
-		if(total > 0) {
-			var current = 0;
-			var previous = total;
-			var next = jQuery('a.next', portlet);
-			var prev = jQuery('a.prev', portlet);
-			jQuery(next, portlet).click(function() {
-				previous = current;
-				current += 1;
-				if(current == total) { current = 0; }
-				jQuery(items[previous]).hide();
-				jQuery(items[current]).removeClass('hidden');
-				jQuery(items[current]).show();
-				jQuery('span.current', portlet).text(current + 1);
-			});
-
-			jQuery(prev, portlet).click(function() {
-				previous = current;
-				current -= 1;
-				if(current < 0) { current = total - 1; }
-				jQuery(items[previous]).hide();
-				jQuery(items[current]).removeClass('hidden');
-				jQuery(items[current]).show();
-				jQuery('span.current', portlet).text(current + 1);
-			});
-		}
-	});
-}

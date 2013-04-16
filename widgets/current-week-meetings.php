@@ -37,33 +37,38 @@ class CurrentWeekMeetingsWidget extends WP_Widget {
         $meetings = informea_events::get_meetings_current_week();
         if(count($meetings)) :
         ?>
-        <div class="portlet">
+        <div class="portlet upcoming-events">
             <?php if (!empty($title)) : ?>
             <div class="title">
                 <?php echo $title; ?>
             </div>
             <?php endif; ?>
-            <div class="content weeks-meetings">
-                <?php if (count($meetings) > 1) : ?>
-                    <div class="paginator">
-                        <a class="prev" href="javascript:void(0);">&laquo;</a> <span class="current">1</span> of <?php echo count($meetings); ?> <a class="next" href="javascript:void(0);">&raquo;</a>
-                    </div>
-                <?php endif; ?>
+            <div class="content">
                 <ul class="items">
                     <?php
                     foreach ($meetings as $idx => $row) :
                         $cssClass = $idx > 0 ? ' class="hidden"' : '';
-
-                        ?>
+                    ?>
                         <li<?php echo $cssClass; ?>>
-                            <img src="<?php echo $row->logo_medium; ?>" />
-                            <p>
+                            <div class="text-center">
+                                <span class="thumbnail <?php echo $row->odata_name; ?>"></span>
+                            </div>
+                            <div class="clear"></div>
                             <?php echo $row->title; ?>
-                            </p>
-                            <strong><?php echo show_event_interval($row); ?></strong>
+                            <div class="text-right">
+                                <strong><?php echo show_event_interval($row); ?></strong>
+                            </div>
                         </li>
                     <?php endforeach; ?>
                 </ul>
+                <div class="clear"></div>
+                <?php if (count($meetings) > 1) : ?>
+                    <div class="paginator">
+                        <a class="prev" href="javascript:void(0);">&laquo;</a>
+                        <span class="current">1</span> of <?php echo count($meetings); ?>
+                        <a class="next" href="javascript:void(0);">&raquo;</a>
+                    </div>
+                <?php endif; ?>
             </div>
         </div>
         <div class="clear"></div>
