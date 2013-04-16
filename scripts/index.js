@@ -1,7 +1,14 @@
 $(document).ready(function() {
+    /* Click on the index page 'What is InforMEA' expand ribbon */
+    $('div.whatisinformea a.ribbon-click').click(function() {
+        $('div.whatisinformea div.content').slideToggle({easing: 'linear', duration:200});
+    })
+
+    /* Click on 'Advanced search' link on MEA Explorer in front page */
     $('div.index-explorer a.index-explorer-advanced-search-click').click(function () {
-        $('div.index-explorer ul.advanced').toggle();
+        $('div.index-explorer ul.advanced').slideToggle({easing: 'linear', duration:200});
     });
+
     featuredCountryPortletSetup();
 
     $("#q_term_index").reusableComboBox({
