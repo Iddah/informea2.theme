@@ -346,7 +346,7 @@ div.portlet.index-explorer div.title {
     margin: 0; padding: 5px 0 5px 0;
     color: rgb(39, 39, 39);
 }
-div.portlet.index-explorer div.up { padding: 10px 0 0 0; overflow: hidden; margin: 0; }
+div.portlet.index-explorer div.up { padding: 10px 0 0 0; overflow: hidden; margin: 10px 0 0 0; }
 div.portlet.index-explorer label { cursor: pointer; }
 div.portlet.index-explorer div.content { margin: 0; padding: 10px; }
 div.portlet.index-explorer div.content ul { list-style-type: none; padding: 0; margin: 0 0 0 20px; }
@@ -356,7 +356,7 @@ div.portlet.index-explorer li.section { border-top: 1px solid #dfdfdf; margin-to
 div.portlet.index-explorer li.section p { font-weight: bold; }
 div.portlet.index-explorer li.section ul { margin: 0; padding: 0; list-style-type: none; }
 div.portlet.index-explorer li.section ul { margin: 0; padding: 0; list-style-type: none; }
-div.portlet.index-explorer #q_freetext { border: 1px solid #ffe974; height: 20px; }
+div.portlet.index-explorer #q_freetext { border: 1px solid #ffe974; height: 20px; width: 380px; }
 div.portlet.index-explorer button { top: -1px; border: 1px solid #ffe974; }
 ul.ui-autocomplete.ui-widget-content { background: #fff none; }
 div.portlet.index-explorer .ui-autocomplete-input { border: 1px solid #ffe974; height: 23px; margin: 0; padding: 0; border-right: 0; line-height: 8px; }

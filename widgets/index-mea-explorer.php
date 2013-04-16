@@ -27,7 +27,9 @@ class MEAExplorerWidget extends WP_Widget {
                 <input type="hidden" name="q_tab" value="2" />
                 <div class="title"><h2></h2></div>
                 <div class="content">
-                    <label for="q_freetext">Search text</label>
+                    <label for="q_freetext">
+                        <strong>Search text</strong>
+                    </label>
                     <input type="text" id="q_freetext" name="q_freetext" class="freetext" size="40" />
                     <div class="up">
                         <a href="javascript:void(0);" class="index-explorer-advanced-search-click">
