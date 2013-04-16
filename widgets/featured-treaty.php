@@ -71,7 +71,9 @@ class FeaturedTreatyWidget extends WP_Widget {
                         <a href="<?php echo sprintf('%s/treaties/%s', get_bloginfo('url'), $treaty->odata_name); ?>">
                             <?php echo $treaty->short_title; ?>
                         </a>
+                        <?php if(!empty($treaty->theme)): ?>
                         <span class="gray">( <?php echo $treaty->theme; ?> )</span>
+                        <?php endif; ?>
                     <?php
                     if ($count_decisions) :
                         $ob = new informea_treaties();
