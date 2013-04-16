@@ -54,7 +54,8 @@ div#informea div#main .col3-center { width: 500px; margin-right: 10px; }
 div.round { border-radius: 5px; -moz-border-radius: 5px; }
 
 /* GLOBAL :: Tag cloud */
-body.informea .tags ul { margin: 0; padding: 10px 2px 2px 2px; text-align: center; background-color: #edf3fe; }
+body.informea .tags ul { list-style-type: none; margin: 0; padding: 0; text-align: center; }
+body.informea .tags ul li { display: inline-block; margin: 2px; }
 body.informea .tag1 { font-size: 80%; }
 body.informea .tag2 { font-size: 90%; }
 body.informea .tag3 { font-size: 100%; }
