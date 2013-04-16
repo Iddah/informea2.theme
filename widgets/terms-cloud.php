@@ -49,7 +49,7 @@ class TermCloudWidget extends WP_Widget {
             <div class="portlet featured-country">
                 <?php if (!empty($title)) : ?>
                     <div class="title">
-                        <?php echo $title; ?>:
+                        <?php echo $title; ?>
                     </div>
                 <?php endif; ?>
                 <div class="content terms-cloud tags">
