@@ -357,6 +357,8 @@ div.portlet.event-explorer h2 {
 div.portlet.upcoming-events ul { height: 130px; list-style-type: none; margin: 0; padding: 0; }
 div.portlet.upcoming-events ul li { margin-bottom: 10px; }
 
+div.portlet.borderless-widget { padding: 0; }
+
 /* INDEX PAGE :: Index MEA Explorer */
 
 div.portlet.index-explorer { padding: 0; margin: 15px 0 0 0; background: none #fff5c2; border: 10px solid #ffe974; }
