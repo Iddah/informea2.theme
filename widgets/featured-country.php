@@ -48,7 +48,9 @@ class FeaturedCountryWidget extends WP_Widget {
                         <a href="<?php echo sprintf('%s/countries/%s', get_bloginfo('url'), $featured_country->id); ?>">
                             <?php echo $featured_country->name; ?>
                         </a>
+                        <img src="<?php echo get_bloginfo('template_directory') . '/' . $featured_country->icon_large; ?>" />
                     </div>
+                    <div class="clear"></div>
                 <?php endif; ?>
                 <div class="content featured-country">
                     <div id="tabs">
