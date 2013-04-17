@@ -9,6 +9,7 @@
  CSS Structure
  - GLOBAL
     - Tag cloud
+    - Tabs
     - Buttons
     - Header (blue stripe)
         - Primary menu
@@ -32,6 +33,7 @@
 .hidden { display: none; }
 .visible { display: block; }
 .orange { background: rgb(192, 159, 24); }
+.round { border-radius: 5px; -moz-border-radius: 5px; }
 .shadow {
     -moz-box-shadow: 0 2px 2px 0 #c2c2c2;
     -webkit-box-shadow: 0 2px 2px 0 rgb(194, 194, 194);
@@ -39,7 +41,10 @@
 }
 td.text-top { vertical-align: top; }
 
-div#informea-staging { background: #ff5a49; width: 100%; height: 25px; color: white; font-size: 20px; padding-top: 5px; text-align: center; }
+div#informea-staging {
+    background: #ff5a49; width: 100%; height: 25px; color: white; font-size: 20px; padding-top: 5px;
+    text-align: center;
+}
 a { text-decoration: none; color: #1878cc; }
 a:hover { color: #ff4b33; text-decoration: underline; }
 div.clear { clear: both; }
@@ -54,9 +59,30 @@ span.gray { color: #888; }
 div#informea div#main { width: 980px; margin: 0 auto; padding: 10px 0; display: block; overflow: hidden; }
 div#informea div#main .col3 { float: left; width: 230px; }
 div#informea div#main .col3-left { margin-right: 10px; }
-div#informea div#main .col3-center { width: 500px; margin-right: 10px; }
+div#informea div#main .col3-center { width: 500px; margin-right: 10px;}
+div#informea div#main .col2 { float: left; width: 230px; border: 1px solid green; }
+div#informea div#main .col2-left { margin-right: 10px; }
+div#informea div#main .col2-center { width: 720px; margin-right: 10px; border: 1px solid red;}
+div#informea div#main div#page-title h1 { margin: 0; padding: 0; }
+div#informea div#main div#page-title p { margin: 5px 0 0 0; padding: 0; color: #999; font-style: italic; }
+div#informea div#main div#page-title  { margin: 10px 0 10px 0; }
 
-div.round { border-radius: 5px; -moz-border-radius: 5px; }
+/* GLOBAL :: Tabs */
+div.tabs { height: 22px; margin-bottom: 10px; padding-top: 2px; border-bottom: 1px solid #d7d7d7; }
+div.tabs ul { list-style: none outside none; margin: 0 0 10px 0; padding: 0; }
+div.tabs ul li { display: inline; line-height: 23px; }
+div.tabs ul li a {
+    padding: 5px 5px 4px;
+    text-decoration: none;
+    color: #fff; background-color: #3c9bd5;
+    border-left: 1px solid #fff; border-right: 1px solid #fff; border-top: 1px solid #fff;
+    -moz-border-radius: 5px 5px 0 0; -webkit-border-radius: 5px 5px 0 0; border-radius: 5px 5px 0 0;
+}
+div.tabs ul li a.active, div.tabs ul li a:hover {
+    position: relative; padding-bottom: 5px;
+    color: #000; background-color: #fff;
+    border-left: 1px solid #d7d7d7; border-right: 1px solid #d7d7d7; border-top: 1px solid #d7d7d7;
+}
 
 /* GLOBAL :: Tag cloud */
 body.informea .tags ul { list-style-type: none; margin: 0; padding: 0; text-align: center; }
@@ -74,10 +100,10 @@ body.informea .tag10 { font-size: 180%; }
 body.informea .tag11 { font-size: 200%; }
 
 /* GLOBAL :: Buttons */
-button.btn, a.btn, input.btn {
+button.btn, a.btn, input.btn, a.post-edit-link {
+    background: rgb(192, 159, 24) repeat-x;
     color: white;
     text-shadow: 0 -1px 0 rgba(0, 0, 0, 0.25);
-    background-repeat: repeat-x;
     padding: 3px 10px;
     margin-bottom: 0;
     cursor: pointer;
@@ -242,7 +268,10 @@ div#changelog {
 }
 div#footer a { color: #999; font-size: 11px; }
 div#footer a:hover { text-decoration: underline; }
-div#footer hr { margin: 0; padding: 0; line-height: 0; border: 0; width: 99%; border-bottom: 1px solid rgb(80, 80, 80); }
+div#footer hr {
+    margin: 0; padding: 0; line-height: 0; border: 0; width: 99%;
+    border-bottom: 1px solid rgb(80, 80, 80);
+}
 div#organisations a, #participating_treaties a { text-transform: uppercase; }
 div#disclaimer ul { margin-left: 10px; float: left; line-height: 18px; }
 div#disclaimer a { font-size: 12px; }
@@ -313,7 +342,9 @@ ul.featured-tools { padding-left: 30px; }
 div.portlet.featured-treaty div.content { padding-left: 20px; }
 
 div.portlet.featured-country { padding: 5px; }
-div.portlet.featured-country div.title img { max-height: 48px; vertical-align: middle; float: right; margin: -5px 5px 0 0; }
+div.portlet.featured-country div.title img {
+    max-height: 48px; vertical-align: middle; float: right; margin: -5px 5px 0 0;
+}
 div.portlet.featured-country div.content { padding-top: 0; }
 div.portlet.featured-country div#fc-map-canvas { width: 480px; height: 300px; }
 div.portlet.featured-country .ui-widget-content { background: transparent; border: 0; }
@@ -351,7 +382,9 @@ div.portlet.featured-country .text-grey { color: #BDBCBC  }
 div.portlet.featured-country div.ui-tabs-hide { display: none; }
 
 div.portlet.event-explorer { background: #D7F1F7; }
-div.portlet.event-explorer div.content label { font-size: 13px; font-weight: bold; margin-bottom: 10px; display: block; }
+div.portlet.event-explorer div.content label {
+    font-size: 13px; font-weight: bold; margin-bottom: 10px; display: block;
+}
 div.portlet.event-explorer div.content input.btn { margin: 5px 7px 3px 0; }
 div.portlet.event-explorer div.content { background: #F7FBFC; margin-top: 5px; }
 div.portlet.event-explorer h2 {
@@ -386,7 +419,10 @@ div.portlet.index-explorer li.section ul { margin: 0; padding: 0; list-style-typ
 div.portlet.index-explorer #q_freetext { border: 1px solid #ffe974; height: 20px; width: 380px; }
 div.portlet.index-explorer button { top: -1px; border: 1px solid #ffe974; }
 ul.ui-autocomplete.ui-widget-content { background: #fff none; }
-div.portlet.index-explorer .ui-autocomplete-input { border: 1px solid #ffe974; height: 23px; margin: 0; padding: 0; border-right: 0; line-height: 8px; }
+div.portlet.index-explorer .ui-autocomplete-input {
+    height: 23px; margin: 0; padding: 0;
+    border: 1px solid #ffe974; border-right: 0; line-height: 8px;
+}
 div.portlet.index-explorer a.ui-state-hover { border: 0 !important; background: #ffe974 !important; }
 div.portlet.index-explorer .ui-button-icon { height: 25px; margin: 0; padding: 0; }
 div.portlet.index-explorer li.term-content span.ui-icon { display: inline-block; margin-top: 2px; height: 13px; }

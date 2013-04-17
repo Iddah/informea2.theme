@@ -91,6 +91,11 @@ function informea2_widgets_init() {
         'before_title' => '<div class="pre-title"><div class="title"><span>',
         'after_title' => '</span></div></div>',
     ));
+    register_sidebar(array(
+        'name' => __('About page widgets', 'informea'),
+        'id' => 'about-page-left',
+        'description' => __('Widgets on the left column of the about page', 'informea'),
+    ));
 }
 
 add_action('widgets_init', 'informea2_widgets_init');
