@@ -39,6 +39,7 @@ class FeaturedCountryWidget extends WP_Widget {
         $title = empty($instance['title']) ? ' ' : apply_filters('widget_title', $instance['title']);
         $featured_country = informea_countries::get_featured_country();
         if ($featured_country) {
+            add_action('js_inject', 'portlet_featured_country_inject_js');
             wp_enqueue_script('google-maps-api', 'http://maps.google.com/maps/api/js?sensor=false');
 ?>
             <div class="portlet featured-country">
@@ -114,4 +115,3 @@ function portlet_featured_country_inject_js() {
     </script>
 <?php
 }
-add_action('js_inject', 'portlet_featured_country_inject_js');
