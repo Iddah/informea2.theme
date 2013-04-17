@@ -67,6 +67,7 @@ class FeaturedTreatyWidget extends WP_Widget {
                 <?php endif; ?>
                 <div class="content">
                     <span class="thumbnail <?php echo $treaty->odata_name; ?>"></span>
+                    <div class="clear"></div>
                     <div class="item-title">
                         <a href="<?php echo sprintf('%s/treaties/%s', get_bloginfo('url'), $treaty->odata_name); ?>">
                             <?php echo $treaty->short_title; ?>
