@@ -47,7 +47,7 @@ if (have_posts()) : while (have_posts()) : the_post();
         <?php
             the_content();
             echo '<div class="clear"></div>';
-            edit_post_link(__('Edit', 'twentyten'), '<span class="edit-link">', '</span>');
+            edit_post_link(__('Edit', 'informea'), '<span class="edit-link">', '</span>');
         ?>
     </div>
 <?php
