@@ -1,5 +1,5 @@
 <?php
-function tengine_header($show_explorer = true, $primary_menu = '', $useful_links_menu = '', $breadcrumbtrail = '') {
+function tengine_header($show_explorer = true, $primary_menu = '', $useful_links_menu = '') {
 ?>
 <div id="header">
     <div id="masthead">
@@ -18,7 +18,11 @@ function tengine_header($show_explorer = true, $primary_menu = '', $useful_links
                     <img src="<?php bloginfo('template_directory'); ?>/images/s.gif" alt="" title="<?php _e('Toggle MEA Explorer box', 'informea'); ?>"/>
                 </div>
                 <div class="clear"></div>
-                <?php include(dirname(__FILE__) . '/../imea_pages/explorer/inc.explorer.php'); ?>
+                <?php
+                    if($show_explorer) {
+                        include(dirname(__FILE__) . '/../imea_pages/explorer/inc.explorer.php');
+                    }
+                ?>
             </div>
         <?php
         }

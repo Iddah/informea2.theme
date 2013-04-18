@@ -54,8 +54,8 @@ add_filter('body_class', function ($classes) {
             <a href="#content"
                title="<?php _e('Skip to content', 'informea'); ?>"><?php _e('Skip to content', 'informea'); ?></a>
         </div>
-        <?php tengine_header($tpl_show_explorer, $tpl_primary_menu, $tpl_useful_links_menu, informea_breadcrumbtrail()); ?>
+        <?php tengine_header($tpl_show_explorer, $tpl_primary_menu, $tpl_useful_links_menu); ?>
         <div id="main">
-            <?php echo (!empty($breadcrumbtrail)) ? $breadcrumbtrail : '<span id="informea_template_breadcrumbtrail"></span>'; ?>
+            <?php do_action('breadcrumbtrail'); ?>
             <div id="container">
                 <div id="content" role="main">

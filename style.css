@@ -53,6 +53,14 @@ h2 {
     margin-bottom: 10px;
 }
 
+body.informea div#breadcrumbtrail {
+    margin: 0; padding: 0;
+    border-bottom: 1px dotted #bfbfbf;
+}
+body.informea div#breadcrumbtrail ul { margin: 0; padding: 0; list-style-type: none; }
+body.informea div#breadcrumbtrail ul li { display: inline-block; margin: 0 0 0 5px; }
+body.informea div#breadcrumbtrail ul li span.separator { margin-left: 5px; }
+
 div#informea-staging {
     background: #ff5a49; width: 100%; height: 25px; color: white; font-size: 20px; padding-top: 5px;
     text-align: center;
