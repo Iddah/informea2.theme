@@ -47,6 +47,11 @@
     box-shadow: 0;
 }
 td.text-top { vertical-align: top; }
+h2 {
+    font-size: 18px;
+    color: #2ca0d2;
+    margin-bottom: 10px;
+}
 
 div#informea-staging {
     background: #ff5a49; width: 100%; height: 25px; color: white; font-size: 20px; padding-top: 5px;
