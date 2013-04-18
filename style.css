@@ -105,7 +105,7 @@ div.tabs ul li a.active, div.tabs ul li a:hover {
 }
 
 /* GLOBAL :: Portlets */
-div.portlet ul { list-style-type: none; margin: 0; padding: 0; display: inline-block; }
+div.portlet ul { list-style-type: none; margin: 0; padding: 0; }
 
 /* GLOBAL :: Tag cloud */
 body.informea .tags ul { list-style-type: none; margin: 0; padding: 0; text-align: center; }
@@ -160,38 +160,38 @@ div#header #logo a {
 }
 
 /* GLOBAL :: Header (blue stripe) :: Primary menu */
-ul#menu-primary {
+ul#menu-primary-menu {
     padding-left: 10px;
     list-style-type: none;
     float: left;
     display: block; margin: 0; position: relative; top: 1px;
     overflow: hidden;
 }
-ul#menu-primary li, div.menu li { float: left; height: 38px; }
-ul#menu-primary a {
+ul#menu-primary-menu li, div.menu li { float: left; height: 38px; }
+ul#menu-primary-menu a {
     color: #fff;
     font-weight: bold; text-decoration: none; text-transform: uppercase;
     display: block; padding: 10px 15px 10px 15px;
     margin-right: 1px;
 }
-ul#menu-primary li:first-child a { background: none; }
-ul#menu-primary li a:hover {
+ul#menu-primary-menu li:first-child a { background: none; }
+ul#menu-primary-menu li a:hover {
     color: #444;
     background: #d7f1f7;
     border-top-left-radius: 5px; border-top-right-radius: 5px;
 }
-ul#menu-primary ul li { width: 185px; }
-ul#menu-primary li.current-menu-item > a {
+ul#menu-primary-menu ul li { width: 185px; }
+ul#menu-primary-menu li.current-menu-item > a {
     background: #d7f1f7;
     border-top-left-radius: 5px; border-top-right-radius: 5px;
     color: #444;
 }
 
 /* GLOBAL :: Header (blue stripe) :: Secondary menu */
-ul#menu-secondary { float: right; width: 350px; margin-top: -80px; padding-left: 0; list-style-type: none;}
-ul#menu-secondary li { padding-left: 7px; list-style-type: none; display: inline-block; }
-ul#menu-secondary a { color: #fff; text-transform: uppercase; }
-ul#menu-secondary a:hover { color: #444; }
+ul#menu-secondary-menu { float: right; width: 350px; margin-top: -80px; padding-left: 0; list-style-type: none;}
+ul#menu-secondary-menu li { padding-left: 7px; list-style-type: none; display: inline-block; }
+ul#menu-secondary-menu a { color: #fff; text-transform: uppercase; }
+ul#menu-secondary-menu a:hover { color: #444; }
 
 /* GLOBAL :: Sprites */
 .basel, .cbd, .cites, .cms, .fao, .itpgrfa, .ozone, .ramsar, .rotterdam, .stockholm, .un, .unccd, .unece,

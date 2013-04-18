@@ -7,7 +7,7 @@ if (current_user_can('manage_options')) {
     do_action('move_down_treaty_paragraph');
 }
 $tpl_show_explorer = $post !== NULL && $post->post_name != 'index' && $post->post_name != 'search';
-$tpl_primary_menu = wp_nav_menu(array('echo' => false, 'menu' => 'Primary', 'container' => '', 'theme_location' => 'primary', 'walker' => new imea_menu_walker()));
+$tpl_primary_menu = wp_nav_menu(array('echo' => false, 'menu' => 'primary', 'container' => '', 'theme_location' => 'primary', 'walker' => new imea_menu_walker()));
 $tpl_useful_links_menu = !is_user_logged_in() ?
     '<a href="' . get_bloginfo('url') . '/wp-admin/">' . __('Login', 'informea') . '</a>'
     : '<a href="' . get_bloginfo('url') . '/wp-admin/">' . __('Administration Panel', 'informea') . '</a> | <a href="' . wp_logout_url(get_permalink()) . '">' . __('Logout', 'informea') . '</a>';

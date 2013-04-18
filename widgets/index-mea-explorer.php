@@ -118,7 +118,7 @@ class MEAExplorerWidget extends WP_Widget {
                         <li class="section">
                             <p>Time filter</p>
                             <div class="filters">
-                                <?php include(dirname(__FILE__) . '/../imea_pages/explorer/inc.date_interval.php'); ?>
+                                <?php include(dirname(__FILE__) . '/../pages/explorer/inc.date_interval.php'); ?>
                             </div>
                         </li>
                     </ul>

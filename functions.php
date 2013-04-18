@@ -47,6 +47,7 @@ add_filter('wp_nav_menu_args', 'informea2_primary_nav_menu_args');
 function informea2_setup() {
     register_nav_menus(array(
         'primary' => __('Primary Navigation', 'informea'),
+        'secondary' => __('Secondary Navigation', 'informea'),
     ));
 }
 add_action('after_setup_theme', 'informea2_setup');
@@ -92,7 +93,7 @@ add_action('customize_register', 'informea_customize_register');
 
 function informea2_widgets_init() {
     register_sidebar(array(
-        'id' => 'index-page-left', 'name' => __('Index page first column', 'informea'),
+        'id' => 'index-page-left', 'name' => __('Index page left column', 'informea'),
         'description' => __('Index page first column widgets', 'informea'),
         'before_widget' => '<div class="portlet">', 'after_widget' => '</div>',
         'before_title' => '<div class="pre-title"><div class="title"><span>', 'after_title' => '</span></div></div>',
@@ -102,7 +103,7 @@ function informea2_widgets_init() {
         'description' => __('Index page center column widgets', 'informea'),
     ));
     register_sidebar(array(
-        'id' => 'index-page-right', 'name' => __('Index page third column', 'informea'),
+        'id' => 'index-page-right', 'name' => __('Index page right column', 'informea'),
         'description' => __('Index page third column widgets', 'informea'),
         'before_widget' => '<div class="portlet">', 'after_widget' => '</div>',
         'before_title' => '<div class="pre-title"><div class="title"><span>', 'after_title' => '</span></div></div>',
