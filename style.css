@@ -8,8 +8,9 @@
 
  CSS Structure
  - GLOBAL
-    - Tag cloud
     - Tabs
+    - Portlets
+    - Tag cloud
     - Buttons
     - Header (blue stripe)
         - Primary menu
@@ -20,6 +21,7 @@
  - INDEX PAGE
     - Portlets
     - Index MEA Explorer
+ - ABOUT PAGE
  - /dev/null
 */
 
@@ -38,6 +40,11 @@
     -moz-box-shadow: 0 2px 2px 0 #c2c2c2;
     -webkit-box-shadow: 0 2px 2px 0 rgb(194, 194, 194);
     box-shadow: 0 2px 2px 0 rgb(194, 194, 194);
+}
+.noshadow {
+    -moz-box-shadow: 0;
+    -webkit-box-shadow: 0;
+    box-shadow: 0;
 }
 td.text-top { vertical-align: top; }
 
@@ -60,9 +67,9 @@ div#informea div#main { width: 980px; margin: 0 auto; padding: 10px 0; display: 
 div#informea div#main .col3 { float: left; width: 230px; }
 div#informea div#main .col3-left { margin-right: 10px; }
 div#informea div#main .col3-center { width: 500px; margin-right: 10px;}
-div#informea div#main .col2 { float: left; width: 230px; border: 1px solid green; }
+div#informea div#main .col2 { float: left; width: 210px; }
 div#informea div#main .col2-left { margin-right: 10px; }
-div#informea div#main .col2-center { width: 720px; margin-right: 10px; border: 1px solid red;}
+div#informea div#main .col2-center { width: 720px; margin-right: 10px; }
 div#informea div#main div#page-title h1 { margin: 0; padding: 0; }
 div#informea div#main div#page-title p { margin: 5px 0 0 0; padding: 0; color: #999; font-style: italic; }
 div#informea div#main div#page-title  { margin: 10px 0 10px 0; }
@@ -83,6 +90,9 @@ div.tabs ul li a.active, div.tabs ul li a:hover {
     color: #000; background-color: #fff;
     border-left: 1px solid #d7d7d7; border-right: 1px solid #d7d7d7; border-top: 1px solid #d7d7d7;
 }
+
+/* GLOBAL :: Portlets */
+div.portlet ul { list-style-type: none; margin: 0; padding: 0; display: inline-block; }
 
 /* GLOBAL :: Tag cloud */
 body.informea .tags ul { list-style-type: none; margin: 0; padding: 0; text-align: center; }
@@ -430,6 +440,14 @@ div.portlet.index-explorer li.term-content {
     padding: 3px; margin: 10px 3px 0 3px; display: inline-block;
     background: #ffdd57; border: 1px solid #a45b13;
     cursor: pointer;
+}
+
+/* ABOUT PAGE */
+div.portlet.image-roller {
+    background: transparent none; border: 0;
+    -moz-box-shadow: none;
+    -webkit-box-shadow: none;
+    box-shadow: none;
 }
 
 /* Below, you are beyond redemption */

@@ -110,5 +110,6 @@ require_once(dirname(__FILE__) . '/widgets/index-mea-explorer.php');
 require_once(dirname(__FILE__) . '/widgets/event-explorer.php');
 require_once(dirname(__FILE__) . '/widgets/borderless-widget.php');
 require_once(dirname(__FILE__) . '/widgets/terms-cloud.php');
+require_once(dirname(__FILE__) . '/widgets/image-roller.php');
 
 
