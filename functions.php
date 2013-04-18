@@ -12,15 +12,16 @@ function informea_breadcrumbtrail() {
     return $ret;
 }
 
+
 function informea_is_staging() {
     return get_bloginfo('url') == 'http://test.informea.org';
 }
+
 
 function informea2_primary_nav_menu_args($args) {
     $args['show_home'] = FALSE;
     return $args;
 }
-
 add_filter('wp_nav_menu_args', 'informea2_primary_nav_menu_args');
 
 
@@ -29,7 +30,6 @@ function informea2_setup() {
         'primary' => __('Primary Navigation', 'informea'),
     ));
 }
-
 add_action('after_setup_theme', 'informea2_setup');
 
 
@@ -37,6 +37,7 @@ add_action('after_setup_theme', 'informea2_setup');
 require_once( ABSPATH . WPINC . '/class-wp-customize-setting.php' );
 require_once( ABSPATH . WPINC . '/class-wp-customize-section.php' );
 require_once( ABSPATH . WPINC . '/class-wp-customize-control.php' );
+
 
 class Checkbox_Customize_Control extends WP_Customize_Control {
     public $type = 'checkbox';
@@ -52,52 +53,46 @@ class Checkbox_Customize_Control extends WP_Customize_Control {
     }
 }
 
+
 function informea_customize_register( $wp_customize ) {
     //All our sections, settings, and controls will be added here
     $wp_customize->add_setting('show_changelog_in_index',
         array('default' => TRUE, 'type' => 'option', 'transport'   => 'refresh')
     );
     $wp_customize->add_section('informea_index_section' , array('title'      => __('Index page','informea'), 'priority'   => 30));
-    $wp_customize->add_control(new Checkbox_Customize_Control($wp_customize, 'show_changelog_in_index', array(
-        'label' => __('Show changelog above footer', 'informea'),
-        'section' => 'informea_index_section',
-        'settings' => 'show_changelog_in_index',
-    )));
+    $wp_customize->add_control(
+        new Checkbox_Customize_Control($wp_customize, 'show_changelog_in_index', array(
+               'label' => __('Show changelog above footer', 'informea'),
+                'section' => 'informea_index_section', 'settings' => 'show_changelog_in_index',
+            )
+        )
+    );
 }
 add_action('customize_register', 'informea_customize_register');
 
 
 function informea2_widgets_init() {
     register_sidebar(array(
-        'name' => __('Index page first column', 'informea'),
-        'id' => 'index-page-left',
+        'id' => 'index-page-left', 'name' => __('Index page first column', 'informea'),
         'description' => __('Index page first column widgets', 'informea'),
-        'before_widget' => '<div class="portlet">',
-        'after_widget' => '</div>',
-        'before_title' => '<div class="pre-title"><div class="title"><span>',
-        'after_title' => '</span></div></div>',
+        'before_widget' => '<div class="portlet">', 'after_widget' => '</div>',
+        'before_title' => '<div class="pre-title"><div class="title"><span>', 'after_title' => '</span></div></div>',
     ));
     register_sidebar(array(
-        'name' => __('Index page center column', 'informea'),
-        'id' => 'index-page-center',
+        'name' => __('Index page center column', 'informea'), 'id' => 'index-page-center',
         'description' => __('Index page center column widgets', 'informea'),
     ));
     register_sidebar(array(
-        'name' => __('Index page third column', 'informea'),
-        'id' => 'index-page-right',
+        'id' => 'index-page-right', 'name' => __('Index page third column', 'informea'),
         'description' => __('Index page third column widgets', 'informea'),
-        'before_widget' => '<div class="portlet">',
-        'after_widget' => '</div>',
-        'before_title' => '<div class="pre-title"><div class="title"><span>',
-        'after_title' => '</span></div></div>',
+        'before_widget' => '<div class="portlet">', 'after_widget' => '</div>',
+        'before_title' => '<div class="pre-title"><div class="title"><span>', 'after_title' => '</span></div></div>',
     ));
     register_sidebar(array(
-        'name' => __('About page widgets', 'informea'),
-        'id' => 'about-page-left',
+        'id' => 'about-page-left', 'name' => __('About page widgets', 'informea'),
         'description' => __('Widgets on the left column of the about page', 'informea'),
     ));
 }
-
 add_action('widgets_init', 'informea2_widgets_init');
 
 
