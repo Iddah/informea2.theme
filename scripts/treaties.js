@@ -7,6 +7,15 @@ $(document).ready(function() {
     // Expand all
     $('button#expand-all').click(function() { $('ul.paragraphs').slideDown({duration: 1000}); });
     $('button#collapse-all').click(function() { $('ul.paragraphs').slideUp({duration: 1000}); });
+    $('button#print').click(function() { window.open($(this).data('target')) });
+    $('select#go-to-article').change(function (evt) {
+        evt.preventDefault();
+        var target = $('#article-' + $(this).val());
+        $.scrollTo(target, 500, {
+            offset: target.height() * -1.5,
+            onAfter: function () { $('ul.paragraphs', target).slideDown('fast'); }
+        });
+    });
 });
 
 function onChangeTreaty() {

@@ -1,9 +1,11 @@
 <?php
+wp_enqueue_script('jquery.scrollTo-1.4.3.1-min', get_bloginfo('template_directory') . '/scripts/jquery.scrollTo-1.4.3.1-min.js');
 $page_data = new informea_treaties();
 $odata_name = get_request_variable('id');
 $treaty = informea_treaties::get_treaty_by_odata_name($odata_name);
 $articles = informea_treaties::get_articles($treaty->id);
 $all_paragraphs = informea_treaties::get_all_paragraphs($treaty->id);
+$print_url = sprintf('%s/treaties/%s/print', get_bloginfo('url'), $odata_name);
 ?>
 <div class="toolbar">
     <button id="expand-all"><i class="icon-plus-sign"></i> Expand all</button>
@@ -17,7 +19,7 @@ $all_paragraphs = informea_treaties::get_all_paragraphs($treaty->id);
         <?php endforeach; ?>
     </select>
     <?php endif; ?>
-    <button id="print" class="toolbar-right"><i class="icon-print"></i> Print</button>
+    <button id="print" data-target="<?php echo $print_url; ?>" class="toolbar-right"><i class="icon-print"></i> Print</button>
     <div class="clear"></div>
 </div>
 
@@ -25,7 +27,7 @@ $all_paragraphs = informea_treaties::get_all_paragraphs($treaty->id);
 <?php
     foreach($articles as $article) :
 ?>
-    <li>
+    <li id="article-<?php echo $article->id; ?>">
         <h3 data-id="<?php echo $article->id; ?>">
             <?php echo $article->official_order; ?> <?php echo $article->title; ?>
         </h3>
@@ -39,7 +41,7 @@ $all_paragraphs = informea_treaties::get_all_paragraphs($treaty->id);
                 $paragraphs = $all_paragraphs[$article->id];
                 $pfirst = $paragraphs[0]; $plast = $paragraphs[count($paragraphs) - 1];
                 foreach ($paragraphs as $paragraph) :
-                    $para_id = "article_{$article->id}_paragraph_{$paragraph->id}";
+                    $para_id = "article-{$article->id}-paragraph_{$paragraph->id}";
                     $content = trim(preg_replace(array('/^<p>/ix', '/<\/p>$/ix'), '', $paragraph->content));
             ?>
                 <li id="<?php echo $para_id; ?>" class="ident-<?php echo $paragraph->indent;?>">
