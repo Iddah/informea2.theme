@@ -8,6 +8,7 @@
 
  CSS Structure
  - GLOBAL
+    - Icons
     - Tabs
     - Portlets
     - Tag cloud
@@ -56,13 +57,13 @@ h2 {
     margin-bottom: 10px;
 }
 
-body.informea div#breadcrumbtrail {
-    margin: 0; padding: 0;
-    border-bottom: 1px dotted #bfbfbf;
-}
+body.informea div#breadcrumbtrail { margin: 0; padding: 0; border-bottom: 1px dotted #bfbfbf; }
 body.informea div#breadcrumbtrail ul { margin: 0; padding: 0; list-style-type: none; }
 body.informea div#breadcrumbtrail ul li { display: inline-block; margin: 0 0 0 5px; }
 body.informea div#breadcrumbtrail ul li span.separator { margin-left: 5px; }
+
+body.informea div.toolbar { border-bottom: 1px dashed #bbb; border-top: 1px dashed #bbb; padding: 5px; }
+body.informea div.toolbar .toolbar-right { float: right; }
 
 div#informea-staging {
     background: #ff5a49; width: 100%; height: 25px; color: white; font-size: 20px; padding-top: 5px;
@@ -93,6 +94,20 @@ table tbody td { padding: 5px; }
 table.table-hover tbody tr:hover { background-color: #eeeeee; }
 table.table-hover tbody tr.nohover:hover { background-color: transparent; }
 table td.center { text-align: center; }
+
+/* GLOBAL :: Icons */
+[class^="icon-"], [class*=" icon-"] {
+    display: inline-block;
+    width: 14px;
+    height: 14px;
+    margin-top: 1px;
+    line-height: 14px;
+    vertical-align: text-top;
+    background: url("images/glyphicons-halflings.png") no-repeat 14px 14px;
+}
+.icon-print { background-position: -96px -48px; }
+.icon-plus-sign { background-position: 0 -96px; }
+.icon-minus-sign { background-position: -24px -96px; }
 
 /* GLOBAL :: Tabs */
 div.tabs { height: 22px; margin-bottom: 10px; padding-top: 2px; border-bottom: 1px solid #d7d7d7; }
@@ -157,7 +172,8 @@ button.btn, a.btn, input.btn, a.post-edit-link {
     -moz-box-shadow: inset 0 1px 0 rgba(255, 255, 255, 0.2), 0 1px 2px rgba(0, 0, 0, 0.05);
     box-shadow: inset 0 1px 0 rgba(255, 255, 255, 0.2), 0 1px 2px rgba(0, 0, 0, 0.05);
 }
-
+a.btn.blue { background-color: #2ca0d2; }
+a.btn.white { background-color: #bbb; }
 a.btn:hover { text-decoration: none; }
 
 /* GLOBAL :: Header (blue stripe) */
@@ -486,11 +502,26 @@ body.imea-treaties div.treaty-entry span.theme { color: #666; }
 body.imea-treaties div.col2-center h2 { display: block; margin-top: 40px; }
 body.imea-treaties table.treaties { margin-top: 70px; }
 body.imea-treaties span.label { font-weight: bold; }
-
 body.imea-treaties div.portlet.tag-cloud {
     background: #edf3fe none; border: 0;
     -moz-box-shadow: none; -webkit-box-shadow: none; box-shadow: none;
 }
+body.imea-treaties select#change-treaty-id { width: 200px; }
+body.imea-treaties select#go-to-article { width: 200px; display: inline-block; }
+body.imea-treaties ul.articles,
+body.imea-treaties ul.paragraphs { list-style-type: none; margin: 0; padding: 0 0 0 10px; }
+body.imea-treaties ul.paragraphs {  overflow: hidden; display: none; }
+body.imea-treaties ul.paragraphs li { margin: 15px 0 0 10px; }
+body.imea-treaties ul.articles h3 {
+    color: #333; padding: 3px; border: 0; margin: 10px 0;
+    font-size: 14px; text-transform: none; line-height: 20px;
+    cursor: pointer;
+}
+body.imea-treaties ul.articles h3:hover { background-color: #2ca0d2; color: white; }
+body.imea-treaties ul.articles li.ident-1 { margin-left: 20px; }
+body.imea-treaties ul.articles li.ident-2 { margin-left: 40px; }
+body.imea-treaties ul.articles li.ident-3 { margin-left: 60px; }
+body.imea-treaties ul.articles li.ident-4 { margin-left: 80px; }
 
 /* Below, you are beyond redemption */
 
