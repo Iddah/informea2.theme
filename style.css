@@ -463,9 +463,7 @@ div.portlet.index-explorer li.term-content {
 /* ABOUT PAGE */
 div.portlet.image-roller {
     background: transparent none; border: 0;
-    -moz-box-shadow: none;
-    -webkit-box-shadow: none;
-    box-shadow: none;
+    -moz-box-shadow: none; -webkit-box-shadow: none; box-shadow: none;
 }
 
 /* TREATIES PAGE */
@@ -474,6 +472,11 @@ body.imea-treaties div.treaty-entry img { width: 48px; height: 48px; line-height
 body.imea-treaties div.treaty-entry span.theme { color: #666; }
 body.imea-treaties div.col2-center h2 { display: block; margin-top: 40px; }
 body.imea-treaties table.treaties { margin-top: 70px; }
+
+body.imea-treaties div.portlet.tag-cloud {
+    background: #edf3fe none; border: 0;
+    -moz-box-shadow: none; -webkit-box-shadow: none; box-shadow: none;
+}
 
 /* Below, you are beyond redemption */
 
