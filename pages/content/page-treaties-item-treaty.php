@@ -30,6 +30,13 @@ $print_url = sprintf('%s/treaties/%s/print', get_bloginfo('url'), $odata_name);
     <li id="article-<?php echo $article->id; ?>">
         <h3 data-id="<?php echo $article->id; ?>">
             <?php echo $article->official_order; ?> <?php echo $article->title; ?>
+            <?php if (current_user_can('manage_options')) : ?>
+            <div class="article-toolbar pull-right hidden">
+                <a class="btn white small" href="#">Edit</a>
+                <a class="btn info small" href="#">Add new paragraph</a>
+                <a class="btn error small" href="#">Delete</a>
+            </div>
+            <?php endif; ?>
         </h3>
         <?php
             if(!isset($all_paragraphs[$article->id])) :
@@ -45,6 +52,15 @@ $print_url = sprintf('%s/treaties/%s/print', get_bloginfo('url'), $odata_name);
                     $content = trim(preg_replace(array('/^<p>/ix', '/<\/p>$/ix'), '', $paragraph->content));
             ?>
                 <li id="<?php echo $para_id; ?>" class="ident-<?php echo $paragraph->indent;?>">
+                    <?php if (current_user_can('manage_options')) : ?>
+                    <?php endif; ?>
+                    <div class="paragraph-toolbar pull-left hidden">
+                        <a class="btn white small" href="#">Edit</a>
+                        <a class="btn info small" href="#">Insert paragraph below</a>
+                        <a class="btn info small" href="#"><i class="icon-arrow-down"></i></a>
+                        <a class="btn info small" href="#"><i class="icon-arrow-up"></i></a>
+                        <a class="btn error small" href="#">Delete</a>
+                    </div>
                     <?php echo $paragraph->official_order . ' ' . $content; ?>
                 </li>
                 <?php endforeach; ?>
