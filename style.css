@@ -113,8 +113,9 @@ div.tabs ul li a.disabled { color: #888; background-color: #f2f2f2!important; cu
 div.portlet ul { list-style-type: none; margin: 0; padding: 0; }
 
 /* GLOBAL :: Tag cloud */
-body.informea .tags ul { list-style-type: none; margin: 0; padding: 0; text-align: center; }
+body.informea .tags ul { list-style-type: none; margin: 0; padding: 0; text-align: center; font-size: 11px; }
 body.informea .tags ul li { display: inline-block; margin: 2px; }
+body.informea .tags ul li a { color: #2ca0d2; }
 body.informea .tag1 { font-size: 80%; }
 body.informea .tag2 { font-size: 90%; }
 body.informea .tag3 { font-size: 100%; }
