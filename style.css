@@ -477,7 +477,7 @@ div.portlet.image-roller {
 }
 
 /* TREATIES PAGE */
-body.imea-treaties div.treaty-entry { width: 90px; height: 100px; float: left; text-align: center; }
+body.imea-treaties div.treaty-entry { width: 90px; display: inline-block; text-align: center; margin-top: 20px; vertical-align: top; }
 body.imea-treaties div.treaty-entry img { width: 48px; height: 48px; line-height: 48px; margin-bottom: 5px; }
 body.imea-treaties div.treaty-entry span.theme { color: #666; }
 body.imea-treaties div.col2-center h2 { display: block; margin-top: 40px; }
