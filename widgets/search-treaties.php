@@ -13,7 +13,7 @@ class SearchTreatyTextWidget extends WP_Widget {
 
     function form($instance) {
         $instance = wp_parse_args((array)$instance, array(
-                'label' => '',
+                'title' => '',
                 'tab' => '2',
                 'use_treaties' => '0',
                 'use_decisions' => '0'
@@ -26,19 +26,19 @@ class SearchTreatyTextWidget extends WP_Widget {
             '5' => 'Only regional treaties',
             '4' => 'Only decisions',
         );
-        $label = $instance['label'];
+        $title = $instance['title'];
         $tab = $instance['tab'];
         $use_treaties = $instance['use_treaties'];
         $use_decisions = $instance['use_decisions'];
 ?>
         <p>
-            <label for="<?php echo $this->get_field_id('label'); ?>">Label:</label>
-            <input class="widefat" id="<?php echo $this->get_field_id('label'); ?>"
-                   name="<?php echo $this->get_field_name('label'); ?>" type="text"
-                   value="<?php echo esc_attr($label); ?>" />
+            <label for="<?php echo $this->get_field_id('title'); ?>">Title:</label>
+            <input class="widefat" id="<?php echo $this->get_field_id('title'); ?>"
+                   name="<?php echo $this->get_field_name('title'); ?>" type="text"
+                   value="<?php echo esc_attr($title); ?>" />
         </p>
         <p>
-            <label for="<?php echo $this->get_field_id('tab'); ?>">Label:</label>
+            <label for="<?php echo $this->get_field_id('tab'); ?>">Destination search tab:</label>
             <select id="<?php echo $this->get_field_id('tab'); ?>" name="<?php echo $this->get_field_name('tab'); ?>">
             <?php foreach($tab_options as $id => $label) :
                     $selected = ($id == $tab) ? ' selected="selected"' : '';
@@ -69,7 +69,7 @@ class SearchTreatyTextWidget extends WP_Widget {
 
     function update($new_instance, $old_instance) {
         $instance = $old_instance;
-        $instance['label'] = $new_instance['label'];
+        $instance['title'] = $new_instance['title'];
         $instance['tab'] = $new_instance['tab'];
         $instance['use_treaties'] = $new_instance['use_treaties'];
         $instance['use_decisions'] = $new_instance['use_decisions'];
@@ -78,7 +78,7 @@ class SearchTreatyTextWidget extends WP_Widget {
 
 
     function widget($args, $instance) {
-        $label = empty($instance['label']) ? '' : apply_filters('tlabel', $instance['label']);
+        $title = empty($instance['title']) ? '' : apply_filters('widget_title', $instance['title']);
         $tab = $instance['count_decisions'];
         $use_treaties = $instance['use_treaties'] == 1;
         $use_decisions = $instance['use_decisions'] == 1;
@@ -87,6 +87,9 @@ class SearchTreatyTextWidget extends WP_Widget {
         $ts = $search2->ui_get_treaties_ids();
 ?>
         <div class="portlet search" id="<?php echo $args['widget_id']; ?>">
+            <div class="title">
+                <?php echo $title; ?>
+            </div>
             <form action="<?php bloginfo('url'); ?>/search" method="GET">
                 <?php if($use_treaties) : ?><input type="hidden" name="q_use_treaties" value="1" /><?php endif; ?>
                 <?php if($use_decisions) : ?><input type="hidden" name="q_use_decisions" value="1" /><?php endif; ?>
@@ -94,9 +97,7 @@ class SearchTreatyTextWidget extends WP_Widget {
                 <?php foreach ($ts as $t_id) : ?>
                     <input type="hidden" name="q_treaty[]" value="<?php echo $t_id; ?>"/>
                 <?php endforeach; ?>
-                <label><?php echo $label; ?>
-                    <input type="text" size="25" name="q_freetext" class="search-input" placeholder="Type a term or phrase" />
-                </label>
+                <input type="text" size="25" name="q_freetext" class="search-input" placeholder="Type a term or phrase" />
                 <a class="btn orange pull-right" href="javascript:void(0);" onclick="$('#searchtreatytextwidget-2>form').submit();">
                     <span>Search</span>
                 </a>

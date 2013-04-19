@@ -111,13 +111,15 @@ div.tabs ul li a.disabled { color: #888; background-color: #f2f2f2!important; cu
 
 /* GLOBAL :: Portlets */
 div.portlet ul { list-style-type: none; margin: 0; padding: 0; }
-div.portlet.search { background: #fff6e0 none; }
+div.portlet.search { padding-top: 0; background: #ffe974 none; }
+div.portlet.search div.title { font-size: 15px; font-weight: bold; }
+div.portlet.search form { background: #fff6e0 none; }
 div.portlet.search label { font-weight: bold; }
 div.portlet.search input.search-input {
-    margin: 7px 0 10px 0; width: 185px; border: 1px solid #ffe974;
+    margin: 10px 0 10px 10px; width: 165px; border: 1px solid #ffe974;
     line-height: 18px; font-size: 12px;
 }
-div.portlet.search a.btn { margin-top: 10px; }
+div.portlet.search a.btn { margin: 10px 10px; }
 
 /* GLOBAL :: Tag cloud */
 body.informea .tags ul { list-style-type: none; margin: 0; padding: 0; text-align: center; font-size: 11px; }
