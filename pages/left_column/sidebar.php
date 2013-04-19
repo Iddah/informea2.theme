@@ -1,1 +1,1 @@
-XXxxxx
+<div class="clear">&nbsp;</div>
