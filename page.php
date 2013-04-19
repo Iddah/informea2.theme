@@ -4,13 +4,12 @@ wp_enqueue_script('jquery-ui-custom', 'http://ajax.googleapis.com/ajax/libs/jque
 wp_enqueue_script('informea-common', get_bloginfo('template_directory') . '/scripts/common.js', array(), FALSE, TRUE);
 get_header();
 if (have_posts()) : while (have_posts()) : the_post();
-    global $post;
-    $post_name = $post->post_name;
+    global $post;;
     $id = get_request_variable('id');
-    $specific_template = $post_name . (empty($id) ? '' : '-item');
+    $specific_template = $post->post_name . (empty($id) ? '' : '-item');
 ?>
     <div id="page-title">
-        <?php get_template_part("pages/titles/title", $post_name); ?>
+        <?php get_template_part("pages/titles/title", $specific_template); ?>
     </div>
     <div class="col2-left col2">
         <div>

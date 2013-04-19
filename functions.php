@@ -117,6 +117,10 @@ function informea2_widgets_init() {
         'id' => 'treaties-sidebar', 'name' => __('Treaties page sidebar', 'informea'),
         'description' => __('Widgets on the treaties listing page', 'informea'),
     ));
+    register_sidebar(array(
+        'id' => 'treaties-sidebar-item', 'name' => __('Treaty index sidebar', 'informea'),
+        'description' => __('Widgets on the treaty index page', 'informea'),
+    ));
 }
 add_action('widgets_init', 'informea2_widgets_init');
 

@@ -42,6 +42,8 @@
     -webkit-box-shadow: 0 2px 2px 0 rgb(194, 194, 194);
     box-shadow: 0 2px 2px 0 rgb(194, 194, 194);
 }
+.management { background-color: #fecac2; padding: 5px; }
+.management ul { list-style-type: square; }
 .noshadow {
     -moz-box-shadow: 0;
     -webkit-box-shadow: 0;
@@ -83,6 +85,7 @@ div#informea div#main .col2-center { width: 720px; margin: 0 10px 10px 0; }
 div#informea div#main div#page-title h1 { margin: 0; padding: 0; }
 div#informea div#main div#page-title p { margin: 5px 0 0 0; padding: 0; color: #999; font-style: italic; }
 div#informea div#main div#page-title  { margin: 10px 0 10px 0; }
+div#informea div#main div#page-title img { float: left; margin: -8px 10px 0 0; }
 
 table { border: 0; border-collapse: collapse; margin: 30px 0 0 0; padding: 0; width: 100%; }
 table tbody tr { border-top: 1px solid #dddddd; }
@@ -482,6 +485,7 @@ body.imea-treaties div.treaty-entry img { width: 48px; height: 48px; line-height
 body.imea-treaties div.treaty-entry span.theme { color: #666; }
 body.imea-treaties div.col2-center h2 { display: block; margin-top: 40px; }
 body.imea-treaties table.treaties { margin-top: 70px; }
+body.imea-treaties span.label { font-weight: bold; }
 
 body.imea-treaties div.portlet.tag-cloud {
     background: #edf3fe none; border: 0;
