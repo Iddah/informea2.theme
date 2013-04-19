@@ -43,7 +43,6 @@ sort($tabs);
         </select>
     </form>
 </div>
-<div class="clear"></div>
 <?php
 get_template_part('pages/content/page', "treaties-$expand");
 ?>

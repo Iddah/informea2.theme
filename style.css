@@ -22,6 +22,7 @@
     - Portlets
     - Index MEA Explorer
  - ABOUT PAGE
+ - TREATIES
  - /dev/null
 */
 
@@ -68,12 +69,8 @@ div#informea-staging {
 a { text-decoration: none; color: #1878cc; }
 a:hover { color: #ff4b33; text-decoration: underline; }
 div.clear { clear: both; }
-
-body.informea {
-    margin: 0; padding: 0; color: #333;
-    font-family: Calibri, "Trebuchet MS", Arial, sans-serif;
-    font-size: 12px;
-    line-height: 17px;
+body.informea { margin: 0; padding: 0; color: #333;
+    font-family: Calibri, "Trebuchet MS", Arial, sans-serif; font-size: 12px; line-height: 17px;
 }
 span.gray { color: #888; }
 div#informea div#main { width: 980px; margin: 0 auto; padding: 10px 0; display: block; overflow: hidden; }
@@ -82,10 +79,17 @@ div#informea div#main .col3-left { margin-right: 10px; }
 div#informea div#main .col3-center { width: 500px; margin-right: 10px;}
 div#informea div#main .col2 { float: left; width: 210px; }
 div#informea div#main .col2-left { margin-right: 10px; }
-div#informea div#main .col2-center { width: 720px; margin-right: 10px; }
+div#informea div#main .col2-center { width: 720px; margin: 0 10px 10px 0; }
 div#informea div#main div#page-title h1 { margin: 0; padding: 0; }
 div#informea div#main div#page-title p { margin: 5px 0 0 0; padding: 0; color: #999; font-style: italic; }
 div#informea div#main div#page-title  { margin: 10px 0 10px 0; }
+
+table { border: 0; border-collapse: collapse; margin: 30px 0 0 0; padding: 0; width: 100%; }
+table tbody tr { border-top: 1px solid #dddddd; }
+table tbody td { padding: 5px; }
+table.table-hover tbody tr:hover { background-color: #eeeeee; }
+table.table-hover tbody tr.nohover:hover { background-color: transparent; }
+table td.center { text-align: center; }
 
 /* GLOBAL :: Tabs */
 div.tabs { height: 22px; margin-bottom: 10px; padding-top: 2px; border-bottom: 1px solid #d7d7d7; }
@@ -463,6 +467,13 @@ div.portlet.image-roller {
     -webkit-box-shadow: none;
     box-shadow: none;
 }
+
+/* TREATIES PAGE */
+body.imea-treaties div.treaty-entry { width: 90px; height: 100px; float: left; text-align: center; }
+body.imea-treaties div.treaty-entry img { width: 48px; height: 48px; line-height: 48px; margin-bottom: 5px; }
+body.imea-treaties div.treaty-entry span.theme { color: #666; }
+body.imea-treaties div.col2-center h2 { display: block; margin-top: 40px; }
+body.imea-treaties table.treaties { margin-top: 70px; }
 
 /* Below, you are beyond redemption */
 
