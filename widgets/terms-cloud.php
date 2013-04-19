@@ -38,7 +38,7 @@ class TermCloudWidget extends WP_Widget {
 
     function widget($args, $instance) {
         global $cloud_terms;
-        $title = empty($instance['title']) ? ' ' : apply_filters('widget_title', $instance['title']);
+        $title = empty($instance['title']) ? '' : apply_filters('widget_title', $instance['title']);
         if(!empty($cloud_terms)) {
             $terms = $cloud_terms;
         } else {
@@ -46,13 +46,13 @@ class TermCloudWidget extends WP_Widget {
         }
         $terms = imea_page_base_page::compute_popularity($terms);
     ?>
-            <div class="portlet featured-country">
+            <div class="portlet tag-cloud">
                 <?php if (!empty($title)) : ?>
                     <div class="title">
                         <?php echo $title; ?>
                     </div>
                 <?php endif; ?>
-                <div class="content terms-cloud tags">
+                <div class="tags">
                     <ul>
                         <?php foreach($terms as $_term) : ?>
                         <li>
