@@ -103,6 +103,7 @@ div.tabs ul li a.active, div.tabs ul li a:hover {
     color: #000; background-color: #fff;
     border-left: 1px solid #d7d7d7; border-right: 1px solid #d7d7d7; border-top: 1px solid #d7d7d7;
 }
+div.tabs ul li a.disabled { color: #888; background-color: #f2f2f2!important; cursor: text; border: 1px solid transparent; }
 
 /* GLOBAL :: Portlets */
 div.portlet ul { list-style-type: none; margin: 0; padding: 0; }
@@ -230,7 +231,7 @@ ul#menu-secondary-menu a:hover { color: #444; }
 #explorer { float: right; position: relative; right: 0; width: 177px; z-index: 999; }
 #explorer form { margin: 10px 0 0 20px; }
 #explorer div.mea-button {
-    position: relative; width: 177px; height: 44px; margin: 0 auto -5px; top: -15px; float: right;
+    position: relative; width: 177px; height: 44px; margin: 0 auto -6px; top: -15px; float: right;
     cursor: pointer;
     background: url(images/btn-explorer.png) no-repeat top left;
 }
