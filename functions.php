@@ -48,6 +48,7 @@ function informea2_setup() {
     register_nav_menus(array(
         'primary' => __('Primary Navigation', 'informea'),
         'secondary' => __('Secondary Navigation', 'informea'),
+        'footer' => __('Footer menu', 'informea'),
     ));
 }
 add_action('after_setup_theme', 'informea2_setup');
