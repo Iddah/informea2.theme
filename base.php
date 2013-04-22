@@ -44,6 +44,16 @@ if (!class_exists('imea_page_base_page')) {
             return 'Title not implemented';
         }
 
+        static public function get_page_description($post, $prefix = '<p>', $suffix = '</p>') {
+            $ret = '';
+            if(!empty($post->ID)) {
+                $meta = get_post_meta($post->ID);
+                if(!empty($meta['description'][0])) {
+                    $ret = $prefix . $meta['description'][0] . $suffix;
+                }
+            }
+            return $ret;
+        }
 
         function get_action() {
             return get_request_variable('action');
@@ -163,7 +173,7 @@ if (!class_exists('imea_page_base_page')) {
         }
 
 
-        function get_popular_terms($id_treaty = NULL, $limit = 10) {
+        static function get_popular_terms($id_treaty = NULL, $limit = 10) {
             global $wpdb;
             $sql = "SELECT * FROM voc_concept ORDER BY popularity DESC LIMIT $limit";
             if ($id_treaty !== NULL) {
@@ -283,14 +293,14 @@ if (!class_exists('imea_page_base_page')) {
 
         function get_decision_tags($id_decision) {
             global $wpdb;
-            $sql = 'SELECT a.* FROM voc_concept a
+            $sql = $wpdb->prepare('SELECT a.* FROM voc_concept a
                     INNER JOIN ai_decision_vocabulary b ON a.id = b.id_concept
-                    WHERE id_decision = $id_decision
+                    WHERE id_decision = %d
                 UNION
                 SELECT a.* FROM voc_concept a
                     INNER JOIN ai_decision_paragraph_vocabulary b ON a.id = b.id_concept
                     INNER JOIN ai_decision_paragraph c ON b.id_decision_paragraph = c.id
-                    WHERE c.id_decision = $id_decision';
+                    WHERE c.id_decision = %d', $id_decision, $id_decision);
             return $wpdb->get_results($sql);
         }
 

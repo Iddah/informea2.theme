@@ -148,8 +148,11 @@ if (!function_exists('stdclass_copy')) {
  */
 function debug_wp_request() {
     global $wp, $wp_query;
+    echo 'Matched rule: ';
     var_dump($wp->matched_rule);
+    echo 'Matched query: ';
     var_dump($wp->matched_query);
+    echo 'Query vars: ';
     var_dump($wp_query->query_vars);
 }
 

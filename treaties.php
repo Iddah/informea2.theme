@@ -134,7 +134,7 @@ if (!class_exists('imea_treaties_page')) {
 
         public $expand = NULL;
 
-        public $category = NULL; // Which tab to show Global/Region
+        public $region = NULL;
 
         /**
          * Constructor
@@ -147,12 +147,8 @@ if (!class_exists('imea_treaties_page')) {
             $this->sort = get_request_variable('s_column', 'str', 'order'); // or year or depository
             $this->order = get_request_variable('s_order', 'str', 'asc'); // or desc
             $this->expand = get_request_variable('expand', 'str', 'icon'); // or grid or list
-            $category = get_query_var('category'); // or region
-            $this->category = empty($category) ? '' : $category;
-            if ($this->category == 'Global') {
-                $this->category = '';
-            }
-
+            $region = urldecode(get_query_var('category')); // or region
+            $this->region = empty($region) ? 'Global' : $region;
             $this->init($id_treaty);
         }
 
@@ -215,16 +211,15 @@ if (!class_exists('imea_treaties_page')) {
 
 
         /**
-         * Retrieve the list of treaties grouped by theme & category (region, global)
-         * @param category: the region
+         * Retrieve the list of treaties grouped by theme & region (region, global)
          * @return array with WP SQL result objects grouped by theme
          */
         function get_treaties_list() {
             global $wpdb;
 
             $f = " AND a.region = ''";
-            if ($this->category != '') {
-                $f = $wpdb->prepare(" AND a.region = %s", $this->category);
+            if ($this->region != '') {
+                $f = $wpdb->prepare(" AND a.region = %s", $this->region);
             }
 
             $ret = array();
@@ -253,7 +248,7 @@ if (!class_exists('imea_treaties_page')) {
          */
         function get_treaties_by_region_by_theme($region = '') {
             global $wpdb;
-            if (strtolower($region) == 'global') {
+            if (strtolower($region) == 'Global') {
                 $region = '';
             }
             $data = $wpdb->get_results($wpdb->prepare("SELECT a.*, b.depository AS depository
@@ -272,7 +267,7 @@ if (!class_exists('imea_treaties_page')) {
 
         /**
          * Retrieve all the regions that have treaties
-         * @return WP SQL result object
+         * @return array SQL result object
          */
         function get_regions() {
             global $wpdb;
@@ -393,12 +388,51 @@ if (!class_exists('imea_treaties_page')) {
         /**
          * Retrieve the list of parties (countries) for this treaty)
          * @param id_treaty Treaty
-         * @return Countries that signed the treaty
+         * @return array Countries that signed the treaty
          */
-        function get_parties() {
+        static function get_parties($id) {
             global $wpdb;
-            $sql = "SELECT b.*, a.year FROM ai_treaty_country a INNER JOIN ai_country b ON a.id_country = b.id WHERE id_treaty = {$this->id_treaty} ORDER BY b.`name`";
-            return $wpdb->get_results($sql);
+            return $wpdb->get_results(
+                $wpdb->prepare(
+                    "SELECT b.*, a.year FROM ai_treaty_country a INNER JOIN ai_country b ON a.id_country = b.id WHERE
+                        id_treaty = %d ORDER BY b.`name`",
+                    $id
+                )
+            );
+        }
+
+        static function get_articles($id) {
+            global $wpdb;
+            return $wpdb->get_results($wpdb->prepare(
+                    "SELECT * FROM ai_treaty_article WHERE id_treaty = %d ORDER BY ai_treaty_article.order",
+                    $id
+                )
+            );
+        }
+
+        static function get_all_paragraphs($id_treaty) {
+            global $wpdb;
+            $ret = array();
+            $rows = $wpdb->get_results(
+                $wpdb->prepare(
+                    "SELECT " .
+                        "  `ai_treaty_article_paragraph`.`id`," .
+                        "  `ai_treaty_article_paragraph`.`id_treaty_article`," .
+                        "  `ai_treaty_article_paragraph`.`official_order`," .
+                        "  `ai_treaty_article_paragraph`.`order`," .
+                        "  `ai_treaty_article_paragraph`.`indent`," .
+                        "  `ai_treaty_article_paragraph`.`content`" .
+                        "FROM ai_treaty_article_paragraph " .
+                        "JOIN ai_treaty_article ON ai_treaty_article.id = ai_treaty_article_paragraph.id_treaty_article " .
+                        "WHERE ai_treaty_article.id_treaty = %d " .
+                        "ORDER BY ai_treaty_article_paragraph.order",
+                    $id_treaty
+                )
+            );
+            foreach ($rows as $paragraph) {
+                $ret[$paragraph->id_treaty_article][] = $paragraph;
+            }
+            return $ret;
         }
 
         /**
@@ -406,11 +440,13 @@ if (!class_exists('imea_treaties_page')) {
          * @param id_treaty Treaty
          * @return List of decisions for this treaty
          */
-        function get_decisions_count() {
+        function get_decisions_count($id) {
             global $wpdb;
-            $sql = $wpdb->prepare("SELECT COUNT(*) AS cnt FROM ai_decision WHERE id_treaty = %d AND status <> 'retired' ORDER BY published DESC", $this->id_treaty);
-            $c = $wpdb->get_col($sql);
-            return intval($c[0]);
+            $sql = $wpdb->prepare(
+                "SELECT COUNT(*) AS cnt FROM ai_decision WHERE id_treaty = %d AND status <> 'retired' ORDER BY published DESC",
+                $id
+            );
+            return $wpdb->get_var($sql);
         }
 
 
@@ -443,18 +479,24 @@ if (!class_exists('imea_treaties_page')) {
          * @param id_treaty Treaty
          * @return array with WP SQL result objects for decisions and meetings
          */
-        function group_decisions_by_meeting() {
+        static function group_decisions_by_meeting($id_treaty) {
             global $wpdb;
             $ret_dec = array();
             $ret_meet = array();
 
-            $c = $wpdb->get_var($wpdb->prepare(
-                "SELECT COUNT(*) FROM ai_decision
-                    WHERE id_treaty=%d AND id_meeting IS NOT NULL AND status <> 'retired'", $this->id_treaty));
+            $c = $wpdb->get_var(
+                $wpdb->prepare(
+                    'SELECT COUNT(*) FROM ai_decision
+                        WHERE id_treaty=%d AND id_meeting IS NOT NULL AND status <> %s', $id_treaty, 'retired')
+                );
             if ($c == 0) {
                 // Case 2)
-                $sql = "SELECT id, link, short_title, long_title, summary, type, status, number, id_treaty, id_meeting, meeting_title, meeting_url, real_meeting_title,
-					published FROM view_decision_meetings WHERE id_treaty = {$this->id_treaty} ORDER BY display_order DESC";
+                $sql = $wpdb->prepare('SELECT id, link, short_title, long_title, summary, type, status, number,
+                            id_treaty, id_meeting, meeting_title, meeting_url, real_meeting_title,
+                            published
+                        FROM view_decision_meetings
+                        WHERE id_treaty = %d
+                        ORDER BY display_order DESC', $id_treaty);
                 $decisions = $wpdb->get_results($sql);
                 foreach ($decisions as &$decision) {
                     $decision->order = intval(ereg_replace("[^0-9]", "", $decision->number));
@@ -474,12 +516,22 @@ if (!class_exists('imea_treaties_page')) {
             } else {
                 // Case 1)
                 if (count($c) >= 1) {
-                    $meetings = $wpdb->get_results($wpdb->prepare('SELECT * FROM ai_event WHERE id IN (SELECT DISTINCT(id_meeting) FROM ai_decision WHERE id_treaty=%d) AND type=%s ORDER BY start DESC, end DESC', $this->id_treaty, 'cop'));
+                    $meetings = $wpdb->get_results(
+                        $wpdb->prepare(
+                            'SELECT * FROM ai_event
+                                WHERE id IN (
+                                    SELECT DISTINCT(id_meeting) FROM ai_decision
+                                        WHERE id_treaty=%d) AND type=%s
+                                        ORDER BY start DESC, end DESC', $id_treaty, 'cop'
+                        )
+                    );
                     foreach ($meetings as $meeting) {
-                        $sql = "SELECT id, link, short_title, long_title, summary, type, status, number,
-								id_treaty, id_meeting, meeting_title, meeting_url, real_meeting_title, published
-							FROM view_decision_meetings
-							WHERE id_meeting = {$meeting->id} ORDER BY display_order";
+                        $sql = $wpdb->prepare(
+                            'SELECT id, link, short_title, long_title, summary, type, status, number,
+                                id_treaty, id_meeting, meeting_title, meeting_url, real_meeting_title, published
+                            FROM view_decision_meetings
+                            WHERE id_meeting = %d ORDER BY display_order', $meeting->id
+                        );
                         $decisions = $wpdb->get_results($sql);
                         foreach ($decisions as &$decision) {
                             $decision->order = intval(ereg_replace("[^0-9]", "", $decision->number));
@@ -492,7 +544,6 @@ if (!class_exists('imea_treaties_page')) {
                     }
                 }
             }
-
             $ret = array('decisions' => $ret_dec, 'meetings' => $ret_meet);
             return $ret;
         }
@@ -591,18 +642,21 @@ if (!class_exists('imea_treaties_page')) {
          * @param id_treaty Treaty
          * @return array with WP SQL result objects grouped by country
          */
-        function get_contacts() {
+        static function get_contacts($id) {
             global $wpdb;
             $ret = array();
             $ret['contacts'] = array();
             $ret['countries'] = array();
-            $sql = $wpdb->prepare("SELECT * FROM view_people_treaty WHERE id_treaty = %d GROUP BY id_country ORDER BY country_name", $this->id_treaty);
-
-            $countries = $wpdb->get_results($sql);
+            $countries = $wpdb->get_results(
+                $wpdb->prepare(
+                    "SELECT * FROM view_people_treaty WHERE id_treaty = %d GROUP BY id_country ORDER BY country_name",
+                $id)
+            );
             $ret['countries'] = $countries;
 
-            $sql = "SELECT * FROM view_people_treaty WHERE id_treaty = {$this->id_treaty}";
-            $rows = $wpdb->get_results($sql);
+            $rows = $wpdb->get_results(
+                $wpdb->prepare("SELECT * FROM view_people_treaty WHERE id_treaty = %d", $id)
+            );
             $contacts = array();
             foreach ($rows as $row) {
                 if (!isset($contacts[$row->id_country])) {
@@ -632,7 +686,7 @@ if (!class_exists('imea_treaties_page')) {
          * @param $odata_name name as comes from Odata protocol
          * @return WP SWL result object
          */
-        function get_treaty_by_odata_name($odata_name) {
+        static function get_treaty_by_odata_name($odata_name) {
             global $wpdb;
             return $wpdb->get_row("SELECT * FROM ai_treaty WHERE odata_name = '$odata_name'");
         }
@@ -662,7 +716,7 @@ if (!class_exists('imea_treaties_page')) {
          * @param $title Treaty title
          * @return WP SQL result object
          */
-        function get_treaties($title = null) {
+        static function get_treaties($title = null) {
             global $wpdb;
             if ($title) {
                 return $wpdb->get_results("SELECT * FROM ai_treaty WHERE enabled = 1 AND (short_title LIKE '%$title%' OR long_title LIKE '%$title%') ORDER BY short_title");
@@ -739,7 +793,7 @@ if (!class_exists('imea_treaties_page')) {
          * Check it current tab is global
          */
         function is_tab_global() {
-            return $this->category == '' || strtolower($this->category) == 'global';
+            return $this->region == '' || strtolower($this->region) == 'global';
         }
 
         /**
@@ -749,7 +803,7 @@ if (!class_exists('imea_treaties_page')) {
         function link_options_bar_icon_view($additional_css_classes = '') {
             $p = $this;
             echo get_imea_anchor(array('title' => __('Icon view', 'informea'),
-                'href' => 'treaties/' . $this->category,
+                'href' => 'treaties/' . $this->region,
                 'css_cb' => function () use ($p, $additional_css_classes) {
                     $ret = $additional_css_classes;
                     if ($p->expand == 'icon') {
@@ -766,7 +820,7 @@ if (!class_exists('imea_treaties_page')) {
         function link_options_bar_grid_view($additional_css_classes = '') {
             $p = $this;
             echo get_imea_anchor(array('title' => __('Grid view', 'informea'),
-                'href' => 'treaties/' . $this->category . '/grid',
+                'href' => 'treaties/' . $this->region . '/grid',
                 'css_cb' => function () use ($p, $additional_css_classes) {
                     $ret = $additional_css_classes;
                     if ($p->expand == 'grid') {
@@ -783,7 +837,7 @@ if (!class_exists('imea_treaties_page')) {
         function link_options_bar_list_view($additional_css_classes = '') {
             $p = $this;
             echo get_imea_anchor(array('title' => __('List view', 'informea'),
-                'href' => 'treaties/' . $this->category . '/list',
+                'href' => 'treaties/' . $this->region . '/list',
                 'css_cb' => function () use ($p, $additional_css_classes) {
                     $ret = $additional_css_classes;
                     if ($p->expand == 'list') {
@@ -821,9 +875,11 @@ if (!class_exists('imea_treaties_page')) {
          * @param id_treaty Treaty
          * @return boolean
          */
-        public function has_coverage() {
+        public static function has_coverage($id) {
             global $wpdb;
-            $c = $wpdb->get_var($wpdb->prepare('SELECT COUNT(*) FROM `ai_treaty_country` WHERE `id_treaty` = %d', $this->id_treaty));
+            $c = $wpdb->get_var(
+                $wpdb->prepare('SELECT COUNT(*) FROM `ai_treaty_country` WHERE `id_treaty` = %d', $id)
+            );
             return intval($c) > 0;
         }
 
