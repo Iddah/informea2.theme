@@ -1,6 +1,6 @@
 $(document).ready(function() {
     /* Expand articles (treaty tab) */
-    $('ul#articles > li > h3').click(function() {
+    $('ul#articles > li > h3').click(function(e) {
         e.preventDefault();
         var p = $(e.target).next('ul.paragraphs');
         $(p).slideToggle({duration: 200});
