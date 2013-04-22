@@ -30,7 +30,7 @@ $all_contacts = $contact_data['contacts'];
                 (<?php echo count($all_contacts); ?>)</a>
         </li>
         <?php endif; ?>
-        <?php if (informea_treaties::has_coverage($id)) { ?>
+        <?php if (informea_treaties::has_coverage($treaty->id)) { ?>
             <li>
                 <a class="<?php echo ($expand == 'coverage') ? 'active' : ''; ?>"
                    href="<?php echo get_permalink() . '/' . $treaty->odata_name . '/coverage'; ?>"><?php _e('Map and Membership', 'informea'); ?></a>

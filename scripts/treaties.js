@@ -32,7 +32,66 @@ $(document).ready(function() {
         console.log(target);
         $.scrollTo(target, 300, { offset: target.height() - 30 });
     });
+
+    /* NFP */
+    $('ul.nfp>li>a.flag').click(function() {
+        var content = $(this).parent().find('div.content');
+        var icon = $(this).parent().find('i.icon');
+        content.slideToggle({
+            duration: 200,
+            complete : function() {
+                if(content.is(':visible')) {
+                    icon.removeClass('icon-chevron-right').addClass('icon-chevron-down');
+                } else {
+                    icon.removeClass('icon-chevron-down').addClass('icon-chevron-right');
+                }
+            }
+        });
+    });
+    $('div.toolbar-nfp button#expand-all').click(nfpExpandAll);
+    $('div.toolbar-nfp button#collapse-all').click(nfpCollapseAll);
+    var ctrl = $('input#nfp-filter');
+    ctrl.keyup(function(e) {
+        if (e.which == 13) {
+            e.preventDefault();
+        } else {
+            filterNFPList(ctrl.val());
+        }
+    });
 });
+
+function nfpCollapseAll() {
+    var items = $('ul.nfp>li>div.content');
+    items.hide();
+    $(items).each(function(idx, item) {
+        var icon = $(item).parent().find('i.icon');
+        icon.removeClass('icon-chevron-down').addClass('icon-chevron-right');
+    });
+}
+
+function nfpExpandAll() {
+    var items = $('ul.nfp>li>div.content');
+    items.show();
+    $(items).each(function(idx, item) {
+        var icon = $(item).parent().find('i.icon');
+        icon.removeClass('icon-chevron-right').addClass('icon-chevron-down');
+    });
+}
+
+
+function filterNFPList(filter) {
+    $('ul.nfp>li').each(function(idx, item) { $(item).show(); });
+    if(filter.length > 0) {
+        var ctrl = $('ul.nfp');
+        var regExp = new RegExp(filter, 'i');
+        ctrl.find('a.flag').each(function(idx, item) {
+            var found = regExp.test($(this).text());
+            if(!found) {
+                $(item).parent().hide();
+            }
+        });
+    }
+}
 
 function onChangeTreaty() {
     var opt = $('#change-treaty-id>option:selected');

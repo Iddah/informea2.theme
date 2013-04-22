@@ -126,6 +126,10 @@ div.alert .close { position: relative; top: -5px; right: -4px; line-height: 20px
 .icon-arrow-up { background-position: -289px -96px; }
 .icon-arrow-down { background-position: -312px -96px; }
 .icon-hand-down { background-position: -216px -144px; }
+.icon-chevron-right { background-position: -456px -72px; }
+.icon-chevron-down { background-position: -313px -119px; }
+.icon-envelope { background-position: -72px 0; }
+.icon-user { background-position: -168px 0; }
 
 /* GLOBAL :: Tabs */
 div.tabs { height: 22px; margin-bottom: 10px; padding-top: 2px; border-bottom: 1px solid #d7d7d7; }
@@ -565,6 +569,18 @@ body.imea-treaties ul.terms {
     list-style-type: none; margin: 10px 0; padding: 5px;
 }
 body.imea-treaties ul.terms li { border: 0; display: inline-block; }
+body.imea-treaties ul.nfp { list-style-type: none; margin: 0; padding: 0; }
+body.imea-treaties ul.nfp li a.flag { margin: 10px 0; vertical-align: middle; line-height: 32px; display: inline-block; height: 32px; padding-left: 35px; }
+body.imea-treaties ul.contacts { list-style-type: none; }
+body.imea-treaties ul.contacts li { background-color: #f4f4f4; padding: 10px; margin-top: 5px; border: 1px dashed #ddd; }
+body.imea-treaties ul.contacts li .btn { margin: 10px 5px 20px 0; }
+body.imea-treaties ul.contacts li h3 { font-size: 16px; margin: 5px 0 0 15px; display: inline-block; width: 580px; }
+body.imea-treaties ul.contacts li h3 i { display: block; font-weight: normal; font-size: 12px; }
+body.imea-treaties ul.contacts div.user-icon {
+    float: left; height: 48px; width: 48px; vertical-align: top;
+    background: url('images/user_icon.png') no-repeat; }
+body.imea-treaties ul.contacts div.details { margin-top: 15px; }
+body.imea-treaties input#nfp-filter { width: 150px; }
 
 /* Below, you are beyond redemption */
 
