@@ -1,3 +1,17 @@
+$('document').ready(function() {
+    /* Click handler for all close buttons of alerts */
+    $('div.alert>button.close').click(function(evt) {
+        $(evt.target).parent().fadeOut({duration: 600});
+    });
+});
+
+/* Function called when view mode is changed. For instance: grid/list/table/etc.*/
+function onChangeViewMode(T) {
+    var option = $('option:selected', T)[0];
+    var url = $(option).data('url');
+    window.location = url;
+}
+
 (function ($) {
     $.widget("ui.combobox", {
         _create: function (customClass) {
@@ -199,10 +213,3 @@
         }
     });
 })(jQuery);
-
-/* Function called when view mode is changed. For instance: grid/list/table/etc.*/
-function onChangeViewMode(T) {
-    var option = $('option:selected', T)[0];
-    var url = $(option).data('url');
-    window.location = url;
-}

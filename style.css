@@ -37,7 +37,7 @@
 .hidden { display: none; }
 .visible { display: block; }
 .orange { background: rgb(192, 159, 24); }
-.round { border-radius: 5px; -moz-border-radius: 5px; }
+.round { -moz-border-radius: 5px 5px 0 0; -webkit-border-radius: 5px 5px 0 0; border-radius: 5px 5px 0 0; }
 .shadow {
     -moz-box-shadow: 0 2px 2px 0 #c2c2c2;
     -webkit-box-shadow: 0 2px 2px 0 rgb(194, 194, 194);
@@ -94,6 +94,15 @@ table tbody td { padding: 5px; }
 table.table-hover tbody tr:hover { background-color: #eeeeee; }
 table.table-hover tbody tr.nohover:hover { background-color: transparent; }
 table td.center { text-align: center; }
+
+div.alert {
+    margin: 10px; padding: 10px;
+    border: 1px solid #666; background-color: #f4f4f4;
+    -moz-border-radius: 5px; -webkit-border-radius: 5px; border-radius: 5px;
+}
+div.alert.alert-success { color: #468847; background-color: #dff0d8; border-color: #d6e9c6; }
+div.alert.alert-info { color: #3a87ad; background-color: #d9edf7; border-color: #bce8f1; }
+div.alert .close { position: relative; top: -5px; right: -4px; line-height: 20px; }
 
 /* GLOBAL :: Icons */
 [class^="icon-"], [class*=" icon-"] {
@@ -181,6 +190,12 @@ a.btn.white { background-color: #bbb; }
 a.btn:hover { text-decoration: none; }
 a.btn.small { font-size: 10px; padding: 3px 5px; }
 a.btn.small i { margin-top: -1px; }
+
+button.close { padding: 0; border: 0; cursor: pointer; background: transparent; -webkit-appearance: none; }
+.close { float: right; font-size: 16px; font-weight: bold; line-height: 20px;
+    color: #000000; text-shadow: 0 1px 0 #ffffff; opacity: 0.2; filter: alpha(opacity=20);
+}
+
 
 /* GLOBAL :: Header (blue stripe) */
 body.informea .skip-link { display: none; }

@@ -23,6 +23,11 @@ $print_url = sprintf('%s/treaties/%s/print', get_bloginfo('url'), $odata_name);
     <div class="clear"></div>
 </div>
 
+<div class="alert alert-info">
+    <button class="close" data-dismiss="alert">×</button>
+    Click on the article title to expand and see its contents
+</div>
+
 <ul id="articles" class="articles">
 <?php
     foreach($articles as $article) :
