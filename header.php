@@ -44,6 +44,7 @@ add_filter('body_class', function ($classes) {
     <?php wp_head(); ?>
 </head>
 <body <?php body_class(); ?>>
+<a name="top"></a>
 <?php if (informea_is_staging()) : ?>
     <div id="informea-staging">
         DEMO VERSION

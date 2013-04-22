@@ -1,0 +1,68 @@
+<?php
+wp_enqueue_script('jquery.scrollTo-1.4.3.1-min', get_bloginfo('template_directory') . '/scripts/jquery.scrollTo-1.4.3.1.js');
+$page_data = new informea_treaties();
+$odata_name = get_request_variable('id');
+$treaty = informea_treaties::get_treaty_by_odata_name($odata_name);
+$showall = get_request_variable('showall', 'str');
+?>
+
+<div class="toolbar toolbar-decisions">
+    <div class="pull-right">
+        Scroll down to
+        <button data-target="resolutions" id="scroll-resolutions"><i class="icon-hand-down"></i> Resolutions</button>
+    </div>
+    <div class="clear"></div>
+</div>
+<?php
+$decisions = $page_data->get_cites_decisions();
+$data = array('decisions' => $page_data->get_cites_decisions(), 'resolutions' => $page_data->get_cites_resolutions());
+foreach ($data as $title => $decisions) {
+?>
+<a name="<?php echo $title; ?>"></a>
+<h2><?php echo ucfirst($title); ?></h2>
+<table>
+    <thead>
+    <tr>
+        <th style="width: 130px;"><?php _e('No.', 'informea'); ?></th>
+        <th><?php _e('Title', 'informea'); ?></th>
+        <th><?php _e('Type/Status', 'informea'); ?></th>
+    </tr>
+    </thead>
+    <tbody>
+<?php
+    $icount = 0;
+    foreach ($decisions as $decision) :
+        $tags = $page_data->get_decision_tags($decision->id);
+?>
+        <tr id="tr-decision-<?php echo $decision->id; ?>">
+            <td>
+                <a name="decision-<?php echo $decision->id; ?>"></a><?php echo $decision->number; ?>
+            </td>
+            <td>
+                <h3>
+                    <?php echo $page_data->page_decisions_overview_decision_link($decision, $treaty); ?>
+                </h3>
+                <?php if (count($tags)) : ?>
+                <ul class="terms round">
+                <?php
+                    $last = end($tags);
+                    foreach ($tags as $tag) :
+                ?>
+                    <li>
+                        <a href="<?php bloginfo('url'); ?>/terms/<?php echo $tag->id; ?>"><?php echo $tag->term; ?></a><?php if ($last !== $tag) { echo ','; } ?>
+                    </li>
+                <?php endforeach; ?>
+                </ul>
+                <?php endif; ?>
+            </td>
+            <td>
+                <?php echo $decision->type; ?> (<?php $status = decode_decision_status($decision->status); echo $status; ?>)
+            </td>
+        </tr>
+    <?php
+        endforeach;
+    ?>
+    </tbody>
+</table>
+<a href="#top" class="back-top">Back to top</a>
+<?php } ?>

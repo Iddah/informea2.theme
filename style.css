@@ -52,6 +52,9 @@
     -webkit-box-shadow: 0;
     box-shadow: 0;
 }
+a.back-top { float: right; margin-bottom: 15px; }
+
+
 td.text-top { vertical-align: top; }
 h2 {
     font-size: 18px;
@@ -122,6 +125,7 @@ div.alert .close { position: relative; top: -5px; right: -4px; line-height: 20px
 .icon-minus-sign { background-position: -24px -96px; }
 .icon-arrow-up { background-position: -289px -96px; }
 .icon-arrow-down { background-position: -312px -96px; }
+.icon-hand-down { background-position: -216px -144px; }
 
 /* GLOBAL :: Tabs */
 div.tabs { height: 22px; margin-bottom: 10px; padding-top: 2px; border-bottom: 1px solid #d7d7d7; }
@@ -556,11 +560,11 @@ body.imea-treaties ul.decisions h2 { margin: 5px; padding: 0 0 0 20px; cursor: p
 body.imea-treaties ul.decisions li { border-bottom: 1px dashed #dfdfdf; }
 body.imea-treaties ul.decisions li div.content { margin-left: 50px; }
 body.imea-treaties ul.decisions h3 { font-weight: normal; margin: 0 0 10px 0; padding: 0; }
-body.imea-treaties ul.decisions li ul.terms {
+body.imea-treaties ul.terms {
     border: 1px dashed #666; background-color: #f4f4f4;
     list-style-type: none; margin: 10px 0; padding: 5px;
 }
-body.imea-treaties ul.decisions li ul.terms li { border: 0; display: inline; }
+body.imea-treaties ul.terms li { border: 0; display: inline-block; }
 
 /* Below, you are beyond redemption */
 

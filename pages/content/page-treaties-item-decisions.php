@@ -1,12 +1,16 @@
 <?php
-$page_data = new informea_treaties();
 $odata_name = get_request_variable('id');
 $treaty = informea_treaties::get_treaty_by_odata_name($odata_name);
 $showall = get_request_variable('showall', 'str');
+if ($treaty->odata_name == 'cites') {
+    get_template_part('pages/content/page', 'treaties-item-decisions-cites');
+    return;
+}
+$page_data = new informea_treaties();
 ?>
 <div class="toolbar toolbar-decisions">
-    <button id="collapse-all" class="pull-right"><i class="icon-minus-sign"></i> Collapse all</button>
-    <button id="expand-all" class="pull-right"><i class="icon-plus-sign"></i> Expand all</button>
+    <button id="expand-all"><i class="icon-plus-sign"></i> Expand all</button>
+    <button id="collapse-all"><i class="icon-minus-sign"></i> Collapse all</button>
 
     <?php if (!empty($articles)) : ?>
         <select id="go-to-article" class="toolbar-right">
@@ -31,7 +35,6 @@ $showall = get_request_variable('showall', 'str');
     Protocol, other than those listed here, will be accessible in the course of 2013
 </div>
 <?php endif; ?>
-
 
 <ul class="decisions">
 <?php
@@ -77,9 +80,9 @@ $showall = get_request_variable('showall', 'str');
                             <?php
                                 $last = end($tags);
                                 foreach ($tags as $tag) :
-                                    ?>
-                                    <li><a href="<?php bloginfo('url'); ?>/terms/<?php echo $tag->id; ?>"><?php echo $tag->term; ?></a><?php if ($last !== $tag) { echo ','; } ?></li>
-                                <?php
+                            ?>
+                                <li><a href="<?php bloginfo('url'); ?>/terms/<?php echo $tag->id; ?>"><?php echo $tag->term; ?></a><?php if ($last !== $tag) { echo ','; } ?></li>
+                            <?php
                                 endforeach;
                             ?>
                         </ul>
