@@ -50,21 +50,21 @@ $(document).ready(function() {
     });
     $('div.toolbar-nfp button#expand-all').click(nfpExpandAll);
     $('div.toolbar-nfp button#collapse-all').click(nfpCollapseAll);
-    var ctrl = $('input#nfp-filter');
-    ctrl.keyup(function(e) {
+    var ctrl1 = $('input#nfp-filter');
+    ctrl1.keyup(function(e) {
         if (e.which == 13) {
             e.preventDefault();
         } else {
-            filterNFPList(ctrl.val());
+            filterNFPList(ctrl1.val());
         }
     });
 
-    ctrl = $('input#party-filter');
-    ctrl.keyup(function(e) {
+    var ctrl2 = $('input#party-filter');
+    ctrl2.keyup(function(e) {
         if (e.which == 13) {
             e.preventDefault();
         } else {
-            filterPartiesList(ctrl.val());
+            filterPartiesList(ctrl2.val());
         }
     });
 
@@ -93,9 +93,9 @@ function nfpExpandAll() {
 function filterNFPList(filter) {
     $('ul.nfp>li').each(function(idx, item) { $(item).show(); });
     if(filter.length > 0) {
-        var ctrl = $('ul.nfp');
+        var _ctrl = $('ul.nfp');
         var regExp = new RegExp(filter, 'i');
-        ctrl.find('a.flag').each(function(idx, item) {
+        _ctrl.find('a.flag.country').each(function(idx, item) {
             var found = regExp.test($(this).text());
             if(!found) {
                 $(item).parent().hide();

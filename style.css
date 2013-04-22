@@ -571,7 +571,12 @@ body.imea-treaties ul.terms {
 }
 body.imea-treaties ul.terms li { border: 0; display: inline-block; }
 body.imea-treaties ul.nfp { list-style-type: none; margin: 0; padding: 0; }
-body.imea-treaties ul.nfp li a.flag { margin: 10px 0; vertical-align: middle; line-height: 32px; display: inline-block; height: 32px; padding-left: 35px; }
+body.imea-treaties ul.nfp li a.flag {
+    margin: 8px 0; vertical-align: middle; line-height: 32px; display: inline-block; height: 32px; padding-left: 35px;
+    font-size: 18px; font-weight: bold; color: #2ca0d2;
+}
+body.imea-treaties ul.nfp li a.flag:hover { text-decoration: none; }
+body.imea-treaties ul.nfp li a.flag.m28px { margin-left: -32px; }
 body.imea-treaties ul.contacts { list-style-type: none; }
 body.imea-treaties ul.contacts li { background-color: #f4f4f4; padding: 10px; margin-top: 5px; border: 1px dashed #ddd; }
 body.imea-treaties ul.contacts li .btn { margin: 10px 5px 20px 0; }

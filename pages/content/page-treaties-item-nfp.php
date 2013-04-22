@@ -14,6 +14,12 @@ $all_contacts = $contact_data['contacts'];
     </div>
     <div class="clear"></div>
 </div>
+
+<div class="alert alert-info">
+    <button class="close" data-dismiss="alert">×</button>
+    Click on the country to see the national focal points
+</div>
+
 <ul class="nfp">
 <?php
     foreach ($countries_contacts as $country) {
@@ -21,10 +27,9 @@ $all_contacts = $contact_data['contacts'];
         $c = count($contacts);
 ?>
     <li id="treaty-<?php echo $country->id_country; ?>">
-        <i class="icon icon-chevron-right"></i>
-        <a name="contact-bookmark-<?php echo $country->id_country; ?>" href="javascript:void(0);" class="flag"
-            style="background: url(<?php bloginfo('template_directory'); ?>/<?php echo $country->country_flag_medium; ?>) no-repeat;"><?php echo $country->country_name; ?></a>
-        (<?php echo $c; ?>)
+        <a name="contact-bookmark-<?php echo $country->id_country; ?>" href="javascript:void(0);" class="flag m28px"><i class="icon icon-chevron-right"></i></a>
+        <a href="javascript:void(0);" class="flag country"
+            style="background: url(<?php bloginfo('template_directory'); ?>/<?php echo $country->country_flag_medium; ?>) no-repeat;"><?php echo $country->country_name; ?> (<?php echo $c; ?>)</a>
         <div class="content hidden">
             <?php if(count($contacts)) : ?>
             <ul class="contacts">
