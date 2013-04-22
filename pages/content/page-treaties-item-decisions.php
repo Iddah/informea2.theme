@@ -24,6 +24,14 @@ $showall = get_request_variable('showall', 'str');
     Click on the meeting abbreviation to see the corresponding decisions
 </div>
 
+<?php  if ($treaty->id == '17' || $treaty->id == '19')  : // Kyoto, UNCCD ?>
+<div class="alert alert-warning">
+    <button class="close" data-dismiss="alert">×</button>
+    <strong>Disclaimer:</strong> Please note that the decisions from UNCCD and UNFCCC and the Kyoto
+    Protocol, other than those listed here, will be accessible in the course of 2013
+</div>
+<?php endif; ?>
+
 
 <ul class="decisions">
 <?php
