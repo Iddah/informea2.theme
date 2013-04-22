@@ -1,20 +1,15 @@
 $(document).ready(function() {
+    /* Expand articles (treaty tab) */
     $('ul#articles > li > h3').click(function(evt) {
         evt.preventDefault();
         var p = $(evt.target).next('ul.paragraphs');
         $(p).slideToggle({duration: 200});
     });
-    $('ul#articles > li > h3').mouseover(function() { $('div.article-toolbar', this).show(); });
-    $('ul#articles > li > h3').mouseout(function() { $('div.article-toolbar', this).hide(); });
-
-    $('ul.paragraphs > li').mouseover(function() { $('div.paragraph-toolbar', this).show(); });
-    $('ul.paragraphs > li').mouseout(function() { $('div.paragraph-toolbar', this).hide(); });
-
-    // Expand all
-    $('button#expand-all').click(function() { $('ul.paragraphs').slideDown({duration: 1000}); });
-    $('button#collapse-all').click(function() { $('ul.paragraphs').slideUp({duration: 1000}); });
-    $('button#print').click(function() { window.open($(this).data('target')) });
-    $('select#go-to-article').change(function (evt) {
+    // Toolbar (treaty tab)
+    $('div.toolbar-treaty button#expand-all').click(function() { $('ul.paragraphs').slideDown({duration: 600}); });
+    $('div.toolbar-treaty button#collapse-all').click(function() { $('ul.paragraphs').slideUp({duration: 600}); });
+    $('div.toolbar-treaty button#print').click(function() { window.open($(this).data('target')) });
+    $('div.toolbar-treaty select#go-to-article').change(function (evt) {
         evt.preventDefault();
         var target = $('#article-' + $(this).val());
         $.scrollTo(target, 500, {
@@ -22,6 +17,15 @@ $(document).ready(function() {
             onAfter: function () { $('ul.paragraphs', target).slideDown('fast'); }
         });
     });
+
+    /* Expand decisions (decision tab) */
+    $('ul.decisions>li>h2').click(function(evt) {
+        var p = $(evt.target).next('div.content');
+        $(p).slideToggle({duration: 200})
+    });
+    /* Toolbar (decisions tab) */
+    $('div.toolbar-decisions button#expand-all').click(function() { $('ul.decisions div.content').slideDown({duration: 600}); });
+    $('div.toolbar-decisions button#collapse-all').click(function() { $('ul.decisions div.content').slideUp({duration: 600}); });
 });
 
 function onChangeTreaty() {

@@ -7,7 +7,7 @@ $articles = informea_treaties::get_articles($treaty->id);
 $all_paragraphs = informea_treaties::get_all_paragraphs($treaty->id);
 $print_url = sprintf('%s/treaties/%s/print', get_bloginfo('url'), $odata_name);
 ?>
-<div class="toolbar">
+<div class="toolbar toolbar-treaty">
     <button id="expand-all"><i class="icon-plus-sign"></i> Expand all</button>
     <button id="collapse-all"><i class="icon-minus-sign"></i> Collapse all</button>
 
@@ -36,7 +36,7 @@ $print_url = sprintf('%s/treaties/%s/print', get_bloginfo('url'), $odata_name);
         <h3 data-id="<?php echo $article->id; ?>">
             <?php echo $article->official_order; ?> <?php echo $article->title; ?>
             <?php if (current_user_can('manage_options')) : ?>
-            <div class="article-toolbar pull-right hidden">
+            <div class="management-toolbar article-toolbar">
                 <a class="btn white small" href="#">Edit</a>
                 <a class="btn info small" href="#">Add new paragraph</a>
                 <a class="btn error small" href="#">Delete</a>
@@ -59,7 +59,7 @@ $print_url = sprintf('%s/treaties/%s/print', get_bloginfo('url'), $odata_name);
                 <li id="<?php echo $para_id; ?>" class="ident-<?php echo $paragraph->indent;?>">
                     <?php if (current_user_can('manage_options')) : ?>
                     <?php endif; ?>
-                    <div class="paragraph-toolbar pull-left hidden">
+                    <div class="management-toolbar paragraph-toolbar">
                         <a class="btn white small" href="#">Edit</a>
                         <a class="btn info small" href="#">Insert paragraph below</a>
                         <a class="btn info small" href="#"><i class="icon-arrow-down"></i></a>

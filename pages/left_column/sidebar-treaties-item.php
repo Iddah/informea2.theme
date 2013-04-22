@@ -86,13 +86,18 @@ wp_enqueue_script('treaties', get_bloginfo('template_directory') . '/scripts/tre
 <div class="management round">
     <ul>
         <li>
-            <a href="<?php bloginfo('url'); ?>/wp-admin/admin.php?page=informea_treaties&act=treaty_add_article&id_treaty=<?php echo $id; ?>">
+            <a href="<?php echo admin_url(); ?>admin.php?page=informea_treaties&act=treaty_add_article&id_treaty=<?php echo $id; ?>">
                 Add new article
             </a>
         </li>
         <li>
-            <a href="<?php bloginfo('url'); ?>/wp-admin/admin.php?page=informea_treaties&act=treaty_edit_treaty&id=<?php echo $id; ?>">
+            <a href="<?php echo admin_url(); ?>admin.php?page=informea_treaties&act=treaty_edit_treaty&id=<?php echo $id; ?>">
                 Edit this treaty
+            </a>
+        </li>
+        <li>
+            <a href="<?php echo admin_url(); ?>admin.php?page=informea_decisions&act=decision_order&id_treaty=<?php echo $id; ?>">
+                Reorder decisions
             </a>
         </li>
     </ul>

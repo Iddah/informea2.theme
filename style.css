@@ -37,7 +37,8 @@
 .hidden { display: none; }
 .visible { display: block; }
 .orange { background: rgb(192, 159, 24); }
-.round { -moz-border-radius: 5px 5px 0 0; -webkit-border-radius: 5px 5px 0 0; border-radius: 5px 5px 0 0; }
+.round-top { -moz-border-radius: 5px 5px 0 0; -webkit-border-radius: 5px 5px 0 0; border-radius: 5px 5px 0 0; }
+.round { -moz-border-radius: 5px; -webkit-border-radius: 5px; border-radius: 5px; }
 .shadow {
     -moz-box-shadow: 0 2px 2px 0 #c2c2c2;
     -webkit-box-shadow: 0 2px 2px 0 rgb(194, 194, 194);
@@ -45,6 +46,7 @@
 }
 .management { background-color: #fecac2; padding: 5px; }
 .management ul { list-style-type: square; }
+.management-toolbar { z-index: 99999; display: none; /* Appears on mouse over */ }
 .noshadow {
     -moz-box-shadow: 0;
     -webkit-box-shadow: 0;
@@ -538,12 +540,26 @@ body.imea-treaties ul.articles h3 {
     font-size: 14px; text-transform: none; line-height: 20px;
     cursor: pointer;
 }
-body.imea-treaties ul.articles h3:hover { background-color: #2ca0d2; color: white; }
+body.imea-treaties ul.articles li h3:hover { background-color: #2ca0d2; color: white; }
+body.imea-treaties ul.articles li h3:hover  div.management-toolbar,
+body.imea-treaties ul.articles ul.paragraphs li:hover div.management-toolbar,
+body.imea-treaties ul.decisions td:hover div.management-toolbar { display: block; }
 body.imea-treaties ul.articles li.ident-1 { margin-left: 20px; }
 body.imea-treaties ul.articles li.ident-2 { margin-left: 40px; }
 body.imea-treaties ul.articles li.ident-3 { margin-left: 60px; }
 body.imea-treaties ul.articles li.ident-4 { margin-left: 80px; }
-body.imea-treaties div.paragraph-toolbar { margin: -18px 0 0 0; z-index: 99999; }
+body.imea-treaties div.article-toolbar { margin: 0; float: right; }
+body.imea-treaties div.paragraph-toolbar { margin: -18px 0 0 0; float: right; }
+body.imea-treaties ul.decisions { margin: 30px 0 0 0; padding: 0; list-style-type: none; }
+body.imea-treaties ul.decisions h2 { margin: 5px; padding: 0 0 0 20px; cursor: pointer; }
+body.imea-treaties ul.decisions li { border-bottom: 1px dashed #dfdfdf; }
+body.imea-treaties ul.decisions li div.content { margin-left: 50px; }
+body.imea-treaties ul.decisions h3 { font-weight: normal; margin: 0 0 10px 0; padding: 0; }
+body.imea-treaties ul.decisions li ul.terms {
+    border: 1px dashed #666; background-color: #f4f4f4;
+    list-style-type: none; margin: 10px 0; padding: 5px;
+}
+body.imea-treaties ul.decisions li ul.terms li { border: 0; display: inline; }
 
 /* Below, you are beyond redemption */
 
