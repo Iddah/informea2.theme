@@ -75,6 +75,40 @@ class Checkbox_Customize_Control extends WP_Customize_Control {
 }
 
 
+/* Breadcrumbtrails */
+function informea_treaties_breadcrumbtrail() {
+    global $post;
+    $items = array();
+    $id = get_request_variable('id');
+    $home = get_bloginfo('url');
+    $items[__('Home', 'informea')] = $home;
+    if($id) {
+        $expand = get_request_variable('expand', 'str', 'treaty');
+        $treaty = informea_treaties::get_treaty_by_odata_name($id);
+        $items[__('Treaties', 'informea')] = sprintf('%s/%s', $home, $post->post_name);
+        if(in_array($expand, array('', 'treaty'))) {
+            $items[$treaty->short_title] = '';
+        } else {
+            $items[$treaty->short_title] = sprintf('%s/%s/%s', $home, $post->post_name, $id);
+            $label = ucfirst($expand);
+            switch(strtolower($expand)) {
+                case 'nfp';
+                    $label = 'National Focal Points';
+                    break;
+                case 'coverage';
+                    $label = 'Map and Membership';
+                    break;
+            }
+            $items[$label] = '';
+        }
+
+    } else {
+        $items[__('Treaties', 'informea')] = '';
+    }
+    echo build_breadcrumbtrail($items);
+}
+
+
 function informea_customize_register( $wp_customize ) {
     //All our sections, settings, and controls will be added here
     $wp_customize->add_setting('show_changelog_in_index',
