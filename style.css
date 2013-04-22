@@ -551,9 +551,9 @@ body.imea-treaties ul.articles h3 {
     cursor: pointer;
 }
 body.imea-treaties ul.articles li h3:hover { background-color: #2ca0d2; color: white; }
-body.imea-treaties ul.articles li h3:hover  div.management-toolbar,
+body.imea-treaties ul.articles li h3:hover div.management-toolbar,
 body.imea-treaties ul.articles ul.paragraphs li:hover div.management-toolbar,
-body.imea-treaties ul.decisions td:hover div.management-toolbar { display: block; }
+body.imea-treaties .decisions td:hover div.management-toolbar { display: block; }
 body.imea-treaties ul.articles li.ident-1 { margin-left: 20px; }
 body.imea-treaties ul.articles li.ident-2 { margin-left: 40px; }
 body.imea-treaties ul.articles li.ident-3 { margin-left: 60px; }

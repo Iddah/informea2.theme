@@ -20,7 +20,7 @@ foreach ($data as $title => $decisions) {
 ?>
 <a name="<?php echo $title; ?>"></a>
 <h2><?php echo ucfirst($title); ?></h2>
-<table>
+<table class="decisions">
     <thead>
     <tr>
         <th style="width: 130px;"><?php _e('No.', 'informea'); ?></th>
@@ -53,6 +53,14 @@ foreach ($data as $title => $decisions) {
                     </li>
                 <?php endforeach; ?>
                 </ul>
+                <?php endif; ?>
+                <?php if (current_user_can('manage_options')) : ?>
+                    <div class="management-toolbar pull-left">
+                        <a target="_blank" class="btn white small"
+                           href="<?php echo admin_url(); ?>admin.php?page=informea_decisions&act=decision_edit&id_decision=<?php echo $decision->id; ?>&id_treaty=<?php echo $decision->id_treaty; ?>">Edit</a>
+                        <a target="_blank" class="btn white small"
+                           href="<?php echo admin_url(); ?>admin.php?page=informea_decisions&act=decision_edit_decision&id_treaty=<?php echo $decision->id_treaty; ?>&id_decision=<?php echo $decision->id; ?>">Break in paragraphs</a>
+                    </div>
                 <?php endif; ?>
             </td>
             <td>

@@ -86,15 +86,15 @@ $page_data = new informea_treaties();
                                 endforeach;
                             ?>
                         </ul>
-                        <?php  endif; ?>
+                        <?php endif; ?>
+                        <?php if (current_user_can('manage_options')) : ?>
                         <div class="management-toolbar pull-left">
-                            <?php if (current_user_can('manage_options')) { ?>
                                 <a target="_blank" class="btn white small"
                                    href="<?php echo admin_url(); ?>admin.php?page=informea_decisions&act=decision_edit&id_decision=<?php echo $decision->id; ?>&id_treaty=<?php echo $decision->id_treaty; ?>">Edit</a>
                                 <a target="_blank" class="btn white small"
                                    href="<?php echo admin_url(); ?>admin.php?page=informea_decisions&act=decision_edit_decision&id_treaty=<?php echo $decision->id_treaty; ?>&id_decision=<?php echo $decision->id; ?>">Break in paragraphs</a>
-                            <?php } ?>
                         </div>
+                        <?php endif; ?>
                     </td>
                     <td>
                         <?php echo $decision->type; ?>
