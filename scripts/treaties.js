@@ -58,6 +58,17 @@ $(document).ready(function() {
             filterNFPList(ctrl.val());
         }
     });
+
+    ctrl = $('input#party-filter');
+    ctrl.keyup(function(e) {
+        if (e.which == 13) {
+            e.preventDefault();
+        } else {
+            filterPartiesList(ctrl.val());
+        }
+    });
+
+
 });
 
 function nfpCollapseAll() {
@@ -88,6 +99,22 @@ function filterNFPList(filter) {
             var found = regExp.test($(this).text());
             if(!found) {
                 $(item).parent().hide();
+            }
+        });
+    }
+}
+
+function filterPartiesList(filter) {
+    var rows = $('table#parties tr');
+    rows.each(function(idx, item) { $(item).show(); });
+    if(filter.length > 0) {
+        var regExp = new RegExp(filter, 'i');
+        rows.each(function(idx, item) {
+            var found = regExp.test($(this).text());
+            if(!found) {
+                $(this).hide();
+            } else {
+                $(this).show();
             }
         });
     }
