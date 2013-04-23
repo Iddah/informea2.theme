@@ -155,6 +155,7 @@ div.tabs ul li a.disabled { color: #888; background-color: #f2f2f2!important; cu
 
 /* GLOBAL :: Portlets */
 ul.sidebar { list-style-type: none; margin: 0; padding: 0; }
+div.portlet h3, div.portlet h2 { color: black; padding: 0; margin: 5px 0 0 5px; }
 div.portlet ul { list-style-type: none; margin: 0; padding: 0; }
 div.portlet.search { padding-top: 0; background: #ffe974 none; }
 div.portlet.search div.title { font-size: 15px; font-weight: bold; }

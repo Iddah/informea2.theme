@@ -34,6 +34,7 @@ class SelectCountryWidget extends WP_Widget {
     function widget($args, $instance) {
         $title = empty($instance['title']) ? ' ' : apply_filters('widget_title', $instance['title']);
 ?>
+        <li>
             <div class="portlet select-country">
                 <?php if (!empty($title)) : ?>
                 <h3>
@@ -54,6 +55,7 @@ class SelectCountryWidget extends WP_Widget {
                     </form>
                 </div>
             </div>
+        </li>
         <?php
     }
 }
