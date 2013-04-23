@@ -108,6 +108,7 @@ function informea_treaties_breadcrumbtrail() {
     echo build_breadcrumbtrail($items);
 }
 
+
 function informea_decisions_breadcrumbtrail() {
     $items = array();
     $home = get_bloginfo('url');
@@ -115,6 +116,22 @@ function informea_decisions_breadcrumbtrail() {
     $items[__('Decisions', 'informea')] = '';
     echo build_breadcrumbtrail($items);
 }
+
+
+function informea_countries_breadcrumbtrail() {
+    global $post;
+    $items = array();
+    $id = get_request_variable('id');
+    $home = get_bloginfo('url');
+    $items[__('Home', 'informea')] = $home;
+    if($id) {
+        $items[__('Countries', 'informea')] = sprintf('%s/%s', $home, $post->post_name);
+    } else {
+        $items[__('Countries', 'informea')] = '';
+    }
+    echo build_breadcrumbtrail($items);
+}
+
 
 function informea_customize_register( $wp_customize ) {
     //All our sections, settings, and controls will be added here
@@ -185,5 +202,6 @@ require_once(dirname(__FILE__) . '/widgets/borderless-widget.php');
 require_once(dirname(__FILE__) . '/widgets/terms-cloud.php');
 require_once(dirname(__FILE__) . '/widgets/image-roller.php');
 require_once(dirname(__FILE__) . '/widgets/search-treaties.php');
+require_once(dirname(__FILE__) . '/widgets/select-country.php');
 
 

@@ -602,6 +602,8 @@ body.imea-decisions ul li.treaty-entry { width: 90px; display: inline-block; tex
 body.imea-decisions ul li.treaty-entry img { width: 48px; height: 48px; line-height: 48px; margin-bottom: 5px; }
 body.imea-decisions ul li.treaty-entry span.theme { color: #666; }
 
+/* COUNTRY PAGES */
+body.imea-countries select.selectCountry { width: 180px; }
 /* Below, you are beyond redemption */
 
 /* TRIAGE */

@@ -12,6 +12,12 @@ function onChangeViewMode(T) {
     window.location = url;
 }
 
+
+function selectCountryWidgetOnChange(T) {
+    onChangeViewMode(T);
+}
+
+
 (function ($) {
     $.widget("ui.combobox", {
         _create: function (customClass) {
