@@ -45,28 +45,24 @@ class TermCloudWidget extends WP_Widget {
             $terms = Thesaurus::get_top_concepts();
         }
         $terms = imea_page_base_page::compute_popularity($terms);
-    ?>
-            <div class="portlet tag-cloud">
-                <?php if (!empty($title)) : ?>
-                    <div class="title">
-                        <?php echo $title; ?>
-                    </div>
-                <?php endif; ?>
-                <div class="tags">
-                    <ul>
-                        <?php foreach($terms as $_term) : ?>
-                        <li>
-                            <a class="tag<?php echo $_term->popularity; ?>"
-                               href="<?php bloginfo('url'); ?>/terms/<?php echo $_term->id; ?>"><?php echo $_term->tag; ?></a>
-                        </li>
-                        <?php endforeach; ?>
-                    </ul>
-                </div>
-                <div class="clear"></div>
+?>
+        <li class="widget tag-cloud">
+            <?php if (!empty($title)) : ?>
+                <h2><?php echo $title; ?></h2>
+            <?php endif; ?>
+            <div class="tags">
+                <ul>
+                    <?php foreach($terms as $_term) : ?>
+                    <li>
+                        <a class="tag<?php echo $_term->popularity; ?>"
+                           href="<?php bloginfo('url'); ?>/terms/<?php echo $_term->id; ?>"><?php echo $_term->tag; ?></a>
+                    </li>
+                    <?php endforeach; ?>
+                </ul>
             </div>
             <div class="clear"></div>
-            <div class="margin-bottom-10"></div>
-        <?php
+        </li>
+<?php
     }
 }
 

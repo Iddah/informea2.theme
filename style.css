@@ -10,7 +10,7 @@
  - GLOBAL
     - Icons
     - Tabs
-    - Portlets
+    - Widgets
     - Tag cloud
     - Buttons
     - Header (blue stripe)
@@ -20,7 +20,7 @@
     - MEA Explorer button
     - Footer
  - INDEX PAGE
-    - Portlets
+    - Widgets
     - Index MEA Explorer
  - ABOUT PAGE
  - TREATIES PAGES
@@ -153,19 +153,19 @@ div.tabs ul li a.active, div.tabs ul li a:hover {
 }
 div.tabs ul li a.disabled { color: #888; background-color: #f2f2f2!important; cursor: text; border: 1px solid transparent; }
 
-/* GLOBAL :: Portlets */
+/* GLOBAL :: Widgets */
 ul.sidebar { list-style-type: none; margin: 0; padding: 0; }
-div.portlet h3, div.portlet h2 { color: black; padding: 0; margin: 5px 0 0 5px; }
-div.portlet ul { list-style-type: none; margin: 0; padding: 0; }
-div.portlet.search { padding-top: 0; background: #ffe974 none; }
-div.portlet.search div.title { font-size: 15px; font-weight: bold; }
-div.portlet.search form { background: #fff6e0 none; }
-div.portlet.search label { font-weight: bold; }
-div.portlet.search input.search-input {
+li.widget h2 { color: black; padding: 0; margin: 5px 0 10px 0; font-size: 15px; }
+li.widget ul { list-style-type: none; margin: 0; padding: 0; }
+li.widget.search { padding-top: 0; background: #ffe974 none; }
+li.widget.search h2 { font-size: 15px; font-weight: bold; }
+li.widget.search form { background: #fff6e0 none; }
+li.widget.search label { font-weight: bold; }
+li.widget.search input.search-input {
     margin: 10px 0 10px 10px; width: 165px; border: 1px solid #ffe974;
     line-height: 18px; font-size: 12px;
 }
-div.portlet.search a.btn { margin: 10px 10px; }
+li.widget.search a.btn { margin: 10px 10px; }
 
 /* GLOBAL :: Tag cloud */
 body.informea .tags ul { list-style-type: none; margin: 0; padding: 0; text-align: center; font-size: 11px; }
@@ -390,8 +390,8 @@ div#regional_treaties ul ul li { display: block; font-size: 12px; padding-bottom
 
 /* INDEX PAGE */
 
-/* INDEX PAGE :: Portlets */
-div.portlet {
+/* INDEX PAGE :: Widgets */
+li.widget {
     margin-top: 15px; margin-bottom: 6px; padding: 10px;
     display: block;
     border: 1px solid rgb(233, 233, 233);
@@ -410,125 +410,124 @@ div.portlet {
     background-image: linear-gradient(to top, white, rgb(237, 237, 237));
 }
 
-div.portlet div.title {
+li.widget h2 {
     width: 100%; padding: 7px 3px;
     background: transparent; color: rgb(68, 67, 67);
     font-size: 18px; letter-spacing: 0;
 }
-div.portlet div.title a.rss {
+li.widget h2 a.rss {
     margin: 0; padding: 0; width: 20px; height: 20px;
     display: block; float: right;
     background: url('images/feed.png') no-repeat; }
-div.portlet div.content { overflow: hidden; padding: 10px 0 3px 3px; }
+li.widget div.content { overflow: hidden; padding: 10px 0 3px 3px; }
 
-div.portlet.whatisinformea { margin-bottom: 0; padding: 5px; background: #D7F1F7; }
-div.portlet.whatisinformea div.title { text-align: center; }
-div.portlet img.ribbon { float: left; margin: 4px 0 0 80px; }
+li.widget.whatisinformea { margin-bottom: 40px; padding: 5px; background: #D7F1F7; }
+li.widget.whatisinformea h2 { text-align: center; }
+li.widget img.ribbon { float: left; margin: 4px 0 0 80px; }
 
-div.portlet.latest-news ul { list-style-type: none; margin: 0; padding: 0 }
-div.portlet.latest-news ul li {
+li.widget.latest-news ul { list-style-type: none; margin: 0; padding: 0 }
+li.widget.latest-news ul li {
     color: #888;
     margin: 0 0 10px 0; padding-left: 12px;
     background: url("images/arrow1.png") no-repeat 0 3px;
 }
 
-ul.featured-tools { padding-left: 30px; }
+ul.sidebar li.widget ul.featured-tools { padding-left: 20px; }
 
-div.portlet.featured-treaty div.content { padding-left: 20px; }
+li.widget.featured-treaty div.content { padding-left: 20px; }
 
-div.portlet.featured-country { padding: 5px; }
-div.portlet.featured-country div.title img {
+li.widget.featured-country { padding: 5px; }
+li.widget.featured-country h2 img {
     max-height: 48px; vertical-align: middle; float: right; margin: -5px 5px 0 0;
 }
-div.portlet.featured-country div.content { padding-top: 0; }
-div.portlet.featured-country div#fc-map-canvas { width: 480px; height: 300px; }
-div.portlet.featured-country .ui-widget-content { background: transparent; border: 0; }
-div.portlet.featured-country li.ui-state-active { border-bottom: 1px solid white; }
-div.portlet.featured-country .ui-state-default {
+li.widget.featured-country div.content { padding-top: 0; }
+li.widget.featured-country div#fc-map-canvas { width: 480px; height: 300px; }
+li.widget.featured-country .ui-widget-content { background: transparent; border: 0; }
+li.widget.featured-country li.ui-state-active { border-bottom: 1px solid white; }
+li.widget.featured-country .ui-state-default {
     border: 1px solid #BDBCBC; border-bottom: 1px solid #eafafd;
     background: #eafafd none;
 }
-div.portlet.featured-country ul.ui-widget-header {
+li.widget.featured-country ul.ui-widget-header {
     border-radius: 0; -moz-border-radius: 0; -webkit-border-radius: 0;
     border: 0; border-bottom: 1px solid #d7d7d7; background-color: transparent;
 }
-div.portlet.featured-country ul.ui-widget-header a {
+li.widget.featured-country ul.ui-widget-header a {
     font-family: Calibri, "Trebuchet MS", Arial, sans-serif;
     font-size: 11px;
     font-weight: normal;
     color: #000;
 }
-div.portlet.featured-country .ui-tabs-nav {
+li.widget.featured-country .ui-tabs-nav {
     background: none transparent;
 }
-div.portlet.featured-country .ui-tabs-selected,
-div.portlet.featured-country .ui-state-hover {
+li.widget.featured-country .ui-tabs-selected,
+li.widget.featured-country .ui-state-hover {
     background-color: #fff;
     border-bottom: 0;
 }
-div.portlet.featured-country div.ui-tabs .ui-tabs-panel { padding: 5px 0 0 0; }
-div.portlet.featured-country table { border-collapse: collapse; width: 100% }
-div.portlet.featured-country table td { height: 24px; padding: 3px; }
-div.portlet.featured-country table tr { border: 0; border-bottom: 1px solid #d7d7d7;  }
-div.portlet.featured-country table ul { border: 0; margin: 0 0 0 20px; padding: 0; }
-div.portlet.featured-country table ul li { margin-bottom: 10px; }
-div.portlet.featured-country table p.note { margin: 0; padding: 0; color: #BDBCBC  }
-div.portlet.featured-country .text-grey { color: #BDBCBC  }
-div.portlet.featured-country div.ui-tabs-hide { display: none; }
+li.widget.featured-country div.ui-tabs .ui-tabs-panel { padding: 5px 0 0 0; }
+li.widget.featured-country table { border-collapse: collapse; width: 100% }
+li.widget.featured-country table td { height: 24px; padding: 3px; }
+li.widget.featured-country table tr { border: 0; border-bottom: 1px solid #d7d7d7;  }
+li.widget.featured-country table ul { border: 0; margin: 0 0 0 20px; padding: 0; }
+li.widget.featured-country table ul li { margin-bottom: 10px; }
+li.widget.featured-country table p.note { margin: 0; padding: 0; color: #BDBCBC  }
+li.widget.featured-country .text-grey { color: #BDBCBC  }
+li.widget.featured-country div.ui-tabs-hide { display: none; }
 
-div.portlet.event-explorer { background: #D7F1F7; }
-div.portlet.event-explorer div.content label {
+li.widget.event-explorer { background: #D7F1F7; }
+li.widget.event-explorer div.content label {
     font-size: 13px; font-weight: bold; margin-bottom: 10px; display: block;
 }
-div.portlet.event-explorer div.content input.btn { margin: 5px 7px 3px 0; }
-div.portlet.event-explorer div.content { background: #F7FBFC; margin-top: 5px; }
-div.portlet.event-explorer h2 {
+li.widget.event-explorer div.content input.btn { margin: 5px 7px 3px 0; }
+li.widget.event-explorer div.content { background: #F7FBFC; margin-top: 5px; }
+li.widget.event-explorer h2 {
     margin: 0; padding: 0; display: block; height: 20px;
     background: url("images/Event_Explorer_label.png") no-repeat;
     width: 100%;
 }
 
-div.portlet.upcoming-events ul { height: 130px; list-style-type: none; margin: 0; padding: 0; }
-div.portlet.upcoming-events ul li { margin-bottom: 10px; }
+li.widget.upcoming-events ul { height: 130px; list-style-type: none; margin: 0; padding: 0; }
+li.widget.upcoming-events ul li { margin-bottom: 10px; }
 
-div.portlet.borderless-widget { padding: 0; }
+li.widget.borderless-widget { padding: 0; }
 
 /* INDEX PAGE :: Index MEA Explorer */
 
-div.portlet.index-explorer { padding: 0; margin: 15px 0 0 0; background: none #fff5c2; border: 10px solid #ffe974; }
-div.portlet.index-explorer div.title {
+li.widget.index-explorer { padding: 0; margin: 15px 0 0 0; background: none #fff5c2; border: 10px solid #ffe974; }
+li.widget.index-explorer h2 {
+    height: 14px;
     background: rgb(255, 233, 116) url("images/MEA_Explorer_label.png") no-repeat;
     margin: 0; padding: 5px 0 5px 0;
     color: rgb(39, 39, 39);
 }
-div.portlet.index-explorer div.up { padding: 10px 0 0 0; overflow: hidden; margin: 10px 0 0 0; }
-div.portlet.index-explorer label { cursor: pointer; }
-div.portlet.index-explorer div.content { margin: 0; padding: 10px; }
-div.portlet.index-explorer div.content ul { list-style-type: none; padding: 0; margin: 0 0 0 20px; }
-div.portlet.index-explorer div.section { margin-left: 20px; }
-div.portlet.index-explorer div.filters { margin-left: 20px; }
-div.portlet.index-explorer li.section { border-top: 1px solid #dfdfdf; margin-top: 10px; }
-div.portlet.index-explorer li.section p { font-weight: bold; }
-div.portlet.index-explorer li.section ul { margin: 0; padding: 0; list-style-type: none; }
-div.portlet.index-explorer li.section ul { margin: 0; padding: 0; list-style-type: none; }
-div.portlet.index-explorer #q_freetext { border: 1px solid #ffe974; height: 20px; width: 380px; }
-div.portlet.index-explorer button { top: -1px; border: 1px solid #ffe974; }
+li.widget.index-explorer div.up { padding: 10px 0 0 0; overflow: hidden; margin: 10px 0 0 0; }
+li.widget.index-explorer label { cursor: pointer; }
+li.widget.index-explorer div.content { margin: 0; padding: 10px; }
+li.widget.index-explorer div.section { margin-left: 20px; }
+li.widget.index-explorer div.filters { margin-left: 20px; }
+li.widget.index-explorer li.section { border-top: 1px solid #dfdfdf; margin-top: 10px; }
+li.widget.index-explorer li.section p { font-weight: bold; }
+li.widget.index-explorer li.section ul { margin: 0; padding: 0; list-style-type: none; }
+li.widget.index-explorer #q_freetext { border: 1px solid #ffe974; height: 20px; width: 380px; }
+li.widget.index-explorer button { top: -1px; border: 1px solid #ffe974; }
 ul.ui-autocomplete.ui-widget-content { background: #fff none; }
-div.portlet.index-explorer .ui-autocomplete-input {
+li.widget.index-explorer .ui-autocomplete-input {
     height: 23px; margin: 0; padding: 0;
     border: 1px solid #ffe974; border-right: 0; line-height: 8px;
 }
-div.portlet.index-explorer a.ui-state-hover { border: 0 !important; background: #ffe974 !important; }
-div.portlet.index-explorer .ui-button-icon { height: 25px; margin: 0; padding: 0; }
-div.portlet.index-explorer li.term-content span.ui-icon { display: inline-block; margin-top: 2px; height: 13px; }
-div.portlet.index-explorer li.term-content {
+li.widget.index-explorer a.ui-state-hover { border: 0 !important; background: #ffe974 !important; }
+li.widget.index-explorer .ui-button-icon { height: 25px; margin: 0; padding: 0; }
+li.widget.index-explorer li.term-content span.ui-icon { display: inline-block; margin-top: 2px; height: 13px; }
+li.widget.index-explorer li.term-content {
     padding: 3px; margin: 10px 3px 0 3px; display: inline-block;
     background: #ffdd57; border: 1px solid #a45b13;
     cursor: pointer;
 }
 
 /* ABOUT PAGE */
-div.portlet.image-roller {
+li.widget.image-roller {
     background: transparent none; border: 0;
     -moz-box-shadow: none; -webkit-box-shadow: none; box-shadow: none;
 }
@@ -540,7 +539,7 @@ body.imea-treaties div.treaty-entry span.theme { color: #666; }
 body.imea-treaties div.col2-center h2 { display: block; margin-top: 40px; }
 body.imea-treaties table.treaties { margin-top: 70px; }
 body.imea-treaties span.label { font-weight: bold; }
-body.imea-treaties div.portlet.tag-cloud {
+body.imea-treaties li.widget.tag-cloud {
     background: #edf3fe none; border: 0;
     -moz-box-shadow: none; -webkit-box-shadow: none; box-shadow: none;
 }
@@ -594,7 +593,7 @@ body.imea-treaties ul.contacts div.details { margin-top: 15px; }
 body.imea-treaties input#nfp-filter { width: 150px; }
 
 /* DECISIONS PAGES */
-body.imea-decisions div.portlet.tag-cloud {
+body.imea-decisions li.widget.tag-cloud {
     background: #edf3fe none; border: 0;
     -moz-box-shadow: none; -webkit-box-shadow: none; box-shadow: none;
 }

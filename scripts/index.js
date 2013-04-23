@@ -1,17 +1,17 @@
 $(document).ready(function() {
     /* Click on the index page 'What is InforMEA' expand ribbon */
-    $('div.whatisinformea a.ribbon-click').click(function() {
-        $('div.whatisinformea div.content').slideToggle({easing: 'linear', duration:200});
-    })
-
-    /* Click on 'Advanced search' link on MEA Explorer in front page */
-    $('div.index-explorer a.index-explorer-advanced-search-click').click(function () {
-        $('div.index-explorer ul.advanced').slideToggle({easing: 'linear', duration:200});
+    $('li.whatisinformea a.ribbon-click').click(function() {
+        $('li.whatisinformea div.content').slideToggle({easing: 'linear', duration:200});
     });
 
-    featuredCountryPortletSetup();
+    /* Click on 'Advanced search' link on MEA Explorer in front page */
+    $('li.index-explorer a.index-explorer-advanced-search-click').click(function () {
+        $('li.index-explorer ul.advanced').slideToggle({easing: 'linear', duration:200});
+    });
 
-    /* Set-up paginator for the upcoming meetings portlet */
+    featuredCountryWidgetSetup();
+
+    /* Set-up paginator for the upcoming meetings widget */
     upcoming_meetings_paginator();
 
     $("#q_term_index").reusableComboBox({
@@ -69,9 +69,9 @@ function explorerIndexUIDeselectTerm(id) {
 }
 
 
-function featuredCountryPortletSetup() {
-    $('div.portlet.featured-country div#tabs').tabs();
-    featuredCountryPortletInitMap();
+function featuredCountryWidgetSetup() {
+    $('li.widget.featured-country div#tabs').tabs();
+    featuredCountryWidgetInitMap();
 }
 
 function featuredCountryShowMap(latlng, zoom) {
@@ -135,32 +135,32 @@ function featuredCountryOpenRamsarSite(id) {
 
 
 function upcoming_meetings_paginator() {
-    jQuery('div.upcoming-events ul').each(function(idx, portlet) {
-        var items = jQuery('li', portlet);
+    jQuery('li.upcoming-events ul').each(function(idx, widget) {
+        var items = jQuery('li', widget);
         var total = items.length;
         if(total > 0) {
             var current = 0;
             var previous = total;
-            var next = jQuery('div.upcoming-events a.next');
-            var prev = jQuery('div.upcoming-events a.prev');
-            jQuery(next, portlet).click(function() {
+            var next = jQuery('li.upcoming-events a.next');
+            var prev = jQuery('li.upcoming-events a.prev');
+            jQuery(next, widget).click(function() {
                 previous = current;
                 current += 1;
                 if(current == total) { current = 0; }
                 jQuery(items[previous]).hide();
                 jQuery(items[current]).removeClass('hidden');
                 jQuery(items[current]).show();
-                jQuery('div.upcoming-events span.current').text(current + 1);
+                jQuery('li.upcoming-events span.current').text(current + 1);
             });
 
-            jQuery(prev, portlet).click(function() {
+            jQuery(prev, widget).click(function() {
                 previous = current;
                 current -= 1;
                 if(current < 0) { current = total - 1; }
                 jQuery(items[previous]).hide();
                 jQuery(items[current]).removeClass('hidden');
                 jQuery(items[current]).show();
-                jQuery('div.upcoming-events span.current').text(current + 1);
+                jQuery('li.upcoming-events span.current').text(current + 1);
             });
         }
     });

@@ -62,10 +62,10 @@ class BorderlessWidget extends WP_Widget {
         $css_height = empty($instance['height']) ? '' : sprintf('height: %spx;', trim($instance['height']));
         $css_background = empty($instance['background']) ? '' : sprintf("background: url('%s') no-repeat;", $instance['background']);
         ?>
-        <div class="portlet borderless-widget" id="<?php echo @$args['widget_id']; ?>"
+        <li class="widget borderless-widget" id="<?php echo @$args['widget_id']; ?>"
              style="<?php echo $css_background . $css_width . $css_height; ?>">
             <?php echo $content; ?>
-        </div>
+        </li>
     <?php
     }
 }

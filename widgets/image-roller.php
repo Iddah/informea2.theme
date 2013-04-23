@@ -77,13 +77,11 @@ class ImageRollerWidget extends WP_Widget {
         $height = intval($instance['height']);
         if(count($images)) :
             wp_enqueue_script('jquery-cycle-lite', get_bloginfo('template_directory') . '/scripts/jquery.cycle.lite.js', array(), FALSE, TRUE);
-            add_action('js_inject', 'portlet_image_roller_inject_js');
+            add_action('js_inject', 'widget_image_roller_inject_js');
     ?>
-            <div class="portlet image-roller">
+            <li class="widget image-roller">
             <?php if (!empty($title)) : ?>
-                <div class="title">
-                    <?php echo $title; ?>
-                </div>
+                <h2><?php echo $title; ?></h2>
             <?php endif; ?>
                 <div class="content">
                     <?php foreach($images as $image) : ?>
@@ -91,7 +89,7 @@ class ImageRollerWidget extends WP_Widget {
                              width="<?php echo $width; ?>" height="<?php echo $height; ?>" />
                     <?php endforeach; ?>
                 </div>
-            </div>
+            </li>
     <?php
         endif;
     }
@@ -99,11 +97,11 @@ class ImageRollerWidget extends WP_Widget {
 
 add_action('widgets_init', create_function('', 'return register_widget("ImageRollerWidget");'));
 
-function portlet_image_roller_inject_js() {
+function widget_image_roller_inject_js() {
 ?>
     <script type="text/javascript">
         $(document).ready(function() {
-            var ctrl = $('div.portlet.image-roller>div.content');
+            var ctrl = $('li.widget.image-roller>div.content');
             var img = $($('img', ctrl)[0]);
             var width = img.attr('width');
             var height = img.attr('height');

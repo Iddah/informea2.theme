@@ -154,8 +154,6 @@ function informea2_widgets_init() {
     register_sidebar(array(
         'id' => 'index-page-left', 'name' => __('Index page left column', 'informea'),
         'description' => __('Index page first column widgets', 'informea'),
-        'before_widget' => '<div class="portlet">', 'after_widget' => '</div>',
-        'before_title' => '<div class="pre-title"><div class="title"><span>', 'after_title' => '</span></div></div>',
     ));
     register_sidebar(array(
         'name' => __('Index page center column', 'informea'), 'id' => 'index-page-center',
@@ -164,8 +162,6 @@ function informea2_widgets_init() {
     register_sidebar(array(
         'id' => 'index-page-right', 'name' => __('Index page right column', 'informea'),
         'description' => __('Index page third column widgets', 'informea'),
-        'before_widget' => '<div class="portlet">', 'after_widget' => '</div>',
-        'before_title' => '<div class="pre-title"><div class="title"><span>', 'after_title' => '</span></div></div>',
     ));
     register_sidebar(array(
         'id' => 'about-page-left', 'name' => __('About page widgets', 'informea'),

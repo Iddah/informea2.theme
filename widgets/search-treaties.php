@@ -86,10 +86,8 @@ class SearchTreatyTextWidget extends WP_Widget {
         $search2 = new InformeaSearch2($_GET);
         $ts = $search2->ui_get_treaties_ids();
 ?>
-        <div class="portlet search" id="<?php echo $args['widget_id']; ?>">
-            <div class="title">
-                <?php echo $title; ?>
-            </div>
+        <li class="widget search" id="<?php echo $args['widget_id']; ?>">
+            <h2><?php echo $title; ?></h2>
             <form action="<?php bloginfo('url'); ?>/search" method="GET">
                 <?php if($use_treaties) : ?><input type="hidden" name="q_use_treaties" value="1" /><?php endif; ?>
                 <?php if($use_decisions) : ?><input type="hidden" name="q_use_decisions" value="1" /><?php endif; ?>
@@ -103,7 +101,7 @@ class SearchTreatyTextWidget extends WP_Widget {
                 </a>
                 <div class="clear"></div>
             </form>
-        </div>
+        </li>
 <?php
     }
 }

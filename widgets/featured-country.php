@@ -39,18 +39,18 @@ class FeaturedCountryWidget extends WP_Widget {
         $title = empty($instance['title']) ? ' ' : apply_filters('widget_title', $instance['title']);
         $featured_country = informea_countries::get_featured_country();
         if ($featured_country) {
-            add_action('js_inject', 'portlet_featured_country_inject_js');
+            add_action('js_inject', 'widget_featured_country_inject_js');
             wp_enqueue_script('google-maps-api', 'http://maps.google.com/maps/api/js?sensor=false');
 ?>
-            <div class="portlet featured-country">
+            <li class="widget featured-country">
                 <?php if (!empty($title)) : ?>
-                    <div class="title">
+                    <h2>
                         <?php echo $title; ?>:
                         <a href="<?php echo sprintf('%s/countries/%s', get_bloginfo('url'), $featured_country->id); ?>">
                             <?php echo $featured_country->name; ?>
                         </a>
                         <img src="<?php echo get_bloginfo('template_directory') . '/' . $featured_country->icon_large; ?>" />
-                    </div>
+                    </h2>
                     <div class="clear"></div>
                 <?php endif; ?>
                 <div class="content featured-country">
@@ -69,10 +69,7 @@ class FeaturedCountryWidget extends WP_Widget {
                         </div>
                     </div>
                 </div>
-                <div class="clear"></div>
-            </div>
-            <div class="clear"></div>
-            <div class="margin-bottom-10"></div>
+            </li>
         <?php
         }
     }
@@ -80,13 +77,13 @@ class FeaturedCountryWidget extends WP_Widget {
 
 add_action('widgets_init', create_function('', 'return register_widget("FeaturedCountryWidget");'));
 
-function portlet_featured_country_inject_js() {
+function widget_featured_country_inject_js() {
     global $featured_country;
 ?>
     <script type="text/javascript">
         var fc_map = null;
         var infoWindow = null;
-        function featuredCountryPortletInitMap() {
+        function featuredCountryWidgetInitMap() {
             var id_country = <?php echo $featured_country->id; ?>;
             var name = "<?php echo esc_attr($featured_country->name); ?>";
             var latlng = null, zoom = 0, map = null;

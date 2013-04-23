@@ -6,16 +6,20 @@
     get_header();
 ?>
     <div class="col3-left col3">
-        <div>
+        <ul class="sidebar">
             <?php dynamic_sidebar('index-page-left'); ?>
-        </div>
+        </ul>
         <div class="clear"></div>
     </div>
     <div class="col3-center col3">
-        <?php dynamic_sidebar('index-page-center'); ?>
+        <ul class="sidebar">
+            <?php dynamic_sidebar('index-page-center'); ?>
+        </ul>
     </div>
     <div class="col3-right col3">
-        <?php dynamic_sidebar('index-page-right'); ?>
+        <ul class="sidebar">
+            <?php dynamic_sidebar('index-page-right'); ?>
+        </ul>
     </div>
 <?php
     get_footer();

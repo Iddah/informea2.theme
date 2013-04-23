@@ -52,14 +52,12 @@ class IndexLatestNewsWidget extends WP_Widget {
         }
         $title = empty($instance['title']) ? ' ' : apply_filters('widget_title', $instance['title']);
         ?>
-        <div class="portlet latest-news">
+        <li class="widget latest-news">
             <?php if(!empty($title)) : ?>
-            <div class="pre-title">
-                <div class="title">
-                    <?php echo $title; ?>
-                    <a class="rss" target="_blank" href="<?php bloginfo('url'); ?>/highlights/rss"></a>
-                </div>
-            </div>
+            <h2>
+                <?php echo $title; ?>
+                <a class="rss" target="_blank" href="<?php bloginfo('url'); ?>/highlights/rss"></a>
+            </h2>
             <?php endif; ?>
             <div class="content">
                 <ul class="latest-news">
@@ -82,9 +80,7 @@ class IndexLatestNewsWidget extends WP_Widget {
                     <?php endforeach; ?>
                 </ul>
             </div>
-        </div>
-        <div class="clear"></div>
-        <div class="margin-bottom-10"></div>
+        </li>
         <?php
     }
 }

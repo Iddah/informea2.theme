@@ -34,10 +34,8 @@ class EventsExplorerWidget extends WP_Widget {
 
     function widget($args, $instance) {
         $events_ob = new informea_events();
-        $title = empty($instance['title']) ? ' ' : apply_filters('widget_title', $instance['title']);
-        ?>
-        <div class="portlet event-explorer">
-            <h2></h2>
+?>
+        <li class="widget event-explorer">
             <div class="content">
                 <form action="/events" method="get">
                     <label>
@@ -63,7 +61,7 @@ class EventsExplorerWidget extends WP_Widget {
                             foreach($events_ob->get_years_interval() as $year) :
                                 $selected = strftime('%Y') == $year ? ' selected="selected"' : '';
                             ?>
-                            <option value="<?php echo $year; ?>"<?php echo $selected; ?>">
+                            <option value="<?php echo $year; ?>"<?php echo $selected; ?>>
                                 <?php echo $year; ?>
                             </option>
                             <?php endforeach; ?>
@@ -74,7 +72,7 @@ class EventsExplorerWidget extends WP_Widget {
                     </p>
                 </form>
             </div>
-        </div>
+        </li>
     <?php
     }
 }

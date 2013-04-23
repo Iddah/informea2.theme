@@ -34,26 +34,24 @@ class SelectCountryWidget extends WP_Widget {
     function widget($args, $instance) {
         $title = empty($instance['title']) ? ' ' : apply_filters('widget_title', $instance['title']);
 ?>
-        <li>
-            <div class="portlet select-country">
-                <?php if (!empty($title)) : ?>
-                <h3>
-                    <?php echo $title; ?>
-                </h3>
-                <?php endif; ?>
-                <div class="content">
-                    <form action="">
-                        <select class="selectCountry" onchange="selectCountryWidgetOnChange(this);">
-                            <option value="">-- Select country --</option>
-                            <?php
-                                foreach(informea_countries::get_countries() as $country) :
-                                    $url = sprintf('%s/countries/%s', get_bloginfo('url'), $country->id);
-                            ?>
-                                <option data-url="<?php echo $url; ?>" value="<?php echo $country->id; ?>"><?php echo $country->name; ?></option>
-                            <?php endforeach; ?>
-                        </select>
-                    </form>
-                </div>
+        <li class="portlet select-country">
+            <?php if (!empty($title)) : ?>
+            <h3>
+                <?php echo $title; ?>
+            </h3>
+            <?php endif; ?>
+            <div class="content">
+                <form action="">
+                    <select class="selectCountry" onchange="selectCountryWidgetOnChange(this);">
+                        <option value="">-- Select country --</option>
+                        <?php
+                            foreach(informea_countries::get_countries() as $country) :
+                                $url = sprintf('%s/countries/%s', get_bloginfo('url'), $country->id);
+                        ?>
+                            <option data-url="<?php echo $url; ?>" value="<?php echo $country->id; ?>"><?php echo $country->name; ?></option>
+                        <?php endforeach; ?>
+                    </select>
+                </form>
             </div>
         </li>
         <?php

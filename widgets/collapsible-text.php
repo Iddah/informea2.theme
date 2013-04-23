@@ -54,21 +54,16 @@ class CollapsibleTextWidget extends WP_Widget {
         $title = empty($instance['title']) ? ' ' : apply_filters('widget_title', $instance['title']);
         $content = empty($instance['content']) ? ' ' : apply_filters('widget_text', $instance['content']);
         $expanded = @$instance['expanded'] == 1;
-        ?>
-        <div class="portlet round whatisinformea" id="<?php echo @$args['widget_id']; ?>">
-            <div class="pre-title">
-                <div class="title">
-                    <?php echo $title; ?>
-                </div>
-            </div>
+?>
+        <li class="widget round whatisinformea" id="<?php echo @$args['widget_id']; ?>">
+            <h2><?php echo $title; ?></h2>
             <div class="content<?php echo $expanded ? '' : ' hidden'; ?>">
                 <?php echo $content; ?>
             </div>
             <a href="javascript:void(0);" class="ribbon-click">
-                <img class="ribbon" src="<?php bloginfo('template_directory'); ?>/images/expand.png" alt="arrow for expanding this portlet">
+                <img class="ribbon" src="<?php bloginfo('template_directory'); ?>/images/expand.png" alt="arrow for expanding this widget">
             </a>
-        </div>
-        <div class="clear"></div>
+        </li>
         <?php
     }
 }

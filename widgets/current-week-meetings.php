@@ -37,11 +37,9 @@ class CurrentWeekMeetingsWidget extends WP_Widget {
         $meetings = informea_events::get_meetings_current_week();
         if(count($meetings)) :
         ?>
-        <div class="portlet upcoming-events">
+        <li class="widget upcoming-events">
             <?php if (!empty($title)) : ?>
-            <div class="title">
-                <?php echo $title; ?>
-            </div>
+            <h2><?php echo $title; ?></h2>
             <?php endif; ?>
             <div class="content">
                 <ul class="items">
@@ -70,9 +68,7 @@ class CurrentWeekMeetingsWidget extends WP_Widget {
                     </div>
                 <?php endif; ?>
             </div>
-        </div>
-        <div class="clear"></div>
-        <div class="margin-bottom-10"></div>
+        </li>
     <?php
         endif;
     }

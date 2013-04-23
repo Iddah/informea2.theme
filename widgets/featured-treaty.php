@@ -59,11 +59,9 @@ class FeaturedTreatyWidget extends WP_Widget {
         $treaty = informea_treaties::get_featured_treaty();
         if ($treaty) {
             ?>
-            <div class="portlet featured-treaty">
+            <li class="widget featured-treaty">
                 <?php if (!empty($title)) : ?>
-                    <div class="title">
-                        <?php echo $title; ?>
-                    </div>
+                <h2><?php echo $title; ?></h2>
                 <?php endif; ?>
                 <div class="content">
                     <span class="thumbnail <?php echo $treaty->odata_name; ?>"></span>
@@ -102,9 +100,7 @@ class FeaturedTreatyWidget extends WP_Widget {
                     </div>
                 </div>
                 <div class="clear"></div>
-            </div>
-            <div class="clear"></div>
-            <div class="margin-bottom-10"></div>
+            </li>
         <?php
         }
     }
