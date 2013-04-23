@@ -108,6 +108,13 @@ function informea_treaties_breadcrumbtrail() {
     echo build_breadcrumbtrail($items);
 }
 
+function informea_decisions_breadcrumbtrail() {
+    $items = array();
+    $home = get_bloginfo('url');
+    $items[__('Home', 'informea')] = $home;
+    $items[__('Decisions', 'informea')] = '';
+    echo build_breadcrumbtrail($items);
+}
 
 function informea_customize_register( $wp_customize ) {
     //All our sections, settings, and controls will be added here
