@@ -29,7 +29,7 @@ sort($tabs);
         <?php } ?>
     </ul>
 </div>
-<div class="pull-right">
+<div class="toolbar text-right">
     <form action="">
         <label for="view-mode"><?php _e('Change view', 'informea'); ?></label>
         <select id="view-mode" name="view-mode" onchange="onChangeViewMode(this);">
