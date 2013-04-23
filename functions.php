@@ -200,5 +200,6 @@ require_once(dirname(__FILE__) . '/widgets/image-roller.php');
 require_once(dirname(__FILE__) . '/widgets/search-treaties.php');
 require_once(dirname(__FILE__) . '/widgets/select-country.php');
 require_once(dirname(__FILE__) . '/widgets/find-nfp.php');
+require_once(dirname(__FILE__) . '/widgets/mea-coverage.php');
 
 

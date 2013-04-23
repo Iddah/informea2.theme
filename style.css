@@ -597,6 +597,7 @@ body.imea-decisions ul li.treaty-icon span.theme { color: #666; }
 
 /* COUNTRY PAGES */
 body.imea-countries select.selectCountry { width: 180px; }
+body.imea-countries select.mea-coverage { width: 180px; height: 120px; }
 /* Below, you are beyond redemption */
 
 /* TRIAGE */
