@@ -23,7 +23,8 @@
     - Portlets
     - Index MEA Explorer
  - ABOUT PAGE
- - TREATIES
+ - TREATIES PAGES
+ - DECISIONS PAGES
  - /dev/null
 */
 
@@ -131,6 +132,8 @@ div.alert .close { position: relative; top: -5px; right: -4px; line-height: 20px
 .icon-chevron-down { background-position: -313px -119px; }
 .icon-envelope { background-position: -72px 0; }
 .icon-user { background-position: -168px 0; }
+.icon-download-alt { background-position: -96px -24px; }
+.icon-download { background-position: -120px -24px; }
 
 /* GLOBAL :: Tabs */
 div.tabs { height: 22px; margin-bottom: 10px; padding-top: 2px; border-bottom: 1px solid #d7d7d7; }
@@ -528,7 +531,7 @@ div.portlet.image-roller {
     -moz-box-shadow: none; -webkit-box-shadow: none; box-shadow: none;
 }
 
-/* TREATIES PAGE */
+/* TREATIES PAGES */
 body.imea-treaties div.treaty-entry { width: 90px; display: inline-block; text-align: center; margin-top: 20px; vertical-align: top; }
 body.imea-treaties div.treaty-entry img { width: 48px; height: 48px; line-height: 48px; margin-bottom: 5px; }
 body.imea-treaties div.treaty-entry span.theme { color: #666; }
@@ -587,6 +590,13 @@ body.imea-treaties ul.contacts div.user-icon {
     background: url('images/user_icon.png') no-repeat; }
 body.imea-treaties ul.contacts div.details { margin-top: 15px; }
 body.imea-treaties input#nfp-filter { width: 150px; }
+
+/* DECISIONS PAGES */
+body.imea-decisions div.portlet.tag-cloud {
+    background: #edf3fe none; border: 0;
+    -moz-box-shadow: none; -webkit-box-shadow: none; box-shadow: none;
+}
+
 
 /* Below, you are beyond redemption */
 

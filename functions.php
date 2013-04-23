@@ -152,6 +152,14 @@ function informea2_widgets_init() {
         'description' => __('Widgets on the treaties listing page', 'informea'),
     ));
     register_sidebar(array(
+        'id' => 'decisions-sidebar', 'name' => __('Decisions page sidebar', 'informea'),
+        'description' => __('Widgets on the decisions listing page', 'informea'),
+    ));
+    register_sidebar(array(
+        'id' => 'countries-sidebar', 'name' => __('Countries page sidebar', 'informea'),
+        'description' => __('Widgets on the countries listing page', 'informea'),
+    ));
+    register_sidebar(array(
         'id' => 'treaties-sidebar-item', 'name' => __('Treaty index sidebar', 'informea'),
         'description' => __('Widgets on the treaty index page', 'informea'),
     ));

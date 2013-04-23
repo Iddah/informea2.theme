@@ -16,9 +16,7 @@ if (have_posts()) : while (have_posts()) : the_post();
         <?php get_template_part("pages/titles/title", $specific_template); ?>
     </div>
     <div class="col2-left col2">
-        <div>
-            <?php get_template_part("pages/left_column/sidebar", $specific_template); ?>
-        </div>
+        <?php get_template_part("pages/left_column/sidebar", $specific_template); ?>
         <div class="clear"></div>
     </div>
     <div class="col2-center col2">
