@@ -12,7 +12,7 @@ $treaties = $page_data->get_treaties_list();
         if ($_treaty->odata_name == 'aewa') { continue; }
         $url = sprintf('%s/treaties/%s/decisions', get_bloginfo('url'), $_treaty->odata_name);
 ?>
-        <li class="treaty-entry">
+        <li class="treaty-icon">
             <a href="<?php echo $url; ?>">
                 <img src="<?php echo $_treaty->logo_medium; ?>" alt="<?php _e('Convention logo', 'informea'); ?>"/>
             </a>

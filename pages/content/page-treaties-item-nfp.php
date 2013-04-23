@@ -27,9 +27,7 @@ $all_contacts = $contact_data['contacts'];
         $c = count($contacts);
 ?>
     <li id="treaty-<?php echo $country->id_country; ?>">
-        <a name="contact-bookmark-<?php echo $country->id_country; ?>" href="javascript:void(0);" class="flag m28px"><i class="icon icon-chevron-right"></i></a>
-        <a href="javascript:void(0);" class="flag country"
-            style="background: url(<?php bloginfo('template_directory'); ?>/<?php echo $country->country_flag_medium; ?>) no-repeat;"><?php echo $country->country_name; ?> (<?php echo $c; ?>)</a>
+        <h2><?php echo $country->country_name; ?> (<?php echo $c; ?>)</h2>
         <div class="content hidden">
             <?php if(count($contacts)) : ?>
             <ul class="contacts">
@@ -87,7 +85,6 @@ $all_contacts = $contact_data['contacts'];
             </ul>
             <?php endif; ?>
         </div>
-        <div class="clear"></div>
     </li>
     <?php } ?>
 </ul>

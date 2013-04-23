@@ -70,10 +70,8 @@ $page_data = new informea_treaties();
                     <td class="text-top">
                         <?php echo $decision->number; ?>
                     </td>
-                    <td class="text-top">
-                        <h3>
-                            <?php echo $page_data->page_decisions_overview_decision_link($decision, $treaty); ?>
-                        </h3>
+                    <td class="text-top title">
+                        <?php echo $page_data->page_decisions_overview_decision_link($decision, $treaty); ?>
                         <?php if (count($tags)) : ?>
                         Related terms
                         <ul class="terms round">

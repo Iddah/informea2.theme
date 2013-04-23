@@ -533,10 +533,9 @@ li.widget.image-roller {
 }
 
 /* TREATIES PAGES */
-body.imea-treaties div.treaty-entry { width: 90px; display: inline-block; text-align: center; margin-top: 20px; vertical-align: top; }
-body.imea-treaties div.treaty-entry img { width: 48px; height: 48px; line-height: 48px; margin-bottom: 5px; }
-body.imea-treaties div.treaty-entry span.theme { color: #666; }
-body.imea-treaties div.col2-center h2 { display: block; margin-top: 40px; }
+body.imea-treaties div.treaty-icon { width: 90px; display: inline-block; text-align: center; margin-top: 10px; vertical-align: top; }
+body.imea-treaties div.treaty-icon img { width: 48px; height: 48px; line-height: 48px; margin-bottom: 5px; }
+body.imea-treaties div.treaty-icon span.theme { color: #666; }
 body.imea-treaties table.treaties { margin-top: 70px; }
 body.imea-treaties span.label { font-weight: bold; }
 body.imea-treaties li.widget.tag-cloud {
@@ -565,24 +564,19 @@ body.imea-treaties ul.articles li.ident-4 { margin-left: 80px; }
 body.imea-treaties div.article-toolbar { margin: 0; float: right; }
 body.imea-treaties div.paragraph-toolbar { margin: -18px 0 0 0; float: right; }
 body.imea-treaties ul.decisions { margin: 30px 0 0 0; padding: 0; list-style-type: none; }
-body.imea-treaties ul.decisions h2 { margin: 5px; padding: 0 0 0 20px; cursor: pointer; }
 body.imea-treaties ul.decisions li { border-bottom: 1px dashed #dfdfdf; }
 body.imea-treaties ul.decisions li div.content { margin-left: 50px; }
-body.imea-treaties ul.decisions h3 { font-weight: normal; margin: 0 0 10px 0; padding: 0; }
+body.imea-treaties ul.decisions h2 { cursor: pointer; }
+body.imea-treaties ul.decisions a.title { font-size: 14px; display: block; }
 body.imea-treaties ul.terms {
     border: 1px dashed #666; background-color: #f4f4f4;
     list-style-type: none; margin: 10px 0; padding: 5px;
 }
 body.imea-treaties ul.terms li { border: 0; display: inline-block; }
-body.imea-treaties ul.nfp { list-style-type: none; margin: 0; padding: 0; }
-body.imea-treaties ul.nfp li a.flag {
-    margin: 8px 0; vertical-align: middle; line-height: 32px; display: inline-block; height: 32px; padding-left: 35px;
-    font-size: 18px; font-weight: bold; color: #2ca0d2;
-}
-body.imea-treaties ul.nfp li a.flag:hover { text-decoration: none; }
-body.imea-treaties ul.nfp li a.flag.m28px { margin-left: -32px; }
+body.imea-treaties ul.nfp { cursor: pointer; list-style-type: none; margin: 0; padding: 0; }
+body.imea-treaties ul.nfp li { border-bottom: 1px dashed #dfdfdf; }
 body.imea-treaties ul.contacts { list-style-type: none; }
-body.imea-treaties ul.contacts li { background-color: #f4f4f4; padding: 10px; margin-top: 5px; border: 1px dashed #ddd; }
+body.imea-treaties ul.contacts li { background-color: #f4f4f4; padding: 10px; margin: 5px 0; border: 1px dashed #ddd; }
 body.imea-treaties ul.contacts li .btn { margin: 10px 5px 20px 0; }
 body.imea-treaties ul.contacts li h3 { font-size: 16px; margin: 5px 0 0 15px; display: inline-block; width: 580px; }
 body.imea-treaties ul.contacts li h3 i { display: block; font-weight: normal; font-size: 12px; }
@@ -598,9 +592,9 @@ body.imea-decisions li.widget.tag-cloud {
     -moz-box-shadow: none; -webkit-box-shadow: none; box-shadow: none;
 }
 body.imea-decisions ul { margin: 0; padding: 0; }
-body.imea-decisions ul li.treaty-entry { width: 90px; display: inline-block; text-align: center; margin-top: 20px; vertical-align: top; }
-body.imea-decisions ul li.treaty-entry img { width: 48px; height: 48px; line-height: 48px; margin-bottom: 5px; }
-body.imea-decisions ul li.treaty-entry span.theme { color: #666; }
+body.imea-decisions ul li.treaty-icon { width: 90px; display: inline-block; text-align: center; margin-top: 20px; vertical-align: top; }
+body.imea-decisions ul li.treaty-icon img { width: 48px; height: 48px; line-height: 48px; margin-bottom: 5px; }
+body.imea-decisions ul li.treaty-icon span.theme { color: #666; }
 
 /* COUNTRY PAGES */
 body.imea-countries select.selectCountry { width: 180px; }
