@@ -155,7 +155,11 @@ div.tabs ul li a.disabled { color: #888; background-color: #f2f2f2!important; cu
 
 /* GLOBAL :: Widgets */
 ul.sidebar { list-style-type: none; margin: 0; padding: 0; }
-li.widget h2 { color: black; padding: 0; margin: 5px 0 10px 0; font-size: 15px; }
+li.widget h2 {
+    background: transparent; color: rgb(68, 67, 67);
+    font-size: 18px; letter-spacing: 0;
+    padding: 0; margin: 5px 0;
+}
 li.widget ul { list-style-type: none; margin: 0; padding: 0; }
 li.widget.search { padding-top: 0; background: #ffe974 none; }
 li.widget.search h2 { font-size: 15px; font-weight: bold; }
@@ -410,11 +414,6 @@ li.widget {
     background-image: linear-gradient(to top, white, rgb(237, 237, 237));
 }
 
-li.widget h2 {
-    width: 100%; padding: 7px 3px;
-    background: transparent; color: rgb(68, 67, 67);
-    font-size: 18px; letter-spacing: 0;
-}
 li.widget h2 a.rss {
     margin: 0; padding: 0; width: 20px; height: 20px;
     display: block; float: right;
