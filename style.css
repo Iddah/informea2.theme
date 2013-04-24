@@ -609,7 +609,8 @@ body.imea-countries ul.countries table { margin: 0; }
 body.imea-countries ul.countries div.flag { float: right; margin-top: -40px; }
 body.imea-countries div.table-scroll { height: 600px; overflow: auto; margin-top: 15px; }
 body.imea-countries div.table-scroll table { width:100%; margin: 0; }
-body.imea-countries div.table-scroll table td, th { border: 1px solid #f4f4f4; text-align: center; }
+body.imea-countries div.table-scroll table td,
+body.imea-countries div.table-scroll table th { border: 1px solid #f4f4f4; text-align: center; }
 body.imea-countries div.table-scroll table th { padding: 5px 0; min-width: 90px; vertical-align: top; }
 body.imea-countries div.table-scroll table th.flag { width: 40px; }
 body.imea-countries div.filter-treaties { margin: 5px; padding: 10px; border: 1px dashed #666; background: #f4f4f4; }
@@ -619,7 +620,7 @@ body.imea-countries #tooltip, body.imea-countries #tooltip:hover, body.imea-coun
     border: 1px solid #999999; background: #EEEEEE; color: #000000;
     cursor: default; padding: 2px; text-decoration: none;
 }
-body.imea-countries div#country_un_env_data table td, th { border: 1px solid #ddd; }
+body.imea-countries div#country_un_env_data table td, body.imea-countries div#country_un_env_data table th { border: 1px solid #ddd; }
 body.imea-countries div#map-canvas { width: 720px; height: 400px; border: 1px solid #ddd; }
 
 

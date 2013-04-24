@@ -8,7 +8,7 @@ $tabs = array(
 $c = imea_countries_page::count_treaty_membership($id);
 if($c > 0) { $tabs['membership'] = __('MEA membership', 'informea'); }
 
-$c = informea_countries::count_focal_points();
+$c = informea_countries::count_focal_points($id);
 if($c > 0) { $tabs['nfp'] = sprintf('%s (%s)', __('Focal points', 'informea'), $c); }
 
 $c = imea_countries_page::count_national_reports($id);
