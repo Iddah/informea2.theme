@@ -172,6 +172,10 @@ function informea2_widgets_init() {
         'description' => __('Widgets on the treaties listing page', 'informea'),
     ));
     register_sidebar(array(
+        'id' => 'treaties-sidebar-item', 'name' => __('Treaty index sidebar', 'informea'),
+        'description' => __('Widgets on the treaty factsheet page', 'informea'),
+    ));
+    register_sidebar(array(
         'id' => 'decisions-sidebar', 'name' => __('Decisions page sidebar', 'informea'),
         'description' => __('Widgets on the decisions listing page', 'informea'),
     ));
@@ -180,8 +184,8 @@ function informea2_widgets_init() {
         'description' => __('Widgets on the countries listing page', 'informea'),
     ));
     register_sidebar(array(
-        'id' => 'treaties-sidebar-item', 'name' => __('Treaty index sidebar', 'informea'),
-        'description' => __('Widgets on the treaty index page', 'informea'),
+        'id' => 'countries-sidebar-item', 'name' => __('Country index sidebar', 'informea'),
+        'description' => __('Widgets on the country factsheet page', 'informea'),
     ));
 }
 add_action('widgets_init', 'informea2_widgets_init');

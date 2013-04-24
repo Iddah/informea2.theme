@@ -619,6 +619,9 @@ body.imea-countries #tooltip, body.imea-countries #tooltip:hover, body.imea-coun
     border: 1px solid #999999; background: #EEEEEE; color: #000000;
     cursor: default; padding: 2px; text-decoration: none;
 }
+body.imea-countries div#country_un_env_data table td, th { border: 1px solid #ddd; }
+body.imea-countries div#map-canvas { width: 720px; height: 400px; border: 1px solid #ddd; }
+
 
 
 /* Below, you are beyond redemption */
