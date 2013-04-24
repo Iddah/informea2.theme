@@ -51,7 +51,7 @@ function init_map() {
 	});
 
 
-	map = new OpenLayers.Map('map', {controls: [new OpenLayers.Control.Navigation(), new OpenLayers.Control.LayerSwitcher({'ascending': false}), new OpenLayers.Control.PanZoomBar()], numZoomLevels: 5, restrictedExtent: new OpenLayers.Bounds(-180, -90, 180, 90), maxResolution: (360 / _mapWidth)});
+	map = new OpenLayers.Map('openlayers_map', {controls: [new OpenLayers.Control.Navigation(), new OpenLayers.Control.LayerSwitcher({'ascending': false}), new OpenLayers.Control.PanZoomBar()], numZoomLevels: 5, restrictedExtent: new OpenLayers.Bounds(-180, -90, 180, 90), maxResolution: (360 / _mapWidth)});
 
 	var layer = new OpenLayers.Layer.MapServer("OpenLayers WMS", mapserver_url + "?map=" + mapserver_localmappath + "&SERVICE=WMS&VERSION=1.3.0&REQUEST=GetMap&BBOX=-90,-180,90,180&CRS=EPSG:4326&LAYERS=countries&STYLES=&FORMAT=image/png&DPI=91&TRANSPARENT=TRUE", {layers: 'x'}, {gutter: 15, singleTile: _singleTile});
 	// map.addLayer(layer);
