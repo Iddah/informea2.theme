@@ -29,7 +29,6 @@ $(document).ready(function() {
     $('div.toolbar-decisions button#scroll-resolutions').click(function(e) {
         e.preventDefault();
         var target = $('a[name="' + $(this).data('target') + '"]');
-        console.log(target);
         $.scrollTo(target, 300, { offset: target.height() - 30 });
     });
 

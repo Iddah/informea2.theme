@@ -28,7 +28,6 @@ $(document).ready(function () {
     /* Click on country name, view Country MEA Membership */
     var ctrl2 = $('input#party-filter');
     ctrl2.keyup(function(e) {
-        console.log(e.which);
         if (e.which == 13) {
             e.preventDefault();
         } else if (e.which == 27) {
