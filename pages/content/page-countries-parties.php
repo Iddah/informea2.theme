@@ -31,6 +31,9 @@ foreach ($data as $iso2l => $parties) :
     </div>
     <div class="clear"></div>
     <div class="content hidden">
+        <p>
+            <a href="<?php echo sprintf('%s/countries/%s', get_bloginfo('url'), $country->id); ?>">View <?php echo $country->name; ?> profile</a>
+        </p>
         <table class="table-hover">
         <thead>
             <tr>
@@ -44,7 +47,7 @@ foreach ($data as $iso2l => $parties) :
         </thead>
         <?php foreach($parties as $party) : ?>
         <tr>
-            <td><a href=""><?php echo $party->short_title; ?></a></td>
+            <td><a href="<?php echo sprintf('%s/treaties/%s', get_bloginfo('url'), $party->odata_name); ?>"><?php echo $party->short_title; ?></a></td>
             <td><?php echo $party->year; ?></td>
             <td>-</td>
             <td>-</td>
