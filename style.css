@@ -612,9 +612,14 @@ body.imea-countries div.table-scroll table { width:100%; margin: 0; }
 body.imea-countries div.table-scroll table td, th { border: 1px solid #f4f4f4; text-align: center; }
 body.imea-countries div.table-scroll table th { padding: 5px 0; min-width: 90px; vertical-align: top; }
 body.imea-countries div.table-scroll table th.flag { width: 40px; }
-body.imea-countries div.filter-treaties {
-    margin: 5px; padding: 10px; border: 1px dashed #666; background: #f4f4f4;
+body.imea-countries div.filter-treaties { margin: 5px; padding: 10px; border: 1px dashed #666; background: #f4f4f4; }
+body.imea-countries div#openlayers_map { position: relative; }
+body.imea-countries #tooltip, body.imea-countries #tooltip:hover, body.imea-countries #tooltip:visited {
+    position: absolute; z-index: 9999; display: none;
+    border: 1px solid #999999; background: #EEEEEE; color: #000000;
+    cursor: default; padding: 2px; text-decoration: none;
 }
+
 
 /* Below, you are beyond redemption */
 
