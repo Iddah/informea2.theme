@@ -32,8 +32,9 @@ class FindNFPWidget extends WP_Widget {
     }
 
     function widget($args, $instance) {
+        wp_enqueue_script('countries-js', get_bloginfo('template_directory') . '/scripts/countries.js');
         $title = empty($instance['title']) ? ' ' : apply_filters('widget_title', $instance['title']);
-        ?>
+?>
         <li class="widget select-country">
             <?php if (!empty($title)) : ?>
             <h2><?php echo $title; ?></h2>
