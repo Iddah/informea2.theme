@@ -606,7 +606,13 @@ body.imea-countries ul.countries h2 { cursor: pointer; }
 body.imea-countries ul.countries div.content { margin: 0 20px; }
 body.imea-countries ul.countries table { margin: 0; }
 body.imea-countries ul.countries div.flag { float: right; margin-top: -40px; }
-/*body.imea-countries table.content { display: none; }*/
+body.imea-countries div.table-scroll-wrapper { position: relative; }
+body.imea-countries div.table-scroll { height: 600px; overflow: auto; margin-top: 20px; }
+body.imea-countries div.table-scroll table { width:100%; }
+body.imea-countries div.table-scroll table td, th { border: 1px solid #f4f4f4; text-align: center; }
+body.imea-countries div.table-scroll table th { padding: 5px 0; min-width: 90px; vertical-align: top; }
+body.imea-countries div.table-scroll table th.flag { width: 40px; }
+
 /* Below, you are beyond redemption */
 
 /* TRIAGE */
