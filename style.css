@@ -19,6 +19,7 @@
     - Sprites
     - MEA Explorer button
     - Footer
+    - NFP listing
  - INDEX PAGE
     - Widgets
     - Index MEA Explorer
@@ -392,6 +393,19 @@ div#regional_treaties ul li { width: 145px; line-height: 13px; padding: 0 18px 6
 div#regional_treaties ul ul { margin-left: 0; }
 div#regional_treaties ul ul li { display: block; font-size: 12px; padding-bottom: 10px; }
 
+/* GLOBAL :: NFP listing (treaty & country NFP pages) */
+ul.nfp { list-style-type: none; margin: 0; padding: 0; }
+ul.nfp h2 { cursor: pointer; }
+ul.nfp li { border-bottom: 1px dashed #dfdfdf; }
+ul.contacts { list-style-type: none; }
+ul.contacts li { background-color: #f4f4f4; padding: 10px; margin: 5px 0; border: 1px dashed #ddd; }
+ul.contacts li .btn { margin: 10px 5px 20px 0; }
+ul.contacts li h3 { font-size: 16px; margin: 5px 0 0 15px; display: inline-block; width: 580px; }
+ul.contacts li h3 i { display: block; font-weight: normal; font-size: 12px; }
+ul.contacts div.user-icon {
+    float: left; height: 48px; width: 48px; vertical-align: top;
+    background: url('images/user_icon.png') no-repeat; }
+ul.contacts div.details { margin-top: 15px; }
 
 /* INDEX PAGE */
 
@@ -573,17 +587,6 @@ body.imea-treaties ul.terms {
     list-style-type: none; margin: 10px 0; padding: 5px;
 }
 body.imea-treaties ul.terms li { border: 0; display: inline-block; }
-body.imea-treaties ul.nfp { cursor: pointer; list-style-type: none; margin: 0; padding: 0; }
-body.imea-treaties ul.nfp li { border-bottom: 1px dashed #dfdfdf; }
-body.imea-treaties ul.contacts { list-style-type: none; }
-body.imea-treaties ul.contacts li { background-color: #f4f4f4; padding: 10px; margin: 5px 0; border: 1px dashed #ddd; }
-body.imea-treaties ul.contacts li .btn { margin: 10px 5px 20px 0; }
-body.imea-treaties ul.contacts li h3 { font-size: 16px; margin: 5px 0 0 15px; display: inline-block; width: 580px; }
-body.imea-treaties ul.contacts li h3 i { display: block; font-weight: normal; font-size: 12px; }
-body.imea-treaties ul.contacts div.user-icon {
-    float: left; height: 48px; width: 48px; vertical-align: top;
-    background: url('images/user_icon.png') no-repeat; }
-body.imea-treaties ul.contacts div.details { margin-top: 15px; }
 body.imea-treaties input#nfp-filter { width: 150px; }
 
 /* DECISIONS PAGES */

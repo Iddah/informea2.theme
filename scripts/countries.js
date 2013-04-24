@@ -50,10 +50,26 @@ $(document).ready(function () {
     $('body.imea-countries div.filter-treaties input').click(function() {
         var id = '.party-' + $(this).val();
         $(id).toggle();
-    })
+    });
     $('div.filter-treaties>button.close').click(function(evt) { $(evt.target).parent().fadeOut({duration: 600}); });
 
+    /* NFP */
+    $('ul.nfp>li>h2').click(function() {
+        var content = $(this).parent().find('div.content');
+        content.slideToggle({duration: 200});
+    });
+    $('div.toolbar-nfp button#expand-all').click(nfpExpandAll);
+    $('div.toolbar-nfp button#collapse-all').click(nfpCollapseAll);
 });
+
+function nfpCollapseAll() {
+    $('ul.nfp>li>div.content').hide();
+}
+
+function nfpExpandAll() {
+    $('ul.nfp>li>div.content').show();
+}
+
 
 function filterCountriesList(filter) {
     var rows = $('ul.countries li h2');
