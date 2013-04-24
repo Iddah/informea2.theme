@@ -3,6 +3,9 @@ var country_location = '';
 var popup;
 var current_country = '';
 
+$(document).ready(function() {
+    init_map();
+});
 
 function init_map() {
 	var _mapWidth = 720;
@@ -97,7 +100,6 @@ function handleCountryGetFeatureInfoResponse(data, evt) {
 				break;
 			}
 		}
-		;
 		if (country_id != -1) {
 			$("#tooltip").html("<img style='float:left;' src='" + country_icon + "'/><span style='float:left;padding:7px 5px 0px 5px;'>" + country_name + "</span>");
 			style = "display:block; top:" + (evt.xy.y - $("#tooltip").height() - 10) + "px; left:" + (evt.xy.x - $("#tooltip").width() - 10) + "px;";

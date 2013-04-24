@@ -24,7 +24,51 @@ $(document).ready(function () {
         }
     });
     find_nfp_input.keydown(function (e) { return e.keyCode != 13; });
-    // First page map
-    init_map();
+
+    /* Click on country name, view Country MEA Membership */
+    var ctrl2 = $('input#party-filter');
+    ctrl2.keyup(function(e) {
+        console.log(e.which);
+        if (e.which == 13) {
+            e.preventDefault();
+        } else if (e.which == 27) {
+            $(this).val('');
+            filterCountriesList('');
+        } else {
+            filterCountriesList(ctrl2.val());
+        }
+    });
+    /* Click on h2 to expand country */
+    $('ul.countries>li>h2').click(function() {
+        var content = $(this).parent().find('div.content');
+        content.slideToggle({duration: 200});
+    });
+    /* Click expand all / collapse all */
+    $('div.toolbar-countries button#expand-all').click(countriesExpandAll);
+    $('div.toolbar-countries button#collapse-all').click(countriesCollapseAll);
 });
+
+function filterCountriesList(filter) {
+    var rows = $('ul.countries li h2');
+    rows.each(function(idx, item) { $(item).parent().show(); });
+    if(filter.length > 0) {
+        var regExp = new RegExp(filter, 'i');
+        rows.each(function(idx, item) {
+            var found = regExp.test($(this).text());
+            if(!found) {
+                $(this).parent().hide();
+            } else {
+                $(this).parent().show();
+            }
+        });
+    }
+}
+
+function countriesExpandAll() {
+    $('ul.countries>li>div.content').show();
+}
+
+function countriesCollapseAll() {
+    $('ul.countries>li>div.content').hide();
+}
 

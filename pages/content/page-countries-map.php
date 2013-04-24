@@ -3,6 +3,7 @@ $imea_options = get_option('informea_options');
 $coverage = get_request_int('coverage');
 wp_enqueue_script('openlayers', get_bloginfo('template_directory') . '/scripts/OpenLayers/OpenLayers.js');
 wp_enqueue_script('countries-map', get_bloginfo('template_directory') . '/scripts/countries-map.js');
+do_action('informea-countries-toolbar');
 ?>
 <div style="height: 5px;"></div>
 <div id="openlayers_map" style="width: 720px; height: 490px; background: #9ad3e6;"><a id="tooltip"></a></div>
@@ -11,7 +12,6 @@ wp_enqueue_script('countries-map', get_bloginfo('template_directory') . '/script
     and
     <a href="http://openlayers.org/" target="_blank">OpenLayers</a>
 </div>
-<div class="clear"></div>
 <div class="alert alert-warning">
     Data is still being consolidated, inaccuracies may occur
 </div>

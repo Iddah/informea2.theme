@@ -599,6 +599,13 @@ body.imea-decisions ul li.treaty-icon span.theme { color: #666; }
 body.imea-countries select.selectCountry { width: 180px; }
 body.imea-countries select.mea-coverage { width: 180px; height: 120px; }
 body.imea-countries input.find-nfp-input { width: 170px; }
+body.imea-countries div.toolbar span.letters { margin-top: 3px; }
+body.imea-countries div.toolbar span.letters a { margin-left: 6px; }
+body.imea-countries ul.countries { list-style-type: none; margin: 0; padding: 0; }
+body.imea-countries ul.countries h2 { cursor: pointer; }
+body.imea-countries ul.countries table { margin: 0 20px; }
+body.imea-countries ul.countries div.flag { float: right; margin-top: -40px; }
+/*body.imea-countries table.content { display: none; }*/
 /* Below, you are beyond redemption */
 
 /* TRIAGE */
