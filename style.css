@@ -38,6 +38,7 @@
 .text-center { text-align: center; }
 .hidden { display: none; }
 .visible { display: block; }
+.nowrap { white-space: nowrap; }
 .orange { background: rgb(192, 159, 24); }
 .round-top { -moz-border-radius: 5px 5px 0 0; -webkit-border-radius: 5px 5px 0 0; border-radius: 5px 5px 0 0; }
 .round { -moz-border-radius: 5px; -webkit-border-radius: 5px; border-radius: 5px; }
@@ -606,12 +607,14 @@ body.imea-countries ul.countries h2 { cursor: pointer; }
 body.imea-countries ul.countries div.content { margin: 0 20px; }
 body.imea-countries ul.countries table { margin: 0; }
 body.imea-countries ul.countries div.flag { float: right; margin-top: -40px; }
-body.imea-countries div.table-scroll-wrapper { position: relative; }
-body.imea-countries div.table-scroll { height: 600px; overflow: auto; margin-top: 20px; }
-body.imea-countries div.table-scroll table { width:100%; }
+body.imea-countries div.table-scroll { height: 600px; overflow: auto; margin-top: 15px; }
+body.imea-countries div.table-scroll table { width:100%; margin: 0; }
 body.imea-countries div.table-scroll table td, th { border: 1px solid #f4f4f4; text-align: center; }
 body.imea-countries div.table-scroll table th { padding: 5px 0; min-width: 90px; vertical-align: top; }
 body.imea-countries div.table-scroll table th.flag { width: 40px; }
+body.imea-countries div.filter-treaties {
+    margin: 5px; padding: 10px; border: 1px dashed #666; background: #f4f4f4;
+}
 
 /* Below, you are beyond redemption */
 

@@ -45,6 +45,14 @@ $(document).ready(function () {
     /* Click expand all / collapse all */
     $('div.toolbar-countries button#expand-all').click(countriesExpandAll);
     $('div.toolbar-countries button#collapse-all').click(countriesCollapseAll);
+
+    /* Click on country grid filter checkboxes (show/hide columns in grid view mode) */
+    $('body.imea-countries div.filter-treaties input').click(function() {
+        var id = '.party-' + $(this).val();
+        $(id).toggle();
+    })
+    $('div.filter-treaties>button.close').click(function(evt) { $(evt.target).parent().fadeOut({duration: 600}); });
+
 });
 
 function filterCountriesList(filter) {
