@@ -187,6 +187,10 @@ function informea2_widgets_init() {
         'id' => 'countries-sidebar-item', 'name' => __('Country index sidebar', 'informea'),
         'description' => __('Widgets on the country factsheet page', 'informea'),
     ));
+    register_sidebar(array(
+        'id' => 'terms-sidebar', 'name' => __('Terms index sidebar', 'informea'),
+        'description' => __('Widgets on the terms listing page', 'informea'),
+    ));
 }
 add_action('widgets_init', 'informea2_widgets_init');
 
