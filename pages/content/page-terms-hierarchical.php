@@ -29,9 +29,7 @@ do_action('informea-terms-toolbar');
 <script type="text/javascript">
     var treeXMLUrl = ajax_url + '?action=generate_terms_tree_public';
     var treeImagePath = "<?php bloginfo('template_directory'); ?>/scripts/dhtmlxtree/imgs/terms_blue/";
-
     var allnodes_substantives = Array();
-
     var tree_substantives;
 
     $(document).ready(function () {
@@ -53,31 +51,6 @@ do_action('informea-terms-toolbar');
             return false;
         });
     });
-
-    function setTab(tab) {
-        $('.tab-menu li a').removeClass('tab-active');
-        $('.tab-menu li a').addClass('tab');
-        $('#' + tab + ' a').removeClass('tab');
-        $('#' + tab + ' a').addClass('tab-active');
-
-        $('.tab-content').hide();
-        $('#' + tab + '-content').show();
-    }
-
-    function focusNextItem(tree, items, item) {
-        var found = false;
-        var rgx = new RegExp(item, 'i');
-        $.each(items, function (idx, nodeId) {
-            var label = tree.getItemText(nodeId);
-            if (rgx.exec(label)) {
-                tree.openItem(nodeId);
-                tree.focusItem(nodeId);
-                tree.selectItem(nodeId);
-                found = true;
-                return false;
-            }
-        });
-    }
 
     function tree_expandAll() {
         tree_substantives.openAllItems(0);
