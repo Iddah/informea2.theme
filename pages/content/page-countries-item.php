@@ -17,8 +17,8 @@ if($c > 0) { $tabs['reports'] = sprintf('%s (%s)', __('National reports', 'infor
 $c = imea_countries_page::count_national_plans($id);
 if($c > 0) { $tabs['plans'] = sprintf('%s (%s)', __('National plans', 'informea'), $c); }
 
-$tabs['ecolex/legislation'] = __('Legislation', 'informea');
-$tabs['ecolex/caselaw'] = __('Case law', 'informea');
+$tabs['ecolex-legislation'] = __('Legislation', 'informea');
+$tabs['ecolex-caselaw'] = __('Case law', 'informea');
 
 if($expand == 'sendmail') { $tabs['sendmail'] = __('Send Mail', 'informea'); }
 ?>

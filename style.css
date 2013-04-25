@@ -407,6 +407,9 @@ ul.contacts div.user-icon {
     background: url('images/user_icon.png') no-repeat; }
 ul.contacts div.details { margin-top: 15px; }
 
+ul.country-reports { list-style-type: none; margin: 0; padding: 0; }
+ul.country-reports div.content { margin-left: 20px; }
+
 /* INDEX PAGE */
 
 /* INDEX PAGE :: Widgets */
