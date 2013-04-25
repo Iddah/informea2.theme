@@ -141,3 +141,39 @@ if (!class_exists('imea_cache')) {
         }
     }
 }
+
+if (!class_exists('imea_request_cache')) {
+    class imea_request_cache {
+
+        public static function get_treaty_article($id) {
+            static $treaty_article_cache = array();
+            if(empty($treaty_article_cache)) {
+                global $wpdb;
+                $rows = $wpdb->get_results('SELECT * FROM ai_treaty_article');
+                foreach($rows as $row) {
+                    $treaty_article_cache[$row->id] = $row;
+                }
+            }
+            if(isset($treaty_article_cache[$id])) {
+                return $treaty_article_cache[$id];
+            }
+            return NULL;
+        }
+
+
+        public static function get_treaty($id) {
+            static $treaty_cache = array();
+            if(empty($treaty_cache)) {
+                global $wpdb;
+                $rows = $wpdb->get_results('SELECT * FROM ai_treaty');
+                foreach($rows as $row) {
+                    $treaty_cache[$row->id] = $row;
+                }
+            }
+            if(isset($treaty_cache[$id])) {
+                return $treaty_cache[$id];
+            }
+            return NULL;
+        }
+    }
+}
