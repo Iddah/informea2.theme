@@ -11,13 +11,11 @@ $p = new EcolexParser($url, get_bloginfo('url') . "/countries/{$country->id}/" .
 ?>
 <div class="tab-content">
     <div class="ecolex-disclaimer">
-        <div class="ecolex-disclaimer">
-            <img src="http://www.informea.org/wp-content/uploads/ecolex_header.png"/>
-            The content of this this area is exclusively provided by
-            <a target="_blank" href="<?php echo $url; ?>">Ecolex</a> - the gateway
-            to environmental law,
-            which is a collaboration of IUCN, FAO and UNEP
-        </div>
+        <img src="http://www.informea.org/wp-content/uploads/ecolex_header.png"/>
+        The content of this this area is exclusively provided by
+        <a target="_blank" href="<?php echo $url; ?>">Ecolex</a> - the gateway
+        to environmental law,
+        which is a collaboration of IUCN, FAO and UNEP
     </div>
     <?php echo $p->get_content(); ?>
 </div>

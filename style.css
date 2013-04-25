@@ -138,6 +138,8 @@ div.alert .close { position: relative; top: -5px; right: -4px; line-height: 20px
 .icon-user { background-position: -168px 0; }
 .icon-download-alt { background-position: -96px -24px; }
 .icon-download { background-position: -120px -24px; }
+.icon-share { background-position: -120px -72px; }
+.icon-share-alt { background-position: -336px -96px; }
 
 /* GLOBAL :: Tabs */
 div.tabs { height: 22px; margin-bottom: 10px; padding-top: 2px; border-bottom: 1px solid #d7d7d7; }
@@ -164,6 +166,7 @@ li.widget h2 {
     font-size: 18px; letter-spacing: 0;
     padding: 0; margin: 5px 0;
 }
+li.widget h3 { margin: 10px 0 5px 0; padding: 0; }
 li.widget ul { list-style-type: none; margin: 0; padding: 0; }
 li.widget.search { padding-top: 0; background: #ffe974 none; }
 li.widget.search h2 { font-size: 15px; font-weight: bold; }
@@ -643,19 +646,27 @@ body.imea-terms #termsTree table table td:first-child { width: 30px; }
 body.imea-terms .containerTableStyle table { padding-bottom: 3px; }
 body.imea-terms #termsTree table table td:first-child { width: 30px; }
 body.imea-terms .standartTreeImage { line-height: 0.5; font-size: 23px; }
+body.imea-terms li.widget.broad-terms div.content { margin-left: 15px; }
+
+/* SEARCH RESULTS */
+div.search-results .text-grey { color: #ccc; }
+div.search-results i { margin: 0 5px 0 -14px; }
+div.search-results p { display: inline; } /* TinyMCE saves paragraphs inside <p> */
+a.external { display: inline-block; margin: 0 10px; } /* Open in new window */
+div.search-results ul { list-style-type: none; padding: 0; margin: 10px 0 5px 20px; }
+div.search-results div.article { margin: 10px 0 10px 20px; }
+div.search-results div.paragraph { margin: 10px 0 10px 20px; }
+
+
+div.search-results ul.paragraphs li { list-style-type: none; padding: 0; margin-left: 20px; }
+
+
+
+
 
 /* Below, you are beyond redemption */
 
 /* TRIAGE */
-body.informea a.opened {
-    padding-left: 15px;
-    background: transparent url('images/collapse.gif') no-repeat left center;
-}
-
-body.informea a.closed {
-    padding-left: 15px;
-    background: transparent url('images/expand.gif') no-repeat left center;
-}
 
 body.informea a.loading {
     padding-left: 15px;
