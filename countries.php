@@ -42,7 +42,7 @@ if (!class_exists('imea_countries_page')) {
          * - declarations
          * - notes
          */
-        function get_treaty_membership($id_country) {
+        static function get_treaty_membership($id_country) {
             global $wpdb;
 
             return $wpdb->get_results($wpdb->prepare('
@@ -166,7 +166,7 @@ if (!class_exists('imea_countries_page')) {
         /**
          * Get the alphabet letters in use
          */
-        function get_alphabet_letters() {
+        static function get_alphabet_letters() {
             global $wpdb;
             $sql = "SELECT DISTINCT(UPPER(SUBSTR(name, 1, 1))) AS letter FROM ai_country ORDER BY letter";
             return $wpdb->get_results($sql);
@@ -183,7 +183,44 @@ if (!class_exists('imea_countries_page')) {
             return $ret;
         }
 
-        function index_grid() {
+        static function get_view_parties() {
+            global $wpdb;
+            $ret = array();
+            $rows = $wpdb->get_results(
+                'SELECT a.code2l, b.id_treaty, c.short_title, b.year, c.odata_name
+                    FROM ai_country a
+                    INNER JOIN ai_treaty_country b ON a.id = b.id_country
+                    INNER JOIN ai_treaty c ON b.id_treaty = c.id
+                ORDER BY a.code2l, b.year'
+            );
+            foreach($rows as $row) {
+                if(!isset($ret[$row->code2l])) {
+                    $ret[$row->code2l]  = array();
+                }
+                $ret[$row->code2l][] = $row;
+            }
+            return $ret;
+        }
+
+        static function get_view_treaties() {
+            global $wpdb;
+            $ret = array();
+            $rows = $wpdb->get_results('
+                SELECT c.id AS id_treaty, a.name, a.id AS id_country, b.year
+                    FROM ai_country a
+                    INNER JOIN ai_treaty_country b ON a.id = b.id_country
+                    INNER JOIN ai_treaty c ON b.id_treaty = c.id
+                ORDER BY c.id, a.name');
+            foreach($rows as $row) {
+                if(!isset($ret[$row->id_treaty])) {
+                    $ret[$row->id_treaty]  = array();
+                }
+                $ret[$row->id_treaty][] = $row;
+            }
+            return $ret;
+        }
+
+        static function index_grid() {
             global $wpdb;
             $ret = array();
             $columns = $wpdb->get_results("SELECT * FROM ai_treaty WHERE enabled = 1");
@@ -211,7 +248,7 @@ if (!class_exists('imea_countries_page')) {
         }
 
 
-        function wrap_th($text) {
+        static function wrap_th($text) {
             $words = explode(' ', $text);
             return implode('<br />', $words);
         }
@@ -379,10 +416,8 @@ if (!class_exists('imea_countries_page')) {
          * @param integer $id_country Country ID
          * @return array Array of treaties having property national_reports array with ai_country_report objects
          */
-        function get_national_reports($id_country = NULL) {
+        static function get_national_reports($id_country = NULL) {
             global $wpdb;
-
-            $id_country = !empty($id_country) ? $id_country : $this->id_country;
             $treaties = $wpdb->get_results(
                 $wpdb->prepare("SELECT b.* FROM ai_country_report a INNER JOIN ai_treaty b ON a.id_treaty = b.id WHERE b.enabled = TRUE AND a.id_country=%d GROUP BY b.id", $id_country)
                 , OBJECT_K
@@ -408,10 +443,8 @@ if (!class_exists('imea_countries_page')) {
          * @param integer $id_country Country ID
          * @return integer Count
          */
-        function count_national_reports($id_country = NULL) {
+        static function count_national_reports($id_country = NULL) {
             global $wpdb;
-
-            $id_country = !empty($id_country) ? $id_country : $this->id_country;
             return $wpdb->get_var(
                 $wpdb->prepare("SELECT COUNT(*) FROM ai_country_report WHERE id_country=%d", $id_country)
             );
@@ -424,10 +457,8 @@ if (!class_exists('imea_countries_page')) {
          * @param integer $id_country Country ID
          * @return array Array of treaties having property national_plans array with ai_country_plan objects
          */
-        function get_national_plans($id_country = NULL) {
+        static function get_national_plans($id_country = NULL) {
             global $wpdb;
-
-            $id_country = !empty($id_country) ? $id_country : $this->id_country;
             $treaties = $wpdb->get_results(
                 $wpdb->prepare("SELECT b.* FROM ai_country_plan a INNER JOIN ai_treaty b ON a.id_treaty = b.id WHERE b.enabled = TRUE AND a.id_country=%d GROUP BY b.id", $id_country)
                 , OBJECT_K
@@ -453,10 +484,8 @@ if (!class_exists('imea_countries_page')) {
          * @param integer $id_country Country ID
          * @return integer Count
          */
-        function count_national_plans($id_country = NULL) {
+        static function count_national_plans($id_country = NULL) {
             global $wpdb;
-
-            $id_country = !empty($id_country) ? $id_country : $this->id_country;
             return $wpdb->get_var(
                 $wpdb->prepare("SELECT COUNT(*) FROM ai_country_plan WHERE id_country=%d", $id_country)
             );
@@ -499,7 +528,7 @@ if (!class_exists('imea_countries_page')) {
         }
 
 
-        function get_treaties_with_membership() {
+        static function get_treaties_with_membership() {
             global $wpdb;
             return $wpdb->get_results('SELECT b.* FROM ai_treaty_country a
                 INNER JOIN ai_treaty b ON b.`id` = a.`id_treaty`
@@ -507,7 +536,7 @@ if (!class_exists('imea_countries_page')) {
         }
 
 
-        function gis_get_membership_filter($mea_id) {
+        static function gis_get_membership_filter($mea_id) {
             global $wpdb;
             $rows = $wpdb->get_col($wpdb->prepare('SELECT a.code2l FROM ai_country a
                 INNER JOIN ai_treaty_country b ON a.`id` = b.`id_country`
@@ -556,13 +585,23 @@ if (!class_exists('imea_countries_page')) {
             return $wpdb->get_results("SELECT * FROM ai_country ORDER BY name");
         }
 
+        static function get_countries_keyed_iso2l() {
+            global $wpdb;
+            $ret = array();
+            $rows = $wpdb->get_results("SELECT * FROM ai_country ORDER BY name");
+            foreach($rows as $row) {
+                $ret[$row->code2l] = $row;
+            }
+            return $ret;
+        }
+
         function get_eu_countries() {
             global $wpdb;
             return $wpdb->get_results("SELECT * FROM ai_country WHERE eu_member IS NOT NULL ORDER BY name");
         }
 
 
-        function get_country_for_id($id) {
+        static function get_country_for_id($id) {
             global $wpdb;
             return $wpdb->get_row("SELECT * FROM ai_country where id=" . $id);
         }
@@ -575,7 +614,7 @@ if (!class_exists('imea_countries_page')) {
          * @param string $iso Country ISO 2-letter or 3-letter code
          * @return object Row object or NULL if not found
          */
-        function get_country_by_iso($iso) {
+        static function get_country_by_iso($iso) {
             global $wpdb;
 
             if (!empty($iso)) {
