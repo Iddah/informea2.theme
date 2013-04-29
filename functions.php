@@ -195,6 +195,10 @@ function informea2_widgets_init() {
         'id' => 'terms-sidebar-item', 'name' => __('Term index sidebar', 'informea'),
         'description' => __('Widgets on the term factsheet page', 'informea'),
     ));
+    register_sidebar(array(
+        'id' => 'events-sidebar', 'name' => __('Events page sidebar', 'informea'),
+        'description' => __('Widgets on the events listing page', 'informea'),
+    ));
 }
 add_action('widgets_init', 'informea2_widgets_init');
 
@@ -214,5 +218,6 @@ require_once(dirname(__FILE__) . '/widgets/select-country.php');
 require_once(dirname(__FILE__) . '/widgets/find-nfp.php');
 require_once(dirname(__FILE__) . '/widgets/mea-coverage.php');
 require_once(dirname(__FILE__) . '/widgets/select-term.php');
+require_once(dirname(__FILE__) . '/widgets/filter-events.php');
 
 

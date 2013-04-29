@@ -28,6 +28,7 @@
  - DECISIONS PAGES
  - COUNTRIES PAGES
  - TERMS PAGES
+ - EVENTS PAGE
  - /dev/null
 */
 
@@ -44,6 +45,7 @@
 .nowrap { white-space: nowrap; }
 .orange { background: rgb(192, 159, 24); }
 .round-top { -moz-border-radius: 5px 5px 0 0; -webkit-border-radius: 5px 5px 0 0; border-radius: 5px 5px 0 0; }
+.round-left { -moz-border-radius: 5px 0 0 5px; -webkit-border-radius: 5px 0 0 5px; border-radius: 5px 0 0 5px; }
 .round { -moz-border-radius: 5px; -webkit-border-radius: 5px; border-radius: 5px; }
 .shadow {
     -moz-box-shadow: 0 2px 2px 0 #c2c2c2;
@@ -105,6 +107,8 @@ table tbody td { padding: 5px; }
 table.table-hover tbody tr:hover { background-color: #eeeeee; }
 table.table-hover tbody tr.nohover:hover { background-color: transparent; }
 table td.center { text-align: center; }
+table.table-striped tbody > tr:nth-child(odd) > td,
+table.table-striped tbody > tr:nth-child(odd) > th { background-color: #f9f9f9; }
 
 div.alert {
     margin: 10px; padding: 10px;
@@ -648,7 +652,7 @@ body.imea-terms #termsTree table table td:first-child { width: 30px; }
 body.imea-terms .standartTreeImage { line-height: 0.5; font-size: 23px; }
 body.imea-terms li.widget.broad-terms div.content { margin-left: 15px; }
 
-/* SEARCH RESULTS */
+/* TERMS PAGES :: SEARCH RESULTS */
 div.search-results .text-grey { color: #ccc; }
 div.search-results i { margin: 0 5px 0 -14px; }
 div.search-results p { display: inline; } /* TinyMCE saves paragraphs inside <p> */
@@ -656,13 +660,46 @@ a.external { display: inline-block; margin: 0 10px; } /* Open in new window */
 div.search-results ul { list-style-type: none; padding: 0; margin: 10px 0 5px 20px; }
 div.search-results div.article { margin: 10px 0 10px 20px; }
 div.search-results div.paragraph { margin: 10px 0 10px 20px; }
-
-
 div.search-results ul.paragraphs li { list-style-type: none; padding: 0; margin-left: 20px; }
 
+/* EVENTS PAGE */
+body.imea-events li.widget div.field { margin: 15px 0 15px 0; }
+body.imea-events li.widget div.field label { font-weight: bold; display: block; }
+body.imea-events li.widget div.field-inline label { font-weight: bold; display: inline-block; }
+body.imea-events ul.paginator { margin: 0; padding: 5px 0; list-style-type: none;
+    border: 1px dashed #ccc; text-align: center;
+}
+body.imea-events div#results div.paginator ul li { display: inline-block; }
+body.imea-events div#results ul.items li { margin: 15px 0; }
 
+body.imea-events ul.items { margin: 0 0 0 15px; padding: 0; list-style-type: none; }
+body.imea-events ul.items li { padding-bottom: 15px; position: relative; height: 80px; border-bottom: 1px dashed #ccc; }
 
+body.imea-events div.date { float: left; background-color: #ccc; width: 80px; height: 70px; padding: 0 5px 5px 5px; }
+body.imea-events div.date div.month {
+    color: white; width: 80px; height: 25px;
+    font-weight: bold; font-size: 18px; line-height: 25px; text-align: center;
+}
+body.imea-events div.date div.day {
+    line-height: 35px; color: #000; font-size: 30px; text-align: center;
+    width: 80px; height: 35px; background-color: white;
+}
+body.imea-events div.date div.year {
+    color: white; width: 80px; height: 20px;
+    font-weight: bold; font-size: 14px; line-height: 16px; text-align: center;
+}
 
+body.imea-events div.description { padding: 5px; position: absolute; float: left; width: 550px; height: 65px; margin-left: 100px; }
+body.imea-events div.description.cop { background-color: #fff0f0; }
+body.imea-events h3 { float: left; margin: 0; padding: 0; }
+
+body.imea-events ul.info { position: absolute; top: 50px; border: 0; padding: 0; }
+body.imea-events ul.info li {
+    float: left; border: 0; display: inline-block;
+    margin: 0 2px !important; padding: 2px 5px; line-height: 15px; height: 15px;
+    background-color: #eee;
+    border: 1px dashed #ccc;
+}
 
 /* Below, you are beyond redemption */
 
