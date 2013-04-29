@@ -15,9 +15,9 @@ if (!class_exists('imea_events_page')) {
 
         /**
          * Retrieve the list of conventions that have events
-         * @return List of ai_treaty
+         * @return array list of ai_treaty objects
          */
-        function get_treaties() {
+        public static function get_treaties() {
             global $wpdb;
             $sql = "SELECT a.* FROM ai_treaty a
                 INNER JOIN ai_event b ON b.id_treaty = a.id
@@ -31,11 +31,13 @@ if (!class_exists('imea_events_page')) {
             return $ret;
         }
 
+
         function empty_search() {
             return get_request_value('filter') === NULL && get_request_value('start') === NULL && get_request_value('end') === NULL;
         }
 
-        function get_years_interval() {
+
+        static function get_years_interval() {
             global $wpdb;
             $row = $wpdb->get_row("SELECT MIN(YEAR(start)) AS min_year, MAX(YEAR(start)) AS max_year FROM ai_event");
             $min = intval($row->min_year);
@@ -57,86 +59,11 @@ if (!class_exists('imea_events_page')) {
         }
 
 
-        /**
-         * @param $number Number of events from each category
-         */
-        function get_events_list() {
-            global $wpdb;
-            $sql = "SELECT a.*, b.id AS id_treaty, b.short_title, b.logo_medium FROM ai_event a INNER JOIN ai_treaty b ON a.id_treaty = b.id ";
-            // Apply filtering
-            $filter = " WHERE 1=1 ";
-            $id_treaty = get_request_value('id_treaty', NULL);
-            if ($id_treaty !== NULL) {
-                $filter .= ' AND b.id = ' . intval($id_treaty);
+        public static function decode_kind($e) {
+            if(empty($e->kind)) {
+                return '';
             }
-
-            $use_filter = get_request_value('filter', null);
-            if ($use_filter) {
-                $month = get_request_value('fe_month', 0);
-                $year = get_request_value('fe_year', 0);
-                if (!empty($month) || !empty($year)) {
-                    if (empty($month)) {
-                        $start = $wpdb->escape("1/1/$year");
-                        $end = $wpdb->escape("12/31/$year");
-                    } else {
-                        $start = $wpdb->escape("$month/1/$year");
-                        $end = $wpdb->escape("$month/31/$year");
-                    }
-                    if (!empty($start)) {
-                        $filter .= " AND a.end >= STR_TO_DATE('$start', '%m/%d/%Y')";
-                    }
-                    if (!empty($end)) {
-                        $filter .= " AND a.start <= STR_TO_DATE('$end', '%m/%d/%Y')";
-                    }
-                }
-            } else {
-                $start = date('m/d/Y');
-                if ($start !== NULL) {
-                    $filter .= " AND a.end >= STR_TO_DATE('" . $wpdb->escape($start) . "', '%m/%d/%Y')";
-                }
-
-                $end = date('m/d/Y', strtotime("+90 days"));
-                if ($end !== NULL) {
-                    $filter .= " AND a.start <= STR_TO_DATE('" . $wpdb->escape($end) . "', '%m/%d/%Y')";
-                }
-            }
-            $sql .= $filter;
-
-            // Apply ordering
-            $req_sort = get_request_value('sort', 'start');
-            $req_order = get_request_value('order', 'ASC');
-            $sort = '';
-            switch ($req_sort) {
-                case 'start':
-                    $sort = ' ORDER BY a.start';
-                    break;
-                case 'end':
-                    $sort = ' ORDER BY a.end';
-                    break;
-                case 'city':
-                    $sort = ' ORDER BY a.city';
-                    break;
-                case 'convention':
-                    $sort = ' ORDER BY b.short_title';
-                    break;
-                case 'meeting':
-                    $sort = ' ORDER BY a.title';
-                    break;
-                case 'status':
-                    $sort = ' ORDER BY a.status';
-                    break;
-            }
-            $sort .= " $req_order";
-
-            $sql .= $sort;
-            // echo $sql;
-            $this->paginator = new paginated_query($sql, $this->req_parameters);
-            $this->paginator->set_page_size(20);
-            return $this->paginator->results();
-        }
-
-        function decode_kind($status) {
-            switch ($status) {
+            switch ($e->event) {
                 case 'official':
                     return __('Official', 'informea');
                 case 'partner':
@@ -144,7 +71,7 @@ if (!class_exists('imea_events_page')) {
                 case 'interest':
                     return __('Interest', 'informea');
                 default:
-                    return '';
+                    return ucfirst($e->kind);
             }
         }
 
@@ -166,34 +93,7 @@ if (!class_exists('imea_events_page')) {
         }
 
 
-        function sort_url($sort) {
-            $url = get_bloginfo('url') . '/events?a=1';
-            $id_treaty = get_request_value('id_treaty', NULL);
-            if ($id_treaty) {
-                $url .= "&id_treaty=$id_treaty";
-            }
-            $start = get_request_value('start', NULL);
-            if ($start !== NULL) {
-                $url .= "&start=$start";
-            }
-            $end = get_request_value('end', NULL);
-            if ($end !== NULL) {
-                $url .= "&end=$end";
-            }
-            if ($sort !== NULL) {
-                $url .= "&sort=$sort";
-            }
-            $order = get_request_value('order', 'desc');
-            if ($order == 'asc') {
-                $url .= "&order=desc";
-            }
-            if ($order == 'desc') {
-                $url .= "&order=asc";
-            }
-            return $url;
-        }
-
-        function event_place($event) {
+        public static function event_place($event) {
             $ret = '';
             if (!empty($event)) {
                 if (!empty($event->location)) {
