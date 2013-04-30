@@ -80,7 +80,7 @@ function informea_country_map_view_js() {
     }
 
     function countryProfileOpenRamsarSite(id) {
-        alert('Ramsar website is currently down');
+        alert('Cannot access Ramsar RSIS to show site details');
         return;
         var form = document.createElement('form');
         form.setAttribute('method', 'post');
