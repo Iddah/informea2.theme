@@ -1,4 +1,5 @@
 <?php
+global $post;
 require_once(dirname(__FILE__) . '/template/index.php');
 $imea_options = get_option('informea_options');
 // Actions for management of treaty paragraphs in edit mode
@@ -11,8 +12,6 @@ $tpl_primary_menu = wp_nav_menu(array('echo' => false, 'menu' => 'primary', 'con
 $tpl_useful_links_menu = !is_user_logged_in() ?
     '<a href="' . get_bloginfo('url') . '/wp-admin/">' . __('Login', 'informea') . '</a>'
     : '<a href="' . get_bloginfo('url') . '/wp-admin/">' . __('Administration Panel', 'informea') . '</a> | <a href="' . wp_logout_url(get_permalink()) . '">' . __('Logout', 'informea') . '</a>';
-
-$mobile = new Mobile_Detect();
 add_filter('body_class', function ($classes) {
     $classes[] = 'informea';
     return $classes;

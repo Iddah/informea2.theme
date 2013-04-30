@@ -139,7 +139,7 @@ function explorerUISelectTerm(id, name) {
 			$('#explorer_and_or_radiobuttons').show();
 		}
 		$('<div>' + name + '</div>').attr({'class': span_class})
-			.append("<a href='javascript:explorerUIDeselectTerm(" + id + ");'><img class='closebutton' src='" + images_dir + "/s.gif' alt='' title='' /></a>")
+			.append("<a href='javascript:explorerUIDeselectTerm(" + id + ");'>x</a>")
 			.appendTo($('.selected-terms-holder'));
 	}
 }

@@ -360,6 +360,27 @@ ul#menu-secondary-menu a:hover { color: #444; }
 #explorer form ul.sublist { margin-left: 20px; margin-bottom: 10px; }
 #explorer .selected-terms-holder { padding: 3px 0; }
 
+#masthead #explorer input.ui-autocomplete-input { height: 25px; margin: 0; padding: 0; border-right: 0; }
+#masthead #explorer button.ui-button { top: -1px; height: 27px; }
+
+li.widget.index-explorer button { top: -1px; ; }
+ul.ui-autocomplete.ui-widget-content { background: #fff none; }
+li.widget.index-explorer .ui-autocomplete-input {
+    height: 23px; margin: 0; padding: 0;
+    border: 1px solid #ffe974; border-right: 0; line-height: 8px;
+}
+
+#masthead #explorer div.selected-terms-holder { margin: 15px 0 0 0; }
+#masthead #explorer div.term-content { margin: 3px; padding: 2px; display: inline-block; background: #ffdd57; border: 1px solid #a45b13; }
+#masthead #explorer div.term-content a { padding: 3px; margin: 10px 3px 0 3px; }
+#masthead #explorer div.term-content a:hover { text-decoration: none; }
+
+
+
+/* ABOUT PAGE */
+
+
+
 /* GLOBAL :: Footer */
 div#changelog {
     margin-top: 5px;
