@@ -16,14 +16,12 @@ if (!class_exists('imea_highlights_page')) {
         public $mea_categories;
         public $mea_categories_slugs;
         private $treaties;
-        private $categories_treaties;
 
         function __construct() {
             global $post;
             $old_post = $post;
             $this->categories = array();
 
-            $ret = array();
             $ob = new StdClass();
             $ob->title = "Climate &amp; Atmosphere";
             $ob->slug = "climate-change";
@@ -98,7 +96,7 @@ if (!class_exists('imea_highlights_page')) {
 
             $this->non_empty_categories = array();
             foreach ($this->categories as $cat) {
-                $news = $this->get_category_posts($cat, 1);
+                $news = $this->search(NULL, $cat->slug);
                 if (count($news->posts)) {
                     $this->non_empty_categories[] = $cat;
                 }
@@ -118,7 +116,8 @@ if (!class_exists('imea_highlights_page')) {
                     $this->mea_categories_slugs[$cat_mea->cat_ID] = $cat_mea->slug;
                 }
             }
-            foreach (FeedWordPress::syndicated_links() as $link) {
+            $feedwordpress = new FeedWordPress();
+            foreach ($feedwordpress->syndicated_links() as $link) {
                 $syndicated_link = new SyndicatedLink($link);
                 if (!isset($syndicated_link->settings['cats'])) {
                     continue; // This feed does not have any category set (wrongly configured)
@@ -137,25 +136,6 @@ if (!class_exists('imea_highlights_page')) {
             $post = $old_post;
         }
 
-        function is_search() {
-            $highlight_search = get_request_value('highlight_search');
-            $highlight_month = get_request_value('highlight_month');
-            $highlight_year = get_request_value('highlight_year');
-            return isset($highlight_search) || isset($highlight_month) || isset($highlight_year);
-        }
-
-
-        function get_categories() {
-            return $this->categories;
-        }
-
-        function get_category_by_slug($slug) {
-            if (isset($this->categories[$slug])) {
-                return $this->categories[$slug];
-            }
-            return null;
-        }
-
 
         function get_meas_subcategories() {
             $cat_meas = get_category_by_slug('meas');
@@ -169,6 +149,14 @@ if (!class_exists('imea_highlights_page')) {
                 }
             }
             return $ret;
+        }
+
+
+        function get_category_by_slug($slug) {
+            if (isset($this->categories[$slug])) {
+                return $this->categories[$slug];
+            }
+            return null;
         }
 
 
@@ -187,21 +175,28 @@ if (!class_exists('imea_highlights_page')) {
         }
 
 
-        function search($highlight_search, $highlight_month, $highlight_year, $limit = 10, $page = 0) {
+        /**
+         * @param $query
+         * @param null $category
+         * @param int $page
+         * @param int $limit
+         * @return stdClass with property 'posts' containing the posts and max_num_pages total pages
+         */
+        function search($query, $category = NULL, $page = 0, $limit = 10) {
             global $post;
+            $old_post = $post;
             $ret = new StdClass();
             $ret->posts = array();
             $args = array('post_date' => 'DATE(NOW())',
                 'post_type' => 'post',
                 'orderby' => 'post_date',
                 'paged' => $page,
-                's' => $highlight_search,
                 'order' => 'DESC');
-            if ($highlight_month > 0) {
-                $args['monthnum'] = $highlight_month;
+            if(!empty($category)) {
+                $args['category_name'] = $category;
             }
-            if ($highlight_year > 0) {
-                $args['year'] = $highlight_year;
+            if(!empty($query)) {
+                $args['s'] = $query;
             }
             $args['posts_per_page'] = $limit;
             $wpq = new WP_Query($args);
@@ -223,66 +218,19 @@ if (!class_exists('imea_highlights_page')) {
                 $feed_id = $custom_fields['syndication_feed_id'];
                 $feed_id = $feed_id[0];
                 $ob->source = $this->get_post_source($feed_id, $post->ID);
-                $ret->posts[] = $ob;
                 $feed = null;
                 if (isset($this->feeds[$feed_id])) {
                     $feed = $this->feeds[$feed_id];
                 }
                 $ob->image = $this->get_post_image($feed, $post);
-            }
-            return $ret;
-        }
-
-        function get_category_posts($category, $limit = 10, $page = 0) {
-            global $post;
-            $ret = new StdClass();
-            $ret->posts = array();
-            $args = array('post_date' => 'DATE(NOW())',
-                'post_type' => 'post',
-                'category_name' => $category->slug,
-                'orderby' => 'post_date',
-                'order' => 'DESC');
-            if (!empty($limit)) {
-                $args['posts_per_page'] = $limit;
-            }
-            $wpq = new WP_Query($args);
-            $ret->max_num_pages = $wpq->max_num_pages;
-            while ($wpq->have_posts()) {
-                $wpq->the_post();
-                $ob = new StdClass();
-                $ob->image = null;
-                $ob->id = get_the_ID();
-                $ob->permalink = get_permalink();
-                $ob->title = get_the_title();
-                $ob->has_image = FALSE;
-                $ob->time = strtotime($post->post_date);
-                $ob->date = $post->post_date;
-                $ob->date_formatted = format_mysql_date($post->post_date, 'j M Y');
-                $ob->summary = $post->post_excerpt;
-                $ob->content = $post->post_content;
-                $ob->source = NULL; // Default
-                $custom_fields = get_post_custom();
-                $feed_id = null;
-                if (isset($custom_fields['syndication_feed_id'])) {
-                    $feed_id = $custom_fields['syndication_feed_id'];
-                    $feed_id = $feed_id[0];
-                }
-                $ob->source = $this->get_post_source($feed_id, $post->ID);
-                if (!empty($feed_id)) {
-                    // echo_trace();
-                    $ob->image = $this->get_post_image(isset($this->feeds[$feed_id]) ? $this->feeds[$feed_id] : null, $post);
-                } else {
-                    $ob->image = $this->get_post_image(null, $post);
-                }
-                $ob->has_image = !empty($ob->image);
                 $ret->posts[] = $ob;
             }
+            $post = $old_post;
             return $ret;
         }
 
         function get_post_source($feed_id, $post_id) {
-            $ret = NULL;
-            $custom_fields = get_post_custom($post_id);
+            $ret = new stdClass();
 
             $post_categories = wp_get_post_categories($post_id);
             foreach ($post_categories as $post_category) {
@@ -294,7 +242,7 @@ if (!class_exists('imea_highlights_page')) {
 
             if (empty($ret) && !empty($feed_id)) {
                 if (isset($this->feed_mea[$feed_id])) {
-                    $ob->source = $this->feed_mea[$feed_id];
+                    $ret = $this->feed_mea[$feed_id];
                 }
                 // If we have no source, set source to the feed title
                 $feed = new SyndicatedLink($feed_id);
@@ -360,43 +308,17 @@ if (!class_exists('imea_highlights_page')) {
             return get_bloginfo('template_directory') . '/images/organization/nologo.png';
         }
 
-
-        function get_index_news($limit = 2) {
+        public static function get_post_categories($post) {
             $ret = array();
-            foreach ($this->mea_categories_slugs as $mea_category) {
-                $ob = new StdClass();
-                $ob->slug = $mea_category;
-                $ob = $this->get_category_posts($ob, $limit);
-                if (!empty($ob->posts)) {
-                    foreach ($ob->posts as $p) {
-                        if (!array_key_exists($p->id, $ret)) {
-                            $ret[$p->id] = $p;
-                        }
-                    }
+            $cat_syn = get_category_by_slug('syndication');
+            $cat_meas = get_category_by_slug('meas');
+            foreach (wp_get_post_categories($post->id) as $cat_id) {
+                if(!in_array($cat_id, array($cat_syn->cat_ID, $cat_meas->cat_ID))) {
+                    $ret[] = get_category($cat_id);
                 }
             }
-            // Sort posts by their date
-            usort($ret, function ($a, $b) {
-                if ($a->time == $b->time) {
-                    return 0;
-                }
-                return ($a->time < $b->time) ? 1 : -1;
-            });
             return $ret;
         }
-
-
-        function get_years_interval() {
-            global $wpdb;
-            $ob = new StdClass();
-            $ob->min = 1990;
-            $ob->max = intval(date('Y'));
-            $row = $wpdb->get_row("SELECT MIN(YEAR(post_date)) AS min_year, MAX(YEAR(post_date)) AS max_year FROM {$wpdb->prefix}posts");
-            $ob->min = intval($row->min_year);
-            $ob->max = intval($row->max_year);
-            return $ob;
-        }
-
 
         function get_rss_posts() {
             global $post;
@@ -494,14 +416,12 @@ if (!class_exists('imea_highlights_page')) {
             $post['post_type'] = 'post';
             $post['post_content'] = sprintf('Read more <a href="%s">here</a>.', $link);
 
-            var_dump($post);
             $id = wp_insert_post($post, TRUE);
             if (is_int($id) && $id > 0) {
                 wp_set_post_terms($id, array_merge($cat_syndication, $cat_mea), 'category');
                 add_post_meta($id, 'syndication_permalink', $link);
                 $this->success = TRUE;
             } else {
-                var_dump($id);
             }
         }
     }
