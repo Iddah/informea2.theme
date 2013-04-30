@@ -747,6 +747,28 @@ body.imea-highlights ul.items li ul.info li {
 /* 404 PAGE */
 div.d404 { background-color: #f4f4f4; padding: 30px; }
 
+/* SEARCH PAGE */
+body.imea-search form { margin: 0; padding: 0; }
+body.imea-search div.widget.search div.content { margin: 10px 0 0 10px; padding: 0; }
+body.imea-search ul.sidebar li.search ul { padding: 2px; background-color: #fff; }
+body.imea-search ul.sidebar label { font-weight: normal; }
+body.imea-search ul.sidebar h3 { cursor: pointer; }
+body.imea-search ul.sidebar li { margin-bottom: 30px; }
+body.imea-search ul.sidebar li input.ui-autocomplete-input { width: 140px; height: 24px; border-right: 0; }
+body.imea-search ul.sidebar li button.ui-button { height: 28px; top: -1px; }
+
+body.imea-search ul.sidebar ul#selected-terms-holder { margin: 15px 0 0 0; }
+body.imea-search ul.sidebar li.term-content span.ui-icon { display: inline-block; margin-top: 2px; height: 13px; }
+body.imea-search ul.sidebar li.term-content {
+    padding: 3px; margin: 10px 3px 0 3px; display: inline-block;
+    background: #ffdd57; border: 1px solid #a45b13; cursor: pointer;
+}
+body.imea-search ul.sidebar ul.instrument-list { margin: 0; padding: 0;}
+body.imea-search ul.sidebar ul.instrument-list li { margin: 0; padding: 0;}
+body.imea-search ul.sidebar ul.instrument-list li li { margin: 0 0 0 15px; padding: 0;}
+
+body.imea-search ul#search_results { list-style-type: none; }
+
 /* Below, you are beyond redemption */
 
 /* TRIAGE */

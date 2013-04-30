@@ -11,8 +11,8 @@ function tengine_header($show_explorer = true, $primary_menu = '', $useful_links
         <?php wp_nav_menu(array('menu' => 'secondary', 'container' => '', 'theme_location' => 'secondary', 'walker' => new imea_menu_walker())); ?>
         <?php echo (!empty($primary_menu)) ? $primary_menu : '<span id="informea_template_primary_menu"></span>'; ?>
         <?php
-        if (!is_front_page()) {
-            ?>
+        if (!is_front_page() && $show_explorer) {
+        ?>
             <div id="explorer">
                 <div class="mea-button right">
                     <img src="<?php bloginfo('template_directory'); ?>/images/s.gif" alt="" title="<?php _e('Toggle MEA Explorer box', 'informea'); ?>"/>
