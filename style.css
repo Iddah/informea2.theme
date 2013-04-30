@@ -29,6 +29,8 @@
  - COUNTRIES PAGES
  - TERMS PAGES
  - EVENTS PAGE
+ - HIGHLIGHTS PAGES
+ - 404 PAGE
  - /dev/null
 */
 
@@ -701,7 +703,7 @@ body.imea-events ul.info li {
     border: 1px dashed #ccc;
 }
 
-/* HIGHLIGHTS */
+/* HIGHLIGHTS PAGES */
 body.imea-highlights ul.sidebar li.filter-highlight div.field { margin-bottom: 15px; }
 body.imea-highlights ul.sidebar li.filter-highlight select { width: 180px; }
 body.imea-highlights ul.sidebar li.filter-highlight input#search { width: 170px; }
@@ -720,6 +722,9 @@ body.imea-highlights ul.items li ul.info li {
     display: inline-block; margin: 0 5px; padding: 1px 3px;
     background-color: #eee; border: 1px dashed #ccc;
 }
+
+/* 404 PAGE */
+div.d404 { background-color: #f4f4f4; padding: 30px; }
 
 /* Below, you are beyond redemption */
 
