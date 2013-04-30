@@ -229,6 +229,32 @@ if (!class_exists('imea_highlights_page')) {
             return $ret;
         }
 
+
+        function get_index_news($limit = 2) {
+            $ret = array();
+            foreach ($this->mea_categories_slugs as $mea_category) {
+                $ob = new StdClass();
+                $ob->slug = $mea_category;
+                $ob = $this->search(NULL, $mea_category, $limit);
+                if (!empty($ob->posts)) {
+                    foreach ($ob->posts as $p) {
+                        if (!array_key_exists($p->id, $ret)) {
+                            $ret[$p->id] = $p;
+                        }
+                    }
+                }
+            }
+            // Sort posts by their date
+            usort($ret, function ($a, $b) {
+                if ($a->time == $b->time) {
+                    return 0;
+                }
+                return ($a->time < $b->time) ? 1 : -1;
+            });
+            return $ret;
+        }
+
+
         function get_post_source($feed_id, $post_id) {
             $ret = new stdClass();
 
