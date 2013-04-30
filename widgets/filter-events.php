@@ -96,7 +96,10 @@ class FilterEventsWidget extends WP_Widget {
                         <input id="fe_show_past" type="checkbox" name="fe_show_past" value="1"<?php echo $checked; ?>/>
                         <label for="fe_show_past">Show past events</label>
                     </div>
-                    <input type="submit" value="Filter" class="pull-right" />
+                    <p>
+                        <a href="<?php echo get_permalink(); ?>" class="pull-left">Reset</a>
+                        <input type="submit" value="Filter" class="pull-right" />
+                    </p>
                 </form>
             </div>
         </li>
