@@ -76,8 +76,8 @@ if (!class_exists('imea_goals_page')) {
             global $wpdb;
 
             return $wpdb->get_results(
-                "SELECT a.id, a.order,a.name, a.indicators, a.id_strategic_goal, b.name as goal FROM ai_goals a
-                INNER JOIN ai_goals b ON (b.id_strategic_goal = a.id_strategic_goal)
+                "SELECT a.id, a.order,a.name, a.indicators, a.id_strategic_goal, b.colour, b.name as goal FROM ai_goals a
+                INNER JOIN ai_goals b ON (b.id = a.id_strategic_goal)
                 WHERE a.type = 'Aichi Target' GROUP BY a.id ORDER BY a.`order`"
             );
         }
