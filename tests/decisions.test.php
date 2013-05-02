@@ -160,7 +160,7 @@ class imea_decisions_admin_test extends InforMEABaseTest {
         $row = $wpdb->get_row('SELECT * FROM ai_decision_country LIMIT 1');
         $this->assertEquals($decision->id, $row->id_decision);
         $this->assertEquals($country->id, $row->id_country);
-     }
+    }
 
 
     /**
@@ -216,7 +216,7 @@ class imea_decisions_admin_test extends InforMEABaseTest {
         $ob->remove_countries($decision->id);
         $count = $wpdb->get_var('SELECT COUNT(*) FROM ai_decision_country');
         $this->assertEquals(0, $count);
-     }
+    }
 
 
     /**
@@ -245,7 +245,7 @@ class imea_decisions_admin_test extends InforMEABaseTest {
         $row = $wpdb->get_row('SELECT * FROM ai_decision_vocabulary LIMIT 1');
         $this->assertEquals($decision->id, $row->id_decision);
         $this->assertEquals($term->id, $row->id_concept);
-     }
+    }
 
 
     /**
@@ -300,7 +300,7 @@ class imea_decisions_admin_test extends InforMEABaseTest {
         $ob->remove_tags($decision->id);
         $count = $wpdb->get_var('SELECT COUNT(*) FROM ai_decision_vocabulary');
         $this->assertEquals(0, $count);
-     }
+    }
 
 
     /**
@@ -311,7 +311,7 @@ class imea_decisions_admin_test extends InforMEABaseTest {
     function test_remove_tags_null_decision() {
         $ob = new imea_decisions_admin();
         $ob->remove_tags(NULL);
-     }
+    }
 
 
     function test_get_decisions_for_country() {
