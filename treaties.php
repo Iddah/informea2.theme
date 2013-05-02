@@ -683,7 +683,7 @@ if (!class_exists('imea_treaties_page')) {
 
         /**
          * Retrieve treaty by odata_name
-         * @param $odata_name name as comes from Odata protocol
+         * @param $odata_name string as comes from Odata protocol
          * @return WP SWL result object
          */
         static function get_treaty_by_odata_name($odata_name) {
