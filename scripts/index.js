@@ -14,6 +14,7 @@ $(document).ready(function() {
     /* Set-up paginator for the upcoming meetings widget */
     upcoming_meetings_paginator();
 
+    $('#q_freetext').focus();
     $("#q_term_index").reusableComboBox({
         select: function (evt, ob) {
             var item = ob.item;
