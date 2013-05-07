@@ -35,9 +35,7 @@ class MEAExplorerWidget extends WP_Widget {
                         <a href="javascript:void(0);" class="index-explorer-advanced-search-click">
                             <span>Advanced search &raquo;</span>
                         </a>
-                        <a class="btn pull-right orange" href="javascript:void(0);" onclick="$('#search_index').submit();">
-                            <span>Search</span>
-                        </a>
+                        <input type="submit" class="btn pull-right orange" value="Search" />
                     </div>
                     <ul class="advanced hidden">
                         <li class="section">
