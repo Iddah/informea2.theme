@@ -31,6 +31,7 @@
  - EVENTS PAGE
  - HIGHLIGHTS PAGES
  - 404 PAGE
+ - SEARCH PAGE
  - /dev/null
 */
 
@@ -146,6 +147,8 @@ div.alert .close { position: relative; top: -5px; right: -4px; line-height: 20px
 .icon-download { background-position: -120px -24px; }
 .icon-share { background-position: -120px -72px; }
 .icon-share-alt { background-position: -336px -96px; }
+.icon-refresh { background-position: -240px -24px; }
+.icon-play { background-position: -264px -72px; }
 
 /* GLOBAL :: Tabs */
 div.tabs { height: 22px; margin-bottom: 10px; padding-top: 2px; border-bottom: 1px solid #d7d7d7; }
@@ -767,7 +770,18 @@ body.imea-search ul.sidebar ul.instrument-list { margin: 0; padding: 0;}
 body.imea-search ul.sidebar ul.instrument-list li { margin: 0; padding: 0;}
 body.imea-search ul.sidebar ul.instrument-list li li { margin: 0 0 0 15px; padding: 0;}
 
-body.imea-search ul#search_results { list-style-type: none; }
+body.imea-search ul.search-results { margin: 15px 0 0 0; padding: 0; list-style-type: none; }
+body.imea-search ul.search-results ul { margin: 5px 0 5px 15px; padding: 0; list-style-type: none; }
+body.imea-search ul.search-results li { margin: 20px 0; }
+body.imea-search ul.search-results li div { margin-left: 20px; }
+body.imea-search ul.search-results i { margin-right: 5px; }
+body.imea-search ul.search-results i.icon-download { margin-left: 5px; }
+body.imea-search ul.search-results img { max-height: 30px; vertical-align: middle; }
+body.imea-search ul.search-results div.highlight {
+    padding: 5px;
+    margin-top: 10px; border: 1px dashed #666; background-color: #f4f4f4;
+}
+body.imea-search ul.search-results div.highlight strong { color: #de5425; }
 
 /* Below, you are beyond redemption */
 

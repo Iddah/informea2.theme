@@ -17,7 +17,7 @@ $tab = get_request_int('q_tab', 2);
             <h3>free text <i class="icon icon-minus-sign pull-right"></i></h3>
             <div class="content">
                 <label>Free search text
-                    <input type="text" size="31" name="q_freetext" placeholder="Type a term or phrase"
+                    <input type="text" size="31" id="q_freetext" name="q_freetext" placeholder="Type a term or phrase"
                            value="<?php echo esc_attr($search->ui_get_freetext()); ?>" />
                 </label>
                 <button class="btn pull-right" onclick="$(this).closest('form').submit();">Search</button>

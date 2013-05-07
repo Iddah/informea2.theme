@@ -39,6 +39,34 @@ $(document).ready(function() {
             $(e.target).siblings('ul.sublist').find('[type=checkbox]').removeAttr('checked');
         }
     });
+
+    //
+    $('#sort-order').change(function() {
+        var dir = $(this).val();
+        if(dir == 'desc') {
+            sort_descending();
+        } else {
+            sort_ascending();
+        }
+    });
+
+    $('#tab-mode').change(function() {
+        var tab = $('#tab-mode>option:selected').val();
+        console.log(tab);
+        $('#q_tab_filters').val(tab);
+        $('#filter').submit();
+    });
+
+    $.each($('a.ajax-expand'), function (i, item) {
+        toggleResultAjax(this);
+    });
+
+    $.each($('a.toggle-result'), function (i, item) {
+        $(this).click(function (e) {
+            e.preventDefault();
+            toggleResult(this);
+        });
+    });
 });
 
 function explorerIndexUIDeselectTerm(id) {
@@ -48,4 +76,49 @@ function explorerIndexUIDeselectTerm(id) {
             $(el).removeAttr('selected');
         }
     });
+}
+
+
+function toggleResult(T) {
+    var target = $('#' + $(T).data('toggle'));
+    if (target.is(':visible')) {
+        $('i', T).removeClass('icon-minus-sign').addClass('icon-plus-sign');
+    } else {
+        $('i', T).removeClass('icon-plus-sign').addClass('icon-minus-sign');
+    }
+    target.toggle(100);
+}
+
+
+function toggleResultAjax(T) {
+    if (!$(T).hasClass('processed')) {
+        $(T).addClass('processed');
+        $(T).click(function (e) {
+            e.preventDefault();
+            var id = $(T).data('id');
+            var entity = $(T).data('role');
+            var target = $('#' + $(T).data('toggle'));
+            if (target.is(':visible')) {
+                $('i', T).removeClass('icon-minus-sign').addClass('icon-plus-sign');
+                target.toggle(100);
+            } else {
+                var data = { action: 'search_highlight', 'q_freetext': $('#q_freetext').val(), entity: entity, id: id };
+                if (target.text() == '') {
+                    $('i', T).removeClass('icon-plus-sign').addClass('icon-refresh');
+                    $.post(ajax_url, data, function (response) {
+                        if (response == '') {
+                            target.append('This treaty has decisions listed here');
+                        } else {
+                            target.append(response);
+                        }
+                    });
+                    $('i', T).removeClass('icon-refresh').removeClass('icon-plus-sign').addClass('icon-minus-sign');
+                    target.toggle(100);
+                } else {
+                    $('i', T).removeClass('icon-plus-sign').addClass('icon-minus-sign');
+                    target.toggle(100);
+                }
+            }
+        });
+    }
 }
