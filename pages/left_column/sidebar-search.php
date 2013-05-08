@@ -3,6 +3,9 @@ $search = InformeaSearch3::get_searcher();
 $terms_page = new Thesaurus(NULL);
 $sel_terms = $search->ui_get_selected_terms();
 $tab = get_request_int('q_tab', 2);
+if(!defined('INFORMEA_SEARCH_PAGE')) {
+    define('INFORMEA_SEARCH_PAGE', TRUE);
+}
 ?>
 <ul class="sidebar">
 <li class="widget search">
@@ -97,11 +100,6 @@ $tab = get_request_int('q_tab', 2);
                     <input type="checkbox" name="q_use_treaties" value="1" <?php $search->ui_check_use_treaties();?> />
                     <?php _e('Treaties', 'informea'); ?>
                 </label>
-                <br/>
-                <label>
-                    <input type="checkbox" name="q_use_meetings" value="1" <?php $search->ui_check_use_meetings();?> />
-                    <?php _e('Meetings', 'informea'); ?>
-                </label>
             </div>
         </li>
 
@@ -162,7 +160,7 @@ $tab = get_request_int('q_tab', 2);
                 <?php }  ?>
                 <ul>
                     <li>
-                        <?php
+                    <?php
                         $ot = $search->ui_get_other_treaties();
                         $checked = '';
                         foreach ($ot as $id) {
@@ -171,8 +169,7 @@ $tab = get_request_int('q_tab', 2);
                                 break;
                             }
                         }
-                        ?>
-
+                    ?>
                         <input id="explorer_other_treaties" type="checkbox" <?php echo $checked; ?>
                                class="explorer-treaty-click-children"/>
                         <label for="explorer_other_treaties">Other<span class="description"
