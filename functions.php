@@ -150,6 +150,51 @@ function informea_customize_register( $wp_customize ) {
 add_action('customize_register', 'informea_customize_register');
 
 
+function render_qterm_autocomplete($show_label_keywords=TRUE) {
+    $search = new InformeaSearch3($_GET);
+    $terms_page = new Thesaurus(NULL);
+    $terms = $terms_page->suggest_vocabulary_terms();
+    $selected = $search->get_terms();
+    $andor_hidden = count($selected) > 1 ? '' : 'hidden';
+    $or_checked = $search->is_terms_or() ? 'checked="checked"' : '';
+    $and_checked = $search->is_terms_or() ? '' : 'checked="checked"';
+?>
+    <?php if($show_label_keywords): ?>
+    <label id="q_term_label" for="q_term">Keywords</label>
+    <?php endif; ?>
+    <div class="q_term_container">
+        <select id="q_term" name="q_term[]" multiple="multiple" class="hidden">
+        <?php
+            foreach ($terms as $term) {
+                $search->ui_write_option($term->id, $term->term, in_array(intval($term->id), $selected));
+            }
+        ?>
+        </select>
+        <div id="q_term_andor" class="<?php echo $andor_hidden; ?>">
+            <label>
+                <input type="radio" name="q_term_or" value="and" <?php echo $and_checked; ?>/>
+                AND
+            </label>
+            <label>
+                <input type="radio" name="q_term_or" value="or" <?php echo $or_checked; ?>/>
+                OR
+            </label>
+        </div>
+        <ul id="q_term_holder">
+        <?php
+            foreach($selected as $id_term):
+                $term = $terms_page->get_term($id_term);
+        ?>
+            <li class="round">
+                <?php echo $term->term; ?>
+                <a href="javascript:void(0);" onclick="qTermRemove(<?php echo $id_term; ?>, this);"><i class="icon icon-remove"></i></a>
+            </li>
+        <?php endforeach; ?>
+        </ul>
+    </div>
+<?php
+}
+
 function informea2_widgets_init() {
     register_sidebar(array(
         'id' => 'index-page-left', 'name' => __('Index page left column', 'informea'),

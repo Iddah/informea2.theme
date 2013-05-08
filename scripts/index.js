@@ -15,25 +15,6 @@ $(document).ready(function() {
     upcoming_meetings_paginator();
 
     $('#q_freetext').focus();
-    $("#q_term_index").reusableComboBox({
-        select: function (evt, ob) {
-            var item = ob.item;
-            var span_class = 'term-content span-term-' + item.value;
-            if (!$('.span-term-' + item.value).length) {
-                var label = item.text;
-                if (label.length > 20) {
-                    label = label.substring(0, 17) + '...';
-                }
-                if ($('#index-search-terms').text().length > 0) {
-                    $('#index_and_or_radiobuttons').show();
-                }
-                $('<li title="' + item.text + '" onclick="javascript:explorerIndexUIDeselectTerm(' + item.value + ');">' + label + '</li>').attr({'class': span_class})
-                    .append('<span class="ui-icon ui-icon-close"></span>')
-                    .appendTo($('#index-search-terms'));
-            }
-            return false;
-        }
-    });
 
     $('#use_biodiversity_label').click(function () {
         var treaties = new Array(1 /* CBD */, 8 /* Cartagena */, 9 /* Nagoya */, 3 /* CITES */, 4 /* CMS */,
@@ -58,16 +39,6 @@ $(document).ready(function() {
         });
     });
 });
-
-
-function explorerIndexUIDeselectTerm(id) {
-    $('.span-term-' + id).remove();
-    $('#q_term_index option:selected').each(function (idx, el) {
-        if ($(el).attr('value') == id) {
-            $(el).removeAttr('selected');
-        }
-    });
-}
 
 
 function featuredCountryWidgetSetup() {

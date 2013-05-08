@@ -61,30 +61,7 @@ if(!defined('INFORMEA_SEARCH_PAGE')) {
         <li>
             <h3>keyword <i class="icon icon-minus-sign pull-right"></i></h3>
             <div class="content">
-                <select id="q_term_filters" name="q_term[]" multiple="multiple" class="hidden">
-                <?php
-                    $terms = $terms_page->suggest_vocabulary_terms();
-                    foreach ($terms as $term) {
-                        $search->ui_write_option($term->id, $term->term, in_array(intval($term->id), $sterms));
-                    }
-                ?>
-                </select>
-                <?php $visible = count($sel_terms) > 1 ? '' : 'hidden'; ?>
-                <div id="filter_and_or_radiobuttons" class="<?php echo $visible; ?>">
-                    <input type="radio" id="q_term_or_and_filters" name="q_term_or"
-                           value="and"<?php $search->ui_radio_terms_or(); ?> />
-                    <label for="q_term_or_and_filters">AND</label>
-                    <input type="radio" id="q_term_or_or_filters" name="q_term_or"
-                           value="or"<?php $search->ui_radio_terms_or(true); ?> />
-                    <label for="q_term_or_or_filters">OR</label>
-                </div>
-                <ul id="selected-terms-holder">
-                <?php foreach ($sel_terms as $term) { ?>
-                    <li class="term-content filters-span-term-<?php echo $term->id; ?>"
-                         title="<?php echo $term->term; ?>"><?php echo subwords($term->term, 3); ?>
-                        &nbsp;<span class="ui-icon ui-icon-close"></span>
-                    </li>
-                <?php } ?>
+                <?php render_qterm_autocomplete(); ?>
             </div>
         </li>
 

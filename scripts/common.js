@@ -3,7 +3,34 @@ $('document').ready(function() {
     $('div.alert>button.close').click(function(evt) {
         $(evt.target).parent().fadeOut({duration: 600});
     });
+
+    // Autocomplete for terms
+    $("#q_term").reusableComboBox({
+        select: function (evt, ob) {
+            var item = ob.item;
+            if($('ul#q_term_holder>li#qterm-' + item.value).length <= 0) {
+                $('<li id="qterm-' + item.value + '" class="round">' + item.text + '</li>')
+                    .append('<a href="javascript:void(0);" onclick="qTermRemove(' + item.value + ', this);"><i class="icon icon-remove"></i></a>')
+                    .appendTo($('ul#q_term_holder'));
+
+                if($('select#q_term option:selected').length > 1) {
+                    $('#q_term_andor').show();
+                }
+            }
+            return false;
+        }
+    });
 });
+
+
+function qTermRemove(id, T) {
+    $(T).parent().remove();
+    $('select#q_term>option[value=' + id + ']').removeAttr('selected');
+    if($("select#q_term option:selected").length <= 1) {
+        $('#q_term_andor').hide();
+    }
+}
+
 
 /* Function called when view mode is changed. For instance: grid/list/table/etc.*/
 function onChangeViewMode(T) {

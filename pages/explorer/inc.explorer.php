@@ -59,35 +59,7 @@ $terms_page = new Thesaurus(NULL);
                            name="q_freetext" class="text">
                 </div>
                 <div class="tagged-terms">
-                    <div class="autocomplete-holder">
-                        <label for="q_term_explorer">Type keyword</label>
-                        <br/>
-                        <select id="q_term_explorer" name="q_term[]" multiple="multiple">
-                            <?php
-                            $terms = $terms_page->suggest_vocabulary_terms();
-                            $sterms = $search2->get_terms();
-                            foreach ($terms as $term) {
-                                $search2->ui_write_option($term->id, $term->term, in_array(intval($term->id), $sterms));
-                            }
-                            ?>
-                        </select>
-                    </div>
-                    <div class="input-holder">
-                        <?php
-                        $checked = $search2->is_terms_or() ? '' : ' checked="checked"';
-                        ?>
-                        <?php $visible = count($sel_terms) > 1 ? '' : 'hidden'; ?>
-                        <div id="explorer_and_or_radiobuttons" class="<?php echo $visible; ?>">
-                            <input type="radio" id="q_term_or_and_explorer" name="q_term_or" title="Filter items tagged with all the terms below"
-                                   value=""<?php echo $checked; ?> />
-                            <label for="q_term_or_and_explorer">AND</label>
-                            <?php $checked = $search2->is_terms_or() ? ' checked="checked"' : ''; ?>
-                            <input type="radio" id="q_term_or_or_explorer" name="q_term_or" title="Filter items tagged with any of the terms below"
-                                   value="or"<?php echo $checked; ?> />
-                            <label for="q_term_or_or_explorer">OR</label>
-                        </div>
-                    </div>
-                    <div class="selected-terms-holder"></div>
+                    <?php render_qterm_autocomplete(); ?>
                 </div>
                 <?php
                 include(dirname(__FILE__) . '/inc.date_interval.php');

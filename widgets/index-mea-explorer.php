@@ -90,28 +90,7 @@ class MEAExplorerWidget extends WP_Widget {
                             </div>
                         </li>
                         <li class="section">
-                            <p>Keywords</p>
-                            <div class="filters">
-                                <select id="q_term_index" name="q_term[]" multiple="multiple" class="hidden">
-                                    <?php
-                                    $terms_page = new Thesaurus(NULL);
-                                    $terms = $terms_page->suggest_vocabulary_terms();
-                                    $sterms = $search2->get_terms();
-                                    foreach ($terms as $term) {
-                                        $search2->ui_write_option($term->id, $term->term, in_array(intval($term->id), $sterms));
-                                    }
-                                    ?>
-                                </select>
-                                <div id="index_and_or_radiobuttons" class="hidden">
-                                    <input type="radio" id="q_term_and_index" name="q_term_or" value="and" checked="checked">
-                                    <label for="q_term_and_index">AND</label>
-
-                                    <input type="radio" id="q_term_or_index" name="q_term_or" value="or">
-                                    <label for="q_term_or_index">OR</label>
-                                </div>
-                                <ul id="index-search-terms"></ul>
-                                <div class="clear"></div>
-                            </div>
+                            <?php render_qterm_autocomplete(); ?>
                         </li>
                         <li class="section">
                             <p>Time filter</p>
