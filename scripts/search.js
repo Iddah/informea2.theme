@@ -67,6 +67,17 @@ $(document).ready(function() {
             toggleResult(this);
         });
     });
+
+    $('#expand-all').click(function() {
+        $('ul.search-results a.toggle-result').trigger('click');
+        $('ul.search-results a.ajax-expand').trigger('click');
+        $('ul.search-results i').removeClass('icon-plus-sign').addClass('icon-minus-sign');
+    });
+
+    $('#collapse-all').click(function() {
+        $('ul.search-results div').hide();
+        $('ul.search-results i').removeClass('icon-minus-sign').addClass('icon-plus-sign');
+    });
 });
 
 function explorerIndexUIDeselectTerm(id) {

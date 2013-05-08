@@ -2,7 +2,7 @@
 <div class="toolbar toolbar-countries">
     <?php do_action('informea-search-toolbar-extra'); ?>
     <form action="" class="pull-right">
-        <label for="tab-mode"><?php _e('Change view', 'informea'); ?></label>
+        <label for="tab-mode"><?php _e('View results', 'informea'); ?></label>
         <select id="tab-mode" name="view-mode">
             <option <?php echo $tab == 1 ? 'selected="selected "' : ''; ?>value="1"><?php _e('as timeline', 'informea'); ?></option>
             <option <?php echo $tab == 2 ? 'selected="selected "' : ''; ?>value="2"><?php _e('grouped by treaty', 'informea'); ?></option>
