@@ -13,8 +13,14 @@ add_action('wp_ajax_meas_autocomplete', 'ajax_meas_autocomplete');
 add_action('wp_ajax_nopriv_get_article_tags', 'get_article_tags');
 add_action('wp_ajax_get_article_tags', 'get_article_tags');
 
-add_action('wp_ajax_nopriv_get_paragraph_tags', 'get_paragraph_tags');
+add_action('wp_ajax_nopriv_get_article_tags_html', 'get_article_tags_html');
+add_action('wp_ajax_get_article_tags_html', 'get_article_tags_html');
+
+add_action('wp_ajax_nopriv_get_paragraph_tags_ht', 'get_paragraph_tags');
 add_action('wp_ajax_get_paragraph_tags', 'get_paragraph_tags');
+
+add_action('wp_ajax_nopriv_get_paragraph_tags_html', 'get_paragraph_tags_html');
+add_action('wp_ajax_get_paragraph_tags_html', 'get_paragraph_tags_html');
 
 add_action('wp_ajax_nopriv_get_treaties', 'ajax_informea_get_treaties');
 add_action('wp_ajax_get_treaties', 'ajax_informea_get_treaties');
@@ -45,7 +51,7 @@ function ajax_meas_autocomplete() {
 /**
  * Generate JSON object with article tags based on article id
  * @param @id_article article id from query string
- * @return JSON object
+ * @return string object
  */
 function get_article_tags() {
     $id_article = get_request_int('id_article', 0);
@@ -63,9 +69,36 @@ function get_article_tags() {
 }
 
 /**
+ * Generate JSON object with article tags based on article id
+ * @param @id_article article id from query string
+ * @return string Response
+ */
+function get_article_tags_html() {
+    $id_article = get_request_int('id_article', 0);
+    if ($id_article > 0) {
+        $ret = '';
+        $ob = new imea_treaties_page(null);
+        $tags = $ob->get_article_tags($id_article);
+        $c = count($tags);
+        if($c) {
+            $ret .= '';
+            foreach ($tags as $tag) {
+                $ret .= sprintf('<a href="%s/terms/%s" target="_blank">%s</a><br />', get_bloginfo('url'), $tag->id, $tag->term);
+            }
+            $ret .= '';
+        } else {
+            echo 'This article has not been tagged';
+        }
+        header('Content-Type:text/html');
+        echo $ret;
+    }
+    die();
+}
+
+/**
  * Generate JSON object with paragraph tags based on paragraph id
  * @param @id_paragraph paragraph id from query string
- * @return JSON object
+ * @return string Response
  */
 function get_paragraph_tags() {
     $id_paragraph = get_request_int('id_paragraph', 0);
@@ -78,6 +111,34 @@ function get_paragraph_tags() {
         }
         header('Content-Type:application/json');
         echo json_encode($arr);
+    }
+    die();
+}
+
+
+/**
+ * Generate JSON object with paragraph tags based on paragraph id
+ * @param @id_paragraph paragraph id from query string
+ * @return string Response
+ */
+function get_paragraph_tags_html() {
+    $id_paragraph = get_request_int('id_paragraph', 0);
+    if ($id_paragraph > 0) {
+        $ret = '';
+        $ob = new imea_treaties_page(null);
+        $tags = $ob->get_paragraph_tags($id_paragraph);
+        $c = count($tags);
+        if($c) {
+            $ret .= '';
+            foreach ($tags as $tag) {
+                $ret .= sprintf('<a href="%s/terms/%s" target="_blank">%s</a><br />', get_bloginfo('url'), $tag->id, $tag->term);
+            }
+            $ret .= '';
+        } else {
+            echo 'This paragraph has not been tagged';
+        }
+        header('Content-Type:text/html');
+        echo $ret;
     }
     die();
 }
@@ -366,7 +427,7 @@ if (!class_exists('imea_treaties_page')) {
         /**
          * Retrieve the tags for an paragraph
          * @param $id_paragraph the paragraph id
-         * @return WP SQL result object
+         * @return array result objects
          */
         function get_paragraph_tags($id_paragraph) {
             global $wpdb;
@@ -377,7 +438,7 @@ if (!class_exists('imea_treaties_page')) {
         /**
          * Retrieve the tags for an article
          * @param $id_article
-         * @return WP SQL result object
+         * @return array result objects
          */
         function get_article_tags($id_article) {
             global $wpdb;
