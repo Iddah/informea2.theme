@@ -46,6 +46,16 @@ if(!function_exists('imea_debug')) {
 	}
 }
 
+if(!function_exists('informea_debug_wp_request')) {
+    function informea_debug_wp_request() {
+        global $wp, $template;
+        var_dump($wp->request);
+        var_dump($wp->matched_rule);
+        var_dump($wp->matched_query);
+        var_dump(basename($template));
+}
+}
+
 if(!function_exists('echo_trace')) {
 	function echo_trace() {
 		echo '<pre>';
