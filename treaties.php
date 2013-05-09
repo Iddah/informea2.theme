@@ -508,10 +508,10 @@ if (!class_exists('imea_treaties_page')) {
          * @param id_treaty Treaty
          * @return List of decisions for this treaty
          */
-        function get_decisions_count($id) {
+        static function get_decisions_count($id) {
             global $wpdb;
             $sql = $wpdb->prepare(
-                "SELECT COUNT(*) AS cnt FROM ai_decision WHERE id_treaty = %d AND status <> 'retired' ORDER BY published DESC",
+                "SELECT COUNT(*) AS cnt FROM ai_decision WHERE id_treaty = %d ORDER BY published DESC",
                 $id
             );
             return $wpdb->get_var($sql);
@@ -530,7 +530,7 @@ if (!class_exists('imea_treaties_page')) {
          * @return integer Count of decisions
          * @version 1.6
          */
-        function get_decisions_count_2($id_treaty) {
+        static function get_decisions_count_2($id_treaty) {
             global $wpdb;
             $ret = $wpdb->get_var(
                 $wpdb->prepare('SELECT COUNT(*) FROM ai_decision WHERE id_treaty=%d AND id_meeting IS NOT NULL', $id_treaty)
@@ -541,78 +541,30 @@ if (!class_exists('imea_treaties_page')) {
 
 
         /**
-         * We use two algorithms here:
-         *        1. Decisions have no id_meeting (id_meeting is null), but have valid meeting_title.
-         *        2. Decisions have id_meeting non-null
-         * @param id_treaty Treaty
-         * @return array with WP SQL result objects for decisions and meetings
+         * Retrieve decisions grouped by meeting
+         * @param $id_treaty integer Treaty identified
+         * @return array
          */
         static function group_decisions_by_meeting($id_treaty) {
             global $wpdb;
-            $ret_dec = array();
-            $ret_meet = array();
 
-            $c = $wpdb->get_var(
-                $wpdb->prepare(
-                    'SELECT COUNT(*) FROM ai_decision
-                        WHERE id_treaty=%d AND id_meeting IS NOT NULL AND status <> %s', $id_treaty, 'retired')
-                );
-            if ($c == 0) {
-                // Case 2)
-                $sql = $wpdb->prepare('SELECT id, link, short_title, long_title, summary, type, status, number,
-                            id_treaty, id_meeting, meeting_title, meeting_url, real_meeting_title,
-                            published
-                        FROM view_decision_meetings
-                        WHERE id_treaty = %d
-                        ORDER BY display_order DESC', $id_treaty);
-                $decisions = $wpdb->get_results($sql);
-                foreach ($decisions as &$decision) {
-                    $decision->order = intval(ereg_replace("[^0-9]", "", $decision->number));
-                    if (!isset($ret_dec[$decision->real_meeting_title])) {
-                        $ret_dec[$decision->real_meeting_title] = array();
-                    }
-                    $ret_dec[$decision->real_meeting_title][] = $decision;
-                    $meeting = new StdClass();
-                    $meeting->title = $decision->real_meeting_title;
-                    $meeting->location = NULL;
-                    $meeting->city = NULL;
-                    $meeting->event_url = NULL;
-                    $meeting->start = NULL;
-                    $meeting->end = NULL;
-                    $ret_meet[$decision->real_meeting_title] = $meeting;
-                }
-            } else {
-                // Case 1)
-                if (count($c) >= 1) {
-                    $meetings = $wpdb->get_results(
-                        $wpdb->prepare(
-                            'SELECT * FROM ai_event
-                                WHERE id IN (
-                                    SELECT DISTINCT(id_meeting) FROM ai_decision
-                                        WHERE id_treaty=%d) AND type=%s
-                                        ORDER BY start DESC, end DESC', $id_treaty, 'cop'
-                        )
-                    );
-                    foreach ($meetings as $meeting) {
-                        $sql = $wpdb->prepare(
-                            'SELECT id, link, short_title, long_title, summary, type, status, number,
-                                id_treaty, id_meeting, meeting_title, meeting_url, real_meeting_title, published
-                            FROM view_decision_meetings
-                            WHERE id_meeting = %d ORDER BY display_order', $meeting->id
-                        );
-                        $decisions = $wpdb->get_results($sql);
-                        foreach ($decisions as &$decision) {
-                            $decision->order = intval(ereg_replace("[^0-9]", "", $decision->number));
-                            if (!isset($ret_dec[$meeting->id])) {
-                                $ret_dec[$meeting->id] = array();
-                            }
-                            $ret_dec[$meeting->id][] = $decision;
-                        }
-                        $ret_meet[$meeting->id] = $meeting;
-                    }
-                }
+            $ret = array();
+            $meetings = $wpdb->get_results($wpdb->prepare(
+                'SELECT a.* FROM ai_event a
+                    INNER JOIN ai_decision b ON a.id = b.id_meeting
+                    WHERE a.id_treaty=%d
+                    GROUP BY a.id
+                    ORDER BY a.start DESC', $id_treaty
+            ));
+            foreach($meetings as &$meeting) {
+                $meeting->decisions = array();
+                $ret[$meeting->id] = $meeting;
             }
-            $ret = array('decisions' => $ret_dec, 'meetings' => $ret_meet);
+            $all = $wpdb->get_results($wpdb->prepare('SELECT a.* FROM ai_decision a WHERE id_treaty=%d ORDER BY display_order', $id_treaty));
+            foreach($all as $decision) {
+                $meeting = $ret[$decision->id_meeting];
+                $meeting->decisions[] = $decision;
+            }
             return $ret;
         }
 
