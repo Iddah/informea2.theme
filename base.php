@@ -55,7 +55,7 @@ if (!class_exists('imea_page_base_page')) {
             return $ret;
         }
 
-        function get_action() {
+        static function get_action() {
             return get_request_variable('action');
         }
 
