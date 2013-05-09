@@ -82,7 +82,7 @@ function get_article_tags_html() {
         $c = count($tags);
         if($c) {
             $ret .= '';
-            foreach ($tags as $tag) {
+            foreach ($tags as $idx => $tag) {
                 $ret .= sprintf('<a href="%s/terms/%s" target="_blank">%s</a><br />', get_bloginfo('url'), $tag->id, $tag->term);
             }
             $ret .= '';
@@ -973,7 +973,7 @@ if (!class_exists('imea_treaties_page')) {
             } catch (Exception $e) {
                 $this->success = false;
                 $this->errors = array('An error occurred while removing the paragraph');
-                $wpdb->query('ROLBACK');
+                $wpdb->query('ROLLBACK');
             }
         }
 
@@ -1008,13 +1008,14 @@ if (!class_exists('imea_treaties_page')) {
 
                 $this->add_activity_log('delete', 'treaty', 'Removed article width id #' . $id_article);
                 $wpdb->query('COMMIT');
+                $this->check_db_error();
                 $this->success = true;
                 $this->errors = array('The article was successfully removed');
                 $this->_query_treaty();
             } catch (Exception $e) {
                 $this->success = false;
                 $this->errors = array('An error occurred while removing the article');
-                $wpdb->query('ROLBACK');
+                $wpdb->query('ROLLBACK');
             }
         }
 
