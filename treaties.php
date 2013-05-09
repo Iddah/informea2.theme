@@ -420,14 +420,27 @@ if (!class_exists('imea_treaties_page')) {
 
         /**
          * Retrieve the tags for an paragraph
-         * @param $id_paragraph the paragraph id
-         * @return WP SQL result object
+         * @param $id_paragraph integer Paragraph id
+         * @return array Array of stdClass objects
          */
         function get_paragraph_tags($id_paragraph) {
             global $wpdb;
             $sql = $wpdb->prepare("SELECT b.* FROM ai_treaty_article_paragraph_vocabulary a INNER JOIN voc_concept b ON a.id_concept = b.id WHERE a.id_treaty_article_paragraph = %d", $id_paragraph);
-            return $tags = $wpdb->get_results($sql);
+            return $wpdb->get_results($sql);
         }
+
+
+        /**
+         * Retrieve the tags as terms for an paragraph
+         * @param $id_paragraph integer Paragraph id
+         * @return array Array of strings
+         */
+        function get_paragraph_tags_terms($id_paragraph) {
+            global $wpdb;
+            $sql = $wpdb->prepare("SELECT b.term FROM ai_treaty_article_paragraph_vocabulary a INNER JOIN voc_concept b ON a.id_concept = b.id WHERE a.id_treaty_article_paragraph = %d", $id_paragraph);
+            return $wpdb->get_col($sql);
+        }
+
 
         /**
          * Retrieve the tags for an article
