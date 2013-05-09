@@ -13,7 +13,7 @@ if (count($parties)) :
     <p>
         <strong>Total number of parties</strong>: <?php echo count($parties); ?>
     </p>
-    <table id="parties" class="table-hover">
+    <table id="parties" class="table-striped">
     <thead>
     <tr>
         <th class="text-left">Member country</th>
@@ -24,7 +24,7 @@ if (count($parties)) :
     <?php foreach ($parties as $country) { ?>
         <tr>
             <td>
-                <a href="<?php echo $country->id; ?>"><?php echo $country->name; ?></a>
+                <?php echo $country->name; ?>
             </td>
             <td class="center">
                 <?php echo $country->year; ?>
