@@ -1,7 +1,6 @@
 <?php
 $page_data = new informea_treaties();
-$odata_name = get_request_variable('id');
-$treaty = $page_data->get_treaty_by_odata_name($odata_name);
+$treaty = informea_treaties::get_treaty_from_request();
 $parties = informea_treaties::get_parties($treaty->id);
 if (count($parties)) :
 ?>

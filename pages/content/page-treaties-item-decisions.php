@@ -1,6 +1,5 @@
 <?php
-$odata_name = get_request_variable('id');
-$treaty = informea_treaties::get_treaty_by_odata_name($odata_name);
+$treaty = informea_treaties::get_treaty_from_request();
 $showall = get_request_variable('showall', 'str');
 if ($treaty->odata_name == 'cites') {
     get_template_part('pages/content/page', 'treaties-item-decisions-cites');

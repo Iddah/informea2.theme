@@ -1,11 +1,9 @@
 <?php
 $page_data = new informea_treaties();
+$treaty = informea_treaties::get_treaty_from_request();
 $expand = get_request_variable('expand', 'str', 'treaty');
-$odata_name = get_request_variable('id');
-$treaty = $page_data->get_treaty_by_odata_name($odata_name);
 
 $decisions_count = $page_data->get_decisions_count($treaty->id);
-
 $contact_data = informea_treaties::get_contacts($treaty->id);
 $countries_contacts = $contact_data['countries'];
 $all_contacts = $contact_data['contacts'];

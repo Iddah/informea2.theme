@@ -1,7 +1,6 @@
 <?php
 $page_data = new informea_treaties();
-$odata_name = get_request_variable('id');
-$treaty = $page_data->get_treaty_by_odata_name($odata_name);
+$treaty = informea_treaties::get_treaty_from_request();
 $contact_data = informea_treaties::get_contacts($treaty->id);
 $countries_contacts = $contact_data['countries'];
 $all_contacts = $contact_data['contacts'];
@@ -50,7 +49,7 @@ $all_contacts = $contact_data['contacts'];
                         </a>
                     <?php endif; ?>
                     <a class="btn white small"
-                       href="<?php echo bloginfo('url'); ?>/vcard?id_contact=<?php echo $contact->id ?>"
+                       href="<?php bloginfo('url'); ?>/vcard?id_contact=<?php echo $contact->id ?>"
                        title="<?php _e('Download vcard', 'informea'); ?>">
                        <i class="icon icon-user"></i> <?php _e('vCard', 'informea'); ?>
                     </a>

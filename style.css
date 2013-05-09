@@ -50,6 +50,7 @@
 .round-top { -moz-border-radius: 5px 5px 0 0; -webkit-border-radius: 5px 5px 0 0; border-radius: 5px 5px 0 0; }
 .round-left { -moz-border-radius: 5px 0 0 5px; -webkit-border-radius: 5px 0 0 5px; border-radius: 5px 0 0 5px; }
 .round { -moz-border-radius: 5px; -webkit-border-radius: 5px; border-radius: 5px; }
+.focus { background: rgb(255, 233, 116); }
 .shadow {
     -moz-box-shadow: 0 2px 2px 0 #c2c2c2;
     -webkit-box-shadow: 0 2px 2px 0 rgb(194, 194, 194);
@@ -174,6 +175,7 @@ div.alert .close { position: relative; top: -5px; right: -4px; line-height: 20px
 .icon-refresh { background-position: -240px -24px; }
 .icon-play { background-position: -264px -72px; }
 .icon-remove { background-position: -312px 0; }
+.icon-bookmark { background-position: -72px -48px; }
 
 /* GLOBAL :: Tabs */
 div.tabs { height: 22px; margin-bottom: 10px; padding-top: 2px; border-bottom: 1px solid #d7d7d7; }
@@ -234,7 +236,7 @@ button.btn, a.btn, input.btn, a.post-edit-link {
     color: white;
     text-shadow: 0 -1px 0 rgba(0, 0, 0, 0.25);
     padding: 3px 10px;
-    margin-bottom: 0;
+    margin: 0 1px;
     cursor: pointer;
     -webkit-border-radius: 4px;
     -moz-border-radius: 4px;
@@ -593,7 +595,7 @@ body.imea-treaties select#change-treaty-id { width: 200px; }
 body.imea-treaties select#go-to-article { width: 200px; display: inline-block; }
 body.imea-treaties ul.articles,
 body.imea-treaties ul.paragraphs { list-style-type: none; margin: 0; padding: 0 0 0 10px; }
-body.imea-treaties ul.paragraphs {  overflow: hidden; display: none; }
+body.imea-treaties ul.paragraphs {  overflow: hidden; }
 body.imea-treaties ul.paragraphs li { margin: 20px 0 0 10px; }
 body.imea-treaties ul.articles h3 {
     color: #333; padding: 10px; border: 0; margin: 0;
@@ -602,6 +604,7 @@ body.imea-treaties ul.articles h3 {
 }
 body.imea-treaties ul.articles li h3:hover { background-color: #2ca0d2; color: white; }
 body.imea-treaties ul.articles li h3:hover div.management-toolbar,
+body.imea-treaties ul.articles li h3:hover a.anchor-bookmark,
 body.imea-treaties ul.articles ul.paragraphs li:hover div.management-toolbar,
 body.imea-treaties .decisions td:hover div.management-toolbar { display: block; }
 body.imea-treaties ul.articles li.ident-1 { margin-left: 20px; }
@@ -609,7 +612,7 @@ body.imea-treaties ul.articles li.ident-2 { margin-left: 40px; }
 body.imea-treaties ul.articles li.ident-3 { margin-left: 60px; }
 body.imea-treaties ul.articles li.ident-4 { margin-left: 80px; }
 body.imea-treaties div.article-toolbar { margin: 0; float: right; }
-body.imea-treaties div.paragraph-toolbar { margin: -18px 0 0 0; float: right; }
+body.imea-treaties div.paragraph-toolbar { margin: -18px 0 0 0; float: left; }
 body.imea-treaties ul.decisions { margin: 30px 0 0 0; padding: 0; list-style-type: none; }
 body.imea-treaties ul.decisions li { border-bottom: 1px dashed #dfdfdf; }
 body.imea-treaties ul.decisions li div.content { margin-left: 50px; }

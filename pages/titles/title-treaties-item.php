@@ -1,7 +1,6 @@
 <?php
 $page_data = new informea_treaties();
-$id = get_request_variable('id');
-$treaty = $page_data->get_treaty_by_odata_name($id);
+$treaty = informea_treaties::get_treaty_from_request();
 ?>
 <div id="page-title">
     <img src="<?php echo $treaty->logo_medium; ?>" alt="<?php _e('Convention logo', 'informea'); ?>" />

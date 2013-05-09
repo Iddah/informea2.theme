@@ -1,11 +1,9 @@
 <?php
 wp_enqueue_script('jquery.scrollTo-1.4.3.1-min', get_bloginfo('template_directory') . '/scripts/jquery.scrollTo-1.4.3.1.js');
 $page_data = new informea_treaties();
-$odata_name = get_request_variable('id');
-$treaty = informea_treaties::get_treaty_by_odata_name($odata_name);
+$treaty = informea_treaties::get_treaty_from_request();
 $showall = get_request_variable('showall', 'str');
 ?>
-
 <div class="toolbar toolbar-decisions">
     <div class="pull-right">
         Scroll down to

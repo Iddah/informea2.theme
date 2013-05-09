@@ -1,7 +1,9 @@
+var cacheArticleTerms = [];
+var cacheParagraphTerms = [];
+
 $(document).ready(function() {
     /* Expand articles (treaty tab) */
     $('ul#articles > li > h3').click(function(e) {
-        e.preventDefault();
         var p = $(e.target).next('ul.paragraphs');
         $(p).slideToggle({duration: 200});
     });
@@ -11,7 +13,7 @@ $(document).ready(function() {
     $('div.toolbar-treaty button#print').click(function() { window.open($(this).data('target')) });
     $('div.toolbar-treaty select#go-to-article').change(function (e) {
         e.preventDefault();
-        var target = $('#article-' + $(this).val());
+        var target = $('#article_' + $(this).val());
         $.scrollTo(target, 500, {
             offset: target.height() * -1.5,
             onAfter: function () { $('ul.paragraphs', target).slideDown('fast'); }
@@ -57,7 +59,33 @@ $(document).ready(function() {
         }
     });
 
+    // Mouse over the treaty article/paragraph - show terms balloon
+    $('ul.articles h3').each(function() {
+        $(this).balloon({
+            url: ajax_url + '?action=get_article_tags_html&id_article=' + $(this).data('id'),
+            position: 'left', css: { opacity: "0.95" }, hideDuration: 20
+        });
+    });
+    $('ul.paragraphs li').each(function() {
+        $(this).balloon({
+            url: ajax_url + '?action=get_paragraph_tags_html&id_paragraph=' + $(this).data('id'),
+            position: 'left', css: { opacity: "0.95" }, hideDuration: 20
+        });
+    });
 
+    // If we have # in URL, then scroll to the approriate anchor using scollTo
+    var hash_idx = document.URL.indexOf('#');
+    var hash = hash_idx != -1 ? document.URL.substring(hash_idx + 1) : '';
+    if(hash != '') {
+        var target = $('li#' + hash);
+        if(target.length > 0) {
+            $(target).addClass('focus');
+            $.scrollTo(target, 500, {
+                offset: -100,
+                onAfter: function () { $('ul.paragraphs', target).slideDown('fast'); }
+            });
+        }
+    }
 });
 
 function nfpCollapseAll() {
