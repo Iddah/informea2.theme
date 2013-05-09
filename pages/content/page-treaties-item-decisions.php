@@ -38,15 +38,12 @@ $page_data = new informea_treaties();
 
 <ul class="decisions">
 <?php
-    $d = $page_data->group_decisions_by_meeting($treaty->id);
-    $meetings = $d['decisions'];
-    $meetings_obs = $d['meetings'];
-    $showall_title = ($showall !== NULL) ? 'opened' : 'closed';
+    $meetings = $page_data->group_decisions_by_meeting($treaty->id);
     $hide_css = !empty($showall) ? '' : ' hidden';
-    foreach ($meetings as $meeting_id => &$decisions) {
-        $meeting = $meetings_obs[$meeting_id];
+    foreach ($meetings as $meeting) {
         $meeting_title = $page_data->tab_decisions_meeting_title($meeting);
         $meeting_summary = $page_data->decisions_meeting_summary($meeting);
+        $decisions = $meeting->decisions;
 ?>
     <li>
         <h2><?php echo $meeting_title; ?></h2>

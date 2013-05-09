@@ -3,7 +3,7 @@ $page_data = new informea_treaties();
 $treaty = informea_treaties::get_treaty_from_request();
 $expand = get_request_variable('expand', 'str', 'treaty');
 
-$decisions_count = $page_data->get_decisions_count($treaty->id);
+$decisions_count = informea_treaties::get_decisions_count($treaty->id);
 $contact_data = informea_treaties::get_contacts($treaty->id);
 $countries_contacts = $contact_data['countries'];
 $all_contacts = $contact_data['contacts'];
