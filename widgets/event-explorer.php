@@ -37,10 +37,10 @@ class EventsExplorerWidget extends WP_Widget {
 ?>
         <li class="widget event-explorer">
             <div class="content">
-                <form action="/events" method="get">
+                <form action="/events/" method="get">
                     <label>
                         Convention
-                        <select name="convention">
+                        <select name="fe_treaty">
                             <option value="">All conventions</option>
                             <?php foreach ($events_ob->get_treaties() as $treaty) : ?>
                                 <option value="<?php echo $treaty->id; ?>"><?php echo $treaty->short_title; ?></option>
@@ -48,15 +48,8 @@ class EventsExplorerWidget extends WP_Widget {
                         </select>
                     </label>
                     <label>
-                        Date
-                        <br />
-                        <select name="month">
-                            <option value="">All months</option>
-                            <?php foreach (informea_events::get_months_fullname() as $idx => $month) : ?>
-                                <option value="<?php echo $idx; ?>"><?php echo $month; ?></option>
-                            <?php endforeach; ?>
-                        </select>
-                        <select name="year">
+                        Date<br />
+                        <select name="fe_year">
                             <?php
                             foreach($events_ob->get_years_interval() as $year) :
                                 $selected = strftime('%Y') == $year ? ' selected="selected"' : '';

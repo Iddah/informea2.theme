@@ -1,4 +1,5 @@
 <?php
+wp_enqueue_script('jquery.scrollTo-1.4.3.1-min', get_bloginfo('template_directory') . '/scripts/jquery.scrollTo-1.4.3.1-min.js');
 $treaty = informea_treaties::get_treaty_from_request();
 $showall = get_request_variable('showall', 'str');
 if ($treaty->odata_name == 'cites') {
@@ -41,7 +42,7 @@ $page_data = new informea_treaties();
     $meetings = $d['decisions'];
     $meetings_obs = $d['meetings'];
     $showall_title = ($showall !== NULL) ? 'opened' : 'closed';
-    $showall_content = ($showall !== NULL) ? '' : ' hidden';
+    $hide_css = !empty($showall) ? '' : ' hidden';
     foreach ($meetings as $meeting_id => &$decisions) {
         $meeting = $meetings_obs[$meeting_id];
         $meeting_title = $page_data->tab_decisions_meeting_title($meeting);
@@ -49,7 +50,7 @@ $page_data = new informea_treaties();
 ?>
     <li>
         <h2><?php echo $meeting_title; ?></h2>
-        <div class="content hidden">
+        <div class="content<?php echo $hide_css; ?>">
             <?php echo $meeting_summary; ?>
             <table class="table-hover">
             <thead>
@@ -65,7 +66,7 @@ $page_data = new informea_treaties();
                 foreach ($decisions as $decision) :
                     $tags = $page_data->get_decision_tags($decision->id);
             ?>
-                <tr>
+                <tr id="decision_<?php echo $decision->id; ?>">
                     <td class="text-top">
                         <?php echo $decision->number; ?>
                     </td>
@@ -79,19 +80,18 @@ $page_data = new informea_treaties();
                                 foreach ($tags as $tag) :
                             ?>
                                 <li><a href="<?php bloginfo('url'); ?>/terms/<?php echo $tag->id; ?>"><?php echo $tag->term; ?></a><?php if ($last !== $tag) { echo ','; } ?></li>
-                            <?php
-                                endforeach;
-                            ?>
+                            <?php endforeach; ?>
                         </ul>
                         <?php endif; ?>
-                        <?php if (current_user_can('manage_options')) : ?>
                         <div class="management-toolbar pull-left">
+                            <a class="btn white small" href="<?php informea_treaties::decision_url($treaty, $decision) ;?>">Link</a>
+                            <?php if (current_user_can('manage_options')) : ?>
                                 <a target="_blank" class="btn white small"
                                    href="<?php echo admin_url(); ?>admin.php?page=informea_decisions&act=decision_edit&id_decision=<?php echo $decision->id; ?>&id_treaty=<?php echo $decision->id_treaty; ?>">Edit</a>
                                 <a target="_blank" class="btn white small"
                                    href="<?php echo admin_url(); ?>admin.php?page=informea_decisions&act=decision_edit_decision&id_treaty=<?php echo $decision->id_treaty; ?>&id_decision=<?php echo $decision->id; ?>">Break in paragraphs</a>
+                            <?php endif; ?>
                         </div>
-                        <?php endif; ?>
                     </td>
                     <td>
                         <?php echo $decision->type; ?>

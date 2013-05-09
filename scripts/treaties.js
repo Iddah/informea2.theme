@@ -74,10 +74,9 @@ $(document).ready(function() {
     });
 
     // If we have # in URL, then scroll to the approriate anchor using scollTo
-    var hash_idx = document.URL.indexOf('#');
-    var hash = hash_idx != -1 ? document.URL.substring(hash_idx + 1) : '';
+    var hash = document.location.hash;
     if(hash != '') {
-        var target = $('li#' + hash);
+        var target = $(hash);
         if(target.length > 0) {
             $(target).addClass('focus');
             $.scrollTo(target, 500, {

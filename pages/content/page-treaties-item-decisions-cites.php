@@ -1,5 +1,5 @@
 <?php
-wp_enqueue_script('jquery.scrollTo-1.4.3.1-min', get_bloginfo('template_directory') . '/scripts/jquery.scrollTo-1.4.3.1.js');
+wp_enqueue_script('jquery.scrollTo-1.4.3.1-min', get_bloginfo('template_directory') . '/scripts/jquery.scrollTo-1.4.3.1-min.js');
 $page_data = new informea_treaties();
 $treaty = informea_treaties::get_treaty_from_request();
 $showall = get_request_variable('showall', 'str');
@@ -32,9 +32,9 @@ foreach ($data as $title => $decisions) {
     foreach ($decisions as $decision) :
         $tags = $page_data->get_decision_tags($decision->id);
 ?>
-        <tr id="tr-decision-<?php echo $decision->id; ?>">
+        <tr id="decision_<?php echo $decision->id; ?>">
             <td>
-                <a name="decision-<?php echo $decision->id; ?>"></a><?php echo $decision->number; ?>
+                <?php echo $decision->number; ?>
             </td>
             <td>
                 <h3>
@@ -52,14 +52,15 @@ foreach ($data as $title => $decisions) {
                 <?php endforeach; ?>
                 </ul>
                 <?php endif; ?>
-                <?php if (current_user_can('manage_options')) : ?>
                     <div class="management-toolbar pull-left">
+                        <a class="btn white small" href="<?php informea_treaties::decision_url($treaty, $decision) ;?>">Link</a>
+                        <?php if (current_user_can('manage_options')) : ?>
                         <a target="_blank" class="btn white small"
                            href="<?php echo admin_url(); ?>admin.php?page=informea_decisions&act=decision_edit&id_decision=<?php echo $decision->id; ?>&id_treaty=<?php echo $decision->id_treaty; ?>">Edit</a>
                         <a target="_blank" class="btn white small"
                            href="<?php echo admin_url(); ?>admin.php?page=informea_decisions&act=decision_edit_decision&id_treaty=<?php echo $decision->id_treaty; ?>&id_decision=<?php echo $decision->id; ?>">Break in paragraphs</a>
+                        <?php endif; ?>
                     </div>
-                <?php endif; ?>
             </td>
             <td>
                 <?php echo $decision->type; ?> (<?php $status = decode_decision_status($decision->status); echo $status; ?>)
