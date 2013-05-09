@@ -748,8 +748,8 @@ if (!class_exists('imea_treaties_page')) {
 
         /**
          * Retrieve treaty by id
-         * @param $id Treaty id
-         * return WP SQL row object
+         * @param $id integer id
+         * return stdClass Treaty object
          */
         function get_treaty_by_id($id) {
             global $wpdb;
