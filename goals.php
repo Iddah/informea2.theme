@@ -4,17 +4,75 @@
  * Created: 201303140915
  */
 
+add_action('wp_ajax_nopriv_ai_goals_get_activity', 'ajax_ai_goals_get_activity');
+add_action('wp_ajax_ai_goals_get_activity', 'ajax_ai_goals_get_activity');
+
+add_action('wp_ajax_nopriv_ai_goals_get_target_indicators', 'ajax_ai_goals_get_target_indicators');
+add_action('wp_ajax_ai_goals_get_target_indicators', 'ajax_ai_goals_get_target_indicators');
+
+if(!defined('GOAL_TYPE_AICHI_TARGET')) {
+    define ('GOAL_TYPE_AICHI_TARGET', 'Aichi Target');
+}
+if(!defined('GOAL_TYPE_STRAGETIC_GOAL')) {
+    define ('GOAL_TYPE_STRAGETIC_GOAL', 'Strategic Goal');
+}
+
+function ajax_ai_goals_get_activity() {
+    $target_id = get_request_int('target_id');
+    $odata_name = get_request_value('odata_name');
+    $row = imea_goals_page::get_activities($target_id, $odata_name);
+
+    $ret = array('success' => FALSE,
+        'title' => 'An error has occurred',
+        'data' => '<p>There is no activity recorded on the selected target, for this instrument</p>'
+    );
+    if ($row) {
+        $ret['success'] = TRUE;
+        $target = imea_goals_page::get_target($target_id);
+        $ret['title'] = sprintf('%s activities regarding %s', imea_goals_page::get_organization_name($odata_name),
+            $target->name);
+        $html = sprintf('%s', $row->activities);
+        $ret['data'] = $html;
+    }
+
+    if (is_user_logged_in()) {
+        $url = sprintf('%sgoals/%d/%s/edit', INFORMEA_MANAGEMENT_URL, $target_id, $odata_name);
+        $ret['data'] .= sprintf('<p><a class="btn" href="%s" target="_blank">Edit activities</a></p>', $url);
+    }
+
+    header('Content-Type:application/json');
+    echo json_encode($ret);
+    die();
+}
+
+function ajax_ai_goals_get_target_indicators() {
+    $target_id = get_request_int('target_id');
+    $ret = array('success' => FALSE,
+        'title' => 'An error has occurred',
+        'data' => '<p>There are no indicators recorded on the selected target</p>'
+    );
+    $row = imea_goals_page::get_aichi_target($target_id);
+    if (!empty($row->indicators)) {
+        $ret['success'] = TRUE;
+        $ret['title'] = sprintf('Biodiversity indicators for: %s', $row->name);
+        $html = sprintf('%s', $row->indicators);
+        $ret['data'] = $html;
+    }
+
+    if (is_user_logged_in()) {
+        $url = sprintf('%sgoals/%d/edit', INFORMEA_MANAGEMENT_URL, $target_id);
+        $ret['data'] .= sprintf('<p><a class="btn" href="%s" target="_blank">Edit indicators</a></p>', $url);
+    }
+
+    header('Content-Type:application/json');
+    echo json_encode($ret);
+    die();
+}
+
 if (!class_exists('imea_goals_page')) {
     class imea_goals_page extends imea_page_base_page {
 
-        static function user_can_edit_target_activities($uid = NULL) {
-            if(empty($uid)) {
-                return current_user_can('edit_posts');
-            }
-            return FALSE;
-        }
-
-        static function get_aichi_targets_overview() {
+        function get_aichi_targets_overview() {
             global $wpdb;
 
             return $wpdb->get_results(
@@ -25,7 +83,7 @@ if (!class_exists('imea_goals_page')) {
         }
 
 
-        static function aichi_targets_overview_rowspan($targets) {
+        function aichi_targets_overview_rowspan($targets) {
             $ret = array();
             $prev = $targets[0];
             $pos = 0;
@@ -49,63 +107,25 @@ if (!class_exists('imea_goals_page')) {
 
         static function get_organizations() {
             return array(
-                'cites' => array(
-                    'label' => 'CITES',
-                    'logo' => 'http://informea.org/wp-content/uploads/2012/07/cites.png'
-                ),
-
-                'cms' => array(
-                    'label' => 'CMS',
-                    'logo' => 'http://informea.org/wp-content/uploads/2012/07/cms.png'
-                ),
-
+                'cites' => array('label' => 'CITES'),
+                'cms' => array('label' => 'CMS'),
                 'desa' => array('label' => 'DESA'),
-
-                'fao' => array(
-                    'label' => 'FAO',
-                    'logo' => 'http://informea.org/wp-content/uploads/2012/07/plant_treaty.png'
-                ),
-
+                'fao' => array('label' => 'FAO'),
                 'ifad' => array('label' => 'IFAD'),
-
                 'imo' => array('label' => 'IMO'),
-
-                'unep' => array(
-                    'label' => 'UNEP',
-                    'logo' => 'http://informea.org/wp-content/uploads/2012/07/unep.png'
-                ),
-
-                'ramsar' => array(
-                    'label' => 'Ramsar',
-                    'logo' => 'http://informea.org/wp-content/uploads/2012/07/ramsar.png'
-                ),
-
-                'whc' => array(
-                    'label' => 'WHC',
-                    'logo' => 'http://informea.org/wp-content/uploads/2012/07/whc.png'
-                ),
-
+                'unep' => array('label' => 'UNEP'),
+                'ramsar' => array('label' => 'Ramsar'),
+                'whc' => array('label' => 'WHC'),
                 'who' => array('label' => 'WHO'),
-
                 'unu' => array('label' => 'UNU'),
-
                 'wipo' => array('label' => 'WIPO'),
-
                 'wto' => array('label' => 'WTO'),
-
                 'undp' => array('label' => 'UNDP'),
-
                 'wbg' => array('label' => 'WBG'),
-
                 'unctad' => array('label' => 'UNCTAD'),
-
-                'unesco' => array(
-                    'label' => 'UNESCO',
-                    'logo' => 'http://informea.org/wp-content/uploads/2012/07/whc.png',
-                ),
+                'unesco' => array('label' => 'UNESCO'),
             );
         }
-
 
         static function get_organization_name($odata_name) {
             $ret = NULL;
@@ -114,15 +134,6 @@ if (!class_exists('imea_goals_page')) {
                 $ret = $orgs[$odata_name]['label'];
             }
             return $ret;
-        }
-
-
-        static function get_organization($odata_name) {
-            $all = self::get_organizations();
-            if(isset($all[$odata_name])) {
-                return $all[$odata_name];
-            }
-            return NULL;
         }
 
         static function get_activities($target_id, $odata_name) {
@@ -142,15 +153,6 @@ if (!class_exists('imea_goals_page')) {
             return $wpdb->get_row($sql);
         }
 
-
-        static function get_aichi_target_by_order($order) {
-            global $wpdb;
-            $sql = $wpdb->prepare('SELECT a.id, a.`order`, a.`type`, a.name, a.indicators, b.name AS strategic_goal_name
-                    FROM ai_goals a
-                    LEFT JOIN ai_goals b ON (a.id_strategic_goal = b.id AND b.`type` = %s)
-                    WHERE a.`order`=%d AND a.type=%s', GOAL_TYPE_STRAGETIC_GOAL, $order, GOAL_TYPE_AICHI_TARGET);
-            return $wpdb->get_row($sql);
-        }
 
         static function get_target($target_id) {
             global $wpdb;
@@ -177,44 +179,6 @@ if (!class_exists('imea_goals_page')) {
                     $ret[$row->target_id] = array();
                 }
                 $ret[$row->target_id][$row->odata_name] = $row->activities;
-            }
-            return $ret;
-        }
-
-
-        static function get_activities_for_treaty($odata_name) {
-            global $wpdb;
-            $ret = array();
-            $rows = $wpdb->get_results(
-                $wpdb->prepare(
-                    'SELECT a.target_id, a.activities FROM ai_goals_activities a WHERE a.odata_name=%s',
-                    $odata_name
-                )
-            );
-            foreach ($rows as $row) {
-                if (!isset($ret[$row->target_id])) {
-                    $ret[$row->target_id] = array();
-                }
-                $ret[$row->target_id] = $row->activities;
-            }
-            return $ret;
-        }
-
-
-        static function get_activities_for_target($target_id) {
-            global $wpdb;
-            $ret = array();
-            $rows = $wpdb->get_results(
-                $wpdb->prepare(
-                    'SELECT a.odata_name, a.activities FROM ai_goals_activities a WHERE a.target_id=%s',
-                    $target_id
-                )
-            );
-            foreach ($rows as $row) {
-                if (!isset($ret[$row->odata_name])) {
-                    $ret[$row->odata_name] = array();
-                }
-                $ret[$row->odata_name] = $row->activities;
             }
             return $ret;
         }
