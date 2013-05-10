@@ -38,18 +38,28 @@ class EventsExplorerWidget extends WP_Widget {
         <li class="widget event-explorer">
             <div class="content">
                 <form action="/events/" method="get">
-                    <label>
-                        Convention
-                        <select name="fe_treaty">
-                            <option value="">All conventions</option>
+                    <div class="field">
+                        <label for="fe_treaty">Convention</label>
+                        <select id="fe_treaty" name="fe_treaty">
+                            <option value="">-- All conventions --</option>
                             <?php foreach ($events_ob->get_treaties() as $treaty) : ?>
                                 <option value="<?php echo $treaty->id; ?>"><?php echo $treaty->short_title; ?></option>
                             <?php endforeach; ?>
                         </select>
-                    </label>
-                    <label>
-                        Date<br />
+                    </div>
+                    <div class="field">
+                        <label for="fe_type">Event type</label>
+                        <select id="fe_type" name="fe_type">
+                            <?php foreach(informea_events::get_event_types() as $value => $label) :
+                                ?>
+                                <option value="<?php echo $value; ?>"><?php echo $label; ?></option>
+                            <?php endforeach; ?>
+                        </select>
+                    </div>
+                    <div class="field">
+                        <label for="fe_year">Date</label>
                         <select name="fe_year">
+                            <option value="-1">-- All years --</option>
                             <?php
                             foreach($events_ob->get_years_interval() as $year) :
                                 $selected = strftime('%Y') == $year ? ' selected="selected"' : '';
@@ -59,7 +69,7 @@ class EventsExplorerWidget extends WP_Widget {
                             </option>
                             <?php endforeach; ?>
                         </select>
-                    </label>
+                    </div>
                     <p>
                         <input type="submit" name="search" value="Search" class="btn orange pull-right" />
                     </p>
