@@ -1,11 +1,11 @@
 <?php
-$search2 = new InformeaSearch2($_GET);
-$sel_terms = $search2->ui_get_selected_terms();
+$search = new InformeaSearch3($_GET);
+$sel_terms = $search->ui_get_selected_terms();
 $terms_page = new Thesaurus(NULL);
 ?>
 <script type="text/javascript">
     // This fragment stays here
-    var freetext_default = '<?php echo $search2->ui_get_freetext_default();?>';
+    var freetext_default = '<?php echo $search->ui_get_freetext_default();?>';
 </script>
 <div id="search" class="content hidden">
     <ul class="border">
@@ -22,7 +22,7 @@ $terms_page = new Thesaurus(NULL);
                 <input type="hidden" name="q_use_decisions" value="1" />
                 <input type="hidden" name="q_tab" value="2"/>
                 <?php
-                $ts = $search2->ui_get_treaties_ids();
+                $ts = $search->ui_get_treaties_ids();
                 foreach ($ts as $t_id) {
                 ?>
                     <input type="hidden" name="q_treaty[]" value="<?php echo $t_id; ?>" />
@@ -30,7 +30,7 @@ $terms_page = new Thesaurus(NULL);
                 }
                 ?>
                 <input type="text" id="explorer_q_freetext" name="q_freetext" class="text left"
-                       value="<?php echo $search2->get_freetext($search2->ui_get_freetext_default()); ?>"/>
+                       value="<?php echo $search->get_freetext($search->ui_get_freetext_default()); ?>"/>
                 <button class="btn" onclick="$(this).closest('form').submit();">Search</button>
             </form>
         </li>
@@ -55,7 +55,7 @@ $terms_page = new Thesaurus(NULL);
                     <label for="free-text">Free search text</label>
                     <br />
                     <input type="text" id="free-text"
-                           value="<?php echo $search2->get_freetext($search2->ui_get_freetext_default()); ?>"
+                           value="<?php echo $search->get_freetext($search->ui_get_freetext_default()); ?>"
                            name="q_freetext" class="text">
                 </div>
                 <div class="tagged-terms">

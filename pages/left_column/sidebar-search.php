@@ -135,8 +135,8 @@ if(!defined('INFORMEA_SEARCH_PAGE')) {
                         </li>
                     </ul>
                 <?php }  ?>
-                <ul>
-                    <li>
+                <ul class="spacing-zero">
+                    <li class="spacing-zero">
                     <?php
                         $ot = $search->ui_get_other_treaties();
                         $checked = '';
@@ -149,21 +149,28 @@ if(!defined('INFORMEA_SEARCH_PAGE')) {
                     ?>
                         <input id="explorer_other_treaties" type="checkbox" <?php echo $checked; ?>
                                class="explorer-treaty-click-children"/>
-                        <label for="explorer_other_treaties">Other<span class="description"
-                                                                        style="color: #777777 !important; font-size: 12px !important;">(Regional, etc.)</span></label>
-                        <ul class="sublist">
+                        <label for="explorer_other_treaties">Other<span
+                                class="description gray">(Regional, etc.)</span></label>
+                        <ul class="sublist hidden">
                             <li>
                                 <?php
                                 foreach ($ot as $id) {
                                     $checked = $search->ui_is_checked_treaty($id) ? 'checked="checked"' : '';
                                     ?>
-                                    <input type="checkbox" id="explorer_treaty_<?php echo $id; ?>" name="q_treaty[]"
+                                    <input type="checkbox"
+                                            id="explorer_treaty_<?php echo $id; ?>" name="q_treaty[]"
                                            value="<?php echo $id; ?>" <?php echo $checked; ?> class="hidden"/>
                                 <?php } ?>
                             </li>
                         </ul>
                     </li>
                 </ul>
+            </div>
+        </li>
+        <li>
+            <h3>date <i class="icon icon-minus-sign pull-right"></i></h3>
+            <div class="content">
+            <?php include(dirname(__FILE__) . '/../../pages/explorer/inc.date_interval.php'); ?>
             </div>
         </li>
     </ul>

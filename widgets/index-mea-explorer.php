@@ -20,7 +20,7 @@ class MEAExplorerWidget extends WP_Widget {
     }
 
     function widget($args, $instance) {
-        $search2 = new InformeaSearch2($_GET);
+        $search = new InformeaSearch3($_GET);
         ?>
         <li class="widget index-explorer round">
             <form action="/search" method="get" id="search_index">
@@ -60,7 +60,7 @@ class MEAExplorerWidget extends WP_Widget {
                                     </li>
                                 </ul>
                                 <?php
-                                $ts = $search2->ui_get_treaties_ids();
+                                $ts = $search->ui_get_treaties_ids();
                                 foreach ($ts as $t_id) {
                                     ?>
                                     <input type="checkbox" id="q_treaty_index_<?php echo $t_id; ?>" name="q_treaty[]"

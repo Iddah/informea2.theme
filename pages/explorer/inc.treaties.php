@@ -1,7 +1,7 @@
 <?php
 $count = 0;
-$themes = $search2->ui_get_treaties();
-$ot = $search2->ui_get_other_treaties();
+$themes = $search->ui_get_treaties();
+$ot = $search->ui_get_other_treaties();
 ?>
 <input class="explorer_all_treaties" type="checkbox" checked="checked"/>
 <label for="explorer_all_treaties">
@@ -10,7 +10,7 @@ $ot = $search2->ui_get_other_treaties();
 <div class="explorer_all_treaties_items">
     <?php
     foreach ($themes as $theme => $treaties) {
-        $checked = $search2->ui_is_checked_treaty('theme-' . $count);
+        $checked = $search->ui_is_checked_treaty('theme-' . $count);
         ?>
         <ul class="main-list">
             <li>
@@ -22,7 +22,7 @@ $ot = $search2->ui_get_other_treaties();
                         $children = $data['children'];
                         $title = $data['title'];
                         $theme = $data['theme'];
-                        $checked = $search2->ui_is_checked_treaty($id);
+                        $checked = $search->ui_is_checked_treaty($id);
                         ?>
                         <li>
                             <input id="explorer_treaty_<?php echo $id; ?>" type="checkbox" name="q_treaty[]" value="<?php echo $id; ?>" checked="checked" class="explorer-treaty-click-children"/>
@@ -38,7 +38,7 @@ $ot = $search2->ui_get_other_treaties();
                                     foreach ($children as $id => $child) {
                                         $title = $child['title'];
                                         $theme = $child['theme'];
-                                        $checked = $search2->ui_is_checked_treaty($id);
+                                        $checked = $search->ui_is_checked_treaty($id);
                                         ?>
                                         <li>
                                             <input id="explorer_treaty_<?php echo $id; ?>" type="checkbox"

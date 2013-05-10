@@ -52,6 +52,7 @@
 .round { -moz-border-radius: 5px; -webkit-border-radius: 5px; border-radius: 5px; }
 .focus { background: rgb(255, 233, 116); }
 .gray { color: #888; }
+.spacing-zero { margin: 0; padding: 0; border: 0; }
 .shadow {
     -moz-box-shadow: 0 2px 2px 0 #c2c2c2;
     -webkit-box-shadow: 0 2px 2px 0 rgb(194, 194, 194);
@@ -757,7 +758,8 @@ body.imea-search div.widget.search div.content { margin: 5px 0 0 5px; padding: 0
 body.imea-search ul.sidebar li.search ul { padding: 1px; background-color: #fff; }
 body.imea-search ul.sidebar label { font-weight: normal; }
 body.imea-search ul.sidebar h3 { cursor: pointer; }
-body.imea-search ul.sidebar li { padding: 5px; margin-bottom: 20px; }
+body.imea-search ul.sidebar li { padding: 0 4px; }
+body.imea-search ul.sidebar li div.content { padding-bottom: 25px; }
 
 body.imea-search ul.sidebar ul.instrument-list { margin: 0; padding: 0;}
 body.imea-search ul.sidebar ul.instrument-list li { margin: 0; padding: 0;}

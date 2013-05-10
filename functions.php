@@ -162,7 +162,7 @@ function render_qterm_autocomplete($show_label_keywords=TRUE) {
     $and_checked = $search->is_terms_or() ? '' : 'checked="checked"';
 ?>
     <?php if($show_label_keywords): ?>
-    <label id="q_term_label" for="q_term">Keywords</label>
+    <label id="q_term_label" for="q_term">Type keywords</label>
     <?php endif; ?>
     <div class="q_term_container">
         <select id="q_term" name="q_term[]" multiple="multiple" class="hidden">
