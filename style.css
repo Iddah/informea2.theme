@@ -51,6 +51,7 @@
 .round-left { -moz-border-radius: 5px 0 0 5px; -webkit-border-radius: 5px 0 0 5px; border-radius: 5px 0 0 5px; }
 .round { -moz-border-radius: 5px; -webkit-border-radius: 5px; border-radius: 5px; }
 .focus { background: rgb(255, 233, 116); }
+.gray { color: #888; }
 .shadow {
     -moz-box-shadow: 0 2px 2px 0 #c2c2c2;
     -webkit-box-shadow: 0 2px 2px 0 rgb(194, 194, 194);
@@ -92,7 +93,7 @@ div.clear { clear: both; }
 body.informea { margin: 0; padding: 0; color: #333;
     font-family: Calibri, "Trebuchet MS", Arial, sans-serif; font-size: 12px; line-height: 17px;
 }
-span.gray { color: #888; }
+
 div#informea div#main { width: 980px; margin: 0 auto; padding: 10px 0; display: block; overflow: hidden; }
 div#informea div#main .col3 { float: left; width: 230px; }
 div#informea div#main .col3-left { margin-right: 10px; }
@@ -496,7 +497,8 @@ li.widget.latest-news ul li {
 
 ul.sidebar li.widget ul.featured-tools { padding-left: 20px; }
 
-li.widget.featured-treaty div.content { padding-left: 20px; }
+li.widget.featured-treaty div.content { text-align: center; }
+li.widget.featured-treaty img {  }
 
 li.widget.featured-country { padding: 5px; }
 li.widget.featured-country h2 img {

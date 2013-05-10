@@ -58,12 +58,13 @@ class FeaturedTreatyWidget extends WP_Widget {
         $count_nfp = $instance['count_nfp'] == 1;
         $treaty = informea_treaties::get_featured_treaty();
         if ($treaty) {
-            ?>
+?>
             <li class="widget featured-treaty">
                 <?php if (!empty($title)) : ?>
                 <h2><?php echo $title; ?></h2>
                 <?php endif; ?>
                 <div class="content">
+                    <img src="<?php echo $treaty->logo_medium; ?>" />
                     <span class="thumbnail <?php echo $treaty->odata_name; ?>"></span>
                     <div class="clear"></div>
                     <div class="item-title">
@@ -71,32 +72,34 @@ class FeaturedTreatyWidget extends WP_Widget {
                             <?php echo $treaty->short_title; ?>
                         </a>
                         <?php if(!empty($treaty->theme)): ?>
-                        <span class="gray">( <?php echo $treaty->theme; ?> )</span>
+                        <div class="gray">(<?php echo $treaty->theme; ?>)</div>
                         <?php endif; ?>
-                    <?php
-                    if ($count_decisions) :
-                        $ob = new informea_treaties();
-                        $c = $ob->get_decisions_count_2($treaty->id);
-                        if ($c > 0) :
-                            ?>
-                            <br/>
-                            Decisions: <a
-                            href="<?php echo sprintf('%s/treaties/%s/decisions', get_bloginfo('url'), $treaty->odata_name); ?>"><?php echo $c; ?></a>
+                    </div>
+                    <div class="text-left">
+                        <?php
+                        if ($count_decisions) :
+                            $ob = new informea_treaties();
+                            $c = $ob->get_decisions_count_2($treaty->id);
+                            if ($c > 0) :
+                                ?>
+                                <br/>
+                                Decisions: <a
+                                href="<?php echo sprintf('%s/treaties/%s/decisions', get_bloginfo('url'), $treaty->odata_name); ?>"><?php echo $c; ?></a>
+                            <?php endif; ?>
                         <?php endif; ?>
-                    <?php endif; ?>
-                    <?php
-                    if ($count_nfp) :
-                        $c = informea_treaties::treaty_count_nfp($treaty->id);
-                        if ($c > 0) :
-                            ?>
-                            <br/>
-                            Focal points: <a
-                            href="<?php echo sprintf('%s/treaties/%s/nfp', get_bloginfo('url'), $treaty->odata_name); ?>"><?php echo $c; ?></a>
+                        <?php
+                        if ($count_nfp) :
+                            $c = informea_treaties::treaty_count_nfp($treaty->id);
+                            if ($c > 0) :
+                                ?>
+                                <br/>
+                                Focal points: <a
+                                href="<?php echo sprintf('%s/treaties/%s/nfp', get_bloginfo('url'), $treaty->odata_name); ?>"><?php echo $c; ?></a>
+                            <?php endif; ?>
                         <?php endif; ?>
-                    <?php endif; ?>
-                    <?php if (!empty($treaty->region)) :
-                        echo '<br />Region: ' . $treaty->region;
-                    endif; ?>
+                        <?php if (!empty($treaty->region)) :
+                            echo '<br />Region: ' . $treaty->region;
+                        endif; ?>
                     </div>
                 </div>
                 <div class="clear"></div>
