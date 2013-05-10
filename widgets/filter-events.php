@@ -44,7 +44,8 @@ class FilterEventsWidget extends WP_Widget {
             $fe_year = strftime('%Y');
         } // Show only current year
         $fe_type = get_request_value('fe_type');
-        $show_past = get_request_int('fe_show_past');
+        $do_search = get_request_value('do_search');
+        $show_past = empty($do_search) ? 1 : get_request_int('fe_show_past');
 ?>
         <li class="widget filter-event">
             <?php if (!empty($title)) : ?>
@@ -55,6 +56,7 @@ class FilterEventsWidget extends WP_Widget {
             <?php endif; ?>
             <div class="content">
                 <form action="">
+                    <input type="hidden" name="do_search" value="1" />
                     <div class="field">
                         <label for="fe_treaty">MEA</label>
                         <select id="fe_treaty" name="fe_treaty" class="select-box">

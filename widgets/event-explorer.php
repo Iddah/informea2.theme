@@ -38,6 +38,8 @@ class EventsExplorerWidget extends WP_Widget {
         <li class="widget event-explorer">
             <div class="content">
                 <form action="/events/" method="get">
+                    <input type="hidden" name="fe_show_past" value="1" />
+                    <input type="hidden" name="do_search" value="1" />
                     <div class="field">
                         <label for="fe_treaty">Convention</label>
                         <select id="fe_treaty" name="fe_treaty">
