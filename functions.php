@@ -126,6 +126,8 @@ function informea_countries_breadcrumbtrail() {
     $items[__('Home', 'informea')] = $home;
     if($id) {
         $items[__('Countries', 'informea')] = sprintf('%s/%s', $home, $post->post_name);
+        $country = informea_countries::get_country_for_id($id);
+        $items[$country->name] = '';
     } else {
         $items[__('Countries', 'informea')] = '';
     }
