@@ -76,7 +76,7 @@ function tengine_footer() {
             <label class="footer_section_label">Regional treaties</label>
             <ul>
                 <li>
-                    <h3>UNECE related</h3>
+                    <h3>UNECE</h3>
                     <ul>
                         <li><a href="#">Aarhus Convention</a></li>
                         <li><a href="#">Espoo Convention</a></li>
@@ -88,53 +88,37 @@ function tengine_footer() {
                         <li><a href="#">Industrial Accidents Convention</a></li>
                     </ul>
                 </li>
-
                 <li>
-                    <h3>UNEP related</h3>
-                    <ul>
-                        <li><a href="#">Barcelona Dumping Protocol</a></li>
-                        <li><a href="#">Specially Protected Areas Protocol</a></li>
-                        <li><a href="#">Prevention and Emergency Protocol</a></li>
-                        <li><a href="#">Offshore Protocol</a></li>
-                        <li><a href="#">Land-Based Sources Protocol</a></li>
-                        <li><a href="#">Hazardous Wastes Protocol</a></li>
-                        <li><a href="#">Vienna Convention</a></li>
-                        <li><a href="#">Montreal Protocol</a></li>
-                    </ul>
-                </li>
-                <li>
-                    <h3>CMS related</h3>
+                    <h3>CMS</h3>
                     <ul>
                         <li><a href="#">ACAP</a></li>
                         <li><a href="#">ACCOBAMS</a></li>
                         <li><a href="#">AEWA</a></li>
                         <li><a href="#">ASCOBANS</a></li>
                         <li><a href="#">EUROBATS</a></li>
+                        <li><hr /></li>
                         <li><a href="#">International Gorilla Conservation Programme</a></li>
                         <li><a href="#">WADDEN SEA SEALS</a></li>
                     </ul>
                 </li>
                 <li>
-                    <h3>Regional Seas related</h3>
+                    <h3>Regional Seas</h3>
                     <ul>
                         <li><a href="#">Abidjan Convention</a></li>
+                        <li><a href="#">Antigua Convention</a></li>
+                        <li><a href="#">Apia Convention</a></li>
                         <li><a href="#">Barcelona Convention</a></li>
-                        <li><a href="#">Cartagena Convention</a></li>
+                        <li><hr /></li>
+                        <li><a href="#">Jeddah Convention</a></li>
+                        <li><a href="#">Nairobi Convention</a></li>
+                        <li><a href="#">Noumea Convention</a></li>
                     </ul>
                 </li>
                 <li>
-                    <h3>Generic</h3>
+                    <h3>Regional Treaties</h3>
                     <ul>
-                        <li><a href="#">Apia Convention</a></li>
-                        <li><a href="#">Antigua Convention</a></li>
                         <li><a href="#">Bamako Convention</a></li>
-                        <li><a href="#">Jeddah Convention</a></li>
-                        <li><a href="#">Kuwait Regional Convention</a></li>
-                        <li><a href="#">Kyoto Protocol</a></li>
                         <li><a href="#">Lusaka Agreement</a></li>
-                        <li><a href="#">Nairobi Convention</a></li>
-                        <li><a href="#">Nagoya Protocol</a></li>
-                        <li><a href="#">Noumea Convention</a></li>
                     </ul>
                 </li>
             </ul>

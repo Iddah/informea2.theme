@@ -436,7 +436,7 @@ div#regional_treaties h3 {
     font-size: 14px;
 }
 div#regional_treaties ul { margin-left: 164px; }
-div#regional_treaties ul li { width: 145px; line-height: 13px; padding: 0 18px 6px 0; vertical-align: top; }
+div#regional_treaties ul li { width: 145px; line-height: 13px; padding: 0 60px 6px 0; vertical-align: top; }
 div#regional_treaties ul ul { margin-left: 0; }
 div#regional_treaties ul ul li { display: block; font-size: 12px; padding-bottom: 10px; }
 
