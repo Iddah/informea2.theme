@@ -84,10 +84,12 @@ class ImageRollerWidget extends WP_Widget {
                 <h2><?php echo $title; ?></h2>
             <?php endif; ?>
                 <div class="content">
-                    <?php foreach($images as $image) : ?>
+                <?php foreach($images as $image) :
+                    if(empty($image)) { continue; }
+                ?>
                         <img src="<?php echo $image; ?>" data-duration="<?php echo $duration; ?>"
                              width="<?php echo $width; ?>" height="<?php echo $height; ?>" />
-                    <?php endforeach; ?>
+                <?php endforeach; ?>
                 </div>
             </li>
     <?php
