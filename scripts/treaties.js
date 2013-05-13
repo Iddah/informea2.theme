@@ -66,7 +66,7 @@ $(document).ready(function() {
             position: 'left', css: { opacity: "0.95" }, hideDuration: 20
         });
     });
-    $('ul.paragraphs li').each(function() {
+    $('ul.articles>ul.paragraphs li').each(function() {
         $(this).balloon({
             url: ajax_url + '?action=get_paragraph_tags_html&id_paragraph=' + $(this).data('id'),
             position: 'left', css: { opacity: "0.95" }, hideDuration: 20
@@ -85,6 +85,15 @@ $(document).ready(function() {
             });
         }
     }
+
+    // Mouse over decision paragraph (decision index page)
+    $('div.decision>ul.paragraphs li').each(function() {
+        $(this).balloon({
+            url: ajax_url + '?action=get_decision_paragraph_tags_html&id_paragraph=' + $(this).data('id'),
+            position: 'left', css: { opacity: "0.95" }, hideDuration: 20
+        });
+    });
+
 });
 
 function nfpCollapseAll() {

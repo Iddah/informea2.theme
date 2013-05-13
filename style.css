@@ -628,6 +628,10 @@ body.imea-treaties ul.terms {
 }
 body.imea-treaties ul.terms li { border: 0; display: inline-block; }
 body.imea-treaties input#nfp-filter { width: 150px; }
+body.imea-treaties div.decision table.context ul { margin: 0; padding: 0; }
+body.imea-treaties div.decision table.context ul li { display: inline-block; margin: 0 3px; }
+body.imea-treaties div.decision table.context img { vertical-align: middle; }
+body.imea-treaties div.decision table.context th { text-align: left; }
 
 /* DECISIONS PAGES */
 body.imea-decisions li.widget.tag-cloud {
