@@ -48,11 +48,12 @@ if(!function_exists('imea_debug')) {
 
 if(!function_exists('informea_debug_wp_request')) {
     function informea_debug_wp_request() {
-        global $wp, $template;
+        global $wp, $template, $wp_query;
         var_dump($wp->request);
         var_dump($wp->matched_rule);
         var_dump($wp->matched_query);
         var_dump(basename($template));
+        var_dump($wp_query);
 }
 }
 
