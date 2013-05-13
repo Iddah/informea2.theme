@@ -28,6 +28,9 @@ if ($entity == 'decision_document') {
     header("Content-disposition: attachment;filename=$filename");
     informea_countries::generate_parties_download_csv();
     exit();
+} else if ('vcard' == $entity) {
+    $id = get_request_int('id');
+    informea_treaties::generate_vcard($id);
 } else {
     global $wp_query;
     $wp_query->set_404();

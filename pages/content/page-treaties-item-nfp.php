@@ -49,8 +49,7 @@ $all_contacts = $contact_data['contacts'];
                         </a>
                     <?php endif; ?>
                     <a class="btn white small"
-                       href="<?php bloginfo('url'); ?>/vcard?id_contact=<?php echo $contact->id ?>"
-                       title="<?php _e('Download vcard', 'informea'); ?>">
+                       href="<?php bloginfo('url'); ?>/download?entity=vcard&id=<?php echo $contact->id ?>">
                        <i class="icon icon-user"></i> <?php _e('vCard', 'informea'); ?>
                     </a>
                     <div class="details">
