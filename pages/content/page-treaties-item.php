@@ -37,7 +37,7 @@ $all_contacts = $contact_data['contacts'];
         <?php if ($expand == 'sendmail') { ?>
             <li>
                 <a class="<?php echo ($expand == 'sendmail') ? 'active' : ''; ?>"
-                   href=""><?php _e('Send Mail', 'informea'); ?> </a>
+                   href=""><?php _e('Contact Focal Point', 'informea'); ?> </a>
             </li>
         <?php } ?>
     </ul>
