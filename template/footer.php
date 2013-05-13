@@ -91,12 +91,12 @@ function tengine_footer() {
                 <li>
                     <h3>CMS</h3>
                     <ul>
-                        <li><a href="#">ACAP</a></li>
                         <li><a href="#">ACCOBAMS</a></li>
                         <li><a href="#">AEWA</a></li>
                         <li><a href="#">ASCOBANS</a></li>
                         <li><a href="#">EUROBATS</a></li>
                         <li><hr /></li>
+                        <li><a href="#">ACAP</a></li>
                         <li><a href="#">International Gorilla Conservation Programme</a></li>
                         <li><a href="#">WADDEN SEA SEALS</a></li>
                     </ul>
