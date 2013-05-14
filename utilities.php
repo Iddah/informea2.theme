@@ -546,27 +546,23 @@ if(!function_exists('show_event_interval')) {
 
 
 if(!function_exists('get_request_variable')) {
-	function get_request_variable($name, $type = 'str', $default_value = NULL) {
-		global $wp_query, $wp_rewrite;
-		$ret = $default_value;
-		if ($wp_rewrite->using_permalinks()) {
-			if(!empty($wp_query->query_vars[$name])) {
-				$ret = $wp_query->query_vars[$name];
-			}
-		} else {
-			if(isset($_POST[$name])) {
-				$ret = $_POST[$name];
-			}
-			if(isset($_GET[$name])) {
-				$ret = $_GET[$name];
-			}
-		}
+    function get_request_variable($name, $type = 'str', $default_value = NULL) {
+        global $wp_query;
+        if(isset($wp_query->query_vars[$name])) {
+            $ret = $wp_query->query_vars[$name];
+        } else if(isset($_POST[$name])) {
+            $ret = $_POST[$name];
+        } else if(isset($_GET[$name])) {
+            $ret = $_GET[$name];
+        } else {
+            $ret = $default_value;
+        }
 
-		if($ret !== NULL && is_int($type)) {
-			$ret = intval($ret);
-		}
-		return $ret;
-	}
+        if($ret !== NULL && is_int($type)) {
+          $ret = intval($ret);
+}
+        return $ret;
+    }
 }
 
 if(!function_exists('is_request_variable')) {
