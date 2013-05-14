@@ -1,125 +1,27 @@
 /* Generic website styles for printing */
+@media print {
 
-body {
-	font-family: Arial, "Bitstream Charter", serif;
-	font-size: 0.8em;
+    /* GLOBAL */
+    body { font-family: Arial, "Bitstream Charter", serif; font-size: 0.8em; }
+    img { border: 0; }
+
+    div.skip-link { display: none; }
+    ul.menu { display: none; }
+
+    div#explorer, div#footer, div#breadcrumbtrail { display: none; }
+    div.toolbar, div.management-toolbar, div.alert { display: none; }
+    div.col2-left.col2 { display: none; }
+
+    /* INDEX PAGE */
+    body.imea-index li.widget.index-explorer,
+    body.imea-index img.ribbon,
+    body.imea-index li.widget.upcoming-events div.paginator,
+    body.imea-index li.widget.event-explorer,
+    body.imea-index li.widget.featured-country { display: none; }
+
+    /* TREATIES PAGE */
+    body.imea-treaties div.tabs a { color: #666; }
+    body.imea-treaties div.tabs a.active { color: black; font-weight: bold; }
+    body.imea-treaties div.treaty-icon { margin-bottom: 10px; }
+    body.imea-treaties a.btn { display: none; }
 }
-
-img {
-	border: 0;
-}
-
-#top-nav-item, #header {
-	display: none;
-}
-
-#footer {
-	display: none;
-}
-
-#content table {
-	/* page-break-after : avoid; page-break-inside : avoid; */
-	border: 0.1em solid black;
-	border-collapse: collapse;
-	padding: 0;
-	margin: 0;
-}
-
-#content table th {
-	border: 0.1em solid black;
-	font-weight: bold;
-	font-size: 1.3em;
-}
-
-#content table td {
-	margin: 0;
-	padding: 0.2em;
-	border: 0.1em solid black;
-}
-
-#content table tr.even {
-	background-color: #DEDEDE !important;
-}
-
-#content table tr.odd {
-	background-color: #FFFFFF;
-}
-
-.options-bar {
-	display: none;
-}
-
-.feedback-form-holder {
-	display: none;
-}
-
-.toggle-treaty {
-	display: none;
-}
-
-/* Terms page */
-
-.terms-tabular a {
-	color: black;
-	text-decoration: none;
-}
-
-.view-mode {
-	display: none;
-}
-
-#page-title img {
-	display: none;
-}
-
-#main .details-column-1,
-#main .details-column-2,
-#main .details-column-3 {
-	float: none;
-	width: 100%;
-}
-
-.edit-link, .tags {
-	display: none;
-}
-
-.tab-active {
-	font-weight: bold;
-}
-
-.tab-menu a {
-	text-decoration: none;
-}
-
-.tab-menu .tab {
-	display: none;
-}
-
-.tab-menu ul {
-	display: inline;
-	margin: 0;
-	padding: 0;
-	list-style-type: none;
-}
-
-/* about page */
-.imea-about .textwidget img {
-	clear: both;
-	float: left;
-	margin: 10px;
-}
-
-/* treaties page */
-.treaties-l2 a {
-	text-decoration: none;
-}
-
-.treaties-l2 .details-column-1 {
-	display: none;
-}
-
-/* decisions page */
-.imea-decisions .details-column-1 {
-	display: none;
-}
-
