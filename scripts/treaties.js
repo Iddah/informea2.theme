@@ -63,13 +63,15 @@ $(document).ready(function() {
     $('ul.articles h3').each(function() {
         $(this).balloon({
             url: ajax_url + '?action=get_article_tags_html&id_article=' + $(this).data('id'),
-            position: 'left', css: { opacity: "0.95" }, hideDuration: 20
+            position: 'left', css: { opacity: "0.95" }, hideDuration: 20,
+            contents: '<img src="http://www.informea.org/wp-content/uploads/2013/05/loader.gif" />'
         });
     });
     $('ul.paragraphs li').each(function() {
         $(this).balloon({
             url: ajax_url + '?action=get_paragraph_tags_html&id_paragraph=' + $(this).data('id'),
-            position: 'left', css: { opacity: "0.95" }, hideDuration: 20
+            position: 'left', css: { opacity: "0.95" }, hideDuration: 20,
+            contents: '<img src="http://www.informea.org/wp-content/uploads/2013/05/loader.gif" />'
         });
     });
 
@@ -90,7 +92,8 @@ $(document).ready(function() {
     $('div.decision>ul.paragraphs li').each(function() {
         $(this).balloon({
             url: ajax_url + '?action=get_decision_paragraph_tags_html&id_paragraph=' + $(this).data('id'),
-            position: 'left', css: { opacity: "0.95" }, hideDuration: 20
+            position: 'left', css: { opacity: "0.95" }, hideDuration: 20,
+            contents: '<img src="http://www.informea.org/wp-content/uploads/2013/05/loader.gif" />'
         });
     });
 
