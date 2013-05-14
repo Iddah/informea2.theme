@@ -40,6 +40,18 @@ if ($entity == 'decision_document') {
 } else if ('vcard' == $entity) {
     $id = get_request_int('id');
     informea_treaties::generate_vcard($id);
+
+} else if ('rss' == $entity) {
+    $id = get_request_variable('id');
+    if($id == 'events') {
+        InformeaRSSWriter::events_rss();
+    } else if($id == 'highlights') {
+        InformeaRSSWriter::highlights_rss();
+    } else {
+        download_die_404();
+        exit();
+    }
+
 } else {
     download_die_404();
     exit();
