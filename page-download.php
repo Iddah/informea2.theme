@@ -1,13 +1,15 @@
 <?php
 global $wpdb;
-$entity = get_request_value('entity');
+$entity = get_request_variable('entity');
 if ($entity == 'decision_document') {
-    $id = get_request_int('id');
+    $id = get_request_variable('id');
     $row = $wpdb->get_row("SELECT url, path FROM ai_document WHERE id = $id");
     $remote_url = $row->url;
     $handle = curl_init($remote_url);
-    curl_setopt($handle, CURLOPT_RETURNTRANSFER, TRUE);
+    curl_setopt($handle, CURLOPT_NOBODY, 1);
+    curl_setopt($handle, CURLOPT_HEADER, 1);
     curl_setopt($handle, CURLOPT_TIMEOUT, 5);
+    curl_exec($handle);
     $httpCode = curl_getinfo($handle, CURLINFO_HTTP_CODE);
     if ($httpCode != 200) {
         $local_url = get_bloginfo('url') . '/' . $row->path;
