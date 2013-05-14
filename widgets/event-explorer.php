@@ -34,9 +34,12 @@ class EventsExplorerWidget extends WP_Widget {
 
     function widget($args, $instance) {
         $events_ob = new informea_events();
+        $title = empty($instance['title']) ? ' ' : apply_filters('widget_title', $instance['title']);
 ?>
         <li class="widget event-explorer">
             <div class="content">
+                <h2></h2>
+                <br />
                 <form action="/events/" method="get">
                     <input type="hidden" name="fe_show_past" value="1" />
                     <input type="hidden" name="do_search" value="1" />
