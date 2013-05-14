@@ -83,8 +83,6 @@ function get_article_tags_html() {
                         $ret .= sprintf('<a href="%s/terms/%s" target="_blank">%s</a><br />', get_bloginfo('url'), $tag->id, $tag->term);
                     }
             $ret .= '';
-        } else {
-            echo 'This article has not been tagged';
         }
         header('Content-Type:text/html');
         echo $ret;
@@ -128,8 +126,6 @@ function get_paragraph_tags_html() {
                             $ret .= sprintf('<a href="%s/terms/%s" target="_blank">%s</a><br />', get_bloginfo('url'), $tag->id, $tag->term);
                         }
             $ret .= '';
-        } else {
-                    echo 'This paragraph has not been tagged';
         }
         header('Content-Type:text/html');
         echo $ret;
