@@ -550,11 +550,11 @@ if (!class_exists('imea_treaties_page')) {
 
             $ret = array();
             $meetings = $wpdb->get_results($wpdb->prepare(
-                'SELECT a.* FROM ai_event a
+                "SELECT a.* FROM ai_event a
                     INNER JOIN ai_decision b ON a.id = b.id_meeting
-                    WHERE a.id_treaty=%d
+                    WHERE a.id_treaty=%d AND LOWER(a.`type`) IN ('cop', 'mop')
                     GROUP BY a.id
-                    ORDER BY a.start DESC', $id_treaty
+                    ORDER BY a.start DESC", $id_treaty
             ));
             foreach($meetings as &$meeting) {
                 $meeting->decisions = array();
