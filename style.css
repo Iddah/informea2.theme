@@ -148,6 +148,7 @@ div.alert {
 div.alert.alert-success { color: #468847; background-color: #dff0d8; border-color: #d6e9c6; }
 div.alert.alert-warning { color: #c09853; background-color: #fcf8e3; border: 1px solid #fbeed5; }
 div.alert.alert-info { color: #3a87ad; background-color: #d9edf7; border-color: #bce8f1; }
+div.alert.alert-error { color: #b94a48; background-color: #f2dede; border-color: #eed3d7; }
 div.alert .close { position: relative; top: -5px; right: -4px; line-height: 20px; }
 
 /* GLOBAL :: Icons */
@@ -632,6 +633,10 @@ body.imea-treaties div.decision table.context ul { margin: 0; padding: 0; }
 body.imea-treaties div.decision table.context ul li { display: inline-block; margin: 0 3px; }
 body.imea-treaties div.decision table.context img { vertical-align: middle; }
 body.imea-treaties div.decision table.context th { text-align: left; }
+
+body.imea-treaties form#contact-form label { display: inline-block; width: 250px; }
+body.imea-treaties form#contact-form textarea { display: block; }
+body.imea-treaties form#contact-form div.control { margin: 10px 0; }
 
 /* DECISIONS PAGES */
 body.imea-decisions li.widget.tag-cloud {

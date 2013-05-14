@@ -94,6 +94,8 @@ $(document).ready(function() {
         });
     });
 
+    // Focus contact form first field
+    $('#salutation').focus();
 });
 
 function nfpCollapseAll() {
