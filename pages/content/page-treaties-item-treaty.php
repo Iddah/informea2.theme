@@ -54,7 +54,7 @@ $hidden_css = empty($scoll_id_treaty_article) ? ' hidden' : '';
 <ul id="articles" class="articles">
 <?php foreach($articles as $article) : ?>
     <li id="article_<?php echo $article->id; ?>">
-        <h3 data-id="<?php echo $article->id; ?>">
+        <h3 id="article_title_<?php echo $article->id; ?>" data-id="<?php echo $article->id; ?>">
             <?php echo $article->official_order; ?> <?php echo $article->title; ?>
             <div class="management-toolbar article-toolbar">
             <?php if (current_user_can('manage_options')) : ?>
