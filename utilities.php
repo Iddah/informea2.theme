@@ -548,11 +548,11 @@ if(!function_exists('show_event_interval')) {
 if(!function_exists('get_request_variable')) {
     function get_request_variable($name, $type = 'str', $default_value = NULL) {
         global $wp_query;
-        if(isset($wp_query->query_vars[$name])) {
+        if(!empty($wp_query->query_vars[$name])) {
             $ret = $wp_query->query_vars[$name];
-        } else if(isset($_POST[$name])) {
+        } else if(!empty($_POST[$name])) {
             $ret = $_POST[$name];
-        } else if(isset($_GET[$name])) {
+        } else if(!empty($_GET[$name])) {
             $ret = $_GET[$name];
         } else {
             $ret = $default_value;
