@@ -57,8 +57,9 @@ $hidden_css = empty($scoll_id_treaty_article) ? ' hidden' : '';
         <h3 data-id="<?php echo $article->id; ?>">
             <?php echo $article->official_order; ?> <?php echo $article->title; ?>
             <div class="management-toolbar article-toolbar">
-                <a class="btn white small" href="<?php informea_treaties::article_url($treaty, $article) ;?>">Link</a>
-                <?php if (current_user_can('manage_options')) : ?>
+            <?php if (current_user_can('manage_options')) : ?>
+                <a class="btn white small" title="Permanent link to this article"
+                   href="<?php informea_treaties::article_url($treaty, $article) ;?>">Permalink</a>
                 <a class="btn white small"
                    href="<?php informea_treaties::admin_article_edit_url($article); ?>">Edit</a>
                 <a class="btn info small"
@@ -72,7 +73,7 @@ $hidden_css = empty($scoll_id_treaty_article) ? ' hidden' : '';
                     <input type="hidden" name="action" value="delete_article"/>
                     <?php wp_nonce_field('treaty_delete_article'); ?>
                 </form>
-                <?php endif; ?>
+            <?php endif; ?>
             </div>
         </h3>
         <ul class="paragraphs<?php echo $hidden_css; ?>">
@@ -90,8 +91,9 @@ $hidden_css = empty($scoll_id_treaty_article) ? ' hidden' : '';
             ?>
                 <li id="<?php echo $para_id; ?>" class="ident-<?php echo $paragraph->indent;?>" data-id="<?php echo $paragraph->id; ?>">
                     <div class="management-toolbar paragraph-toolbar">
-                        <a class="btn white small" href="<?php informea_treaties::paragraph_url($treaty, $article, $paragraph) ;?>">Link</a>
-                        <?php if (current_user_can('manage_options')) : ?>
+                    <?php if (current_user_can('manage_options')) : ?>
+                        <a class="btn white small" title="Permanent link to this paragraphs"
+                           href="<?php informea_treaties::paragraph_url($treaty, $article, $paragraph) ;?>">Permalink</a>
                         <a class="btn white small"
                            href="<?php informea_treaties::admin_paragraph_edit_url($article, $paragraph); ?>">Edit</a>
                         <a class="btn info small"
@@ -122,7 +124,7 @@ $hidden_css = empty($scoll_id_treaty_article) ? ' hidden' : '';
                             <input type="hidden" name="action" value="delete_article_paragraph"/>
                             <?php wp_nonce_field('treaty_delete_paragraph'); ?>
                         </form>
-                        <?php endif; ?>
+                    <?php endif; ?>
                     </div>
                     <?php echo $paragraph->official_order . ' ' . $content; ?>
                 </li>
