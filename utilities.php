@@ -382,8 +382,8 @@ if(!function_exists('get_request_int')) {
 if(!function_exists('get_request_boolean')) {
 	/**
 	 * Retrieve boolean (checkbox) from request
-	 * @param name of the parameter
-	 * @return TRUE if the parameter was set, FALSE otherwise
+	 * @param $name string Parameter name
+	 * @return boolean TRUE if the parameter was set, FALSE otherwise
 	 */
 	function get_request_boolean($name) {
 		return isset($_POST[$name]) || isset($_GET[$name]);
