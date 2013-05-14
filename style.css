@@ -473,11 +473,11 @@ li.widget {
     -webkit-box-shadow: 0 2px 2px 0 rgb(194, 194, 194);
     box-shadow: 0 2px 2px 0 rgb(194, 194, 194);
     /* Gradient */
-    background-image: -webkit-linear-gradient(top, white, rgb(237, 237, 237));
-    background-image: -moz-linear-gradient(top, white, rgb(237, 237, 237));
-    background-image: -ms-linear-gradient(top, white, rgb(237, 237, 237));
-    background-image: -o-linear-gradient(top, white, rgb(237, 237, 237));
-    background-image: linear-gradient(to top, white, rgb(237, 237, 237));
+    background-image: -webkit-linear-gradient(top, white, #D7F1F7);
+    background-image: -moz-linear-gradient(top, white, #D7F1F7);
+    background-image: -ms-linear-gradient(top, white, #D7F1F7);
+    background-image: -o-linear-gradient(top, white, #D7F1F7);
+    background-image: linear-gradient(to top, white, #D7F1F7);
 }
 
 li.widget h2 a.rss {
