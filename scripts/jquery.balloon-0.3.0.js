@@ -8,7 +8,10 @@
  * @author: Hayato Takenaka (http://urin.take-uma.net)
  * @version: 0.3.0 - 2012/02/25
  **/
-;(function($) {
+
+var balloonCache = [];
+
+(function($) {
     //-----------------------------------------------------------------------------
     // Private
     //-----------------------------------------------------------------------------
@@ -100,6 +103,7 @@
 
     // Adjust position of balloon body
     function makeupBalloon($target, $balloon, options) {
+        if($balloon.text() == '') { return ; }
         $balloon.stop(true, true);
         var outerTip, innerTip,
             initTipStyle = {position: "absolute", height: "0", width: "0", border: "solid 0 transparent"},
@@ -204,10 +208,23 @@
             if(!isNew && contents && contents != $balloon.html()) $balloon.empty().append(contents);
             $target.removeAttr("title");
             if(options.url) {
-                $balloon.load($.isFunction(options.url) ? options.url(this) : options.url, function(res, sts, xhr) {
-                    if(options.ajaxComplete) options.ajaxComplete(res, sts, xhr);
-                    makeupBalloon($target, $balloon, options);
-                });
+                $balloon.empty();
+                var item_id = $($target).attr('id');
+                if (typeof(balloonCache[item_id]) != 'undefined' && balloonCache[item_id] != '') {
+                    $balloon.append(balloonCache[item_id]);
+                    // Cache hit
+                } else if (balloonCache[item_id] == '') {
+                    // Cache hit, empty content
+                } else {
+                    // Cache miss, retrieve it
+                    $.ajax($.isFunction(options.url) ? options.url(this) : options.url, { success: function(data) {
+                        balloonCache[item_id] = data;
+                        if(data != '') {
+                            $balloon.append(data);
+                            makeupBalloon($target, $balloon, options);
+                        }
+                    }});
+                }
             }
             if(isNew) {
                 $balloon
