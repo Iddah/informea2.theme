@@ -346,6 +346,10 @@ if (!class_exists('imea_highlights_page')) {
             return $ret;
         }
 
+        static function get_rss_posts_filter_where($where='') {
+            return $where . ' AND post_date >= DATE_SUB(NOW(), INTERVAL 6 MONTH) ';
+        }
+
         function get_rss_posts() {
             global $post;
             $ret = array();
@@ -354,7 +358,11 @@ if (!class_exists('imea_highlights_page')) {
                 'orderby' => 'post_date',
                 'posts_per_page' => -1,
                 'order' => 'DESC');
+
+            add_filter('posts_where', array('imea_highlights_page', 'get_rss_posts_filter_where'));
             $wpq = new WP_Query($args);
+            remove_filter('posts_where', array('imea_highlights_page', 'get_rss_posts_filter_where'));
+
             while ($wpq->have_posts()) {
                 $wpq->the_post();
                 $ob = new StdClass();
