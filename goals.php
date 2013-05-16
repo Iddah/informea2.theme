@@ -9,21 +9,16 @@ if (!class_exists('imea_goals_page')) {
     class imea_goals_page extends imea_page_base_page {
 
 
-        static function user_can_edit_target_activities($uid = NULL) {
-            if(empty($uid)) {
-                return current_user_can('edit_posts');
-            }
-            return FALSE;
-        }
-
-
         static function get_aichi_targets_overview() {
             global $wpdb;
 
             return $wpdb->get_results(
-                "SELECT a.id, a.order,a.name, a.indicators, a.id_strategic_goal, b.colour, b.name as goal FROM ai_goals a
-                INNER JOIN ai_goals b ON (b.id = a.id_strategic_goal)
-                WHERE a.type = 'Aichi Target' GROUP BY a.id ORDER BY a.`order`"
+                "SELECT a.id, a.order,a.name, a.indicators, a.id_strategic_goal, b.colour, b.colour_text, b.name as goal
+                  FROM ai_goals a
+                  INNER JOIN ai_goals b ON (b.id = a.id_strategic_goal)
+                  WHERE a.type = 'Aichi Target'
+                  GROUP BY a.id
+                  ORDER BY a.`order`"
             );
         }
 
@@ -123,7 +118,9 @@ if (!class_exists('imea_goals_page')) {
 
         static function get_aichi_target_by_order($order) {
             global $wpdb;
-            $sql = $wpdb->prepare('SELECT a.id, a.`order`, a.`type`, a.name, a.indicators, b.name AS strategic_goal_name
+            $sql = $wpdb->prepare('SELECT a.id, a.`order`, a.`type`, a.name, a.indicators,
+                        b.name AS strategic_goal_name, b.id AS strategic_goal_id,
+                        b.colour, b.colour_text
                     FROM ai_goals a
                     LEFT JOIN ai_goals b ON (a.id_strategic_goal = b.id AND b.`type` = %s)
                     WHERE a.`order`=%d AND a.type=%s', GOAL_TYPE_STRAGETIC_GOAL, $order, GOAL_TYPE_AICHI_TARGET);
@@ -144,7 +141,8 @@ if (!class_exists('imea_goals_page')) {
         static function get_target($target_id) {
             global $wpdb;
             $sql = $wpdb->prepare('SELECT a.id, a.`order`, a.`type`, a.name, a.indicators,
-                        b.name AS strategic_goal_name, c.title as geg_theme
+                        b.name AS strategic_goal_name, b.id AS strategic_goal_id,
+                        c.title as geg_theme
                     FROM ai_goals a
                     LEFT JOIN ai_goals b ON a.id_strategic_goal = b.id
                     LEFT JOIN geg_ai_theme c ON a.id_theme_geg = c.id
@@ -206,6 +204,18 @@ if (!class_exists('imea_goals_page')) {
                 $ret[$row->target_id][$row->odata_name] = $row->activities;
             }
             return $ret;
+        }
+
+
+        static function user_can_edit_target($target, $organization, $user = NULL) {
+            return is_user_logged_in();
+        }
+
+        static function user_can_edit_target_activities($uid = NULL) {
+            if(empty($uid)) {
+                return current_user_can('edit_posts') ? 1 : 0 ;
+            }
+            return 0;
         }
     }
 }
