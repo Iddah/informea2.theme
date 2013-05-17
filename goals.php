@@ -120,7 +120,7 @@ if (!class_exists('imea_goals_page')) {
 
         static function get_aichi_target_by_order($order) {
             global $wpdb;
-            $sql = $wpdb->prepare('SELECT a.id, a.`order`, a.`type`, a.name, a.indicators,
+            $sql = $wpdb->prepare('SELECT a.id, a.`order`, a.`type`, a.name, a.indicators, a.tools,
                         b.name AS strategic_goal_name, b.id AS strategic_goal_id,
                         b.colour, b.colour_text
                     FROM ai_goals a
