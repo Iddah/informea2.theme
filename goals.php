@@ -139,13 +139,34 @@ if (!class_exists('imea_goals_page')) {
         }
 
 
+        static function get_tools_for_treaty($odata_name) {
+            global $wpdb;
+            $ret = array();
+            $rows = $wpdb->get_results(
+                $wpdb->prepare(
+                    'SELECT a.target_id, a.tools FROM ai_goals_tools a WHERE a.odata_name=%s',
+                    $odata_name
+                )
+            );
+            foreach ($rows as $row) {
+                if (!isset($ret[$row->target_id])) {
+                        $ret[$row->target_id] = array();
+                    }
+                $ret[$row->target_id] = $row->tools;
+            }
+            return $ret;
+        }
+
+
         static function get_activities_for_target($target_id) {
             global $wpdb;
             $ret = array();
             $rows = $wpdb->get_results(
                 $wpdb->prepare(
-                        'SELECT a.odata_name, a.activities FROM ai_goals_activities a WHERE a.target_id=%s',
-                    $target_id
+                        "SELECT a.odata_name, a.activities FROM ai_goals_activities a
+                            WHERE a.target_id=%s
+                            AND (TRIM(a.activities) <> '' AND a.activities IS NOT NULL)",
+                        $target_id
                     )
             );
             foreach ($rows as $row) {
@@ -163,7 +184,9 @@ if (!class_exists('imea_goals_page')) {
             $ret = array();
             $rows = $wpdb->get_results(
                 $wpdb->prepare(
-                        'SELECT a.odata_name, a.tools FROM ai_goals_tools a WHERE a.target_id=%s',
+                        "SELECT a.odata_name, a.tools FROM ai_goals_tools a
+                            WHERE a.target_id=%s
+                            AND (TRIM(a.tools) <> '' AND a.tools IS NOT NULL)",
                     $target_id
                     )
             );
