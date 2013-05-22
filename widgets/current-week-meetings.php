@@ -48,12 +48,10 @@ class CurrentWeekMeetingsWidget extends WP_Widget {
                         $cssClass = $idx > 0 ? ' class="hidden"' : '';
                     ?>
                         <li<?php echo $cssClass; ?>>
-                            <div class="text-center">
-                                <span class="thumbnail <?php echo $row->odata_name; ?>"></span>
-                            </div>
-                            <div class="clear"></div>
-                            <?php echo $row->title; ?>
-                            <div class="text-right">
+                            <div class="thumbnail <?php echo $row->odata_name; ?>"></div>
+                            <div class="item-title pull-left">
+                                <?php echo $row->title; ?>
+                                <br />
                                 <strong><?php echo show_event_interval($row); ?></strong>
                             </div>
                         </li>

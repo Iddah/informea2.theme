@@ -579,8 +579,11 @@ li.widget.event-explorer h2 {
     width: 100%;
 }
 
-li.widget.upcoming-events ul { height: 130px; list-style-type: none; margin: 0; padding: 0; }
+li.widget.upcoming-events ul { height: 100px; list-style-type: none; margin: 0; padding: 0; }
 li.widget.upcoming-events ul li { margin-bottom: 10px; }
+li.widget.upcoming-events div.thumbnail { display: inline-block; margin-right: 5px; float: left; }
+li.widget.upcoming-events div.item-title { float: left; width: 140px; }
+li.widget.upcoming-events div.paginator { text-align: center; font-size: 14px; }
 
 li.widget.borderless-widget { padding: 0; }
 
