@@ -131,7 +131,7 @@ if (!class_exists('imea_cache')) {
             if (!empty($value)) {
                 switch (strtolower($value->type)) {
                     case 'json':
-                        $ret = json_decode($value->value);
+                        $ret = json_decode($value->value, TRUE);
                         break;
                     default:
                         $ret = $value->value;

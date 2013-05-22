@@ -709,6 +709,17 @@ if (!class_exists('imea_countries_page')) {
         }
 
 
+        static function get_random_country_with_data() {
+            global $wpdb;
+            return $wpdb->get_row("SELECT a.* FROM ai_country a
+                INNER JOIN ai_people b ON a.id = b.id_country
+                INNER JOIN ai_treaty_country c ON a.id = c.id_country
+                GROUP by a.id
+                ORDER BY rand() LIMIT 1;"
+            );
+        }
+
+
         static function get_featured_country() {
             $option = get_option('informea_options');
             $country = null;
@@ -719,12 +730,50 @@ if (!class_exists('imea_countries_page')) {
                 }
             }
             if ($country == null) {
-                $country = self::get_random_country();
+                $country = self::get_random_country_with_data();
                 $option['featured_country'] = $country;
                 $option['featured_country_timestamp'] = time();
                 update_option('informea_options', $option);
             }
             return $country;
+        }
+
+
+        static function get_country_for_visitor() {
+            $client  = @$_SERVER['HTTP_CLIENT_IP'];
+            $forward = @$_SERVER['HTTP_X_FORWARDED_FOR'];
+            $remote  = $_SERVER['REMOTE_ADDR'];
+            $ret = NULL;
+            if(filter_var($client, FILTER_VALIDATE_IP)) {
+                $ip = $client;
+            } elseif(filter_var($forward, FILTER_VALIDATE_IP)) {
+                $ip = $forward;
+            } else {
+                $ip = $remote;
+            }
+            $iso = NULL;
+            // Check the cache first
+            $cache = new imea_cache();
+            $cached_ips = $cache->get('user_ip_country', 'global', TRUE);
+            if(empty($cached_ips)) {
+                $cached_ips = array();
+            }
+            if(!empty($cached_ips[$ip])) {
+                $iso = $cached_ips[$ip];
+            } else {
+                $ip_data = @json_decode(file_get_contents("http://www.geoplugin.net/json.gp?ip=".$ip));
+                if(!empty($ip_data->geoplugin_countryName)) {
+                    $cached_ips[$ip] = $ip_data->geoplugin_countryCode;
+                    $iso = $cached_ips[$ip];
+                }
+            }
+            $cache->put('user_ip_country', 'global', $cached_ips, 'json');
+            if(!empty($iso)) {
+                $ret = informea_countries::get_country_by_iso($iso);
+            } else {
+                $ret = self::get_featured_country();
+            }
+            return $ret;
         }
 
         /**
