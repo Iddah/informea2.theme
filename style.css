@@ -102,8 +102,9 @@ div#informea-staging {
 a { text-decoration: none; color: #1878cc; }
 a:hover { color: #ff4b33; text-decoration: underline; }
 div.clear { clear: both; }
-body.informea { margin: 0; padding: 0; color: #333;
-    font-family: Calibri, "Trebuchet MS", Arial, sans-serif; font-size: 12px; line-height: 17px;
+body.informea { margin: 0 auto;
+    font-family: Helvetica, Arial, sans-serif;
+    font-size: 12px;
 }
 
 div#informea div#main { width: 980px; margin: 0 auto; padding: 10px 0; display: block; overflow: hidden; }
@@ -538,7 +539,7 @@ li.widget.featured-country ul.ui-widget-header {
     border: 0; border-bottom: 1px solid #d7d7d7; background-color: transparent;
 }
 li.widget.featured-country ul.ui-widget-header a {
-    font-family: Calibri, "Trebuchet MS", Arial, sans-serif;
+    font-family: Arial, sans-serif;
     font-size: 11px;
     font-weight: normal;
     color: #000;
