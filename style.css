@@ -329,7 +329,7 @@ ul#menu-secondary-menu a:hover { color: #444; }
 /* GLOBAL :: Sprites */
 .basel, .cbd, .cites, .cms, .fao, .itpgrfa, .ozone, .ramsar, .rotterdam, .stockholm, .un, .unccd, .unece,
 .unep, .unesco, .unfccc, .whc {
-    background: url(images/sprites_black&white.png) no-repeat;
+    background: url(images/sprites_black_and_white.png) no-repeat;
     display: inline-block;
 }
 
@@ -341,23 +341,31 @@ ul#menu-secondary-menu a:hover { color: #444; }
     background: url(images/sprites.png) no-repeat;
 }
 
-.basel, .basel:hover { background-position: 0 0; width: 61px; height: 48px; }
-.cbd, .cbd:hover { background-position: 0 -55px; width: 40px; height: 48px; }
-.cites, .cites:hover { background-position:  0 -109px; width: 82px; height: 48px; }
-.cms, .cms:hover { background-position: 0 -168px; width: 48px; height: 48px; }
-.fao, .fao:hover { background-position: 0 -222px; width: 48px; height: 48px; }
-.itpgrfa, .itpgrfa:hover { background-position: 0 -274px; width: 48px; height: 48px; }
-.ozone, .ozone:hover { background-position: 0 -327px; width: 48px; height: 48px; }
-.ramsar, .ramsar:hover { background-position: 0 -384px; width: 44px; height: 48px; }
-.rotterdam, .rotterdam:hover{ background-position: -70px -346px ; width: 54px; height: 48px; }
-.stockholm, .stockholm:hover { background-position: -80px 0; width: 62px; height: 48px; }
-.un, .un:hover { background-position: -85px -58px; width: 54px; height: 48px; }
-.unccd, .unccd:hover { background-position: 0 -443px; width: 82px; height: 48px; }
-.unece, .unece:hover { background-position: -70px -167px; width: 48px; height: 48px; }
-.unep, .unep:hover { background-position: -66px -228px; width: 54px; height: 48px; }
-.unesco, .unesco:hover { background-position: -68px -290px; width: 60px; height: 48px; }
-.unfccc, .unfccc:hover { background-position: 0 -500px; width: 60px; height: 48px; }
-.whc, .whc:hover { background-position: -91px -405px; width: 48px; height: 48px; }
+.aewa, .aewa:hover { background-position: 0 0; width: 56px; height: 48px; }
+.bamako, .bamako:hover { background-position: 0 -61px; width: 56px; height: 48px; }
+.basel, .basel:hover { background-position: 0 -118px; width: 61px; height: 48px; }
+.cbd, .cbd:hover { background-position: 0 -180px; width: 40px; height: 48px; }
+.cites, .cites:hover { background-position: 0 -233px; width: 62px; height: 48px; }
+.cms, .cms:hover { background-position: 0 -286px; width: 48px; height: 48px; }
+.fao, .fao:hover { background-position: 0 -343px; width: 48px; height: 48px; }
+.gef, .gef:hover { background-position: 0 -401px; width: 40px; height: 48px; }
+.itpgrfa, .itpgrfa:hover { background-position: -89px 0; width: 48px; height: 48px; }
+.lusaka, .lusaka:hover { background-position: -89px -55px; width: 48px; height: 48px; }
+.ozone, .ozone:hover { background-position: -84px -114px; width: 48px; height: 48px; }
+.persga, .persga:hover { background-position: -78px -170px; width: 42px; height: 48px; }
+.ramsar, .ramsar:hover { background-position: -82px -229px; width: 44px; height: 48px; }
+.ropme, .ropme:hover { background-position: -72px -288px; width: 53px; height: 48px; }
+.rotterdam, .rotterdam:hover { background-position: -67px -346px; width: 54px; height: 48px; }
+.sprep, .sprep:hover { background-position: -64px -403px; width: 52px; height: 48px; }
+.stockholm, .stockholm:hover { background-position: -147px -1px; width: 62px; height: 48px; }
+.un, .un:hover { background-position: -149px -58px; width: 56px; height: 48px; }
+.unccd, .unccd:hover { background-position: -147px -117px; width: 62px; height: 48px; }
+.unece, .unece:hover { background-position: -149px -169px; width: 48px; height: 48px; }
+.unep, .unep:hover { background-position: -145px -234px; width: 54px; height: 48px; }
+.unesco, .unesco:hover { background-position: -143px -290px; width: 60px; height: 48px; }
+.unfccc, .unfccc:hover { background-position: -144px -348px; width: 60px; height: 48px; }
+.whc, .whc:hover { background-position: -146px -403px; width: 48px; height: 48px; }
+
 
 /* GLOBAL :: MEA Explorer button */
 #explorer { float: right; position: relative; right: 0; width: 177px; z-index: 999; }
