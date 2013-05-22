@@ -105,12 +105,14 @@ div.clear { clear: both; }
 body.informea { margin: 0 auto;
     font-family: Helvetica, Arial, sans-serif;
     font-size: 12px;
+    line-height: 17px;
 }
 
 div#informea div#main { width: 980px; margin: 0 auto; padding: 10px 0; display: block; overflow: hidden; }
 div#informea div#main .col3 { float: left; width: 230px; }
-div#informea div#main .col3-left { margin-right: 10px; }
-div#informea div#main .col3-center { width: 500px; margin-right: 10px;}
+div#informea div#main .col3-left { margin-right: 10px; margin-left: 5px; }
+div#informea div#main .col3-center { width: 460px; margin-right: 10px; margin-left: 15px; }
+div#informea div#main .col3-right { margin-left: 15px; }
 div#informea div#main .col2 { float: left; width: 210px; }
 div#informea div#main .col2-left { margin-right: 10px; }
 div#informea div#main .col2-center { width: 720px; margin: 0 10px 10px 0; }
@@ -215,6 +217,7 @@ ul.sidebar { list-style-type: none; margin: 0; padding: 0; }
 li.widget h2 {
     background: transparent; color: rgb(68, 67, 67);
     font-size: 18px; letter-spacing: 0;
+    font-weight: normal;
     padding: 0; margin: 5px 0;
 }
 li.widget h3 { margin: 10px 0 5px 0; padding: 0; }
@@ -322,7 +325,7 @@ ul#menu-primary-menu li.current-menu-item > a {
 }
 
 /* GLOBAL :: Header (blue stripe) :: Secondary menu */
-ul#menu-secondary-menu { float: right; width: 350px; margin-top: -80px; padding-left: 0; list-style-type: none;}
+ul#menu-secondary-menu { float: right; margin-top: -80px; padding-left: 0; list-style-type: none;}
 ul#menu-secondary-menu li { padding-left: 7px; list-style-type: none; display: inline-block; }
 ul#menu-secondary-menu a { color: #fff; text-transform: uppercase; }
 ul#menu-secondary-menu a:hover { color: #444; }
@@ -527,7 +530,7 @@ li.widget.featured-country h2 img {
     max-height: 48px; vertical-align: middle; float: right; margin: -5px 5px 0 0;
 }
 li.widget.featured-country div.content { padding-top: 0; }
-li.widget.featured-country div#fc-map-canvas { width: 480px; height: 300px; }
+li.widget.featured-country div#fc-map-canvas { width: 437px; height: 300px; }
 li.widget.featured-country .ui-widget-content { background: transparent; border: 0; }
 li.widget.featured-country li.ui-state-active { border-bottom: 1px solid white; }
 li.widget.featured-country .ui-state-default {
