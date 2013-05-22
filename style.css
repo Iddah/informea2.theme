@@ -91,6 +91,7 @@ body.informea div#breadcrumbtrail { margin: 0; padding: 0; border-bottom: 1px do
 body.informea div#breadcrumbtrail ul { margin: 0; padding: 0; list-style-type: none; }
 body.informea div#breadcrumbtrail ul li { display: inline-block; margin: 0 0 0 5px; }
 body.informea div#breadcrumbtrail ul li span.separator { margin-left: 5px; }
+body.informea div#container { min-height: 300px; }
 
 body.informea div.toolbar { border-bottom: 1px dashed #bbb; border-top: 1px dashed #bbb; padding: 5px; }
 body.informea div.toolbar .toolbar-right { float: right; }

@@ -138,7 +138,7 @@ function informea_countries_breadcrumbtrail() {
 function informea_customize_register( $wp_customize ) {
     //All our sections, settings, and controls will be added here
     $wp_customize->add_setting('show_changelog_in_index',
-        array('default' => TRUE, 'type' => 'option', 'transport'   => 'refresh')
+        array('default' => 1)
     );
     $wp_customize->add_section('informea_index_section' , array('title'      => __('Index page','informea'), 'priority'   => 30));
     $wp_customize->add_control(

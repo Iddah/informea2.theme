@@ -20,9 +20,9 @@ $changelog_entry = imea_index_page::get_latest_changelog_entry();
     <?php if($show_changelog && $changelog_entry) : ?>
     <div id="changelog" class="round">
         <p>
+            <?php echo mysql2date('d F, Y', $changelog_entry->post_date); ?> -
             <?php echo $changelog_entry->post_title; ?>
             <a href="<?php bloginfo('uri'); ?>/changelog">Read more</a>
-            Last updated: <?php echo mysql2date('d F, Y', $changelog_entry->post_date); ?>
         </p>
     </div>
     <?php endif; ?>
