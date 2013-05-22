@@ -64,18 +64,14 @@ class FeaturedTreatyWidget extends WP_Widget {
                 <h2><?php echo $title; ?></h2>
                 <?php endif; ?>
                 <div class="content">
-                    <img src="<?php echo $treaty->logo_medium; ?>" />
-                    <span class="thumbnail <?php echo $treaty->odata_name; ?>"></span>
-                    <div class="clear"></div>
-                    <div class="item-title">
+                    <div class="thumbnail <?php echo $treaty->odata_name; ?>"></div>
+                    <div class="item-title pull-left">
                         <a href="<?php echo sprintf('%s/treaties/%s', get_bloginfo('url'), $treaty->odata_name); ?>">
                             <?php echo $treaty->short_title; ?>
                         </a>
                         <?php if(!empty($treaty->theme)): ?>
                         <div class="gray">(<?php echo $treaty->theme; ?>)</div>
                         <?php endif; ?>
-                    </div>
-                    <div class="text-left">
                         <?php
                         if ($count_decisions) :
                             $ob = new informea_treaties();

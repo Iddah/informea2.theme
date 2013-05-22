@@ -356,6 +356,7 @@ ul#menu-secondary-menu a:hover { color: #444; }
 .gef, .gef:hover { background-position: 0 -401px; width: 40px; height: 48px; }
 .itpgrfa, .itpgrfa:hover { background-position: -89px 0; width: 48px; height: 48px; }
 .lusaka, .lusaka:hover { background-position: -89px -55px; width: 48px; height: 48px; }
+.nagoya, .nagoya:hover { background-position: 0 -180px; width: 40px; height: 48px; }
 .ozone, .ozone:hover { background-position: -84px -114px; width: 48px; height: 48px; }
 .persga, .persga:hover { background-position: -78px -170px; width: 42px; height: 48px; }
 .ramsar, .ramsar:hover { background-position: -82px -229px; width: 44px; height: 48px; }
@@ -521,10 +522,9 @@ li.widget.latest-news ul li {
     background: url("images/arrow1.png") no-repeat 0 3px;
 }
 
-ul.sidebar li.widget ul.featured-tools { padding-left: 20px; }
+li.widget.featured-treaty div.thumbnail { float: left; margin-right: 5px; }
 
-li.widget.featured-treaty div.content { text-align: center; }
-li.widget.featured-treaty img {  }
+ul.sidebar li.widget ul.featured-tools { padding-left: 20px; }
 
 li.widget.featured-country { padding: 5px; }
 li.widget.featured-country h2 img {
