@@ -381,7 +381,9 @@ if (!class_exists('imea_highlights_page')) {
                 $post_categories = wp_get_post_categories($ob->id);
                 foreach ($post_categories as $cat_id) {
                     $cat = get_category($cat_id);
-                    $ob->categories[] = $cat->name;
+                    if(!empty($cat->name)) {
+                        $ob->categories[] = $cat->name;
+                    }
                 }
 
                 $feed_id = null;
