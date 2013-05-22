@@ -527,8 +527,9 @@ li.widget.featured-treaty div.thumbnail { float: left; margin-right: 5px; }
 ul.sidebar li.widget ul.featured-tools { padding-left: 20px; }
 
 li.widget.featured-country { padding: 5px; }
+li.widget.featured-country h2 { margin-top: 20px; }
 li.widget.featured-country h2 img {
-    max-height: 48px; vertical-align: middle; float: right; margin: -5px 5px 0 0;
+    max-height: 50px; vertical-align: middle; float: right; margin: -10px 50px 0 0;
 }
 li.widget.featured-country div.content { padding-top: 0; }
 li.widget.featured-country div#fc-map-canvas { width: 437px; height: 300px; }
