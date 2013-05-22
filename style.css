@@ -601,7 +601,7 @@ li.widget.index-explorer div.filters { margin-left: 20px; }
 li.widget.index-explorer li.section { border-top: 1px solid #dfdfdf; margin-top: 10px; }
 li.widget.index-explorer li.section p { font-weight: bold; }
 li.widget.index-explorer li.section ul { margin: 0; padding: 0; list-style-type: none; }
-li.widget.index-explorer #q_freetext { border: 1px solid #ffe974; height: 20px; width: 380px; }
+li.widget.index-explorer #q_freetext { border: 1px solid #ffe974; height: 20px; width: 330px; }
 li.widget.index-explorer button { top: -1px; border: 1px solid #ffe974; }
 
 /* ABOUT PAGE */

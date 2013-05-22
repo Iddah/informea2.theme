@@ -6,7 +6,18 @@ $(document).ready(function() {
 
     /* Click on 'Advanced search' link on MEA Explorer in front page */
     $('li.index-explorer a.index-explorer-advanced-search-click').click(function () {
-        $('li.index-explorer ul.advanced').slideToggle({easing: 'linear', duration:200});
+        var t = this;
+        var panel = $('li.index-explorer ul.advanced');
+        panel.slideToggle(200,
+            function() {
+                console.log(panel);
+                if(panel.is(':visible')) {
+                    $(t).text('Simple search »');
+                } else {
+                    $(t).text('Advanced search »');
+                }
+            }
+        );
     });
 
     featuredCountryWidgetSetup();

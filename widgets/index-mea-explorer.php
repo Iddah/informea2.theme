@@ -28,15 +28,10 @@ class MEAExplorerWidget extends WP_Widget {
                 <h2></h2>
                 <div class="content">
                     <label for="q_freetext">
-                        <strong>Search text</strong>
+                        <input type="text" id="q_freetext" name="q_freetext" class="freetext" size="40"
+                               placeholder="Search treaties and decisions documents" />
                     </label>
-                    <input type="text" id="q_freetext" name="q_freetext" class="freetext" size="40" />
-                    <div class="up">
-                        <a href="javascript:void(0);" class="index-explorer-advanced-search-click">
-                            <span>Advanced search &raquo;</span>
-                        </a>
-                        <input type="submit" class="btn pull-right orange" value="Search" />
-                    </div>
+
                     <ul class="advanced hidden">
                         <li class="section">
                             <p>Topics</p>
@@ -99,6 +94,12 @@ class MEAExplorerWidget extends WP_Widget {
                             </div>
                         </li>
                     </ul>
+                    <div class="up">
+                        <a href="javascript:void(0);" class="index-explorer-advanced-search-click">
+                            <span>Advanced search &raquo;</span>
+                        </a>
+                        <input id="btn_search_top" type="submit" class="btn pull-right orange" value="Search" />
+                    </div>
                 </div>
             </form>
         </li>
