@@ -346,17 +346,23 @@ ul#menu-secondary-menu a:hover { color: #444; }
     background: url(images/sprites.png) no-repeat;
 }
 
+/* noumea, apia, jeddah, kuwait */
 .aewa, .aewa:hover { background-position: 0 0; width: 56px; height: 48px; }
 .bamako, .bamako:hover { background-position: 0 -61px; width: 56px; height: 48px; }
 .basel, .basel:hover { background-position: 0 -118px; width: 61px; height: 48px; }
-.cbd, .cbd:hover { background-position: 0 -180px; width: 40px; height: 48px; }
+
+.cbd, .cbd:hover, .nagoya, .nagoya:hover, .cartagena, .cartagena:hover
+{ background-position: 0 -180px; width: 40px; height: 48px; }
+
 .cites, .cites:hover { background-position: 0 -233px; width: 62px; height: 48px; }
 .cms, .cms:hover { background-position: 0 -286px; width: 48px; height: 48px; }
 .fao, .fao:hover { background-position: 0 -343px; width: 48px; height: 48px; }
 .gef, .gef:hover { background-position: 0 -401px; width: 40px; height: 48px; }
-.itpgrfa, .itpgrfa:hover { background-position: -89px 0; width: 48px; height: 48px; }
-.lusaka, .lusaka:hover { background-position: -89px -55px; width: 48px; height: 48px; }
-.nagoya, .nagoya:hover { background-position: 0 -180px; width: 40px; height: 48px; }
+
+.itpgrfa, .itpgrfa:hover, .plant-treaty, .plant-treaty:hover
+{ background-position: -89px 0; width: 48px; height: 48px; }
+
+.lusakaagreement, .lusakaagreement:hover { background-position: -89px -55px; width: 48px; height: 48px; }
 .ozone, .ozone:hover { background-position: -84px -114px; width: 48px; height: 48px; }
 .persga, .persga:hover { background-position: -78px -170px; width: 42px; height: 48px; }
 .ramsar, .ramsar:hover { background-position: -82px -229px; width: 44px; height: 48px; }
@@ -366,10 +372,26 @@ ul#menu-secondary-menu a:hover { color: #444; }
 .stockholm, .stockholm:hover { background-position: -147px -1px; width: 62px; height: 48px; }
 .un, .un:hover { background-position: -149px -58px; width: 56px; height: 48px; }
 .unccd, .unccd:hover { background-position: -147px -117px; width: 62px; height: 48px; }
-.unece, .unece:hover { background-position: -149px -169px; width: 48px; height: 48px; }
-.unep, .unep:hover { background-position: -145px -234px; width: 54px; height: 48px; }
+
+.unece, .unece:hover, .aarhus, .aarhus:hover, .espoo, .espoo:hover, .lrtap, .lrtap:hover,
+.kyivsea, .kyivsea:hover, .protocolwaterhealth, .protocolwaterhealth:hover,
+.waterconvention, .waterconvention:hover, .pollutantrelease, .pollutantrelease:hover,
+.industrialaccidents, .industrialaccidents:hover
+{ background-position: -149px -169px; width: 48px; height: 48px; }
+
+.unep, .unep:hover, .vienna, .vienna:hover, .montreal, .montreal:hover, .abidjan, .abidjan:hover,
+.barcelona, .barcelona:hover, .dumping, .dumping:hover, .barc-spa, .barc-spa:hover,
+.preventionemergency, .preventionemergency:hover, .offshore, .offshore:hover
+.land-based, .land-based:hover, .hazardous, .hazardous:hover
+.nairobi, .nairobi:hover, .cartagena-conv, .cartagena-conv:hover
+.antigua, .antigua:hover
+{ background-position: -145px -234px; width: 54px; height: 48px; }
+
 .unesco, .unesco:hover { background-position: -143px -290px; width: 60px; height: 48px; }
-.unfccc, .unfccc:hover { background-position: -144px -348px; width: 60px; height: 48px; }
+
+.unfccc, .unfccc:hover, .kyoto, .kyoto:hover
+{ background-position: -144px -348px; width: 60px; height: 48px; }
+
 .whc, .whc:hover { background-position: -146px -403px; width: 48px; height: 48px; }
 
 
