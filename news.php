@@ -6,8 +6,8 @@
  * @since 1.0
  */
 
-if (!class_exists('imea_highlights_page')) {
-    class imea_highlights_page extends imea_page_base_page {
+if (!class_exists('imea_news_page')) {
+    class imea_news_page extends imea_page_base_page {
 
         public $categories;
         public $non_empty_categories;
@@ -25,7 +25,7 @@ if (!class_exists('imea_highlights_page')) {
             $ob = new StdClass();
             $ob->title = "Climate &amp; Atmosphere";
             $ob->slug = "climate-change";
-            $ob->link = get_bloginfo('url') . '/highlights/' . $ob->slug;
+            $ob->link = get_bloginfo('url') . '/news/' . $ob->slug;
             $ob->image = get_bloginfo('template_directory') . '/images/spotlight/climate-change.jpg';
             $ob->treaties = '6,7,15';
             $this->categories[$ob->slug] = $ob;
@@ -33,7 +33,7 @@ if (!class_exists('imea_highlights_page')) {
             $ob = new StdClass();
             $ob->title = "Biological Diversity";
             $ob->slug = "biological-diversity";
-            $ob->link = get_bloginfo('url') . '/highlights/' . $ob->slug;
+            $ob->link = get_bloginfo('url') . '/news/' . $ob->slug;
             $ob->image = get_bloginfo('template_directory') . '/images/spotlight/other-biodiversity.jpg';
             $ob->treaties = '1,6,9,3,4,10,16,18,14';
             $this->categories[$ob->slug] = $ob;
@@ -41,7 +41,7 @@ if (!class_exists('imea_highlights_page')) {
             $ob = new StdClass();
             $ob->title = "Species";
             $ob->slug = "species";
-            $ob->link = get_bloginfo('url') . '/highlights/' . $ob->slug;
+            $ob->link = get_bloginfo('url') . '/news/' . $ob->slug;
             $ob->image = get_bloginfo('template_directory') . '/images/spotlight/species.jpg';
             $ob->treaties = '3,4,14,10';
             $this->categories[$ob->slug] = $ob;
@@ -49,7 +49,7 @@ if (!class_exists('imea_highlights_page')) {
             $ob = new StdClass();
             $ob->title = "Wetlands &amp; National Heritage Sites";
             $ob->slug = "wetlands-national-heritage-sites";
-            $ob->link = get_bloginfo('url') . '/highlights/' . $ob->slug;
+            $ob->link = get_bloginfo('url') . '/news/' . $ob->slug;
             $ob->image = get_bloginfo('template_directory') . '/images/spotlight/wetlands.jpg';
             $ob->treaties = '16,18';
             $this->categories[$ob->slug] = $ob;
@@ -57,7 +57,7 @@ if (!class_exists('imea_highlights_page')) {
             $ob = new StdClass();
             $ob->title = "Chemicals &amp; Waste";
             $ob->slug = "chemicals-waste";
-            $ob->link = get_bloginfo('url') . '/highlights/' . $ob->slug;
+            $ob->link = get_bloginfo('url') . '/news/' . $ob->slug;
             $ob->image = get_bloginfo('template_directory') . '/images/spotlight/biohazard.png';
             $ob->treaties = '2,20,5';
             $this->categories[$ob->slug] = $ob;
@@ -65,7 +65,7 @@ if (!class_exists('imea_highlights_page')) {
             $ob = new StdClass();
             $ob->title = "International Cooperation";
             $ob->slug = "international-cooperation";
-            $ob->link = get_bloginfo('url') . '/highlights/' . $ob->slug;
+            $ob->link = get_bloginfo('url') . '/news/' . $ob->slug;
             $ob->image = get_bloginfo('template_directory') . '/images/spotlight/cooperation.jpg';
             $ob->treaties = false;
             $this->categories[$ob->slug] = $ob;
@@ -73,7 +73,7 @@ if (!class_exists('imea_highlights_page')) {
             $ob = new StdClass();
             $ob->title = "Financing &amp; Trade";
             $ob->slug = "financing-trade";
-            $ob->link = get_bloginfo('url') . '/highlights/' . $ob->slug;
+            $ob->link = get_bloginfo('url') . '/news/' . $ob->slug;
             $ob->image = get_bloginfo('template_directory') . '/images/spotlight/trade.png';
             $ob->treaties = '3,20,14,8,2';
             $this->categories[$ob->slug] = $ob;
@@ -81,12 +81,12 @@ if (!class_exists('imea_highlights_page')) {
             $ob = new StdClass();
             $ob->title = "Drylands";
             $ob->slug = "drylands";
-            $ob->link = get_bloginfo('url') . '/highlights/' . $ob->slug;
+            $ob->link = get_bloginfo('url') . '/news/' . $ob->slug;
             $ob->image = get_bloginfo('template_directory') . '/images/spotlight/desertification.jpg';
             $ob->treaties = '19';
             $this->categories[$ob->slug] = $ob;
 
-            // Store treaties, to show treaty logo whenever we don't have a picture for a post in the highlights section,
+            // Store treaties, to show treaty logo whenever we don't have a picture for a post in the news section,
             // but that post has a treaty attached to it, as category. Try to match category with treaty name
             $tmp = new imea_treaties_page(NULL);
             $treaties = $tmp->get_treaties();
@@ -359,9 +359,9 @@ if (!class_exists('imea_highlights_page')) {
                 'posts_per_page' => -1,
                 'order' => 'DESC');
 
-            add_filter('posts_where', array('imea_highlights_page', 'get_rss_posts_filter_where'));
+            add_filter('posts_where', array('imea_news_page', 'get_rss_posts_filter_where'));
             $wpq = new WP_Query($args);
-            remove_filter('posts_where', array('imea_highlights_page', 'get_rss_posts_filter_where'));
+            remove_filter('posts_where', array('imea_news_page', 'get_rss_posts_filter_where'));
 
             while ($wpq->have_posts()) {
                 $wpq->the_post();

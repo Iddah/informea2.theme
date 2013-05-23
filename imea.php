@@ -32,7 +32,7 @@ require_once __DIR__ . '/decisions.admin.php';
 require_once __DIR__ . '/ecolex.php';
 require_once __DIR__ . '/events.php';
 require_once __DIR__ . '/goals.php';
-require_once __DIR__ . '/highlights.php';
+require_once __DIR__ . '/news.php';
 require_once __DIR__ . '/treaties.php';
 require_once __DIR__ . '/utilities.php';
 require_once __DIR__ . '/localization.php';
