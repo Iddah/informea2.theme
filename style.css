@@ -334,7 +334,7 @@ ul#menu-secondary-menu a:hover { color: #444; }
 /* GLOBAL :: Sprites */
 .basel, .cbd, .cites, .cms, .fao, .itpgrfa, .ozone, .ramsar, .rotterdam, .stockholm, .un, .unccd, .unece,
 .unep, .unesco, .unfccc, .whc {
-    background: url(images/sprites_black_and_white.png) no-repeat;
+    background: url(images/treaties/sprites_black_and_white.png) no-repeat;
     display: inline-block;
 }
 
@@ -343,7 +343,7 @@ ul#menu-secondary-menu a:hover { color: #444; }
 .rotterdam:hover, .stockholm:hover, .un:hover, .unccd:hover,
 .unece:hover, .unep:hover, .unesco:hover, .unfccc:hover, .whc:hover,
 .thumbnail {
-    background: url(images/sprites.png) no-repeat;
+    background: url(images/treaties/sprites.png) no-repeat;
 }
 
 /* noumea, apia, jeddah, kuwait */
