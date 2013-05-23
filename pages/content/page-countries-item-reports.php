@@ -1,5 +1,5 @@
 <?php
-$id = get_request_variable('id');
+$id = informea_countries::get_id_from_request();
 $rows = informea_countries::get_national_reports($id);
 ?>
 <ul class="country-reports">

@@ -1,5 +1,6 @@
 <?php
-$id = get_request_variable('id');
+$id = informea_countries::get_id_from_request();
+$country = informea_countries::get_country_for_id($id);
 $expand = get_request_variable('expand', 'str', 'map');
 $tabs = array(
     'map' => __('Map &amp; sites', 'informea'),
@@ -27,7 +28,7 @@ if($expand == 'sendmail') { $tabs['sendmail'] = __('Send Mail', 'informea'); }
         <?php
         foreach($tabs as $url => $label) :
             $active = ($expand == $url) ? ' active' : '';
-            $tab_url = sprintf('%s%s/%s', get_permalink(), $id, $url);
+            $tab_url = sprintf('%s/%s/%s', get_permalink(), $country->code2l, $url);
         ?>
         <li>
             <a class="<?php echo $active; ?>" href="<?php echo $tab_url; ?>"><?php echo $label; ?></a>

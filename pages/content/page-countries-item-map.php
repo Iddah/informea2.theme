@@ -1,7 +1,7 @@
 <?php
 global $id;
 wp_enqueue_script('google-maps-api', 'http://maps.google.com/maps/api/js?sensor=false');
-$id = get_request_variable('id');
+$id = informea_countries::get_id_from_request();
 $country = informea_countries::get_country_for_id($id);
 $ramsar_sites = informea_countries::get_ramsar_sites($id);
 $whc_sites = informea_countries::get_whc_sites($id);

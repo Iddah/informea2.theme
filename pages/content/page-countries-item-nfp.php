@@ -1,6 +1,6 @@
 <?php
 wp_enqueue_script('countries', get_bloginfo('template_directory') . '/scripts/countries.js');
-$id = get_request_variable('id');
+$id = informea_countries::get_id_from_request();
 $showall = get_request_boolean('showall', false);
 $id_contact = get_request_int('id_contact', null);
 $treaties = informea_countries::get_focal_points_by_treaty($id);

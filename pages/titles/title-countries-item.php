@@ -1,5 +1,5 @@
 <?php
-$id = get_request_variable('id');
+$id = informea_countries::get_id_from_request();
 $country = informea_countries::get_country_for_id($id);
 ?>
 <div id="page-title">

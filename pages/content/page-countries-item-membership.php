@@ -1,5 +1,5 @@
 <?php
-$id = get_request_variable('id');
+$id = informea_countries::get_id_from_request();
 $mea_membership = informea_countries::get_treaty_membership($id);
 ?>
 <table class="table-hover">

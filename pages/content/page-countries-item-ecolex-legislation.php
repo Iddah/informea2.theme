@@ -1,6 +1,6 @@
 <?php
 $expand = get_request_variable('expand', 'str', 'map'); // or reports or country
-$id = get_request_variable('id');
+$id = informea_countries::get_id_from_request();
 $country = informea_countries::get_country_for_id($id);
 $url = urldecode(
     get_request_value('next')
