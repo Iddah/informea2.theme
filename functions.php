@@ -121,7 +121,7 @@ function informea_decisions_breadcrumbtrail() {
 function informea_countries_breadcrumbtrail() {
     global $post;
     $items = array();
-    $id = get_request_variable('id');
+    $id = informea_countries::get_id_from_request();
     $home = get_bloginfo('url');
     $items[__('Home', 'informea')] = $home;
     if($id) {
