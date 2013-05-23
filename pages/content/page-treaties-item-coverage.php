@@ -16,6 +16,7 @@ if (count($parties)) :
     <table id="parties" class="table-striped">
     <thead>
     <tr>
+        <th>&nbsp;</th>
         <th class="text-left">Member country</th>
         <th>Since</th>
     </tr>
@@ -23,6 +24,9 @@ if (count($parties)) :
     <tbody>
     <?php foreach ($parties as $country) { ?>
         <tr>
+            <td>
+                <img src="<?php echo sprintf('%s/%s', get_bloginfo('template_directory'), $country->icon_medium); ?>"
+            </td>
             <td>
                 <?php echo $country->name; ?>
             </td>
