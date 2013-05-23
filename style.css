@@ -346,7 +346,6 @@ ul#menu-secondary-menu a:hover { color: #444; }
     background: url(images/treaties/sprites.png) no-repeat;
 }
 
-/* noumea, apia, jeddah, kuwait */
 .aewa, .aewa:hover { background-position: 0 0; width: 56px; height: 48px; }
 .bamako, .bamako:hover { background-position: 0 -61px; width: 56px; height: 48px; }
 .basel, .basel:hover { background-position: 0 -118px; width: 61px; height: 48px; }
@@ -381,18 +380,23 @@ ul#menu-secondary-menu a:hover { color: #444; }
 
 .unep, .unep:hover, .vienna, .vienna:hover, .montreal, .montreal:hover, .abidjan, .abidjan:hover,
 .barcelona, .barcelona:hover, .dumping, .dumping:hover, .barc-spa, .barc-spa:hover,
-.preventionemergency, .preventionemergency:hover, .offshore, .offshore:hover
-.land-based, .land-based:hover, .hazardous, .hazardous:hover
-.nairobi, .nairobi:hover, .cartagena-conv, .cartagena-conv:hover
+.preventionemergency, .preventionemergency:hover, .offshore, .offshore:hover,
+.land-based, .land-based:hover, .hazardous, .hazardous:hover,
+.nairobi, .nairobi:hover, .cartagena-conv, .cartagena-conv:hover,
 .antigua, .antigua:hover
 { background-position: -145px -234px; width: 54px; height: 48px; }
 
 .unesco, .unesco:hover { background-position: -143px -290px; width: 60px; height: 48px; }
 
+.noumea, .noumea:hover, .apia, .apia:hover
+{ background-position: -63px -404px; width: 60px; height: 48px; }
+
 .unfccc, .unfccc:hover, .kyoto, .kyoto:hover
 { background-position: -144px -348px; width: 60px; height: 48px; }
 
 .whc, .whc:hover { background-position: -146px -403px; width: 48px; height: 48px; }
+.jeddah, .jeddah:hover { background-position: -74px -170px; width: 48px; height: 48px; }
+.kuwait, .kuwait:hover { background-position: -74px -290px; width: 48px; height: 48px; }
 
 
 /* GLOBAL :: MEA Explorer button */
