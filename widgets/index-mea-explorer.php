@@ -29,7 +29,7 @@ class MEAExplorerWidget extends WP_Widget {
                 <div class="content">
                     <label for="q_freetext">
                         <input type="text" id="q_freetext" name="q_freetext" class="freetext" size="40"
-                               placeholder="Search treaties and decisions documents" />
+                               placeholder="Search agreement texts and decisions" />
                     </label>
 
                     <ul class="advanced hidden">
