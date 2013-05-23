@@ -79,7 +79,7 @@ function tengine_footer() {
                     <h3>UNECE</h3>
                     <ul>
                         <li><a href="http://www.unece.org/env/pp/welcome.html">Aarhus Convention</a></li>
-                        <li><a href="http://www.unece.org/environmental-policy/treaties/environmental-impact-assessment/about-us/espoo-convention.html">Espoo Convention</a></li>
+                        <li><a href="http://www.unece.org/env/eia/welcome.html">Espoo Convention</a></li>
                         <li><a href="http://www.unece.org/env/lrtap/">Long-Renage Transboundary Air Pollution</a></li>
                         <li><a href="http://www.unece.org/env/eia/sea_protocol.html">The Kyiv Protocol</a></li>
                         <li><a href="http://www.unece.org/?id=2975">Protocol on Water and Health</a></li>
