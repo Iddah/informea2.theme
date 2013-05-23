@@ -44,7 +44,7 @@ class SelectCountryWidget extends WP_Widget {
                         <option value="">-- Select country --</option>
                         <?php
                             foreach(informea_countries::get_countries() as $country) :
-                                $url = sprintf('%s/countries/%s', get_bloginfo('url'), $country->id);
+                                $url = sprintf('%s/countries/%s', get_bloginfo('url'), $country->code2l);
                         ?>
                             <option data-url="<?php echo $url; ?>" value="<?php echo $country->id; ?>"><?php echo $country->name; ?></option>
                         <?php endforeach; ?>
