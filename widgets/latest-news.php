@@ -44,10 +44,10 @@ class IndexLatestNewsWidget extends WP_Widget {
 
     function widget($args, $instance) {
         $count = empty($instance['count']) ? 3 : $instance['count'];
-        $highlights_ob = new imea_highlights_page();
-        $highlights = $highlights_ob->get_index_news(1);
-        $highlights = array_slice($highlights, 0, $count);
-        if (empty($highlights)) {
+        $news_ob = new imea_news_page();
+        $news = $news_ob->get_index_news(1);
+        $news = array_slice($news, 0, $count);
+        if (empty($news)) {
             return;
         }
         $title = empty($instance['title']) ? ' ' : apply_filters('widget_title', $instance['title']);
@@ -56,13 +56,13 @@ class IndexLatestNewsWidget extends WP_Widget {
             <?php if(!empty($title)) : ?>
             <h2>
                 <?php echo $title; ?>
-                <a class="rss" target="_blank" href="<?php bloginfo('url'); ?>/highlights/rss"></a>
+                <a class="rss" target="_blank" href="<?php bloginfo('url'); ?>/news/rss"></a>
             </h2>
             <?php endif; ?>
             <div class="content">
                 <ul class="latest-news">
                     <?php
-                    foreach ($highlights as $row) :
+                    foreach ($news as $row) :
                         $permalink = $row->permalink;
                         $target = ' target="_blank"';
                         $is_local = strpos($permalink, get_bloginfo('url'));

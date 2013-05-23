@@ -45,8 +45,8 @@ if ($entity == 'decision_document') {
     $id = get_request_variable('id');
     if($id == 'events') {
         InformeaRSSWriter::events_rss();
-    } else if($id == 'highlights') {
-        InformeaRSSWriter::highlights_rss();
+    } else if($id == 'news') {
+        InformeaRSSWriter::news_rss();
     } else {
         download_die_404();
         exit();

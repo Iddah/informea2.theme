@@ -14,16 +14,16 @@
 		float: left;
 	}
 
-	.related-box.portlet-highlights ul li {
+	.related-box.portlet-news ul li {
 		display: block;
 		overflow: hidden;
 	}
 
-	.related-box.portlet-highlights ul li img {
+	.related-box.portlet-news ul li img {
 		float: left;
 	}
 
-	/* .related-box.highlights ul li p {float: left;} */
+	/* .related-box.news ul li p {float: left;} */
 
 	body.home .calendar {
 		width: 220px !important;

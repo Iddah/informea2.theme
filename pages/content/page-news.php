@@ -1,6 +1,6 @@
 <?php
 
-$page_data = new imea_highlights_page();
+$page_data = new imea_news_page();
 $topic = get_request_variable('topic');
 if(empty($topic)) {
     $topic = get_request_value('topic');
@@ -17,7 +17,7 @@ $category_slug = $query_category ? $query_category->slug : NULL;
 $query = $page_data->search($q, $category_slug, $page, $page_size);
 $rows = $query->posts;
 if(count($rows)):
-    wp_enqueue_script('events', get_bloginfo('template_directory') . '/scripts/highlights.js');
+    wp_enqueue_script('events', get_bloginfo('template_directory') . '/scripts/news.js');
     wp_enqueue_script('infinitescroll', get_bloginfo('template_directory') . '/scripts/jquery.infinitescroll-2.0b2.js');
     // Minimized version has a bug (https://github.com/paulirish/infinite-scroll/issues/217)
 ?>
@@ -45,7 +45,7 @@ if(count($rows)):
             <li>
                 <a target="_blank" href="<?php echo $row->permalink; ?>">View</a>
             </li>
-            <?php foreach(imea_highlights_page::get_post_categories($row) as $cat): ?>
+            <?php foreach(imea_news_page::get_post_categories($row) as $cat): ?>
             <li>
                 <?php echo $cat->name; ?>
             </li>

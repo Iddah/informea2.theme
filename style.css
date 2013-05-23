@@ -40,7 +40,7 @@ License: GPL
  - COUNTRIES PAGES
  - TERMS PAGES
  - EVENTS PAGE
- - HIGHLIGHTS PAGES
+ - NEWS PAGES
  - 404 PAGE
  - SEARCH PAGE
  - /dev/null
@@ -792,22 +792,22 @@ body.imea-events ul.info li {
     border: 1px dashed #ccc;
 }
 
-/* HIGHLIGHTS PAGES */
-body.imea-highlights ul.sidebar li.filter-highlight div.field { margin-bottom: 15px; }
-body.imea-highlights ul.sidebar li.filter-highlight select { width: 180px; }
-body.imea-highlights ul.sidebar li.filter-highlight input#search { width: 170px; }
+/* NEWS PAGES */
+body.imea-news ul.sidebar li.filter-highlight div.field { margin-bottom: 15px; }
+body.imea-news ul.sidebar li.filter-highlight select { width: 180px; }
+body.imea-news ul.sidebar li.filter-highlight input#search { width: 170px; }
 
-body.imea-highlights ul.items { list-style-type: none;  margin: 0 0 0 20px; padding: 0; }
-body.imea-highlights ul.items h3 { margin: 0; padding: 0; }
-body.imea-highlights ul.items li { border-bottom: 1px dashed #ccc; padding: 20px 0 }
-body.imea-highlights ul.items li p.summary { font-style: italic; color: #666;
+body.imea-news ul.items { list-style-type: none;  margin: 0 0 0 20px; padding: 0; }
+body.imea-news ul.items h3 { margin: 0; padding: 0; }
+body.imea-news ul.items li { border-bottom: 1px dashed #ccc; padding: 20px 0 }
+body.imea-news ul.items li p.summary { font-style: italic; color: #666;
     margin-left: 25px;
 }
-body.imea-highlights ul.items li span.logo { width: 40px; height: 25px; display: inline-block; float:left; padding-right: 30px; }
-body.imea-highlights div.paginator { margin: 20px; padding: 5px; background-color: #f4f4f4; }
+body.imea-news ul.items li span.logo { width: 40px; height: 25px; display: inline-block; float:left; padding-right: 30px; }
+body.imea-news div.paginator { margin: 20px; padding: 5px; background-color: #f4f4f4; }
 
-body.imea-highlights ul.items li ul.info { margin: 0 0 0 20px; padding: 0; border: 0; list-style-type: none; }
-body.imea-highlights ul.items li ul.info li {
+body.imea-news ul.items li ul.info { margin: 0 0 0 20px; padding: 0; border: 0; list-style-type: none; }
+body.imea-news ul.items li ul.info li {
     display: inline-block; margin: 0 5px; padding: 1px 3px;
     background-color: #eee; border: 1px dashed #ccc;
 }

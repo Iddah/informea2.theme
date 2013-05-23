@@ -2,14 +2,14 @@
 
 $featured_country = NULL;
 
-class FilterHighlightsWidget extends WP_Widget {
+class FilterNewsWidget extends WP_Widget {
 
-    function FilterHighlightsWidget() {
+    function FilterNewsWidget() {
         $options = array(
-            'classname' => 'FilterHighlightsWidget',
-            'description' => 'Filter MEA highlights using Ajax and show the results',
+            'classname' => 'FilterNewsWidget',
+            'description' => 'Filter MEA news using Ajax and show the results',
         );
-        $this->WP_Widget('FilterHighlightsWidget', 'Filter highlights', $options);
+        $this->WP_Widget('FilterNewsWidget', 'Filter news', $options);
     }
 
 
@@ -36,7 +36,7 @@ class FilterHighlightsWidget extends WP_Widget {
 
     function widget($args, $instance) {
         $title = empty($instance['title']) ? ' ' : apply_filters('widget_title', $instance['title']);
-        $highlights = new imea_highlights_page();
+        $news = new imea_news_page();
 
         $q = get_request_value('q');
         $topic = get_request_variable('topic');
@@ -44,7 +44,7 @@ class FilterHighlightsWidget extends WP_Widget {
             $topic = get_request_value('topic');
         }
         ?>
-        <li class="widget filter-highlight">
+        <li class="widget filter-news">
             <?php if (!empty($title)) : ?>
                 <h2>
                     <?php echo $title; ?>
@@ -63,7 +63,7 @@ class FilterHighlightsWidget extends WP_Widget {
                         <select name="topic" id="topic">
                             <option value="">-- All topics --</option>
                         <?php
-                            foreach ($highlights->non_empty_categories as $c):
+                            foreach ($news->non_empty_categories as $c):
                                 $select = $c->slug == $topic ? ' selected="selected"' : '';
                         ?>
                             <option value="<?php echo $c->slug; ?>"<?php echo $select; ?>>
@@ -83,4 +83,4 @@ class FilterHighlightsWidget extends WP_Widget {
     <?php
     }
 }
-add_action('widgets_init', create_function('', 'return register_widget("FilterHighlightsWidget");'));
+add_action('widgets_init', create_function('', 'return register_widget("FilterNewsWidget");'));

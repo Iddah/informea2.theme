@@ -4,6 +4,6 @@ $(document).ready(function() {
         nextSelector: "#results .paginator a:last",
         itemSelector: "#results .items",
 
-        finishedMsg: '<p>No more highlights found</p>'
+        finishedMsg: '<p>No more news items found</p>'
     });
 });
