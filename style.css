@@ -334,7 +334,7 @@ ul#menu-secondary-menu a:hover { color: #444; }
 /* GLOBAL :: Sprites */
 .basel, .cbd, .cites, .cms, .fao, .itpgrfa, .ozone, .ramsar, .rotterdam, .stockholm, .un, .unccd, .unece,
 .unep, .unesco, .unfccc, .whc {
-    background: url(images/treaties/sprites_black_and_white.png) no-repeat;
+    background: url(images/treaties/sprites_bw.png) no-repeat;
     display: inline-block;
 }
 
