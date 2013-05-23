@@ -20,7 +20,7 @@ function tengine_footer() {
                 <li><a class="unesco" target="_blank" href="http://www.unesco.org/" title="Visit United Nations Educational, Scientific and Cultural Organization website">
                         <p>UNESCO</p></a>
                 </li>
-                <li><a class="unece" target="_blank" href="#" title="Visit UNECE website">
+                <li><a class="unece" target="_blank" href="http://www.unece.org/" title="Visit UNECE website">
                         <p>UNECE</p></a>
                 </li>
             </ul>
@@ -78,47 +78,47 @@ function tengine_footer() {
                 <li>
                     <h3>UNECE</h3>
                     <ul>
-                        <li><a href="#">Aarhus Convention</a></li>
-                        <li><a href="#">Espoo Convention</a></li>
-                        <li><a href="#">Long-Renage Transboundary Air Pollution</a></li>
-                        <li><a href="#">The Kyiv Protocol</a></li>
-                        <li><a href="#">Protocol on Water and Health</a></li>
-                        <li><a href="#">Water Convention</a></li>
-                        <li><a href="#">Kiev Protocol</a></li>
-                        <li><a href="#">Industrial Accidents Convention</a></li>
+                        <li><a href="http://www.unece.org/env/pp/welcome.html">Aarhus Convention</a></li>
+                        <li><a href="http://www.unece.org/environmental-policy/treaties/environmental-impact-assessment/about-us/espoo-convention.html">Espoo Convention</a></li>
+                        <li><a href="http://www.unece.org/env/lrtap/">Long-Renage Transboundary Air Pollution</a></li>
+                        <li><a href="http://www.unece.org/env/eia/sea_protocol.html">The Kyiv Protocol</a></li>
+                        <li><a href="http://www.unece.org/?id=2975">Protocol on Water and Health</a></li>
+                        <li><a href="http://www.unece.org/env/water/">Water Convention</a></li>
+                        <li><a href="http://www.unece.org/env/pp/prtr.html">Kiev Protocol</a></li>
+                        <li><a href="http://www.unece.org/env/teia.html">Industrial Accidents Convention</a></li>
                     </ul>
                 </li>
                 <li>
                     <h3>CMS</h3>
                     <ul>
-                        <li><a href="#">ACCOBAMS</a></li>
-                        <li><a href="#">AEWA</a></li>
-                        <li><a href="#">ASCOBANS</a></li>
-                        <li><a href="#">EUROBATS</a></li>
+                        <li><a href="http://www.accobams.org/">ACCOBAMS</a></li>
+                        <li><a href="http://www.unep-aewa.org/">AEWA</a></li>
+                        <li><a href="http://www.ascobans.org/">ASCOBANS</a></li>
+                        <li><a href="http://www.eurobats.org/">EUROBATS</a></li>
                         <li><hr /></li>
-                        <li><a href="#">ACAP</a></li>
-                        <li><a href="#">International Gorilla Conservation Programme</a></li>
-                        <li><a href="#">WADDEN SEA SEALS</a></li>
+                        <li><a href="http://www.the-acap.org/">ACAP</a></li>
+                        <li><a href="http://www.igcp.org/">International Gorilla Conservation Programme</a></li>
+                        <li><a href="http://www.waddensea-secretariat.org/">WADDEN SEA SEALS</a></li>
                     </ul>
                 </li>
                 <li>
                     <h3>Regional Seas</h3>
                     <ul>
-                        <li><a href="#">Abidjan Convention</a></li>
-                        <li><a href="#">Antigua Convention</a></li>
-                        <li><a href="#">Apia Convention</a></li>
-                        <li><a href="#">Barcelona Convention</a></li>
+                        <li><a href="http://abidjanconvention.org/">Abidjan Convention</a></li>
+                        <li><a href="http://www.iattc.org/IATTCdocumentationENG.htm">Antigua Convention</a></li>
+                        <li><a href="http://www.sprep.org/">Apia Convention</a></li>
+                        <li><a href="http://www.unep.ch/regionalseas/regions/med/t_barcel.htm">Barcelona Convention</a></li>
                         <li><hr /></li>
-                        <li><a href="#">Jeddah Convention</a></li>
-                        <li><a href="#">Nairobi Convention</a></li>
-                        <li><a href="#">Noumea Convention</a></li>
+                        <li><a href="http://www.unep.ch/regionalseas/main/persga/redconv.html">Jeddah Convention</a></li>
+                        <li><a href="http://www.unep.org/nairobiconvention/">Nairobi Convention</a></li>
+                        <li><a href="http://www2.unitar.org/cwm/publications/cbl/synergy/cat1_agree/noumea.htm">Noumea Convention</a></li>
                     </ul>
                 </li>
                 <li>
                     <h3>Regional Treaties</h3>
                     <ul>
-                        <li><a href="#">Bamako Convention</a></li>
-                        <li><a href="#">Lusaka Agreement</a></li>
+                        <li><a href="http://www.opcw.org/chemical-weapons-convention/related-international-agreements/toxic-chemicals-and-the-environment/bamako-convention/">Bamako Convention</a></li>
+                        <li><a href="http://www.lusakaagreement.org/">Lusaka Agreement</a></li>
                     </ul>
                 </li>
             </ul>
