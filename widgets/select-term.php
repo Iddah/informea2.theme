@@ -100,7 +100,6 @@ function js_inject_widget_select_term() {
                     return false;
                 } else {
                     if ('tree_substantives' in window) {
-                        console.log(search);
                         if (search.length > 1) {
                             focusNextItem(search, tree_substantives, allnodes_substantives);
                         }

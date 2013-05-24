@@ -109,7 +109,7 @@
             // Add custom options to defaults
             var opts = $.extend(true, {}, $.infinitescroll.defaults, options);
             this.options = opts;
-            console.log(this.options);
+
             var $window = $(window);
             var instance = this;
 
