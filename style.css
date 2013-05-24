@@ -544,6 +544,7 @@ li.widget.latest-news ul li {
 }
 
 li.widget.featured-treaty div.thumbnail { float: left; margin-right: 5px; }
+li.widget.featured-treaty div.item-title { width: 140px; }
 
 ul.sidebar li.widget ul.featured-tools { padding-left: 20px; }
 

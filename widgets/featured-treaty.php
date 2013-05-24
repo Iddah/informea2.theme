@@ -94,7 +94,7 @@ class FeaturedTreatyWidget extends WP_Widget {
                             <?php endif; ?>
                         <?php endif; ?>
                         <?php if (!empty($treaty->region)) :
-                            echo '<br />Region: ' . $treaty->region;
+                            echo sprintf('<div>Region: %s</div>', $treaty->region);
                         endif; ?>
                     </div>
                 </div>
