@@ -3,7 +3,6 @@ $(document).ready(function() {
         var H3 = this;
         $(this).siblings('div.content').slideToggle(100, function() {
             var icon = $(H3).find('i.icon');
-            console.log($(this).is(':visible'));
             if($(this).is(':visible')) {
                 icon.removeClass('icon-plus-sign').addClass('icon-minus-sign');
             } else {
@@ -52,7 +51,6 @@ $(document).ready(function() {
 
     $('#tab-mode').change(function() {
         var tab = $('#tab-mode>option:selected').val();
-        console.log(tab);
         $('#q_tab_filters').val(tab);
         $('#filter').submit();
     });

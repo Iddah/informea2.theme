@@ -10,7 +10,6 @@ $(document).ready(function() {
         var panel = $('li.index-explorer ul.advanced');
         panel.slideToggle(200,
             function() {
-                console.log(panel);
                 if(panel.is(':visible')) {
                     $(t).text('Simple search »');
                 } else {

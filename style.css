@@ -86,6 +86,7 @@ h2 {
     color: #2ca0d2;
     margin-bottom: 10px;
 }
+img { border: 0; }
 
 body.informea div#breadcrumbtrail { margin: 0; padding: 0; border-bottom: 1px dotted #bfbfbf; }
 body.informea div#breadcrumbtrail ul { margin: 0; padding: 0; list-style-type: none; }
@@ -466,8 +467,7 @@ div#changelog {
     -webkit-box-shadow: 0px -2px 2px rgb(175, 175, 175);
     box-shadow: 0 -2px 2px rgb(175, 175, 175);
 }
-div#footer a { color: #999; font-size: 11px; }
-div#footer a:hover { text-decoration: underline; }
+div#footer a { color: #999; }
 div#footer hr {
     margin: 0; padding: 0; line-height: 0; border: 0; width: 99%;
     border-bottom: 1px solid rgb(80, 80, 80);
@@ -481,12 +481,7 @@ div#disclaimer.footer_section ul li { padding: 0; }
 .footer_section ul li { display: inline-block; padding: 0 14px 14px 14px; }
 .footer_section ul li p { text-align: center; }
 .footer_section_label { display: inline-block; float: left; padding: 20px 10px; }
-.footer_section ul li p:hover,
-div#regional_treaties h3 {
-    width: 150px; margin-top: 10px; display: inline-block;
-    color: rgb(150, 149, 149);
-    font-size: 14px;
-}
+
 div#regional_treaties ul { margin-left: 164px; }
 div#regional_treaties ul li { width: 145px; line-height: 13px; padding: 0 60px 6px 0; vertical-align: top; }
 div#regional_treaties ul ul { margin-left: 0; }
@@ -539,7 +534,7 @@ li.widget div.content { overflow: hidden; padding: 10px 0 3px 3px; }
 
 li.widget.whatisinformea { margin-bottom: 40px; padding: 5px; background: #D7F1F7; }
 li.widget.whatisinformea h2 { text-align: center; }
-li.widget img.ribbon { float: left; margin: 4px 0 0 80px; }
+li.widget img.ribbon { border: 0; float: left; margin: 4px 0 0 80px; }
 
 li.widget.latest-news ul { list-style-type: none; margin: 0; padding: 0 }
 li.widget.latest-news ul li {
@@ -641,7 +636,7 @@ li.widget.image-roller {
 }
 
 /* TREATIES PAGES */
-body.imea-treaties div.treaty-icon { width: 90px; display: inline-block; text-align: center; margin-top: 10px; vertical-align: top; }
+body.imea-treaties div.treaty-icon { width: 85px; display: inline-block; text-align: center; margin-top: 10px; vertical-align: top; }
 body.imea-treaties div.treaty-icon img { width: 48px; height: 48px; line-height: 48px; margin-bottom: 5px; }
 body.imea-treaties div.treaty-icon span.theme { color: #666; }
 body.imea-treaties table.treaties { margin-top: 70px; }
