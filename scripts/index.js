@@ -48,6 +48,14 @@ $(document).ready(function() {
             $('#q_treaty_index_' + item).attr('checked', check);
         });
     });
+
+    /* Front-page change country */
+    $('select#change_country').change(function() {
+        var sel = $('select#change_country option:selected');
+        if(sel.length > 0) {
+            window.location.href = blog_dir + '?iso=' + $(sel[0]).val();
+        }
+    });
 });
 
 

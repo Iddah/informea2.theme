@@ -37,7 +37,11 @@ class FeaturedCountryWidget extends WP_Widget {
     function widget($args, $instance) {
         global $featured_country;
         $title = empty($instance['title']) ? ' ' : apply_filters('widget_title', $instance['title']);
-        $featured_country = informea_countries::get_country_for_visitor();
+        $iso = get_request_value('iso');
+        $featured_country = informea_countries::get_country_by_iso($iso);
+        if(empty($featured_country)) {
+            $featured_country = informea_countries::get_country_for_visitor();
+        }
         if ($featured_country) {
             add_action('js_inject', 'widget_featured_country_inject_js');
             wp_enqueue_script('google-maps-api', 'http://maps.google.com/maps/api/js?sensor=false');
@@ -68,6 +72,16 @@ class FeaturedCountryWidget extends WP_Widget {
                             <div id="fc-map-canvas"></div>
                         </div>
                     </div>
+                    <label>
+                    <select id="change_country">
+                        <option value="">-- Select another country --</option>
+                        <?php
+                            foreach (informea_countries::get_countries() as $row):
+                        ?>
+                            <option value="<?php echo $row->code2l; ?>"><?php echo $row->name; ?></option>
+                        <?php endforeach; ?>
+                    </select>
+                    </label>
                 </div>
             </li>
         <?php

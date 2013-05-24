@@ -549,9 +549,9 @@ li.widget.featured-treaty div.item-title { width: 140px; }
 ul.sidebar li.widget ul.featured-tools { padding-left: 20px; }
 
 li.widget.featured-country { padding: 5px; }
-li.widget.featured-country h2 { margin-top: 20px; }
+li.widget.featured-country h2 { margin-top: 10px; }
 li.widget.featured-country h2 img {
-    max-height: 50px; vertical-align: middle; float: right; margin: -10px 50px 0 0;
+    max-height: 50px; vertical-align: middle; float: right; margin: -5px 30px 0 0;
 }
 li.widget.featured-country div.content { padding-top: 0; }
 li.widget.featured-country div#fc-map-canvas { width: 437px; height: 300px; }
