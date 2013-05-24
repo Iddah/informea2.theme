@@ -611,6 +611,19 @@ li.widget.upcoming-meetings div.paginator { text-align: center; font-size: 14px;
 
 li.widget.borderless-widget { padding: 0; }
 
+li.widget.news-categories ul { margin: 0; padding: 0; }
+li.widget.news-categories ul li { margin: 3px; padding: 0; display: inline-block; text-align: center; width: 100px; }
+li.widget.news-categories ul li a { display: inline-block; width: 100px; height: 100px; vertical-align: bottom; }
+li.widget.news-categories ul li a span {
+    display: none; color: black; background-color: white;
+    opacity: 0.8; filter: alpha(opacity = 80);
+    width: 100px; height: 100px;
+}
+li.widget.news-categories ul li a:hover span {
+    display: inline-block; float: left;
+    padding-top: 30px; height: 70px;
+}
+
 /* INDEX PAGE :: Index MEA Explorer */
 
 li.widget.index-explorer { padding: 0; margin: 15px 0 0 0; background: none #fff5c2; border: 10px solid #ffe974; }

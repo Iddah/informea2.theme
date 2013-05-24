@@ -270,6 +270,6 @@ require_once(dirname(__FILE__) . '/widgets/find-nfp.php');
 require_once(dirname(__FILE__) . '/widgets/mea-coverage.php');
 require_once(dirname(__FILE__) . '/widgets/select-term.php');
 require_once(dirname(__FILE__) . '/widgets/filter-meetings.php');
-require_once(dirname(__FILE__) . '/widgets/filter-news.php');
+require_once(dirname(__FILE__) . '/widgets/news-categories-widget.php');
 
 
