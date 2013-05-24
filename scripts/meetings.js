@@ -4,6 +4,6 @@ $(document).ready(function() {
         nextSelector: "#results .paginator a:last",
         itemSelector: "#results .items",
 
-        finishedMsg: '<em>No more events found</em>'
+        finishedMsg: '<em>No more meetings found</em>'
     });
 });

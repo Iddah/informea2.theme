@@ -125,14 +125,14 @@ function featuredCountryOpenRamsarSite(id) {
 
 
 function upcoming_meetings_paginator() {
-    jQuery('li.upcoming-events ul').each(function(idx, widget) {
+    jQuery('li.upcoming-meetings ul').each(function(idx, widget) {
         var items = jQuery('li', widget);
         var total = items.length;
         if(total > 0) {
             var current = 0;
             var previous = total;
-            var next = jQuery('li.upcoming-events a.next');
-            var prev = jQuery('li.upcoming-events a.prev');
+            var next = jQuery('li.upcoming-meetings a.next');
+            var prev = jQuery('li.upcoming-meetings a.prev');
             jQuery(next, widget).click(function() {
                 previous = current;
                 current += 1;
@@ -140,7 +140,7 @@ function upcoming_meetings_paginator() {
                 jQuery(items[previous]).hide();
                 jQuery(items[current]).removeClass('hidden');
                 jQuery(items[current]).show();
-                jQuery('li.upcoming-events span.current').text(current + 1);
+                jQuery('li.upcoming-meetings span.current').text(current + 1);
             });
 
             jQuery(prev, widget).click(function() {
@@ -150,7 +150,7 @@ function upcoming_meetings_paginator() {
                 jQuery(items[previous]).hide();
                 jQuery(items[current]).removeClass('hidden');
                 jQuery(items[current]).show();
-                jQuery('li.upcoming-events span.current').text(current + 1);
+                jQuery('li.upcoming-meetings span.current').text(current + 1);
             });
         }
     });

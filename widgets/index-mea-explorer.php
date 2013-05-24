@@ -79,7 +79,7 @@ class MEAExplorerWidget extends WP_Widget {
                                     </li>
                                     <li>
                                         <input type="checkbox" id="index_q_use_meetings" name="q_use_meetings" value="1" class="checkbox" checked="checked"/>
-                                        <label for="index_q_use_meetings" class="check-label label click-filters-use-events">Meetings</label>
+                                        <label for="index_q_use_meetings" class="check-label label click-filters-use-meetings">Meetings</label>
                                     </li>
                                 </ul>
                             </div>

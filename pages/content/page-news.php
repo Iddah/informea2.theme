@@ -17,7 +17,7 @@ $category_slug = $query_category ? $query_category->slug : NULL;
 $query = $page_data->search($q, $category_slug, $page, $page_size);
 $rows = $query->posts;
 if(count($rows)):
-    wp_enqueue_script('events', get_bloginfo('template_directory') . '/scripts/news.js');
+    wp_enqueue_script('meetings', get_bloginfo('template_directory') . '/scripts/news.js');
     wp_enqueue_script('infinitescroll', get_bloginfo('template_directory') . '/scripts/jquery.infinitescroll-2.0b2.js');
     // Minimized version has a bug (https://github.com/paulirish/infinite-scroll/issues/217)
 ?>

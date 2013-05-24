@@ -5,12 +5,12 @@
 		display: inline;
 	}
 
-	.related-box.events ul li {
+	.related-box.meetings ul li {
 		display: block;
 		overflow: hidden;
 	}
 
-	.related-box.events ul li img {
+	.related-box.meetings ul li img {
 		float: left;
 	}
 

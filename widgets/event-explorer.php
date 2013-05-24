@@ -1,12 +1,12 @@
 <?php
-class EventsExplorerWidget extends WP_Widget {
+class MeetingsExplorerWidget extends WP_Widget {
 
-    function EventsExplorerWidget() {
+    function MeetingsExplorerWidget() {
         $options = array(
-            'classname' => 'EventsExplorerWidget',
-            'description' => 'Widget to search & filter MEA events',
+            'classname' => 'MeetingsExplorerWidget',
+            'description' => 'Widget to search & filter MEA meetings',
         );
-        $this->WP_Widget('EventsExplorerWidget', 'InforMEA events explorer', $options);
+        $this->WP_Widget('MeetingsExplorerWidget', 'InforMEA meetings explorer', $options);
     }
 
 
@@ -33,21 +33,21 @@ class EventsExplorerWidget extends WP_Widget {
 
 
     function widget($args, $instance) {
-        $events_ob = new informea_events();
+        $meetings_ob = new informea_meetings();
         $title = empty($instance['title']) ? ' ' : apply_filters('widget_title', $instance['title']);
 ?>
         <li class="widget event-explorer">
             <div class="content">
                 <h2><?php echo $title; ?></h2>
                 <br />
-                <form action="/events/" method="get">
+                <form action="/meetings/" method="get">
                     <input type="hidden" name="fe_show_past" value="1" />
                     <input type="hidden" name="do_search" value="1" />
                     <div class="field">
                         <label for="fe_treaty">MEA</label>
                         <select id="fe_treaty" name="fe_treaty">
                             <option value="">-- All --</option>
-                            <?php foreach ($events_ob->get_treaties() as $treaty) : ?>
+                            <?php foreach ($meetings_ob->get_treaties() as $treaty) : ?>
                                 <option value="<?php echo $treaty->id; ?>"><?php echo $treaty->short_title; ?></option>
                             <?php endforeach; ?>
                         </select>
@@ -55,7 +55,7 @@ class EventsExplorerWidget extends WP_Widget {
                     <div class="field">
                         <label for="fe_type">Meeting type</label>
                         <select id="fe_type" name="fe_type">
-                            <?php foreach(informea_events::get_event_types() as $value => $label) :
+                            <?php foreach(informea_meetings::get_event_types() as $value => $label) :
                                 ?>
                                 <option value="<?php echo $value; ?>"><?php echo $label; ?></option>
                             <?php endforeach; ?>
@@ -66,7 +66,7 @@ class EventsExplorerWidget extends WP_Widget {
                         <select name="fe_year">
                             <option value="-1">-- All years --</option>
                             <?php
-                            foreach($events_ob->get_years_interval() as $year) :
+                            foreach($meetings_ob->get_years_interval() as $year) :
                                 $selected = strftime('%Y') == $year ? ' selected="selected"' : '';
                             ?>
                             <option value="<?php echo $year; ?>"<?php echo $selected; ?>>
@@ -85,4 +85,4 @@ class EventsExplorerWidget extends WP_Widget {
     }
 }
 
-add_action('widgets_init', create_function('', 'return register_widget("EventsExplorerWidget");'));?>
+add_action('widgets_init', create_function('', 'return register_widget("MeetingsExplorerWidget");'));?>

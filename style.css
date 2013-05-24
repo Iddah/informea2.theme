@@ -39,7 +39,7 @@ License: GPL
  - DECISIONS PAGES
  - COUNTRIES PAGES
  - TERMS PAGES
- - EVENTS PAGE
+ - MEETINGS PAGE
  - NEWS PAGES
  - 404 PAGE
  - SEARCH PAGE
@@ -601,11 +601,11 @@ li.widget.event-explorer h2 {
     width: 100%;
 }
 
-li.widget.upcoming-events ul { height: 100px; list-style-type: none; margin: 0; padding: 0; }
-li.widget.upcoming-events ul li { margin-bottom: 10px; }
-li.widget.upcoming-events div.thumbnail { display: inline-block; margin-right: 5px; float: left; }
-li.widget.upcoming-events div.item-title { float: left; width: 140px; }
-li.widget.upcoming-events div.paginator { text-align: center; font-size: 14px; }
+li.widget.upcoming-meetings ul { height: 100px; list-style-type: none; margin: 0; padding: 0; }
+li.widget.upcoming-meetings ul li { margin-bottom: 10px; }
+li.widget.upcoming-meetings div.thumbnail { display: inline-block; margin-right: 5px; float: left; }
+li.widget.upcoming-meetings div.item-title { float: left; width: 140px; }
+li.widget.upcoming-meetings div.paginator { text-align: center; font-size: 14px; }
 
 li.widget.borderless-widget { padding: 0; }
 
@@ -748,39 +748,39 @@ div.search-results div.article { margin: 10px 0 10px 20px; }
 div.search-results div.paragraph { margin: 10px 0 10px 20px; }
 div.search-results ul.paragraphs li { list-style-type: none; padding: 0; margin-left: 20px; }
 
-/* EVENTS PAGE */
-body.imea-events li.widget div.field { margin: 15px 0 15px 0; }
-body.imea-events li.widget div.field label { font-weight: bold; display: block; }
-body.imea-events li.widget div.field-inline label { font-weight: bold; display: inline-block; }
-body.imea-events ul.paginator { margin: 0; padding: 5px 0; list-style-type: none;
+/* MEETINGS PAGE */
+body.imea-meetings li.widget div.field { margin: 15px 0 15px 0; }
+body.imea-meetings li.widget div.field label { font-weight: bold; display: block; }
+body.imea-meetings li.widget div.field-inline label { font-weight: bold; display: inline-block; }
+body.imea-meetings ul.paginator { margin: 0; padding: 5px 0; list-style-type: none;
     border: 1px dashed #ccc; text-align: center;
 }
-body.imea-events div#results div.paginator ul li { display: inline-block; }
-body.imea-events div#results ul.items li { margin: 15px 0; }
+body.imea-meetings div#results div.paginator ul li { display: inline-block; }
+body.imea-meetings div#results ul.items li { margin: 15px 0; }
 
-body.imea-events ul.items { margin: 0 0 0 15px; padding: 0; list-style-type: none; }
-body.imea-events ul.items li { padding-bottom: 15px; position: relative; height: 80px; border-bottom: 1px dashed #ccc; }
+body.imea-meetings ul.items { margin: 0 0 0 15px; padding: 0; list-style-type: none; }
+body.imea-meetings ul.items li { padding-bottom: 15px; position: relative; height: 80px; border-bottom: 1px dashed #ccc; }
 
-body.imea-events div.date { float: left; background-color: #ccc; width: 80px; height: 70px; padding: 0 5px 5px 5px; }
-body.imea-events div.date div.month {
+body.imea-meetings div.date { float: left; background-color: #ccc; width: 80px; height: 70px; padding: 0 5px 5px 5px; }
+body.imea-meetings div.date div.month {
     color: white; width: 80px; height: 25px;
     font-weight: bold; font-size: 18px; line-height: 25px; text-align: center;
 }
-body.imea-events div.date div.day {
+body.imea-meetings div.date div.day {
     line-height: 35px; color: #000; font-size: 30px; text-align: center;
     width: 80px; height: 35px; background-color: white;
 }
-body.imea-events div.date div.year {
+body.imea-meetings div.date div.year {
     color: white; width: 80px; height: 20px;
     font-weight: bold; font-size: 14px; line-height: 16px; text-align: center;
 }
 
-body.imea-events div.description { padding: 5px; position: absolute; float: left; width: 550px; height: 65px; margin-left: 100px; }
-body.imea-events div.description.cop { background-color: #fff0f0; }
-body.imea-events h3 { float: left; margin: 0; padding: 0; }
+body.imea-meetings div.description { padding: 5px; position: absolute; float: left; width: 550px; height: 65px; margin-left: 100px; }
+body.imea-meetings div.description.cop { background-color: #fff0f0; }
+body.imea-meetings h3 { float: left; margin: 0; padding: 0; }
 
-body.imea-events ul.info { position: absolute; top: 50px; border: 0; padding: 0; }
-body.imea-events ul.info li {
+body.imea-meetings ul.info { position: absolute; top: 50px; border: 0; padding: 0; }
+body.imea-meetings ul.info li {
     float: left; display: inline-block;
     margin: 0 2px !important; padding: 2px 5px; line-height: 15px; height: 15px;
     background-color: #eee;
@@ -806,6 +806,9 @@ body.imea-news ul.items li ul.info li {
     display: inline-block; margin: 0 5px; padding: 1px 3px;
     background-color: #eee; border: 1px dashed #ccc;
 }
+
+body.imea-news li.widget.filter-news div.field { margin-top: 10px; }
+body.imea-news li.widget.filter-news select#topic { width: 160px; }
 
 /* 404 PAGE */
 div.d404 { background-color: #f4f4f4; padding: 30px; }

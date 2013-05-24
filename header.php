@@ -24,7 +24,7 @@ add_filter('body_class', function ($classes) {
     <meta charset="<?php bloginfo('charset'); ?>"/>
     <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=2.0, user-scalable=yes"/>
     <link rel="alternate" type="application/rss+xml" title="InforMEA &raquo; News" href="<?php bloginfo('url'); ?>/news/rss"/>
-    <link rel="alternate" type="application/rss+xml" title="InforMEA &raquo; Events" href="<?php bloginfo('url'); ?>/events/rss"/>
+    <link rel="alternate" type="application/rss+xml" title="InforMEA &raquo; Meetings" href="<?php bloginfo('url'); ?>/meetings/rss"/>
     <script type="text/javascript">
         var images_dir = '<?php bloginfo('url'); ?>/wp-content/themes/informea/images/';
         var blog_dir = '<?php bloginfo('url'); ?>';

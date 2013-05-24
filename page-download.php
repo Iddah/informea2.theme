@@ -43,8 +43,8 @@ if ($entity == 'decision_document') {
 
 } else if ('rss' == $entity) {
     $id = get_request_variable('id');
-    if($id == 'events') {
-        InformeaRSSWriter::events_rss();
+    if($id == 'meetings') {
+        InformeaRSSWriter::meetings_rss();
     } else if($id == 'news') {
         InformeaRSSWriter::news_rss();
     } else {

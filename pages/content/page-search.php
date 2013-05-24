@@ -1,5 +1,5 @@
 <?php
-wp_enqueue_script('events', get_bloginfo('template_directory') . '/scripts/search.js');
+wp_enqueue_script('meetings', get_bloginfo('template_directory') . '/scripts/search.js');
 $search = InformeaSearch3::get_searcher();
 $tab = get_request_int('q_tab', 2);
 

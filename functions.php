@@ -243,8 +243,8 @@ function informea2_widgets_init() {
         'description' => __('Widgets on the term factsheet page', 'informea'),
     ));
     register_sidebar(array(
-        'id' => 'events-sidebar', 'name' => __('Events page sidebar', 'informea'),
-        'description' => __('Widgets on the events listing page', 'informea'),
+        'id' => 'meetings-sidebar', 'name' => __('Meetings page sidebar', 'informea'),
+        'description' => __('Widgets on the meetings listing page', 'informea'),
     ));
     register_sidebar(array(
         'id' => 'news-sidebar', 'name' => __('News page sidebar', 'informea'),
@@ -269,7 +269,7 @@ require_once(dirname(__FILE__) . '/widgets/select-country.php');
 require_once(dirname(__FILE__) . '/widgets/find-nfp.php');
 require_once(dirname(__FILE__) . '/widgets/mea-coverage.php');
 require_once(dirname(__FILE__) . '/widgets/select-term.php');
-require_once(dirname(__FILE__) . '/widgets/filter-events.php');
+require_once(dirname(__FILE__) . '/widgets/filter-meetings.php');
 require_once(dirname(__FILE__) . '/widgets/filter-news.php');
 
 

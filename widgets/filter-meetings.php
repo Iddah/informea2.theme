@@ -2,14 +2,14 @@
 
 $featured_country = NULL;
 
-class FilterEventsWidget extends WP_Widget {
+class FilterMeetingsWidget extends WP_Widget {
 
-    function FilterEventsWidget() {
+    function FilterMeetingsWidget() {
         $options = array(
-            'classname' => 'FilterEventsWidget',
-            'description' => 'Filter MEA events using Ajax and show the results',
+            'classname' => 'FilterMeetingsWidget',
+            'description' => 'Filter MEA meetings using Ajax and show the results',
         );
-        $this->WP_Widget('FilterEventsWidget', 'Filter events', $options);
+        $this->WP_Widget('FilterMeetingsWidget', 'Filter meetings', $options);
     }
 
 
@@ -36,9 +36,9 @@ class FilterEventsWidget extends WP_Widget {
 
     function widget($args, $instance) {
         $title = empty($instance['title']) ? ' ' : apply_filters('widget_title', $instance['title']);
-        $orgs = informea_events::get_treaties();
+        $orgs = informea_meetings::get_treaties();
         $id_treaty = get_request_int('fe_treaty');
-        $years = informea_events::get_years_interval();
+        $years = informea_meetings::get_years_interval();
         $fe_year = get_request_int('fe_year');
         if($fe_year == 0) {
             $fe_year = strftime('%Y');
@@ -72,7 +72,7 @@ class FilterEventsWidget extends WP_Widget {
                     <div class="field">
                         <label for="fe_type">Event type</label>
                         <select id="fe_type" name="fe_type">
-                        <?php foreach(informea_events::get_event_types() as $value => $label) :
+                        <?php foreach(informea_meetings::get_event_types() as $value => $label) :
                                 $selected = ($value == $fe_type) ? ' selected="selected"' : '';
                         ?>
                             <option value="<?php echo $value; ?>"<?php echo $selected;?>><?php echo $label; ?></option>
@@ -96,7 +96,7 @@ class FilterEventsWidget extends WP_Widget {
                     <div class="field-inline">
                         <?php $checked = $show_past == 1 ? ' checked="checked"' : ' '; ?>
                         <input id="fe_show_past" type="checkbox" name="fe_show_past" value="1"<?php echo $checked; ?>/>
-                        <label for="fe_show_past">Show past events</label>
+                        <label for="fe_show_past">Show past meetings</label>
                     </div>
                     <p>
                         <a href="<?php echo get_permalink(); ?>" class="pull-left">Reset</a>
@@ -108,4 +108,4 @@ class FilterEventsWidget extends WP_Widget {
 <?php
     }
 }
-add_action('widgets_init', create_function('', 'return register_widget("FilterEventsWidget");'));
+add_action('widgets_init', create_function('', 'return register_widget("FilterMeetingsWidget");'));

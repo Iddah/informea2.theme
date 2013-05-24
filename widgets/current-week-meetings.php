@@ -4,7 +4,7 @@ class CurrentWeekMeetingsWidget extends WP_Widget {
     function CurrentWeekMeetingsWidget() {
         $options = array(
             'classname' => 'CurrentWeekMeetingsWidget',
-            'description' => 'Show the MEA events from the current week',
+            'description' => 'Show the MEA meetings from the current week',
         );
         $this->WP_Widget('CurrentWeekMeetingsWidget', 'InforMEA meetings', $options);
     }
@@ -34,10 +34,10 @@ class CurrentWeekMeetingsWidget extends WP_Widget {
 
     function widget($args, $instance) {
         $title = empty($instance['title']) ? ' ' : apply_filters('widget_title', $instance['title']);
-        $meetings = informea_events::get_meetings_current_week();
+        $meetings = informea_meetings::get_meetings_current_week();
         if(count($meetings)) :
         ?>
-        <li class="widget upcoming-events">
+        <li class="widget upcoming-meetings">
             <?php if (!empty($title)) : ?>
             <h2><?php echo $title; ?></h2>
             <?php endif; ?>

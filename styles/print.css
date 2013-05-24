@@ -15,7 +15,7 @@
     /* INDEX PAGE */
     body.imea-index li.widget.index-explorer,
     body.imea-index img.ribbon,
-    body.imea-index li.widget.upcoming-events div.paginator,
+    body.imea-index li.widget.upcoming-meetings div.paginator,
     body.imea-index li.widget.event-explorer,
     body.imea-index li.widget.featured-country { display: none; }
 
