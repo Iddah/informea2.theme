@@ -6,6 +6,7 @@ $id_contact = get_request_int('id_contact', null);
 $treaties = informea_countries::get_focal_points_by_treaty($id);
 
 ?>
+<div class="tab-content">
 <div class="toolbar toolbar-nfp">
     <button id="expand-all"><i class="icon-plus-sign"></i> Expand all</button>
     <button id="collapse-all"><i class="icon-minus-sign"></i> Collapse all</button>
@@ -22,7 +23,10 @@ $treaties = informea_countries::get_focal_points_by_treaty($id);
         $contacts = $treaty->focal_points;
 ?>
         <li>
-            <h2><?php echo $treaty->short_title; ?> (<?php echo count($contacts); ?>)</h2>
+            <h2>
+                <div class="thumbnail <?php echo $treaty->odata_name; ?> pull-left"></div>
+                <?php echo $treaty->short_title; ?> (<?php echo count($contacts); ?>)
+            </h2>
             <div class="content hidden">
                 <?php if(count($contacts)) : ?>
                 <ul class="contacts">
@@ -80,6 +84,8 @@ $treaties = informea_countries::get_focal_points_by_treaty($id);
                 </ul>
                 <?php endif; ?>
             </div>
+            <div class="clear"></div>
         </li>
 <?php endforeach; ?>
 </ul>
+</div>

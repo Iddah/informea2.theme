@@ -488,8 +488,10 @@ div#regional_treaties ul ul { margin-left: 0; }
 div#regional_treaties ul ul li { display: block; font-size: 12px; padding-bottom: 10px; }
 
 /* GLOBAL :: NFP listing (treaty & country NFP pages) */
-ul.nfp { list-style-type: none; margin: 0; padding: 0; }
-ul.nfp h2 { cursor: pointer; }
+ul.nfp { list-style-type: none; margin: 0 0 0 20px; padding: 0; }
+ul.nfp h2 { cursor: pointer; color: black; vertical-align: middle; line-height: 48px; font-size: 16px; }
+ul.nfp h2 div { margin-right: 10px; width: 70px; }
+ul.nfp h2 div:hover { margin-right: 10px; width: 70px; }
 ul.nfp li { border-bottom: 1px dashed #dfdfdf; }
 ul.contacts { list-style-type: none; }
 ul.contacts li { background-color: #f4f4f4; padding: 10px; margin: 5px 0; border: 1px dashed #ddd; }
@@ -699,8 +701,9 @@ body.imea-decisions ul li.treaty-icon span.theme { color: #666; }
 
 /* COUNTRIES PAGES */
 body.imea-countries select.selectCountry { width: 180px; }
-body.imea-countries select.mea-coverage { width: 180px; height: 120px; }
+body.imea-countries select.mea-coverage { width: 180px; }
 body.imea-countries input.find-nfp-input { width: 170px; }
+body.imea-countries div.tab-content { padding-left: 20px; }
 body.imea-countries div.toolbar span.letters { margin-top: 3px; }
 body.imea-countries div.toolbar span.letters a { margin-left: 6px; }
 body.imea-countries ul.countries { list-style-type: none; margin: 0; padding: 0; }
@@ -723,6 +726,9 @@ body.imea-countries #tooltip, body.imea-countries #tooltip:hover, body.imea-coun
 }
 body.imea-countries div#country_un_env_data table td, body.imea-countries div#country_un_env_data table th { border: 1px solid #ddd; }
 body.imea-countries div#map-canvas { width: 720px; height: 400px; border: 1px solid #ddd; }
+body.imea-countries h2 { color: black; line-height: 48px; vertical-align: middle; }
+body.imea-countries h2 div { margin-right: 15px; }
+body.imea-countries h2 div:hover { margin-right: 15px; }
 
 /* TERMS PAGES */
 body.imea-terms form { margin: 0; padding: 0; display: inline-block; }

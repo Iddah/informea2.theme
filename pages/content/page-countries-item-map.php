@@ -107,6 +107,7 @@ function informea_country_map_view_js() {
 }
 add_action('js_inject', 'informea_country_map_view_js');
 ?>
+<div class="tab-content">
 <div id="map-canvas"></div>
 <?php if(count($whc_sites) > 0) : ?>
     <h2>WHC Sites</h2>
@@ -133,3 +134,4 @@ add_action('js_inject', 'informea_country_map_view_js');
     <?php endforeach; ?>
     </ul>
 <?php endif; ?>
+</div>

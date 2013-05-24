@@ -12,6 +12,7 @@ do_action('informea-countries-toolbar');
     and
     <a href="http://openlayers.org/" target="_blank">OpenLayers</a>
 </div>
+<br />
 <div class="alert alert-warning">
     Data is still being consolidated, inaccuracies may occur
 </div>

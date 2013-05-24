@@ -2,13 +2,17 @@
 $id = informea_countries::get_id_from_request();
 $rows = informea_countries::get_national_reports($id);
 ?>
+<div class="tab-content">
 <ul class="country-reports">
 <?php
     foreach ($rows as $treaty) {
         $plans = $treaty->national_reports;
 ?>
     <li>
-        <h2><?php echo $treaty->short_title; ?></h2>
+        <h2>
+            <div class="thumbnail <?php echo $treaty->odata_name; ?> pull-left"></div>
+            <?php echo $treaty->short_title; ?>
+        </h2>
         <div class="content">
             <table class="table-hover">
                 <thead>
@@ -36,3 +40,4 @@ $rows = informea_countries::get_national_reports($id);
     </li>
 <?php } ?>
 </ul>
+</div>
