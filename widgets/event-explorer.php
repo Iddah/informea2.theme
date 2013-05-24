@@ -38,22 +38,22 @@ class EventsExplorerWidget extends WP_Widget {
 ?>
         <li class="widget event-explorer">
             <div class="content">
-                <h2></h2>
+                <h2><?php echo $title; ?></h2>
                 <br />
                 <form action="/events/" method="get">
                     <input type="hidden" name="fe_show_past" value="1" />
                     <input type="hidden" name="do_search" value="1" />
                     <div class="field">
-                        <label for="fe_treaty">Convention</label>
+                        <label for="fe_treaty">MEA</label>
                         <select id="fe_treaty" name="fe_treaty">
-                            <option value="">-- All conventions --</option>
+                            <option value="">-- All --</option>
                             <?php foreach ($events_ob->get_treaties() as $treaty) : ?>
                                 <option value="<?php echo $treaty->id; ?>"><?php echo $treaty->short_title; ?></option>
                             <?php endforeach; ?>
                         </select>
                     </div>
                     <div class="field">
-                        <label for="fe_type">Event type</label>
+                        <label for="fe_type">Meeting type</label>
                         <select id="fe_type" name="fe_type">
                             <?php foreach(informea_events::get_event_types() as $value => $label) :
                                 ?>
