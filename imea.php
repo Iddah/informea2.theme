@@ -30,7 +30,7 @@ require_once __DIR__ . '/countries.php';
 require_once __DIR__ . '/decisions.php';
 require_once __DIR__ . '/decisions.admin.php';
 require_once __DIR__ . '/ecolex.php';
-require_once __DIR__ . '/events.php';
+require_once __DIR__ . '/meetings.php';
 require_once __DIR__ . '/goals.php';
 require_once __DIR__ . '/news.php';
 require_once __DIR__ . '/treaties.php';

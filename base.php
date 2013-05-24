@@ -144,7 +144,7 @@ if (!class_exists('imea_page_base_page')) {
         }
 
         /**
-         * This function gets the meetings from all MEA nodes. Two upcoming events from each MEA recorded in the events table
+         * This function gets the meetings from all MEA nodes. Two upcoming meetings from each MEA recorded in the events table
          * @returnList of ai_event objects
          */
         function get_meetings($id_treaty = NULL) {
@@ -156,10 +156,10 @@ if (!class_exists('imea_page_base_page')) {
             } else {
                 $treaties = $wpdb->get_col('SELECT DISTINCT(id_treaty) FROM ai_event');
                 foreach ($treaties as $id_treaty) {
-                    $events = $wpdb->get_results("SELECT a.*, b.short_title AS treaty_short_title, b.logo_medium FROM ai_event a
+                    $meetings = $wpdb->get_results("SELECT a.*, b.short_title AS treaty_short_title, b.logo_medium FROM ai_event a
                           INNER JOIN ai_treaty b ON a.id_treaty = b.id
                           WHERE a.id_treaty = $id_treaty AND a.start >= CURRENT_DATE() ORDER BY a.start ASC LIMIT 2");
-                    $ret = array_merge($ret, $events);
+                    $ret = array_merge($ret, $meetings);
                 }
             }
             return $ret;
@@ -304,7 +304,7 @@ if (!class_exists('imea_page_base_page')) {
             return $wpdb->get_results($sql);
         }
 
-        function get_month_events($month, $year) {
+        function get_month_meetings($month, $year) {
             global $wpdb;
             $sql = "SELECT a.*, c.id AS id_treaty, c.logo_medium, c.short_title AS treaty_short_title
                     FROM ai_event a

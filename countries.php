@@ -299,9 +299,9 @@ if (!class_exists('imea_countries_page')) {
 
 
         /**
-         * Get the related events for this country
+         * Get the related meetings for this country
          */
-        function get_related_events($limit = 5) {
+        function get_related_meetings($limit = 5) {
             global $wpdb;
             $ret = array();
             if ($this->id_country) {

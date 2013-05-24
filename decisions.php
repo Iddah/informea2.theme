@@ -44,7 +44,7 @@ function ajax_informea_get_cop_meetings() {
         echo '{ "error" : 1, "usage" : "Incorrect usage. Unknown value for odata_name. You can retrieve the list of treaties using /wp-admin/admin-ajax.php?action=get_treaties" }';
         die();
     } else {
-        $ob = new imea_events_page();
+        $ob = new imea_meetings_page();
         $meetings = $ob->get_cop_meetings($treaty->id);
         foreach ($meetings as $meeting) {
             $copy = stdclass_copy($meeting,
