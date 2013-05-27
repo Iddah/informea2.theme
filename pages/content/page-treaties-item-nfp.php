@@ -29,6 +29,7 @@ $all_contacts = $contact_data['contacts'];
     <li id="treaty-<?php echo $country->id_country; ?>">
         <h2>
             <i class="icon icon-plus-sign"></i>
+            <img class="middle" src="<?php echo sprintf('%s/%s', get_bloginfo('template_directory'), $country->country_flag_medium); ?>" />
             <?php echo $country->country_name; ?>
         </h2>
         <div class="content-nfp hidden">

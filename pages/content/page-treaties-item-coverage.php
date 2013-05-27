@@ -38,5 +38,5 @@ if (count($parties)) :
     <?php } ?>
     </tbody>
 </table>
-</div>
+
 <?php endif;

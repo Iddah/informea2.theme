@@ -46,7 +46,7 @@ class FeaturedCountryWidget extends WP_Widget {
             add_action('js_inject', 'widget_featured_country_inject_js');
             wp_enqueue_script('google-maps-api', 'http://maps.google.com/maps/api/js?sensor=false');
 ?>
-            <li class="widget featured-country">
+            <li class="widget featured-country noshadow">
                 <?php if (!empty($title)) : ?>
                     <h2>
                         <?php echo $title; ?>:
@@ -55,6 +55,16 @@ class FeaturedCountryWidget extends WP_Widget {
                         </a>
                         <img src="<?php echo get_bloginfo('template_directory') . '/' . $featured_country->icon_large; ?>" />
                     </h2>
+                    <label>
+                        <select id="change_country">
+                            <option value="">-- Change --</option>
+                            <?php
+                            foreach (informea_countries::get_countries() as $row):
+                                ?>
+                                <option value="<?php echo $row->code2l; ?>"><?php echo $row->name; ?></option>
+                            <?php endforeach; ?>
+                        </select>
+                    </label>
                     <div class="clear"></div>
                 <?php endif; ?>
                 <div class="content featured-country">
@@ -72,16 +82,6 @@ class FeaturedCountryWidget extends WP_Widget {
                             <div id="fc-map-canvas"></div>
                         </div>
                     </div>
-                    <label>
-                    <select id="change_country">
-                        <option value="">-- Select another country --</option>
-                        <?php
-                            foreach (informea_countries::get_countries() as $row):
-                        ?>
-                            <option value="<?php echo $row->code2l; ?>"><?php echo $row->name; ?></option>
-                        <?php endforeach; ?>
-                    </select>
-                    </label>
                 </div>
             </li>
         <?php

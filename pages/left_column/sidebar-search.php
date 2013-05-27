@@ -17,7 +17,7 @@ if(!defined('INFORMEA_SEARCH_PAGE')) {
         <input type="hidden" id="q_sort_direction_filters" name="q_sort_direction" value="<?php $search->get_sort_direction(); ?>" />
     <ul>
         <li>
-            <h3>free text <i class="icon icon-minus-sign pull-right"></i></h3>
+            <h3 class="text-right"><i class="icon icon-minus-sign pull-left"></i> free text</h3>
             <div class="content">
                 <label>Free search text
                     <input type="text" size="31" id="q_freetext" name="q_freetext" placeholder="Type a term or phrase"
@@ -29,7 +29,7 @@ if(!defined('INFORMEA_SEARCH_PAGE')) {
 
         <?php if($tab == 1) : ?>
         <li>
-            <h3>timeline <i class="icon icon-minus-sign pull-right"></i></h3>
+            <h3 class="text-right"><i class="icon icon-minus-sign pull-left"></i> timeline</h3>
             <div class="content">
                 <label>Between
                     <br />
@@ -59,14 +59,14 @@ if(!defined('INFORMEA_SEARCH_PAGE')) {
         <?php endif; ?>
 
         <li>
-            <h3>keyword <i class="icon icon-minus-sign pull-right"></i></h3>
+            <h3 class="text-right"><i class="icon icon-minus-sign pull-left"></i> keyword</h3>
             <div class="content">
                 <?php render_qterm_autocomplete(); ?>
             </div>
         </li>
 
         <li>
-            <h3>type <i class="icon icon-minus-sign pull-right"></i></h3>
+            <h3 class="text-right"><i class="icon icon-minus-sign pull-left"></i> type</h3>
             <div class="content">
                 <label>
                     <input type="checkbox" name="q_use_decisions" value="1" <?php $search->ui_check_use_decisions();?> />
@@ -81,7 +81,7 @@ if(!defined('INFORMEA_SEARCH_PAGE')) {
         </li>
 
         <li>
-            <h3>instrument <i class="icon icon-minus-sign pull-right"></i></h3>
+            <h3 class="text-right"><i class="icon icon-minus-sign pull-left"></i> instrument</h3>
             <div class="content">
             <?php
                 $count = 0;
@@ -168,7 +168,7 @@ if(!defined('INFORMEA_SEARCH_PAGE')) {
             </div>
         </li>
         <li>
-            <h3>date <i class="icon icon-minus-sign pull-right"></i></h3>
+            <h3 class="text-right"><i class="icon icon-minus-sign pull-left"></i> date</h3>
             <div class="content">
             <?php include(dirname(__FILE__) . '/../../pages/explorer/inc.date_interval.php'); ?>
             </div>

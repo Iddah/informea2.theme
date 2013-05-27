@@ -21,7 +21,7 @@ $tabs = array(
         <?php
         foreach($tabs as $url => $label) :
             $active = ($expand == $url) ? ' active' : '';
-            $tab_url = sprintf('%s%s/%s', get_permalink(), $id, $url);
+            $tab_url = sprintf('%s/%s/%s', get_permalink(), $id, $url);
             ?>
             <li>
                 <a class="<?php echo $active; ?>" href="<?php echo $tab_url; ?>"><?php echo $label; ?></a>

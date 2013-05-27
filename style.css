@@ -54,6 +54,7 @@ License: GPL
 .text-left { text-align: left; }
 .text-right { text-align: right; }
 .text-center { text-align: center; }
+.middle { vertical-align: middle; }
 .hidden { display: none; }
 .visible { display: block; }
 .nowrap { white-space: nowrap; }
@@ -73,9 +74,9 @@ License: GPL
 .management ul { list-style-type: square; }
 .management-toolbar { z-index: 99999; display: none; /* Appears on mouse over */ }
 .noshadow {
-    -moz-box-shadow: 0;
-    -webkit-box-shadow: 0;
-    box-shadow: 0;
+    -moz-box-shadow: 0 0 0 0 !important;
+    -webkit-box-shadow: 0 0 0 0 !important;
+    box-shadow: 0 0 0 0 !important;
 }
 a.back-top { float: right; margin-bottom: 15px; }
 
@@ -345,6 +346,7 @@ ul#menu-secondary-menu a:hover { color: #444; }
 .rotterdam:hover, .stockholm:hover, .un:hover, .unccd:hover,
 .unece:hover, .unep:hover, .unesco:hover, .unfccc:hover, .whc:hover,
 .thumbnail {
+    display: inline-block;
     background: url(images/treaties/sprites.png) no-repeat;
 }
 
@@ -535,7 +537,13 @@ li.widget h2 a.rss {
     background: url('images/feed.png') no-repeat; }
 li.widget div.content { overflow: hidden; padding: 10px 0 3px 3px; }
 
-li.widget.whatisinformea { margin-bottom: 40px; padding: 5px; background: #cbe0a7; }
+li.widget.whatisinformea {
+    background-image: -webkit-linear-gradient(top, #e2f5d9, white);
+    background-image: -moz-linear-gradient(top, #e2f5d9, white);
+    background-image: -ms-linear-gradient(top, #e2f5d9, white);
+    background-image: -o-linear-gradient(top, #e2f5d9, white);
+    margin-bottom: 40px; padding: 5px;
+}
 li.widget.whatisinformea h2 { text-align: center; }
 li.widget img.ribbon { border: 0; float: left; margin: 4px 0 0 80px; }
 
@@ -547,7 +555,7 @@ li.widget.latest-news ul li {
 }
 
 li.widget.featured-treaty div.thumbnail { float: left; margin-right: 5px; }
-li.widget.featured-treaty div.item-title { width: 140px; }
+li.widget.featured-treaty div.item-title { width: 135px; }
 
 ul.sidebar li.widget ul.featured-tools { padding-left: 20px; }
 
@@ -591,6 +599,7 @@ li.widget.featured-country table ul li { margin-bottom: 10px; }
 li.widget.featured-country table p.note { margin: 0; padding: 0; color: #BDBCBC  }
 li.widget.featured-country .text-grey { color: #BDBCBC  }
 li.widget.featured-country div.ui-tabs-hide { display: none; }
+li.widget.featured-country select#change_country { border: 1px solid #999; }
 
 li.widget.event-explorer { background: #cbe0a7; }
 li.widget.event-explorer div.field { margin-bottom: 10px; }
@@ -612,6 +621,7 @@ li.widget.upcoming-meetings div.paginator { text-align: center; font-size: 14px;
 
 li.widget.borderless-widget { padding: 0; }
 
+li.widget.news-categories div.content { margin: 0; padding: 0; }
 li.widget.news-categories ul { margin: 0; padding: 0; }
 li.widget.news-categories ul li { margin: 3px; padding: 0; display: inline-block; text-align: center; width: 100px; }
 li.widget.news-categories ul li a { display: inline-block; width: 100px; height: 100px; vertical-align: bottom; }

@@ -34,8 +34,9 @@ class NewsCategoriesWidget extends WP_Widget {
 
     function widget($args, $instance) {
         $title = empty($instance['title']) ? ' ' : apply_filters('widget_title', $instance['title']);
+        $title = trim($title);
 ?>
-            <li class="widget news-categories">
+            <li class="widget news-categories noshadow">
                 <?php if (!empty($title)) : ?>
                     <h2><?php echo $title; ?></h2>
                 <?php endif; ?>

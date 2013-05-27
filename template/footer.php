@@ -127,7 +127,7 @@ function tengine_footer() {
         <div id="disclaimer" class="footer_section">
             <?php wp_nav_menu(array('menu' => 'footer', 'theme_location' => 'footer')); ?>
             <p>
-                &nbsp; &sdot; portions copyright © United Nations, FAO, UNEP, UNESCO
+                &nbsp; &middot; portions copyright © United Nations, FAO, UNEP, UNESCO
             </p>
         </div>
     </div>

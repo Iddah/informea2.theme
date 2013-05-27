@@ -17,14 +17,11 @@ function tengine_head() {
 <?php
     }
 ?>
-    <!--[if IE]>
-    <link href="<?php bloginfo('template_directory'); ?>/bubbletip-IE.css" rel="stylesheet" type="text/css" media="screen" />
-    <![endif]-->
     <!--[if IE 7]>
-    <link href="<?php bloginfo('template_directory'); ?>/fix-IE7.css" rel="stylesheet" type="text/css" media="screen" />
+    <link href="<?php bloginfo('template_directory'); ?>/styles/fix-IE7.css" rel="stylesheet" type="text/css" media="screen" />
     <![endif]-->
     <!--[if gte IE 8]>
-    <link href="<?php bloginfo('template_directory'); ?>/fix-IE8.css" rel="stylesheet" type="text/css" media="screen" />
+    <link href="<?php bloginfo('template_directory'); ?>/styles/fix-IE8.css" rel="stylesheet" type="text/css" media="screen" />
     <![endif]-->
     <?php
     // Execute css_inject to give pages the chance to add CSS code in html header of the page

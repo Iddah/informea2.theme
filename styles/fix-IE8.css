@@ -10,6 +10,39 @@
         top: 3px;
     }
 
+    li.widget {
+        /* For Internet Explorer 8 */
+        -ms-filter: "progid:DXImageTransform.Microsoft.gradient(startColorstr=#D7F1F7, endColorstr=#FFFFFFFF)" !important;
+    }
+
+    .noshadow { filter: none !important; }
+
+    li.widget.whatisinformea img.ribbon { position: absolute; margin-top: 6px; }
+    li.widget.whatisinformea {
+        -ms-filter: "progid:DXImageTransform.Microsoft.gradient(startColorstr=#e2f5d9, endColorstr=#FFFFFFFF)" !important;
+    }
+
+    li.widget.index-explorer div.content {
+        background-color: #fff5c2;
+    }
+
+    /* @todo: Doesn't work */
+    li.widget.event-explorer {
+        filter: none;
+        -ms-filter: "progid:DXImageTransform.Microsoft.gradient(enabled=false)" !important;
+        background-color: #cbe0a7 !important;
+    }
+
+    li.widget.borderless-widget {
+        filter: none;
+        -ms-filter: "progid:DXImageTransform.Microsoft.gradient(enabled=false)" !important;
+    }
+
+    li.widget.index-explorer button.ui-button,
+    li.widget.search button.ui-button { top: 6px; }
+
+    li.widget.search input#q_freetext { width: 180px; }
+
 }
 
 /*  @media screen */

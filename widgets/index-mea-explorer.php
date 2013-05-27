@@ -22,7 +22,7 @@ class MEAExplorerWidget extends WP_Widget {
     function widget($args, $instance) {
         $search = new InformeaSearch3($_GET);
         ?>
-        <li class="widget index-explorer round">
+        <li class="widget index-explorer round noshadow">
             <form action="/search" method="get" id="search_index">
                 <input type="hidden" name="q_tab" value="2" />
                 <h2></h2>

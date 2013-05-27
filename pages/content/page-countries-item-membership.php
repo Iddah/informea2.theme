@@ -16,7 +16,7 @@ $mea_membership = informea_countries::get_treaty_membership($id);
     </thead>
     <?php foreach($mea_membership as $party) : ?>
         <tr>
-            <td><div class="thumbnail <?php echo $party->odata_name; ?>"></div></td>
+            <td class="text-center"><i class="thumbnail <?php echo $party->odata_name; ?>"></i></td>
             <td><a href="<?php echo sprintf('%s/treaties/%s', get_bloginfo('url'), $party->odata_name); ?>"><?php echo $party->short_title; ?></a></td>
             <td class="text-center"><?php echo mysql2date('Y', $party->date); ?></td>
             <td>-</td>
