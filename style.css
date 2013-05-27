@@ -120,8 +120,9 @@ div#informea div#main .col2-left { margin-right: 10px; }
 div#informea div#main .col2-center { width: 720px; margin: 0 10px 10px 0; }
 div#informea div#main div#page-title h1 { margin: 0; padding: 0; }
 div#informea div#main div#page-title p { margin: 5px 0 0 0; padding: 0; color: #999; font-style: italic; }
-div#informea div#main div#page-title  { margin: 10px 0 10px 0; }
-div#informea div#main div#page-title img { float: left; margin: -8px 10px 0 0; }
+div#informea div#main div#page-title  { margin: 20px 0; }
+div#informea div#main div#page-title img { float: left; margin: -10px 10px 0 0; }
+div#informea div#main div#page-title img.flag { max-height: 48px; }
 
 table { border: 0; border-collapse: collapse; margin: 30px 0 0 0; padding: 0; width: 100%; }
 table tbody tr { border-top: 1px solid #dddddd; }
