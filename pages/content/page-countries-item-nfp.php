@@ -25,6 +25,7 @@ $treaties = informea_countries::get_focal_points_by_treaty($id);
         <li>
             <h2>
                 <div class="thumbnail <?php echo $treaty->odata_name; ?> pull-left"></div>
+                <i class="icon icon-plus-sign"></i>
                 <?php echo $treaty->short_title; ?> (<?php echo count($contacts); ?>)
             </h2>
             <div class="content hidden">

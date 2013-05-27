@@ -22,12 +22,19 @@ $(document).ready(function() {
 
     /* Expand decisions (decision tab) */
     $('ul.decisions>li>h2').click(function(e) {
-        var p = $(e.target).next('div.content');
-        $(p).slideToggle({duration: 200})
+        var p = $(e.target).next('div.content-decisions');
+        var t = this;
+        $(p).slideToggle(200, function() {
+            if($(p).is(':visible')) {
+                $(t).find('i').removeClass('icon-plus-sign').addClass('icon-minus-sign');
+            } else {
+                $(t).find('i').removeClass('icon-minus-sign').addClass('icon-plus-sign');
+            }
+        });
     });
     /* Toolbar (decisions tab) */
-    $('div.toolbar-decisions button#expand-all').click(function() { $('ul.decisions div.content').slideDown({duration: 600}); });
-    $('div.toolbar-decisions button#collapse-all').click(function() { $('ul.decisions div.content').slideUp({duration: 600}); });
+    $('div.toolbar-decisions button#expand-all').click(decisionsExpandAll);
+    $('div.toolbar-decisions button#collapse-all').click(decisionsCollapseAll);
     $('div.toolbar-decisions button#scroll-resolutions').click(function(e) {
         e.preventDefault();
         var target = $('a[name="' + $(this).data('target') + '"]');
@@ -36,8 +43,15 @@ $(document).ready(function() {
 
     /* NFP */
     $('ul.nfp>li>h2').click(function() {
-        var content = $(this).parent().find('div.content');
-        content.slideToggle({duration: 200});
+        var content = $(this).parent().find('div.content-nfp');
+        var t = this;
+        content.slideToggle(200, function() {
+            if($(content).is(':visible')) {
+                $(t).find('i').removeClass('icon-plus-sign').addClass('icon-minus-sign');
+            } else {
+                $(t).find('i').removeClass('icon-minus-sign').addClass('icon-plus-sign');
+            }
+        });
     });
     $('div.toolbar-nfp button#expand-all').click(nfpExpandAll);
     $('div.toolbar-nfp button#collapse-all').click(nfpCollapseAll);
@@ -101,12 +115,28 @@ $(document).ready(function() {
     $('#salutation').focus();
 });
 
-function nfpCollapseAll() {
-    $('ul.nfp>li>div.content').hide();
-}
 
 function nfpExpandAll() {
-    $('ul.nfp>li>div.content').show();
+    $('ul.nfp>li>div.content-nfp').show();
+    $('ul.nfp>li>h2>i').removeClass('icon-plus-sign').addClass('icon-minus-sign');
+}
+
+
+function nfpCollapseAll() {
+    $('ul.nfp>li>div.content-nfp').hide();
+    $('ul.nfp>li>h2>i').removeClass('icon-minus-sign').addClass('icon-plus-sign');
+}
+
+
+function decisionsExpandAll() {
+    $('ul.decisions>li>div.content-decisions').show();
+    $('ul.decisions>li>h2>i').removeClass('icon-plus-sign').addClass('icon-minus-sign');
+}
+
+
+function decisionsCollapseAll() {
+    $('ul.decisions>li>div.content-decisions').hide();
+    $('ul.decisions>li>h2>i').removeClass('icon-minus-sign').addClass('icon-plus-sign');
 }
 
 

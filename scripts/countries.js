@@ -40,7 +40,14 @@ $(document).ready(function () {
     /* Click on h2 to expand country */
     $('ul.countries>li>h2').click(function() {
         var content = $(this).parent().find('div.content');
-        content.slideToggle({duration: 200});
+        var t = this;
+        content.slideToggle(200, function() {
+            if($(content).is(':visible')) {
+                $(t).find('i').removeClass('icon-plus-sign').addClass('icon-minus-sign');
+            } else {
+                $(t).find('i').removeClass('icon-minus-sign').addClass('icon-plus-sign');
+            }
+        });
     });
     /* Click expand all / collapse all */
     $('div.toolbar-countries button#expand-all').click(countriesExpandAll);
@@ -56,18 +63,29 @@ $(document).ready(function () {
     /* NFP */
     $('ul.nfp>li>h2').click(function() {
         var content = $(this).parent().find('div.content');
-        content.slideToggle({duration: 200});
+        var t = this;
+        content.slideToggle(200, function() {
+            if($(content).is(':visible')) {
+                $(t).find('i').removeClass('icon-plus-sign').addClass('icon-minus-sign');
+            } else {
+                $(t).find('i').removeClass('icon-minus-sign').addClass('icon-plus-sign');
+            }
+        });
     });
     $('div.toolbar-nfp button#expand-all').click(nfpExpandAll);
     $('div.toolbar-nfp button#collapse-all').click(nfpCollapseAll);
 });
 
-function nfpCollapseAll() {
-    $('ul.nfp>li>div.content').hide();
-}
 
 function nfpExpandAll() {
     $('ul.nfp>li>div.content').show();
+    $('ul.nfp>li>h2>i').removeClass('icon-plus-sign').addClass('icon-minus-sign');
+}
+
+
+function nfpCollapseAll() {
+    $('ul.nfp>li>div.content').hide();
+    $('ul.nfp>li>h2>i').removeClass('icon-minus-sign').addClass('icon-plus-sign');
 }
 
 
@@ -89,9 +107,11 @@ function filterCountriesList(filter) {
 
 function countriesExpandAll() {
     $('ul.countries>li>div.content').show();
+    $('ul.countries>li>h2>i').removeClass('icon-plus-sign').addClass('icon-minus-sign');
 }
 
 function countriesCollapseAll() {
     $('ul.countries>li>div.content').hide();
+    $('ul.countries>li>h2>i').removeClass('icon-minus-sign').addClass('icon-plus-sign');
 }
 

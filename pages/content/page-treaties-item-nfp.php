@@ -27,8 +27,11 @@ $all_contacts = $contact_data['contacts'];
         $c = count($contacts);
 ?>
     <li id="treaty-<?php echo $country->id_country; ?>">
-        <h2><?php echo $country->country_name; ?></h2>
-        <div class="content hidden">
+        <h2>
+            <i class="icon icon-plus-sign"></i>
+            <?php echo $country->country_name; ?>
+        </h2>
+        <div class="content-nfp hidden">
             <?php if(count($contacts)) : ?>
             <ul class="contacts">
             <?php foreach ($contacts as $contact) { ?>

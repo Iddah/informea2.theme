@@ -25,7 +25,10 @@ foreach ($data as $iso2l => $parties) :
     $country = $countries[$iso2l];
     echo '<li>';
 ?>
-    <h2><?php echo $country->name; ?></h2>
+    <h2>
+        <i class="icon icon-plus-sign"></i>
+        <?php echo $country->name; ?>
+    </h2>
     <div class="flag">
         <img src="<?php echo sprintf('%s/%s', get_bloginfo('template_directory'), $country->icon_medium); ?>" />
     </div>

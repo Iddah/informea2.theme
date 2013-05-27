@@ -25,7 +25,10 @@ $data = imea_countries_page::get_view_treaties();
         $treaty = $treaties[$id_treaty];
         echo '<li>';
         ?>
-        <h2><?php echo $treaty->short_title; ?></h2>
+        <h2>
+            <i class="icon icon-plus-sign"></i>
+            <?php echo $treaty->short_title; ?>
+        </h2>
         <div class="flag">
             <img src="<?php echo $treaty->logo_medium; ?>" alt="<?php _e('Convention logo', 'informea'); ?>" />
         </div>

@@ -47,8 +47,11 @@ $page_data = new informea_treaties();
             $decisions = $meeting->decisions;
     ?>
         <li>
-            <h2><?php echo $meeting_title; ?></h2>
-            <div class="content<?php echo $hide_css; ?>">
+            <h2>
+                <i class="icon icon-plus-sign"></i>
+                <?php echo $meeting_title; ?>
+            </h2>
+            <div class="content-decisions<?php echo $hide_css; ?>">
                 <?php echo $meeting_summary; ?>
                 <table class="table-hover">
                 <thead>
