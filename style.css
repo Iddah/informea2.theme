@@ -846,6 +846,8 @@ body.imea-news ul.items li ul.info li {
 
 body.imea-news li.widget.filter-news div.field { margin-top: 10px; }
 body.imea-news li.widget.filter-news select#topic { width: 160px; }
+body.imea-news div.logo { width: 80px; height: 60px; }
+body.imea-news div.news-title { margin-left: 60px; }
 
 /* 404 PAGE */
 div.d404 { background-color: #f4f4f4; padding: 30px; }

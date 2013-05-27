@@ -34,23 +34,29 @@ if(count($rows)):
     }
 ?>
     <li>
-        <h3><?php echo $row->title; ?></h3>
-        <p class="summary">
-            <?php echo $summary; ?>
-        </p>
-        <ul class="info">
-            <li>
-                <?php echo $row->date_formatted; ?>
-            </li>
-            <li>
-                <a target="_blank" href="<?php echo $row->permalink; ?>">View</a>
-            </li>
-            <?php foreach(imea_news_page::get_post_categories($row) as $cat): ?>
-            <li>
-                <?php echo $cat->name; ?>
-            </li>
-            <?php endforeach; ?>
-        </ul>
+        <div class="pull-left logo">
+            <?php echo $img_tag; ?>
+        </div>
+        <div class="news-title">
+            <h3><?php echo $row->title; ?></h3>
+            <p class="summary">
+                <?php echo $summary; ?>
+            </p>
+            <ul class="info">
+                <li>
+                    <?php echo $row->date_formatted; ?>
+                </li>
+                <li>
+                    <a target="_blank" href="<?php echo $row->permalink; ?>">View</a>
+                </li>
+                <?php foreach(imea_news_page::get_post_categories($row) as $cat): ?>
+                <li>
+                    <?php echo $cat->name; ?>
+                </li>
+                <?php endforeach; ?>
+            </ul>
+        </div>
+        <div class="clear"></div>
     </li>
 <?php endforeach; ?>
 </ul>
