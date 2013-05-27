@@ -760,6 +760,10 @@ body.imea-terms .containerTableStyle table { padding-bottom: 3px; }
 body.imea-terms #termsTree table table td:first-child { width: 30px; }
 body.imea-terms .standartTreeImage { line-height: 0.5; font-size: 23px; }
 body.imea-terms li.widget.broad-terms div.content { margin-left: 15px; }
+body.imea-terms li.widget.select-term input#widget-select-term-autocomplete {
+    border: 1px solid #999; width: 180px;
+    height: 19px;
+}
 
 /* TERMS PAGES :: SEARCH RESULTS */
 div.search-results .text-grey { color: #ccc; }
