@@ -24,7 +24,7 @@ if (have_posts()) : while (have_posts()) : the_post();
         </div>
         <div class="clear"></div>
     </div>
-    <div class="col2-center col2">
+    <div class="col2-center col2 text-justify">
         <div class="tabs">
             <ul>
                 <li>

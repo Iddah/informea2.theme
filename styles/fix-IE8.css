@@ -38,6 +38,11 @@
         -ms-filter: "progid:DXImageTransform.Microsoft.gradient(enabled=false)" !important;
     }
 
+    li.widget.image-roller {
+        filter: none;
+        -ms-filter: "progid:DXImageTransform.Microsoft.gradient(enabled=false)" !important;
+    }
+
     li.widget.index-explorer button.ui-button,
     li.widget.search button.ui-button { top: 6px; }
 
