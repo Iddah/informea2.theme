@@ -51,7 +51,7 @@ class NewsCategoriesWidget extends WP_Widget {
                                 <a href="<?php echo $row->link; ?>"
                                     style="background-image: url(<?php echo $row->image; ?>)">
                                     <span>
-                                        <?php echo $row->title; ?>
+                                        <?php echo $row->title; ?> News
                                     </span>
                                 </a>
                             </li>

@@ -80,6 +80,14 @@ class FilterNewsWidget extends WP_Widget {
                 </form>
             </div>
         </li>
+        <li>
+        <?php
+            $item = $news->get_category_by_slug($topic);
+            if(!empty($item)) {
+                echo sprintf('<div class="text-center"><p><img src="%s" class="news-category-image" /></p></div>', $item->image);
+            }
+        ?>
+        </li>
     <?php
     }
 }
