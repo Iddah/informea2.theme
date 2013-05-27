@@ -488,7 +488,7 @@ div#regional_treaties ul ul { margin-left: 0; }
 div#regional_treaties ul ul li { display: block; font-size: 12px; padding-bottom: 10px; }
 
 /* GLOBAL :: NFP listing (treaty & country NFP pages) */
-ul.nfp { list-style-type: none; margin: 0 0 0 20px; padding: 0; }
+ul.nfp { list-style-type: none; margin: 0; padding: 0; }
 ul.nfp h2 { cursor: pointer; color: black; vertical-align: middle; line-height: 48px; font-size: 16px; }
 ul.nfp h2 div { margin-right: 10px; width: 70px; }
 ul.nfp h2 div:hover { margin-right: 10px; width: 70px; }
@@ -682,7 +682,7 @@ body.imea-treaties ul.articles li.ident-3 { margin-left: 60px; }
 body.imea-treaties ul.articles li.ident-4 { margin-left: 80px; }
 body.imea-treaties div.article-toolbar { margin: 0; float: right; }
 body.imea-treaties div.paragraph-toolbar { margin: -18px 0 0 0; float: left; }
-body.imea-treaties ul.decisions { margin: 30px 0 0 0; padding: 0; list-style-type: none; }
+body.imea-treaties ul.decisions { margin: 0; padding: 0; list-style-type: none; }
 body.imea-treaties ul.decisions li { border-bottom: 1px dashed #dfdfdf; }
 body.imea-treaties ul.decisions li div.content { margin-left: 50px; }
 body.imea-treaties ul.decisions h2 { cursor: pointer; }
@@ -701,6 +701,9 @@ body.imea-treaties div.decision table.context th { text-align: left; }
 body.imea-treaties form#contact-form label { display: inline-block; width: 250px; }
 body.imea-treaties form#contact-form textarea { display: block; }
 body.imea-treaties form#contact-form div.control { margin: 10px 0; }
+
+body.imea-treaties div.col2-center div.content { padding-left: 20px; }
+body.imea-treaties ul.decisions h2 { color: black; line-height: 48px; }
 
 /* DECISIONS PAGES */
 body.imea-decisions li.widget.tag-cloud {

@@ -4,6 +4,7 @@ $treaty = informea_treaties::get_treaty_from_request();
 $parties = informea_treaties::get_parties($treaty->id);
 if (count($parties)) :
 ?>
+<div class="content">
     <div class="toolbar toolbar-parties">
         <div class="pull-right">
             Search: <input id="party-filter" type="text" name="search" placeholder="in table below ..." />
@@ -37,4 +38,5 @@ if (count($parties)) :
     <?php } ?>
     </tbody>
 </table>
+</div>
 <?php endif;

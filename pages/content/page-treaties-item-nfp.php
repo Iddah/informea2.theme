@@ -5,6 +5,7 @@ $contact_data = informea_treaties::get_contacts($treaty->id);
 $countries_contacts = $contact_data['countries'];
 $all_contacts = $contact_data['contacts'];
 ?>
+<div class="content">
 <div class="toolbar toolbar-nfp">
     <button id="expand-all"><i class="icon-plus-sign"></i> Expand all</button>
     <button id="collapse-all"><i class="icon-minus-sign"></i> Collapse all</button>
@@ -26,7 +27,7 @@ $all_contacts = $contact_data['contacts'];
         $c = count($contacts);
 ?>
     <li id="treaty-<?php echo $country->id_country; ?>">
-        <h2><?php echo $country->country_name; ?> (<?php echo $c; ?>)</h2>
+        <h2><?php echo $country->country_name; ?></h2>
         <div class="content hidden">
             <?php if(count($contacts)) : ?>
             <ul class="contacts">
@@ -86,3 +87,4 @@ $all_contacts = $contact_data['contacts'];
     </li>
     <?php } ?>
 </ul>
+</div>
