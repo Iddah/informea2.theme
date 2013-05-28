@@ -744,12 +744,12 @@ if (!class_exists('imea_countries_page')) {
             $forward = @$_SERVER['HTTP_X_FORWARDED_FOR'];
             $remote  = $_SERVER['REMOTE_ADDR'];
             $ret = NULL;
-            if(filter_var($client, FILTER_VALIDATE_IP)) {
-                $ip = $client;
+            if(filter_var($remote, FILTER_VALIDATE_IP)) {
+                $ip = $remote;
             } elseif(filter_var($forward, FILTER_VALIDATE_IP)) {
                 $ip = $forward;
-            } else {
-                $ip = $remote;
+            } elseif(filter_var($client, FILTER_VALIDATE_IP)) {
+                $ip = $client;
             }
             $iso = NULL;
             // Check the cache first
