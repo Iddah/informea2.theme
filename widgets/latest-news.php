@@ -63,6 +63,7 @@ class IndexLatestNewsWidget extends WP_Widget {
                 <ul class="latest-news">
                     <?php
                     foreach ($news as $row) :
+                        // var_dump($row);
                         $permalink = $row->permalink;
                         $target = ' target="_blank"';
                         $is_local = strpos($permalink, get_bloginfo('url'));
@@ -71,6 +72,7 @@ class IndexLatestNewsWidget extends WP_Widget {
                         }
                         ?>
                         <li>
+                            <img src="<?php echo $row->image; ?>" class="pull-left" />
                             <a title="Click to read the full story" rel="bookmark" href="<?php echo $row->permalink; ?>"<?php echo $target; ?>>
                                 <?php echo subwords($row->title, 10); ?>
                             </a>

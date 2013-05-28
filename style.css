@@ -548,14 +548,13 @@ li.widget.whatisinformea h2 { text-align: center; }
 li.widget img.ribbon { border: 0; float: left; margin: 4px 0 0 80px; }
 
 li.widget.latest-news ul { list-style-type: none; margin: 0; padding: 0 }
-li.widget.latest-news ul li {
-    color: #888;
-    margin: 0 0 10px 0; padding-left: 12px;
-    background: url("images/arrow1.png") no-repeat 0 3px;
-}
+li.widget.latest-news ul li { margin: 0; padding: 5px 0; }
+li.widget.latest-news ul li img { margin-right: 5px; }
 
 li.widget.featured-treaty div.thumbnail { float: left; margin-right: 5px; }
 li.widget.featured-treaty div.item-title { width: 135px; }
+li.widget.featured-treaty div.content p { display: inline-block; margin: 10px 0 0 0; padding: 0; }
+li.widget.featured-treaty div.content { margin: 0; padding: 0; }
 
 ul.sidebar li.widget ul.featured-tools { padding-left: 20px; }
 

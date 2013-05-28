@@ -72,13 +72,14 @@ class FeaturedTreatyWidget extends WP_Widget {
                         <?php if(!empty($treaty->theme)): ?>
                         <div class="gray">(<?php echo $treaty->theme; ?>)</div>
                         <?php endif; ?>
+                    </div>
+                    <p>
                         <?php
                         if ($count_decisions) :
                             $ob = new informea_treaties();
                             $c = $ob->get_decisions_count_2($treaty->id);
                             if ($c > 0) :
                                 ?>
-                                <br/>
                                 Decisions: <a
                                 href="<?php echo sprintf('%s/treaties/%s/decisions', get_bloginfo('url'), $treaty->odata_name); ?>"><?php echo $c; ?></a>
                             <?php endif; ?>
@@ -88,7 +89,6 @@ class FeaturedTreatyWidget extends WP_Widget {
                             $c = informea_treaties::treaty_count_nfp($treaty->id);
                             if ($c > 0) :
                                 ?>
-                                <br/>
                                 Focal points: <a
                                 href="<?php echo sprintf('%s/treaties/%s/nfp', get_bloginfo('url'), $treaty->odata_name); ?>"><?php echo $c; ?></a>
                             <?php endif; ?>
@@ -96,7 +96,7 @@ class FeaturedTreatyWidget extends WP_Widget {
                         <?php if (!empty($treaty->region)) :
                             echo sprintf('<div>Region: %s</div>', $treaty->region);
                         endif; ?>
-                    </div>
+                    </p>
                 </div>
                 <div class="clear"></div>
             </li>
