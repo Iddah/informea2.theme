@@ -331,7 +331,7 @@ if (!class_exists('imea_news_page')) {
             }
 
             // Put the default empty image
-            return get_bloginfo('template_directory') . '/images/organization/nologo.png';
+            return get_bloginfo('template_directory') . '/images/s.gif';
         }
 
         public static function get_post_categories($post) {
