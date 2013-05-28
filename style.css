@@ -196,6 +196,7 @@ div.alert .close { position: relative; top: -5px; right: -4px; line-height: 20px
 .icon-download { background-position: -120px -24px; }
 .icon-share { background-position: -120px -72px; }
 .icon-share-alt { background-position: -336px -96px; }
+.icon-arrow-right { background-position: -264px -96px; }
 .icon-refresh { background-position: -240px -24px; }
 .icon-play { background-position: -264px -72px; }
 .icon-remove { background-position: -312px 0; }
