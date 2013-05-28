@@ -67,6 +67,7 @@ License: GPL
 .gray { color: #888; }
 .color-black { color: black; }
 .spacing-zero { margin: 0; padding: 0; border: 0; }
+.separator-h-20 { display: inline-block; margin-left: 20px; }
 .shadow {
     -moz-box-shadow: 0 2px 2px 0 #c2c2c2;
     -webkit-box-shadow: 0 2px 2px 0 rgb(194, 194, 194);
@@ -767,6 +768,8 @@ body.imea-terms form { margin: 0; padding: 0; display: inline-block; }
 body.imea-terms ul.terms { list-style-type: none; margin-left: 0; padding-left: 0; }
 body.imea-terms ul.terms table { margin: 0 0 0 30px; padding: 0; }
 body.imea-terms ul.terms table tr { border: 0; }
+body.imea-terms ul.terms.inline a { display: inline-block; width: 250px; }
+body.imea-terms ul.terms.inline li { margin-top: 40px; }
 body.imea-terms div#termsTree { float: left; width: 100%; height: 500px; position: relative; margin-top: 20px; }
 body.imea-terms div#termsTree table { border-collapse: inherit; }
 body.imea-terms div#termsTree div.loading { width: 100%; text-align: center; margin: 50px 0; }
