@@ -59,11 +59,13 @@ License: GPL
 .visible { display: block; }
 .nowrap { white-space: nowrap; }
 .orange { background: rgb(192, 159, 24); }
+.green { background: #cbe0a7 !important; }
 .round-top { -moz-border-radius: 5px 5px 0 0; -webkit-border-radius: 5px 5px 0 0; border-radius: 5px 5px 0 0; }
 .round-left { -moz-border-radius: 5px 0 0 5px; -webkit-border-radius: 5px 0 0 5px; border-radius: 5px 0 0 5px; }
 .round { -moz-border-radius: 5px; -webkit-border-radius: 5px; border-radius: 5px; }
 .focus { background: rgb(255, 233, 116); }
 .gray { color: #888; }
+.color-black { color: black; }
 .spacing-zero { margin: 0; padding: 0; border: 0; }
 .shadow {
     -moz-box-shadow: 0 2px 2px 0 #c2c2c2;
@@ -272,6 +274,7 @@ button.btn, a.btn, input.btn, a.post-edit-link {
 a.btn.blue { background-color: #2ca0d2; }
 a.btn.error { background-color: #de5425; }
 a.btn.info { background-color: #38b02f; }
+a.btn.green { background-color: #38b02f; }
 a.btn.white { background-color: #bbb; }
 a.btn:hover { text-decoration: none; }
 a.btn.small { font-size: 10px; padding: 3px 5px; }
@@ -611,6 +614,9 @@ li.widget.event-explorer h2 {
     margin: 0; padding: 0; display: block; height: 20px;
     width: 100%;
 }
+li.widget.event-explorer select { display: inline-block; }
+li.widget.event-explorer select#fe_treaty { width: 120px; }
+li.widget.event-explorer input#event-explorer-submit { background-color: #cbe0a7; text-shadow: none; color: black; }
 
 li.widget.upcoming-meetings ul { height: 100px; list-style-type: none; margin: 0; padding: 0; }
 li.widget.upcoming-meetings ul li { margin-bottom: 10px; }

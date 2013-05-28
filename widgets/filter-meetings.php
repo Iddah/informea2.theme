@@ -70,7 +70,7 @@ class FilterMeetingsWidget extends WP_Widget {
                     </div>
 
                     <div class="field">
-                        <label for="fe_type">Event type</label>
+                        <label for="fe_type">Meeting type</label>
                         <select id="fe_type" name="fe_type">
                         <?php foreach(informea_meetings::get_event_types() as $value => $label) :
                                 $selected = ($value == $fe_type) ? ' selected="selected"' : '';

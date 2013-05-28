@@ -44,25 +44,27 @@ class MeetingsExplorerWidget extends WP_Widget {
                     <input type="hidden" name="fe_show_past" value="1" />
                     <input type="hidden" name="do_search" value="1" />
                     <div class="field">
-                        <label for="fe_treaty">MEA</label>
+                        <label for="fe_treaty">MEA
                         <select id="fe_treaty" name="fe_treaty">
                             <option value="">-- All --</option>
                             <?php foreach ($meetings_ob->get_treaties() as $treaty) : ?>
                                 <option value="<?php echo $treaty->id; ?>"><?php echo $treaty->short_title; ?></option>
                             <?php endforeach; ?>
                         </select>
+                        </label>
                     </div>
                     <div class="field">
-                        <label for="fe_type">Meeting type</label>
+                        <label for="fe_type">Meeting type
                         <select id="fe_type" name="fe_type">
                             <?php foreach(informea_meetings::get_event_types() as $value => $label) :
                                 ?>
                                 <option value="<?php echo $value; ?>"><?php echo $label; ?></option>
                             <?php endforeach; ?>
                         </select>
+                        </label>
                     </div>
                     <div class="field">
-                        <label for="fe_year">Date</label>
+                        <label for="fe_year">Date
                         <select name="fe_year">
                             <option value="-1">-- All years --</option>
                             <?php
@@ -74,9 +76,10 @@ class MeetingsExplorerWidget extends WP_Widget {
                             </option>
                             <?php endforeach; ?>
                         </select>
+                        </label>
                     </div>
                     <p>
-                        <input type="submit" name="search" value="Search" class="btn orange pull-right" />
+                        <input id="event-explorer-submit" type="submit" name="search" value="Search" class="btn pull-right" />
                     </p>
                 </form>
             </div>
