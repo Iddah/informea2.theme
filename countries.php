@@ -172,13 +172,15 @@ if (!class_exists('imea_countries_page')) {
             return $wpdb->get_results($sql);
         }
 
-        function index_alphabetical() {
+        static function index_alphabetical() {
             global $wpdb;
             $ret = array();
-            $letters = $this->get_alphabet_letters();
-            foreach ($letters as $ob) {
-                $sql = "SELECT a.id, a.name, a.icon_medium FROM ai_country a INNER JOIN ai_treaty_country b ON a.id = b.id_country WHERE UPPER(SUBSTR(name, 1, 1)) = '{$ob->letter}' GROUP BY a.id ORDER BY name";
-                $ret[$ob->letter] = $wpdb->get_results($sql);
+            $rows = $wpdb->get_results('SELECT UPPER(SUBSTR(a.name, 1, 1)) AS letter, a.id, a.name, a.code2l, a.icon_medium FROM ai_country a INNER JOIN ai_treaty_country b ON a.id = b.id_country GROUP BY a.id ORDER BY name');
+            foreach($rows as $row) {
+                if(empty($ret[$row->letter])) {
+                    $ret[$row->letter] = array();
+                }
+                $ret[$row->letter][] = $row;
             }
             return $ret;
         }
