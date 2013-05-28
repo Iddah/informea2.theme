@@ -4,7 +4,7 @@ $country_data = imea_countries_page::index_alphabetical();
 function informea_countries_toolbar_alphabetical() {
     $country_data = imea_countries_page::index_alphabetical();
 ?>
-    <div class="letters pull-left">Go to countries starting with 
+    <div class="letters pull-left">Go to countries starting with
     <?php foreach($country_data as $letter => $countries): ?>
     <a href="#letter_<?php echo $letter; ?>"><?php echo $letter; ?></a>
     <?php endforeach; ?>
