@@ -598,7 +598,7 @@ li.widget.featured-country table ul li { margin-bottom: 10px; }
 li.widget.featured-country table p.note { margin: 0; padding: 0; color: #BDBCBC  }
 li.widget.featured-country .text-grey { color: #BDBCBC  }
 li.widget.featured-country div.ui-tabs-hide { display: none; }
-li.widget.featured-country select#change_country { border: 1px solid #999; }
+li.widget.featured-country select#change_country { border: 1px solid #999; width: 130px; }
 
 li.widget.event-explorer { background: #cbe0a7; }
 li.widget.event-explorer div.field { margin-bottom: 10px; }
