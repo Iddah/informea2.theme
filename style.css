@@ -58,7 +58,7 @@ License: GPL
 .hidden { display: none; }
 .visible { display: block; }
 .nowrap { white-space: nowrap; }
-.orange { background: rgb(192, 159, 24); }
+.orange { background: rgb(255, 163, 0); }
 .green { background: #cbe0a7 !important; }
 .round-top { -moz-border-radius: 5px 5px 0 0; -webkit-border-radius: 5px 5px 0 0; border-radius: 5px 5px 0 0; }
 .round-left { -moz-border-radius: 5px 0 0 5px; -webkit-border-radius: 5px 0 0 5px; border-radius: 5px 0 0 5px; }
@@ -257,7 +257,6 @@ body.informea .tag11 { font-size: 200%; }
 
 /* GLOBAL :: Buttons */
 button.btn, a.btn, input.btn, a.post-edit-link {
-    background: rgb(192, 159, 24) repeat-x;
     color: white;
     text-shadow: 0 -1px 0 rgba(0, 0, 0, 0.25);
     padding: 3px 10px;
@@ -542,10 +541,10 @@ li.widget h2 a.rss {
 li.widget div.content { overflow: hidden; padding: 10px 0 3px 3px; }
 
 li.widget.whatisinformea {
-    background-image: -webkit-linear-gradient(top, #e2f5d9, white);
-    background-image: -moz-linear-gradient(top, #e2f5d9, white);
-    background-image: -ms-linear-gradient(top, #e2f5d9, white);
-    background-image: -o-linear-gradient(top, #e2f5d9, white);
+    background-image: -webkit-linear-gradient(top, #cbe0a7, white);
+    background-image: -moz-linear-gradient(top, #cbe0a7, white);
+    background-image: -ms-linear-gradient(top, #cbe0a7, white);
+    background-image: -o-linear-gradient(top, #cbe0a7, white);
     margin-bottom: 40px; padding: 5px;
 }
 li.widget.whatisinformea h2 { text-align: center; }
@@ -617,7 +616,7 @@ li.widget.event-explorer h2 {
 }
 li.widget.event-explorer select { display: inline-block; }
 li.widget.event-explorer select#fe_treaty { width: 120px; }
-li.widget.event-explorer input#event-explorer-submit { background-color: #cbe0a7; text-shadow: none; color: black; }
+li.widget.event-explorer input#event-explorer-submit { background-color: #92a57b; text-shadow: none; color: white; }
 
 li.widget.upcoming-meetings ul { height: 100px; list-style-type: none; margin: 0; padding: 0; }
 li.widget.upcoming-meetings ul li { margin-bottom: 10px; }
@@ -739,11 +738,14 @@ body.imea-countries input.find-nfp-input { width: 170px; }
 body.imea-countries div.tab-content { padding-left: 20px; }
 body.imea-countries div.toolbar span.letters { margin-top: 3px; }
 body.imea-countries div.toolbar span.letters a { margin-left: 6px; }
-body.imea-countries ul.countries { list-style-type: none; margin: 0; padding: 0; }
+body.imea-countries ul.countries { list-style-type: none; margin: 0 0 0 20px; padding: 0; }
 body.imea-countries ul.countries h2 { cursor: pointer; }
 body.imea-countries ul.countries div.content { margin: 0 20px; }
 body.imea-countries ul.countries table { margin: 0; }
 body.imea-countries ul.countries div.flag { float: right; margin-top: -40px; }
+body.imea-countries ul.country-list { list-style-type: none; }
+body.imea-countries ul.country-list li { display: inline-block; width: 130px; margin: 10px; }
+body.imea-countries ul.country-list li p { margin: 0; padding: 0; }
 body.imea-countries div.table-scroll { height: 600px; overflow: auto; margin-top: 15px; }
 body.imea-countries div.table-scroll table { width:100%; margin: 0; }
 body.imea-countries div.table-scroll table td,
@@ -762,6 +764,7 @@ body.imea-countries div#map-canvas { width: 720px; height: 400px; border: 1px so
 body.imea-countries h2 { color: black; line-height: 48px; vertical-align: middle; }
 body.imea-countries h2 div { margin-right: 15px; }
 body.imea-countries h2 div:hover { margin-right: 15px; }
+body.imea-countries div.toolbar-countries div.letters { margin-top: 3px; }
 
 /* TERMS PAGES */
 body.imea-terms form { margin: 0; padding: 0; display: inline-block; }

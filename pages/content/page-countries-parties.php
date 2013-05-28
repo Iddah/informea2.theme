@@ -1,5 +1,5 @@
 <?php
-function informea_countries_toolbar_alphabetical() {
+function informea_countries_toolbar_parties() {
 ?>
     <button id="expand-all"><i class="icon-plus-sign"></i> Expand all</button>
     <button id="collapse-all"><i class="icon-minus-sign"></i> Collapse all</button>
@@ -9,7 +9,7 @@ function informea_countries_toolbar_alphabetical() {
     </label>
 <?php
 }
-add_action('informea-countries-toolbar-extra', 'informea_countries_toolbar_alphabetical');
+add_action('informea-countries-toolbar-extra', 'informea_countries_toolbar_parties');
 do_action('informea-countries-toolbar');
 
 $countries = imea_countries_page::get_countries_keyed_iso2l();

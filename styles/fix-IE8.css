@@ -12,14 +12,14 @@
 
     li.widget {
         /* For Internet Explorer 8 */
-        -ms-filter: "progid:DXImageTransform.Microsoft.gradient(startColorstr=#D7F1F7, endColorstr=#FFFFFFFF)" !important;
+        -ms-filter: "progid:DXImageTransform.Microsoft.gradient(startColorstr=#D7F1F7, endColorstr=#ffffff)" !important;
     }
 
     .noshadow { filter: none !important; }
 
     li.widget.whatisinformea img.ribbon { position: absolute; margin-top: 6px; }
     li.widget.whatisinformea {
-        -ms-filter: "progid:DXImageTransform.Microsoft.gradient(startColorstr=#e2f5d9, endColorstr=#FFFFFFFF)" !important;
+        -ms-filter: "progid:DXImageTransform.Microsoft.gradient(startColorstr=#cbe0a7, endColorstr=#ffffff)" !important;
     }
 
     li.widget.index-explorer div.content {

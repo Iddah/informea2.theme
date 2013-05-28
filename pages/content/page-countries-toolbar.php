@@ -7,7 +7,7 @@ $expand = get_request_variable('expand', 'str', 'map');
         <label for="view-mode"><?php _e('Change view', 'informea'); ?></label>
         <select id="view-mode" name="view-mode" onchange="onChangeViewMode(this);">
             <?php
-            foreach(array('World map' => 'map', 'Country MEA membership' => 'parties', 'Grid' => 'grid') as $label => $mode) :
+            foreach(array('World map' => 'map', 'Alphabetical' => 'alphabetical', 'Grid' => 'grid') as $label => $mode) :
                 $selected = ($expand == $mode) ? 'selected="selected "' : '';
                 $data_url = sprintf('%s/countries/%s', get_bloginfo('url'), $mode);
                 ?>

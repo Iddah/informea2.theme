@@ -16,7 +16,7 @@ function informea_terms_toolbar_list() {
         </label>
     </form>
     <div class="separator-h-20">
-        Navigate to letter: 
+        Navigate to letter:
     <?php foreach ($letters as $letter): ?>
         <a href="#letter_<?php echo $letter->letter; ?>"><?php echo $letter->letter; ?></a>
     <?php endforeach; ?>
