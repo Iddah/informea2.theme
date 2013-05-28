@@ -72,9 +72,8 @@ class IndexLatestNewsWidget extends WP_Widget {
                         }
                         ?>
                         <li>
-                            <img src="<?php echo $row->image; ?>" class="pull-left" />
                             <a title="Click to read the full story" rel="bookmark" href="<?php echo $row->permalink; ?>"<?php echo $target; ?>>
-                                <?php echo subwords($row->title, 10); ?>
+                                <strong><?php echo $row->date_formatted; ?>, <?php echo $row->source; ?></strong>: <?php echo $row->title; ?>
                             </a>
                         </li>
                     <?php endforeach; ?>
