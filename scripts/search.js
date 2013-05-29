@@ -67,9 +67,11 @@ $(document).ready(function() {
     });
 
     $('#expand-all').click(function() {
-        $('ul.search-results a.toggle-result').trigger('click');
-        $('ul.search-results a.ajax-expand').trigger('click');
-        $('ul.search-results i').removeClass('icon-plus-sign').addClass('icon-minus-sign');
+        if(confirm('This operation may take a very long time and even freeze your browser. Do you want to continue?')) {
+            $('ul.search-results a.toggle-result').trigger('click');
+            $('ul.search-results a.ajax-expand').trigger('click');
+            $('ul.search-results i').removeClass('icon-plus-sign').addClass('icon-minus-sign');
+        }
     });
 
     $('#collapse-all').click(function() {
