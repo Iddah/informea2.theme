@@ -7,6 +7,7 @@ if (have_posts()) : while (have_posts()) : the_post();
     wp_enqueue_script('jquery-custom', 'http://ajax.googleapis.com/ajax/libs/jquery/1.6.3/jquery.min.js', array(), FALSE, TRUE);
     wp_enqueue_script('jquery-ui-custom', 'http://ajax.googleapis.com/ajax/libs/jqueryui/1.8.9/jquery-ui.min.js', array(), FALSE, TRUE);
     wp_enqueue_script('informea-common', get_bloginfo('template_directory') . '/scripts/common.js', array(), FALSE, TRUE);
+    wp_enqueue_script('imea-explorer', get_bloginfo('template_directory') . '/scripts/imea_explorer.js', array(), FALSE, TRUE);
     add_action('breadcrumbtrail', 'informea_about_breadcrumbtrail');
     $about = get_page_by_title('about');
     $subpages = get_pages(array('child_of' => $about->ID, 'sort_column' => 'menu_order', 'sort_order' => 'ASC'));
