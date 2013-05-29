@@ -89,35 +89,41 @@ function handleCountryGetFeatureInfoResponse(data, evt) {
             country_layer = null;
         }
         current_country = m[1];
-        country_id = -1;
-        country_name = "";
-        country_icon = "";
+        var country_id = -1;
+        var country_name = "";
+        var country_icon = "";
         for (var i in countries) {
             if (countries[i][1] == current_country) {
-                country_id = countries[i][0];
+                country_id = countries[i][1];
                 country_name = countries[i][2];
                 country_icon = countries[i][3];
                 break;
             }
         }
         if (country_id != -1) {
-            $("#tooltip").html("<img style='float:left;' src='" + country_icon + "'/><span style='float:left;padding:7px 5px 0px 5px;'>" + country_name + "</span>");
-            style = "display:block; top:" + (evt.xy.y - $("#tooltip").height() - 10) + "px; left:" + (evt.xy.x - $("#tooltip").width() - 10) + "px;";
-            $("#tooltip").attr("style", style);
-            country_location = base_url + "/" + country_id;
-            $("#tooltip").attr("href", country_location);
-            country_layer = new OpenLayers.Layer.MapServer("Country WMS", mapserver_url + "?map=" + mapserver_localmappath + "&SERVICE=WMS&VERSION=1.3.0&REQUEST=GetMap&BBOX=-90,-180,90,180&CRS=EPSG:4326&WIDTH=512&HEIGHT=256&LAYERS=countries_filter&STYLES=&FORMAT=image/png&DPI=91&TRANSPARENT=TRUE&highlight=" + m[1], {layers: 'country'}, {gutter: 15, 'isBaseLayer': false, singleTile: true});
+            var tooltip = $("#tooltip");
+            tooltip.html("<img style='float:left;' src='" + country_icon + "'/><span style='float:left;padding:7px 5px 0px 5px;'>" + country_name + "</span>");
+            var style = "display:block; top:" + (evt.xy.y - tooltip.height() - 10) + "px; left:" + (evt.xy.x - tooltip.width() - 10) + "px;";
+            tooltip.attr("style", style);
+            tooltip.attr("href", base_url + "/" + country_id);
+            country_layer = new OpenLayers.Layer.MapServer(
+                "Country WMS",
+                mapserver_url + "?map="
+                    + mapserver_localmappath
+                    + "&SERVICE=WMS&VERSION=1.3.0&REQUEST=GetMap&BBOX=-90,-180,90,180&CRS=EPSG:4326&WIDTH=512&HEIGHT=256&LAYERS=countries_filter&STYLES=&FORMAT=image/png&DPI=91&TRANSPARENT=TRUE&highlight="
+                    + m[1],
+                { layers: 'country' },
+                { gutter: 15, 'isBaseLayer': false, singleTile: true }
+            );
             map.addLayer(country_layer);
         }
         else {
             $("#tooltip").attr("style", "display:none");
-            country_location = "";
         }
     }
     else {
         if (country_layer) {
             $("#tooltip").attr("style", "display:none");
-            country_location = '';
             map.removeLayer(country_layer);
             country_layer = null;
         }
