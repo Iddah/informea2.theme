@@ -10,4 +10,18 @@
         filter: none !important;
     }
 
+    li.widget.index-explorer form { margin: 0; padding: 0; }
+    li.widget.index-explorer input { margin: 0; padding: 0; }
+
+    li.widget.index-explorer h2 {
+        top: -20px;
+        position: relative;
+        height: 20px;
+        display: inline-block;
+        margin: 0; padding: 0;
+    }
+
+    li.widget.news-categories ul li {
+        display: inline;
+    }
 }
