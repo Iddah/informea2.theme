@@ -406,7 +406,7 @@ if (!class_exists('imea_news_page')) {
 
         function validate_add() {
             $this->actioned = TRUE;
-            if (check_admin_referer('informea-admin_highlight_add_highlight')) {
+            if (check_admin_referer('informea-admin_news_add_news')) {
                 $val = new FormValidator();
                 $val->addValidation("title", "req", "Please fill in the title");
                 $val->addValidation("link", "req", "Please fill in the link");
