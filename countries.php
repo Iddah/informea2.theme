@@ -746,6 +746,7 @@ if (!class_exists('imea_countries_page')) {
             $forward = @$_SERVER['HTTP_X_FORWARDED_FOR'];
             $remote  = $_SERVER['REMOTE_ADDR'];
             $ret = NULL;
+            $ip = NULL;
             if(filter_var($remote, FILTER_VALIDATE_IP)) {
                 $ip = $remote;
             } elseif(filter_var($forward, FILTER_VALIDATE_IP)) {
@@ -767,6 +768,7 @@ if (!class_exists('imea_countries_page')) {
                 if(!empty($ip_data->geoplugin_countryName)) {
                     $cached_ips[$ip] = $ip_data->geoplugin_countryCode;
                     $iso = $cached_ips[$ip];
+                    $cache->put('user_ip_country', 'global', $cached_ips, 'json');
                 }
             }
             $cache->put('user_ip_country', 'global', $cached_ips, 'json');
