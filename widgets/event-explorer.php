@@ -37,9 +37,8 @@ class MeetingsExplorerWidget extends WP_Widget {
         $title = empty($instance['title']) ? ' ' : apply_filters('widget_title', $instance['title']);
 ?>
         <li class="widget event-explorer">
+            <h2><?php echo $title; ?></h2>
             <div class="content">
-                <h2><?php echo $title; ?></h2>
-                <br />
                 <form action="/meetings/" method="get">
                     <input type="hidden" name="fe_show_past" value="1" />
                     <input type="hidden" name="do_search" value="1" />
