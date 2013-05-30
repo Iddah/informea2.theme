@@ -890,6 +890,10 @@ body.imea-search ul.search-results div.highlight {
     padding: 5px;
     margin-top: 10px; border: 1px dashed #666; background-color: #f4f4f4;
 }
+
+body.imea-search ul.search-results.tab1 li { padding-bottom: 10px; }
+body.imea-search .thumbnail.tab1 { margin-top: -15px; margin-right: 5px; }
+
 body.imea-search ul.search-results div.highlight strong { color: #de5425; }
 
 /* Below, you are beyond redemption */
