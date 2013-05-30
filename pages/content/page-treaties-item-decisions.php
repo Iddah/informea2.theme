@@ -67,7 +67,7 @@ $page_data = new informea_treaties();
                     foreach ($decisions as $decision) :
                         $tags = $page_data->get_decision_tags($decision->id);
                 ?>
-                    <tr id="decision_<?php echo $decision->id; ?>">
+                    <tr id="decision-<?php echo $decision->id; ?>">
                         <td class="text-top">
                             <?php echo $decision->number; ?>
                         </td>

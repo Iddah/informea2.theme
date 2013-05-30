@@ -32,7 +32,7 @@ foreach ($data as $title => $decisions) {
     foreach ($decisions as $decision) :
         $tags = $page_data->get_decision_tags($decision->id);
 ?>
-        <tr id="decision_<?php echo $decision->id; ?>">
+        <tr id="decision-<?php echo $decision->id; ?>">
             <td>
                 <?php echo $decision->number; ?>
             </td>
