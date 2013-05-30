@@ -23,6 +23,20 @@
         margin: 0; padding: 0;
     }
 
+    /* INDEX PAGE */
+    body.informea li.widget.tag-cloud ul li { display: inline; }
+    body.informea li.widget.featured-treaty p { display: inline; clear: both; margin: 0; padding: 0; }
+
+
+    /* SEARCH PAGE */
+    li.widget.search button.ui-button { top: -6px; }
+    /* SEARCH PAGE */
+    li.search { filter: none !important; }
+    li.widget.search input#q_freetext { width: 180px; }
+    li.widget.search button.btn { width: 70px; height: 25px; line-height: 10px; }
+    div.toolbar button { float: left; margin-right: 5px; }
+    div.toolbar form { margin: 0; padding: 0; }
+
     li.widget.news-categories ul li { display: inline; }
 
 

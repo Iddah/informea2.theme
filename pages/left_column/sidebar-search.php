@@ -17,19 +17,19 @@ if(!defined('INFORMEA_SEARCH_PAGE')) {
         <input type="hidden" id="q_sort_direction_filters" name="q_sort_direction" value="<?php $search->get_sort_direction(); ?>" />
     <ul>
         <li>
-            <h3 class="text-right"><i class="icon icon-minus-sign pull-left"></i> free text</h3>
+            <h3><i class="icon icon-minus-sign pull-left"></i> free text</h3>
             <div class="content">
                 <label>Free search text
                     <input type="text" size="31" id="q_freetext" name="q_freetext" placeholder="Type a term or phrase"
                            value="<?php echo esc_attr($search->ui_get_freetext()); ?>" />
                 </label>
-                <button class="btn pull-right" onclick="$(this).closest('form').submit();">Search</button>
+                <button class="btn orange pull-right" onclick="$(this).closest('form').submit();">Search</button>
             </div>
         </li>
 
         <?php if($tab == 1) : ?>
         <li>
-            <h3 class="text-right"><i class="icon icon-minus-sign pull-left"></i> timeline</h3>
+            <h3><i class="icon icon-minus-sign pull-left"></i> timeline</h3>
             <div class="content">
                 <label>Between
                     <br />
@@ -59,14 +59,14 @@ if(!defined('INFORMEA_SEARCH_PAGE')) {
         <?php endif; ?>
 
         <li>
-            <h3 class="text-right"><i class="icon icon-minus-sign pull-left"></i> keyword</h3>
+            <h3><i class="icon icon-minus-sign pull-left"></i> keyword</h3>
             <div class="content">
                 <?php render_qterm_autocomplete(); ?>
             </div>
         </li>
 
         <li>
-            <h3 class="text-right"><i class="icon icon-minus-sign pull-left"></i> type</h3>
+            <h3><i class="icon icon-minus-sign pull-left"></i> type</h3>
             <div class="content">
                 <label>
                     <input type="checkbox" name="q_use_decisions" value="1" <?php $search->ui_check_use_decisions();?> />
@@ -81,7 +81,7 @@ if(!defined('INFORMEA_SEARCH_PAGE')) {
         </li>
 
         <li>
-            <h3 class="text-right"><i class="icon icon-minus-sign pull-left"></i> instrument</h3>
+            <h3><i class="icon icon-minus-sign pull-left"></i> instrument</h3>
             <div class="content">
             <?php
                 $count = 0;

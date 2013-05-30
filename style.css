@@ -232,6 +232,7 @@ li.widget h3 { margin: 10px 0 5px 0; padding: 0; }
 li.widget ul { list-style-type: none; margin: 0; padding: 0; }
 li.widget.search { padding-top: 0; background: #ffe974 none; }
 li.widget.search h2 { font-size: 15px; font-weight: bold; }
+li.widget.search h3 i { margin-right: 5px; }
 li.widget.search form { background: #fff6e0 none; }
 li.widget.search label { font-weight: bold; }
 li.widget.search input.search-input {

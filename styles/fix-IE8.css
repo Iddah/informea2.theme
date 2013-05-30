@@ -46,8 +46,9 @@
     li.widget.index-explorer button.ui-button,
     li.widget.search button.ui-button { top: 6px; }
 
+    /* SEARCH PAGE */
+    li.search { filter: none !important; }
     li.widget.search input#q_freetext { width: 180px; }
-
 }
 
 /*  @media screen */
