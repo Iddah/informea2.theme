@@ -703,7 +703,7 @@ body.imea-treaties div.paragraph-toolbar { margin: -18px 0 0 0; float: left; }
 body.imea-treaties ul.decisions { margin: 0; padding: 0; list-style-type: none; }
 body.imea-treaties ul.decisions li { border-bottom: 1px dashed #dfdfdf; }
 body.imea-treaties ul.decisions li div.content { margin-left: 50px; }
-body.imea-treaties ul.decisions h2 { cursor: pointer; line-height: 20px; }
+body.imea-treaties ul.decisions h2 { cursor: pointer; line-height: 20px; color: black; }
 body.imea-treaties ul.decisions a.title { font-size: 14px; display: block; }
 body.imea-treaties ul.terms {
     border: 1px dashed #666; background-color: #f4f4f4;
@@ -721,7 +721,6 @@ body.imea-treaties form#contact-form textarea { display: block; }
 body.imea-treaties form#contact-form div.control { margin: 10px 0; }
 
 body.imea-treaties div.col2-center div.content { padding-left: 20px; }
-body.imea-treaties ul.decisions h2 { color: black; line-height: 48px; }
 
 /* DECISIONS PAGES */
 body.imea-decisions li.widget.tag-cloud {
