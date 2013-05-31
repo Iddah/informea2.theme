@@ -899,7 +899,7 @@ body.imea-search ul.search-results ul { margin: 5px 0 5px 15px; padding: 0; list
 body.imea-search ul.search-results li { margin: 20px 0; }
 body.imea-search ul.search-results li div { margin-left: 20px; }
 body.imea-search ul.search-results i { margin-right: 10px; cursor: hand; }
-body.imea-search ul.search-results span.thumbnail { margin-right: 10px; }
+body.imea-search ul.search-results span.thumbnail { margin-right: 10px; cursor: hand; }
 body.imea-search ul.search-results i.icon-download,
 body.imea-search ul.search-results i.icon-arrow-right { margin-left: 10px; }
 body.imea-search ul.search-results img { max-height: 30px; vertical-align: middle; }
