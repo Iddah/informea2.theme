@@ -872,7 +872,7 @@ body.imea-search li.widget.search div.content { margin: 5px 0 5px 5px !important
 body.imea-search li.widget.search form { background-color: #fff6e0; }
 
 body.imea-search li.widget.search form input#q_freetext {
-    width: 120px; margin: 0; float: left;
+    width: 120px; margin: 0 0 4px 0; float: left;
     padding: 0 0 0 3px;
     border: 1px solid #ffe974;
     border-right: 0;
