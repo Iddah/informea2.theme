@@ -45,6 +45,9 @@ $page_data = new informea_treaties();
             $meeting_title = $page_data->tab_decisions_meeting_title($meeting);
             $meeting_summary = $page_data->decisions_meeting_summary($meeting);
             $decisions = $meeting->decisions;
+            if(count($decisions) == 0) {
+                continue;
+            }
     ?>
         <li>
             <h2>
