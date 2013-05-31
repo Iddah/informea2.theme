@@ -868,7 +868,7 @@ div.d404 { background-color: #f4f4f4; padding: 30px; }
 
 /* SEARCH PAGE */
 body.imea-search form { margin: 0; padding: 0; }
-body.imea-search div.widget.search div.content { margin: 5px 0 0 5px; padding: 0; }
+body.imea-search li.widget.search div.content { margin: 5px 0 5px 5px !important; padding: 0; }
 body.imea-search ul.sidebar li.search ul { padding: 1px; background-color: #fff; }
 body.imea-search ul.sidebar label { font-weight: normal; }
 body.imea-search ul.sidebar h3 { cursor: pointer; }
@@ -883,8 +883,10 @@ body.imea-search ul.search-results { margin: 15px 0 0 0; padding: 0; list-style-
 body.imea-search ul.search-results ul { margin: 5px 0 5px 15px; padding: 0; list-style-type: none; }
 body.imea-search ul.search-results li { margin: 20px 0; }
 body.imea-search ul.search-results li div { margin-left: 20px; }
-body.imea-search ul.search-results i { margin-right: 5px; }
-body.imea-search ul.search-results i.icon-download { margin-left: 5px; }
+body.imea-search ul.search-results i { margin-right: 10px; }
+body.imea-search ul.search-results span.thumbnail { margin-right: 10px; }
+body.imea-search ul.search-results i.icon-download,
+body.imea-search ul.search-results i.icon-arrow-right { margin-left: 10px; }
 body.imea-search ul.search-results img { max-height: 30px; vertical-align: middle; }
 body.imea-search ul.search-results div.highlight {
     padding: 5px;
