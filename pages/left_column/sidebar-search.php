@@ -23,7 +23,7 @@ if(!defined('INFORMEA_SEARCH_PAGE')) {
                     <input type="text" size="31" id="q_freetext" name="q_freetext" placeholder="Type a term or phrase"
                            value="<?php echo esc_attr($search->ui_get_freetext()); ?>" />
                 </label>
-                <button class="btn orange pull-right" onclick="$(this).closest('form').submit();">Search</button>
+                <button id="left_search" class="orange" onclick="$(this).closest('form').submit();">Search</button>
             </div>
         </li>
 

@@ -30,10 +30,13 @@
 
     /* SEARCH PAGE */
     li.widget.search button.ui-button { top: -6px; }
-    /* SEARCH PAGE */
     li.search { filter: none !important; }
     li.widget.search input#q_freetext { width: 180px; }
     li.widget.search button.btn { width: 70px; height: 25px; line-height: 10px; }
+    form ul#q_term_holder li { display: inline; margin: 2px; padding: 3px; border: 1px solid #a00; background-color: #fff6e0; }
+    form ul#q_term_holder li i { margin-left: 3px; cursor: hand; }
+
+
     div.toolbar button { float: left; margin-right: 5px; }
     div.toolbar form { margin: 0; padding: 0; }
 
