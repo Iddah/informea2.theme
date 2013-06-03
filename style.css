@@ -786,6 +786,18 @@ body.imea-terms li.widget.select-term input#widget-select-term-autocomplete {
     border: 1px solid #999; width: 180px;
     height: 19px;
 }
+body.imea-terms ul.search-results { margin: 0 0 0 20px; padding: 0; list-style-type: none; }
+body.imea-terms ul.search-results ul  { list-style-type: none; }
+body.imea-terms ul.search-results li { margin-top: 15px; }
+body.imea-terms ul.search-results li i { margin-right: 10px; }
+body.imea-terms ul.search-results li span { margin-right: 10px; }
+body.imea-terms ul.search-results div.highlight {
+    padding: 5px;
+    margin-top: 10px;
+    border: 1px dashed #666;
+    background-color: #f4f4f4;
+}
+body.imea-terms ul.search-results i.icon-arrow-right { margin-left: 10px; }
 
 /* TERMS PAGES :: SEARCH RESULTS */
 div.search-results .text-grey { color: #ccc; }
