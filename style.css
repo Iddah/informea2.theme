@@ -305,29 +305,34 @@ div#header #logo a {
     background: url("images/logo-wide.png") no-repeat top left;
 }
 
+
 /* GLOBAL :: Header (blue stripe) :: Primary menu */
-ul#menu-primary-menu {
+/* @warn: DO NOT REMOVE ul#menu-main is for backwards compatibility with the Toolkit! */
+ul#menu-primary-menu, ul#menu-main {
     padding-left: 10px;
     list-style-type: none;
     float: left;
     display: block; margin: 0; position: relative; top: 1px;
     overflow: hidden;
 }
-ul#menu-primary-menu li, div.menu li { float: left; height: 38px; }
-ul#menu-primary-menu a {
+
+ul#menu-primary-menu li, div.menu li, ul#menu-main li { float: left; height: 38px; }
+ul#menu-primary-menu a, ul#menu-main a {
     color: #fff;
     font-weight: bold; text-decoration: none; text-transform: uppercase;
     display: block; padding: 10px 15px 10px 15px;
     margin-right: 1px;
 }
-ul#menu-primary-menu li:first-child a { background: none; }
-ul#menu-primary-menu li a:hover {
+
+ul#menu-primary-menu li:first-child a, ul#menu-main li:first-child a { background: none; }
+ul#menu-primary-menu li a:hover, ul#menu-main li a:hover {
     color: #444;
     background: #d7f1f7;
     border-top-left-radius: 5px; border-top-right-radius: 5px;
 }
-ul#menu-primary-menu ul li { width: 185px; }
-ul#menu-primary-menu li.current-menu-item > a {
+
+ul#menu-primary-menu ul li, ul#menu-main ul li { width: 185px; }
+ul#menu-primary-menu li.current-menu-item > a, ul#menu-main li.current_page_item > a {
     background: #d7f1f7;
     border-top-left-radius: 5px; border-top-right-radius: 5px;
     color: #444;
@@ -338,6 +343,7 @@ ul#menu-secondary-menu { float: right; margin-top: -80px; padding-left: 0; list-
 ul#menu-secondary-menu li { padding-left: 7px; list-style-type: none; display: inline-block; }
 ul#menu-secondary-menu a { color: #fff; text-transform: uppercase; }
 ul#menu-secondary-menu a:hover { color: #444; }
+
 
 /* GLOBAL :: Sprites */
 .basel, .cbd, .cites, .cms, .fao, .itpgrfa, .ozone, .ramsar, .rotterdam, .stockholm, .un, .unccd, .unece,
