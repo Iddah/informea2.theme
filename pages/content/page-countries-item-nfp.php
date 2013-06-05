@@ -49,8 +49,7 @@ $treaties = informea_countries::get_focal_points_by_treaty($id);
                                 <i class="icon icon-envelope"></i> <?php _e('e-mail', 'informea'); ?>
                             </a>
                         <?php endif; ?>
-                        <a class="btn white small"
-                           href="<?php echo bloginfo('url'); ?>/vcard?id_contact=<?php echo $contact->id ?>"
+                        <a class="btn white small" href="<?php informea_treaties::nfp_vcard_url($contact); ?>"
                            title="<?php _e('Download vcard', 'informea'); ?>">
                             <i class="icon icon-user"></i> <?php _e('vCard', 'informea'); ?>
                         </a>

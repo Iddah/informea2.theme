@@ -53,8 +53,7 @@ $all_contacts = $contact_data['contacts'];
                             <i class="icon icon-envelope"></i> <?php _e('e-mail', 'informea'); ?>
                         </a>
                     <?php endif; ?>
-                    <a class="btn white small"
-                       href="<?php bloginfo('url'); ?>/download?entity=vcard&id=<?php echo $contact->id ?>">
+                    <a class="btn white small" href="<?php informea_treaties::nfp_vcard_url($contact); ?>"
                        <i class="icon icon-user"></i> <?php _e('vCard', 'informea'); ?>
                     </a>
                     <div class="details">
