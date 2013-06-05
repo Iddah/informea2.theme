@@ -31,7 +31,7 @@ $terms_page = new Thesaurus(NULL);
                 ?>
                 <input type="text" id="explorer_q_freetext" name="q_freetext" class="text left"
                        value="<?php echo $search->get_freetext($search->ui_get_freetext_default()); ?>"/>
-                <button class="btn" onclick="$(this).closest('form').submit();">Search</button>
+                <button class="btn orange" onclick="$(this).closest('form').submit();">Search</button>
             </form>
         </li>
         <li class="section">
@@ -65,7 +65,7 @@ $terms_page = new Thesaurus(NULL);
                 include(dirname(__FILE__) . '/inc.date_interval.php');
                 ?>
                 <div class="block">
-                    <button class="btn" onclick="$(this).closest('form').submit();">Search</button>
+                    <button class="btn orange" onclick="$(this).closest('form').submit();">Search</button>
                 </div>
             </form>
         </li>
