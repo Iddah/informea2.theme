@@ -45,8 +45,8 @@ $treaties = informea_countries::get_focal_points_by_treaty($id);
                         <div class="clear"></div>
                         <?php if (!empty($contact->email)) : ?>
                             <a class="btn blue small"
-                               href="<?php bloginfo('url'); ?>/treaties/<?php echo $treaty->odata_name; ?>/sendmail/<?php echo $contact->id ?>/<?php echo $country->id_country ?>">
-                                <i class="icon icon-envelope"></i> <?php _e('e-mail', 'informea'); ?>
+                               href="<?php informea_treaties::nfp_contact_url($contact); ?>">
+                               <i class="icon icon-envelope"></i> <?php _e('e-mail', 'informea'); ?>
                             </a>
                         <?php endif; ?>
                         <a class="btn white small" href="<?php informea_treaties::nfp_vcard_url($contact); ?>"
