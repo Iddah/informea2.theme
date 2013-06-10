@@ -1,5 +1,6 @@
 <?php
 get_header();
+// informea_debug_wp_request();
 ?>
 <div class="col2-left col2">
     &nbsp;
