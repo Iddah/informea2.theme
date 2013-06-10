@@ -20,15 +20,17 @@ $treaties = informea_countries::get_focal_points_by_treaty($id);
 <?php
     foreach($treaties as $treaty) :
         $showall_div = $showall ? 'visible' : 'hidden';
+        $showall_icon = $showall ? 'icon-minus-sign' : 'icon-plus-sign';
         $contacts = $treaty->focal_points;
 ?>
         <li>
             <h2>
-                <div class="thumbnail <?php echo $treaty->odata_name; ?> pull-left"></div>
-                <i class="icon icon-plus-sign"></i>
+                <i class="icon <?php echo $showall_icon; ?>"></i>
+                <div class="thumbnail <?php echo $treaty->odata_name; ?> middle"></div>
                 <?php echo $treaty->short_title; ?> (<?php echo count($contacts); ?>)
             </h2>
-            <div class="content hidden">
+            <a name="contact-bookmark-<?php echo $treaty->id; ?>"></a>
+            <div class="content <?php echo $showall_div; ?>">
                 <?php if(count($contacts)) : ?>
                 <ul class="contacts">
                     <?php foreach ($contacts as $contact) : ?>

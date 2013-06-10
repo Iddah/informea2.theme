@@ -1,5 +1,5 @@
 $(document).ready(function () {
-    var find_nfp_input = $('.find-nfp-infput');
+    var find_nfp_input = $('.find-nfp-input');
     find_nfp_input.autocomplete({
         source: function (request, response) {
             $.ajax({

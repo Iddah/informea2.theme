@@ -43,6 +43,7 @@ License: GPL
  - NEWS PAGES
  - 404 PAGE
  - SEARCH PAGE
+ - NFP contact form
  - /dev/null
 */
 
@@ -777,6 +778,7 @@ body.imea-countries h2 { color: black; line-height: 48px; vertical-align: middle
 body.imea-countries h2 div { margin-right: 15px; }
 body.imea-countries h2 div:hover { margin-right: 15px; }
 body.imea-countries div.toolbar-countries div.letters { margin-top: 3px; }
+body.imea-countries input.find-nfp-input { border: 1px solid #999; width: 180px; height: 19px; }
 
 /* TERMS PAGES */
 body.imea-terms form { margin: 0; padding: 0; display: inline-block; }
