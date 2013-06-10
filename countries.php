@@ -853,9 +853,9 @@ if (!class_exists('imea_countries_page')) {
             );
         }
 
-        function get_nfp($id_people) {
+        static function get_nfp($id_people) {
             global $wpdb;
-            return $wpdb->get_row($wpdb->prepare("SELECT a.*, b.`name` AS country_name FROM `ai_people` a INNER JOIN `ai_country` b ON a.`id_country` = b.`id` WHERE a.`id` = %d", $id_people));
+            return $wpdb->get_row($wpdb->prepare("SELECT a.*, b.`name` AS country_name, b.`icon_medium`, b.`icon_large` FROM `ai_people` a INNER JOIN `ai_country` b ON a.`id_country` = b.`id` WHERE a.`id` = %d", $id_people));
         }
 
         function label_contact($contact) {
