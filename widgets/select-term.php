@@ -32,6 +32,7 @@ class SelectTermWidget extends WP_Widget {
     }
 
     function widget($args, $instance) {
+        add_action('js_inject', 'js_inject_widget_select_term');
         $title = empty($instance['title']) ? ' ' : apply_filters('widget_title', $instance['title']);
         ?>
         <li class="widget select-term">
@@ -125,5 +126,4 @@ function js_inject_widget_select_term() {
     </script>
 <?php
 }
-add_action('js_inject', 'js_inject_widget_select_term');
 ?>
