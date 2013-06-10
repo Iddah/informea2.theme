@@ -34,12 +34,6 @@ $all_contacts = $contact_data['contacts'];
                    href="<?php echo get_permalink() . '/' . $treaty->odata_name . '/coverage'; ?>"><?php _e('Map and Membership', 'informea'); ?></a>
             </li>
         <?php } ?>
-        <?php if ($expand == 'sendmail') { ?>
-            <li>
-                <a class="<?php echo ($expand == 'sendmail') ? 'active' : ''; ?>"
-                   href=""><?php _e('Contact Focal Point', 'informea'); ?> </a>
-            </li>
-        <?php } ?>
     </ul>
 </div>
 <?php get_template_part('pages/content/page', "treaties-item-$expand"); ?>

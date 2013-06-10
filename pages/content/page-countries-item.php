@@ -20,8 +20,6 @@ if($c > 0) { $tabs['plans'] = sprintf('%s (%s)', __('National plans', 'informea'
 
 $tabs['ecolex-legislation'] = __('Legislation', 'informea');
 $tabs['ecolex-caselaw'] = __('Case law', 'informea');
-
-if($expand == 'sendmail') { $tabs['sendmail'] = __('Send Mail', 'informea'); }
 ?>
 <div class="tabs">
     <ul>
