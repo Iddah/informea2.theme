@@ -10,6 +10,8 @@ if ($un_country_img_url != null) {
 }
 $env_data = $rUN->get_environmental_data();
 if (!empty($env_data)) {
+    echo sprintf('<p><i>Disclaimer: Environmental indicators provided by <a target="_blank" href="%s">UN data</a></i></p>',
+        UNDataWebsiteParser::$WWW_IMG_URL);
     echo '<div id="country_un_env_data">' . $env_data . '</div>';
 }
 
