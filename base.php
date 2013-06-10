@@ -481,8 +481,8 @@ if (!class_exists('UNDataWebsiteParser')) {
         private $html = null;
         private $doc = null;
 
-        private $WWW_URL = 'http://data.un.org/CountryProfile.aspx?crName=';
-        private $WWW_IMG_URL = 'http://data.un.org/';
+        public static $WWW_URL = 'http://data.un.org/CountryProfile.aspx?crName=';
+        public static $WWW_IMG_URL = 'http://data.un.org/';
 
         private $img = null;
         private $environment = null;
