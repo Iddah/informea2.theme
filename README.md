@@ -10,3 +10,9 @@ Installation
 
 1. Add it inside wp-content/themes folder of the website
 2. Go to WordPress theme managemnt and activate the theme
+
+Support
+-------
+
+http://support.informea.org/
+
