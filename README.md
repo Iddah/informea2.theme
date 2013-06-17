@@ -14,5 +14,4 @@ Installation
 Support
 -------
 
-http://support.informea.org/
-
+http://support.informea.org/ - Bugs & features
