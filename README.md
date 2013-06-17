@@ -15,6 +15,7 @@ Support
 -------
 
 http://support.informea.org/ - Bugs & features
+http://support.informea.org/projects/www_informea_org/wiki - Wiki
 
 Resources
 --------
