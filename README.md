@@ -15,3 +15,8 @@ Support
 -------
 
 http://support.informea.org/ - Bugs & features
+
+Resources
+--------
+
+http://www.informea.org/ - Main website
