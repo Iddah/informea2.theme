@@ -68,7 +68,7 @@ function informea_country_map_view_js() {
                     var marker = new google.maps.Marker(cfg);
                     if(cfg.url) {
                         google.maps.event.addListener(marker, 'click', function () {
-                            var txt = '<a href="javascript:void(0);" onclick="countryProfileOpenRamsarSite(' + cfg.id + ');" target="_blank">' + cfg.title + '</a>';
+                            var txt = '<a href="javascript:void(0);" onclick="openRamsarSite(' + cfg.id + ');" target="_blank">' + cfg.title + '</a>';
                             txt += '<p class="text-grey"><strong>Tip:</strong> Clicking, you will leave InforMEA.<br />Press Back to return here</p>';
                             infoWindow.setContent(txt);
                             infoWindow.open(fc_map, marker);
@@ -78,30 +78,6 @@ function informea_country_map_view_js() {
             }
         });
     }
-
-    function countryProfileOpenRamsarSite(id) {
-        alert('Cannot access Ramsar RSIS to show site details');
-        return;
-        var form = document.createElement('form');
-        form.setAttribute('method', 'post');
-        form.setAttribute('action', 'http://www.wetlands.org/reports/output.cfm');
-
-        var site_id = document.createElement('input');
-        site_id.setAttribute('type', 'hidden');
-        site_id.setAttribute('name', 'site_id');
-        site_id.setAttribute('value', id);
-        form.appendChild(site_id);
-
-        var button = document.createElement('input');
-        button.setAttribute('type', 'hidden');
-        button.setAttribute('name', 'RepAll');
-        button.setAttribute('value', '1');
-        form.appendChild(button);
-
-        document.body.appendChild(form);
-        form.submit();
-    }
-
 </script>
 <?php
 }

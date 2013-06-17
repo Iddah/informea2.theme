@@ -246,3 +246,25 @@ function selectCountryWidgetOnChange(T) {
         }
     });
 })(jQuery);
+
+
+function openRamsarSite(id) {
+    var form = document.createElement('form');
+    form.setAttribute('method', 'post');
+    form.setAttribute('action', 'http://sites.wetlands.org/reports/output.cfm');
+
+    var site_id = document.createElement('input');
+    site_id.setAttribute('type', 'hidden');
+    site_id.setAttribute('name', 'site_id');
+    site_id.setAttribute('value', id);
+    form.appendChild(site_id);
+
+    var button = document.createElement('input');
+    button.setAttribute('type', 'hidden');
+    button.setAttribute('name', 'RepAll');
+    button.setAttribute('value', '1');
+    form.appendChild(button);
+
+    document.body.appendChild(form);
+    form.submit();
+}
