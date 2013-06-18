@@ -495,8 +495,7 @@ if (!class_exists('UNDataWebsiteParser')) {
         public function __construct($id_country, $country_name) {
             $this->id_country = $id_country;
             $this->country_name = $country_name;
-
-            $this->url = $this->WWW_URL . $country_name;
+            $this->url = self::$WWW_URL . $country_name;
             // Check cache
             $this->check_cache($id_country, $country_name);
         }
@@ -563,9 +562,8 @@ if (!class_exists('UNDataWebsiteParser')) {
                     $imgs = $cn->getElementsByTagName('img');
                     if ($imgs->length > 0) {
                         $ret = $imgs->item(0);
-                        $ret = $this->WWW_IMG_URL . $ret->getAttribute('src');
+                        $ret = self::$WWW_IMG_URL . $ret->getAttribute('src');
                         $this->img = $ret;
-
                         // Populate the cache
                         global $wpdb;
                         $wpdb->insert('ai_cache', array('id' => $this->id_country, 'domain' => 'un-img-country', 'value' => $ret));
