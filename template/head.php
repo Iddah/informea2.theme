@@ -14,6 +14,7 @@ function tengine_head() {
         <link rel="stylesheet" type="text/css" media="screen" href="http://ajax.googleapis.com/ajax/libs/jqueryui/1.10.2/themes/sunny/jquery-ui.css" />
         <link rel="stylesheet" type="text/css" media="screen" href="<?php bloginfo('template_directory'); ?>/style.css" />
         <link rel="stylesheet" type="text/css" media="print" href="<?php bloginfo('template_directory'); ?>/styles/print.css" />
+        <link rel="stylesheet" type="text/css" media="screen" href="<?php bloginfo('template_directory'); ?>/styles/normalize.css" />
 <?php
     }
 ?>
