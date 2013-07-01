@@ -216,24 +216,5 @@ if (!class_exists('imea_goals_page')) {
             }
             return $ret;
         }
-
-
-        static function user_can_edit_target($target, $organization, $user = NULL) {
-            return is_user_logged_in();
-        }
-
-        static function user_can_edit_target_activities($uid = NULL) {
-            if(empty($uid)) {
-                return current_user_can('edit_posts') ? 1 : 0 ;
-            }
-            return 0;
-        }
-
-        static function user_can_edit_target_tools($uid = NULL) {
-            if(empty($uid)) {
-                return current_user_can('edit_posts') ? 1 : 0 ;
-            }
-            return 0;
-        }
     }
 }
