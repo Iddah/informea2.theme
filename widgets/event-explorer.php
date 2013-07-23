@@ -52,7 +52,7 @@ class MeetingsExplorerWidget extends WP_Widget {
                         </select>
                     </div>
                     <div class="field">
-                        <label for="fe_type">Type</label>
+                        <label for="fe_type">Meeting type</label>
                         <select id="fe_type" name="fe_type">
                             <?php foreach(informea_meetings::get_event_types() as $value => $label) :
                                 ?>

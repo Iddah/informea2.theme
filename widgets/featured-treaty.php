@@ -59,7 +59,7 @@ class FeaturedTreatyWidget extends WP_Widget {
         $treaty = informea_treaties::get_featured_treaty();
         if ($treaty) {
 ?>
-            <li class="widget featured-treaty">
+            <li class="widget featured-treaty shadow">
                 <?php if (!empty($title)) : ?>
                 <h2><?php echo $title; ?></h2>
                 <?php endif; ?>
