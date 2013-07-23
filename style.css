@@ -318,6 +318,12 @@ ul#menu-primary-menu, ul#menu-main {
     overflow: hidden;
 }
 
+body.customize-support>div.content {
+    margin-left: 100px;
+    width: 960px;
+}
+
+
 ul#menu-primary-menu li, div.menu li, ul#menu-main li { float: left; height: 38px; }
 ul#menu-primary-menu a, ul#menu-main a {
     color: #fff;
