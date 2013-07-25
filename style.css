@@ -1,4 +1,5 @@
 /*
+
 Theme Name: Informea2
 Theme URI: http://www.informea.org
 Description: The 2013 theme for www.informea.org
@@ -747,7 +748,7 @@ body.imea-decisions li.widget.tag-cloud {
     -moz-box-shadow: none; -webkit-box-shadow: none; box-shadow: none;
 }
 body.imea-decisions ul { margin: 0; padding: 0; }
-body.imea-decisions ul li.treaty-icon { width: 90px; display: inline-block; text-align: center; margin-top: 20px; vertical-align: top; }
+body.imea-decisions ul li.treaty-icon { width: 85px; display: inline-block; text-align: center; margin-top: 20px; vertical-align: top; }
 body.imea-decisions ul li.treaty-icon img { width: 48px; height: 48px; line-height: 48px; margin-bottom: 5px; }
 body.imea-decisions ul li.treaty-icon span.theme { color: #666; }
 
