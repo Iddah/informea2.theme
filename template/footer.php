@@ -91,13 +91,12 @@ function tengine_footer() {
                 <li>
                     <h3>CMS</h3>
                     <ul>
+                        <li><a target="_blank" href="http://www.acap.aq/">ACAP</a></li>
                         <li><a target="_blank" href="http://www.accobams.org/">ACCOBAMS</a></li>
                         <li><a target="_blank" href="http://www.unep-aewa.org/">AEWA</a></li>
+                        <li><a target="_blank" href="http://www.cms.int/species/gorillas/index.htm">Agreement on the Conservation of Gorillas and Their Habitats</a></li>
                         <li><a target="_blank" href="http://www.ascobans.org/">ASCOBANS</a></li>
                         <li><a target="_blank" href="http://www.eurobats.org/">EUROBATS</a></li>
-                        <li><hr /></li>
-                        <li><a target="_blank" href="http://www.the-acap.org/">ACAP</a></li>
-                        <li><a target="_blank" href="http://www.igcp.org/">International Gorilla Conservation Programme</a></li>
                         <li><a target="_blank" href="http://www.waddensea-secretariat.org/">WADDEN SEA SEALS</a></li>
                     </ul>
                 </li>
