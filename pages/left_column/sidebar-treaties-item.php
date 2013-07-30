@@ -6,7 +6,7 @@ $id = $treaty->id;
 $parties = informea_treaties::get_parties($id);
 $no_parties = (count($parties) > 0) ? count($parties) : intval($treaty->number_of_parties);
 
-$entry_into_force = @date('Y', strtotime($treaty->start));
+$entry_into_force = @date('d-M-Y', strtotime($treaty->start));
 
 wp_enqueue_script('treaties', get_bloginfo('template_directory') . '/scripts/treaties.js');
 ?>
